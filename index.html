@@ -4,43 +4,117 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>ELCOIN</title>
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0f1220;color:#fff;font-family:Arial,sans-serif}
-.app{max-width:520px;margin:auto;padding:25px 16px;text-align:center}
+body{
+  margin:0;
+  background:#0f1220;
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
+.app{
+  max-width:520px;
+  margin:auto;
+  padding:25px 16px;
+  text-align:center;
+}
 h1{font-size:34px;margin:5px 0}
 .sub{color:#9da5b8}
 .user{color:#52d68a;margin-top:8px}
-.balance{font-size:30px;font-weight:bold;margin:28px 0 18px}
-.coin{width:225px;height:225px;border-radius:50%;margin:auto;background:#e5b72f;border:7px solid #ffd95a;box-shadow:0 10px 35px #0008;display:flex;align-items:center;justify-content:center;touch-action:manipulation;user-select:none}
+.balance{
+  font-size:30px;
+  font-weight:bold;
+  margin:28px 0 18px;
+}
+.coin{
+  width:225px;
+  height:225px;
+  border-radius:50%;
+  margin:auto;
+  background:#e5b72f;
+  border:7px solid #ffd95a;
+  box-shadow:0 10px 35px #0008;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  touch-action:manipulation;
+  user-select:none;
+}
 .coin:active{transform:scale(.94)}
 .coin span{font-size:72px}
-.energy{margin:22px 0;color:#bbc2d0}
-.bar{height:12px;background:#292e40;border-radius:20px;margin-top:8px}
-.fill{height:100%;background:#52d68a;border-radius:20px;width:100%}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#191e2d;border-radius:16px;padding:15px}
-.card b{display:block;font-size:17px;margin-bottom:8px}
-.card button{border:0;border-radius:10px;padding:10px;width:100%;font-weight:bold;background:#f3c63d;color:#111}
-.msg{height:24px;color:#f3c63d}
+.energy{
+  margin:22px 0;
+  color:#bbc2d0;
+}
+.bar{
+  height:12px;
+  background:#292e40;
+  border-radius:20px;
+  margin-top:8px;
+}
+.fill{
+  height:100%;
+  background:#52d68a;
+  border-radius:20px;
+  width:100%;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.card{
+  background:#191e2d;
+  border-radius:16px;
+  padding:15px;
+}
+.card b{
+  display:block;
+  font-size:17px;
+  margin-bottom:8px;
+}
+.card button{
+  border:0;
+  border-radius:10px;
+  padding:10px;
+  width:100%;
+  font-weight:bold;
+  background:#f3c63d;
+  color:#111;
+}
+.msg{
+  height:24px;
+  color:#f3c63d;
+}
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
 <h1>🪙 ELCOIN</h1>
 <div class="sub">Tap-to-Earn</div>
+
 <div class="user" id="user">Telegram</div>
 
-<div class="balance"><span id="balance">0</span> ELCOIN</div>
+<div class="balance">
+<span id="balance">0</span> ELCOIN
+</div>
 
-<div class="coin" id="coin"><span>🪙</span></div>
+<div class="coin" id="coin">
+<span>🪙</span>
+</div>
 
 <div class="energy">
-⚡ Energy: <b id="energy">1000</b>/1000
-<div class="bar"><div class="fill" id="fill"></div></div>
+⚡ Energy:
+<b id="energy">1000</b>/1000
+<div class="bar">
+<div class="fill" id="fill"></div>
+</div>
 </div>
 
 <div class="msg" id="msg"></div>
@@ -72,87 +146,185 @@ Level <span id="level">1</span>
 </div>
 
 <script>
-const tg=window.Telegram.WebApp;
+
+const tg = window.Telegram.WebApp;
+
 tg.ready();
 tg.expand();
 
-const user=tg.initDataUnsafe?.user;
-const userId=user?.id || "guest";
-const KEY="elcoin_"+userId;
+const user = tg.initDataUnsafe?.user;
 
 if(user){
-document.getElementById("user").textContent=
-"👤 "+(user.first_name || "Player");
+  document.getElementById("user").textContent =
+    "👤 " + (user.first_name || "Player");
 }
 
-let s=JSON.parse(localStorage.getItem(KEY)||"null")||{
-balance:0,
-energy:1000,
-level:1,
-lastBonus:0,
-referrals:0
+const userId = user?.id || "guest";
+
+const SUPABASE_URL =
+"https://umqlgklqpolmiqoyqkbu.supabase.co";
+
+const FUNCTION_URL =
+SUPABASE_URL + "/functions/v1/telegram-user";
+
+let s = {
+  balance:0,
+  energy:1000,
+  level:1,
+  lastBonus:0,
+  referrals:0
 };
 
-const max=1000;
+const maxEnergy = 1000;
 
 function render(){
-document.getElementById("balance").textContent=s.balance;
-document.getElementById("energy").textContent=s.energy;
-document.getElementById("level").textContent=s.level;
-document.getElementById("friends").textContent=s.referrals+" referrals";
-document.getElementById("fill").style.width=(s.energy/max*100)+"%";
-document.getElementById("upgrade").textContent="Upgrade "+(s.level*100);
+
+  document.getElementById("balance").textContent = s.balance;
+
+  document.getElementById("energy").textContent = s.energy;
+
+  document.getElementById("level").textContent = s.level;
+
+  document.getElementById("friends").textContent =
+    s.referrals + " referrals";
+
+  document.getElementById("fill").style.width =
+    (s.energy / maxEnergy * 100) + "%";
+
+  document.getElementById("upgrade").textContent =
+    "Upgrade " + (s.level * 100);
 }
 
-function save(){
-localStorage.setItem(KEY,JSON.stringify(s));
-render();
+function message(text){
+
+  document.getElementById("msg").textContent = text;
+
+  setTimeout(()=>{
+    document.getElementById("msg").textContent = "";
+  },1800);
 }
 
-function msg(t){
-document.getElementById("msg").textContent=t;
-setTimeout(()=>{
-document.getElementById("msg").textContent="";
-},1800);
+async function connectUser(){
+
+  if(!user){
+    message("Telegram daxilində açılmalıdır.");
+    return;
+  }
+
+  try{
+
+    const response = await fetch(FUNCTION_URL,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        user:{
+          id:user.id,
+          username:user.username || null,
+          first_name:user.first_name || "Player"
+        }
+      })
+    });
+
+    const data = await response.json();
+
+    if(data.success && data.player){
+
+      s.balance = data.player.balance || 0;
+      s.energy = data.player.energy || 1000;
+      s.level = data.player.level || 1;
+      s.referrals = data.player.referrals || 0;
+
+      render();
+
+      message("✅ Hesab qoşuldu!");
+
+    }else{
+
+      message("⚠️ Hesab qoşulmadı.");
+
+      console.log(data);
+    }
+
+  }catch(error){
+
+    console.log(error);
+
+    message("⚠️ Server bağlantı xətası.");
+
+  }
 }
 
-document.getElementById("coin").onclick=()=>{
-if(s.energy<1)return msg("⚡ Enerjin bitib!");
-s.balance+=s.level;
-s.energy--;
-save();
+document.getElementById("coin").onclick = ()=>{
+
+  if(s.energy < 1){
+
+    message("⚡ Enerjin bitib!");
+
+    return;
+  }
+
+  s.balance += s.level;
+
+  s.energy--;
+
+  render();
 };
 
-document.getElementById("bonus").onclick=()=>{
-if(Date.now()-s.lastBonus<86400000)
-return msg("🎁 Bonus artıq götürülüb.");
+document.getElementById("bonus").onclick = ()=>{
 
-s.balance+=500;
-s.lastBonus=Date.now();
-save();
-msg("+500 ELCOIN!");
+  if(Date.now() - s.lastBonus < 86400000){
+
+    message("🎁 Bonus artıq götürülüb.");
+
+    return;
+  }
+
+  s.balance += 500;
+
+  s.lastBonus = Date.now();
+
+  render();
+
+  message("+500 ELCOIN! 🎉");
 };
 
-document.getElementById("upgrade").onclick=()=>{
-let cost=s.level*100;
+document.getElementById("upgrade").onclick = ()=>{
 
-if(s.balance<cost)
-return msg("🪙 Kifayət qədər coin yoxdur.");
+  const cost = s.level * 100;
 
-s.balance-=cost;
-s.level++;
-save();
-msg("📈 Level yüksəldi!");
+  if(s.balance < cost){
+
+    message("🪙 Kifayət qədər coin yoxdur.");
+
+    return;
+  }
+
+  s.balance -= cost;
+
+  s.level++;
+
+  render();
+
+  message("📈 Level yüksəldi!");
 };
 
 setInterval(()=>{
-if(s.energy<max){
-s.energy++;
-save();
-}
+
+  if(s.energy < maxEnergy){
+
+    s.energy++;
+
+    render();
+  }
+
 },3000);
 
 render();
+
+connectUser();
+
 </script>
 
 </body>
