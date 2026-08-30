@@ -29,6 +29,7 @@ h1{font-size:34px;margin:5px 0}
 </head>
 
 <body>
+
 <div class="app">
 
 <h1>🪙 ELCOIN</h1>
@@ -45,7 +46,8 @@ h1{font-size:34px;margin:5px 0}
 </div>
 
 <div class="energy">
-⚡ Energy: <b id="energy">1000</b>/1000
+⚡ Energy:
+<b id="energy">1000</b>/1000
 <div class="bar">
 <div class="fill" id="fill"></div>
 </div>
@@ -80,212 +82,305 @@ Level <span id="level">1</span>
 </div>
 
 <script>
-const tg=window.Telegram.WebApp;
+
+const tg = window.Telegram.WebApp;
+
 tg.ready();
 tg.expand();
 
-const user=tg.initDataUnsafe?.user;
+const user = tg.initDataUnsafe && tg.initDataUnsafe.user;
 
-const SUPABASE_URL="https://umqlgklqpolmiqoyqkbu.supabase.co";
-const FUNCTION_URL=SUPABASE_URL+"/functions/v1/telegram-user";
-
-const userId=user?.id||null;
+const FUNCTION_URL =
+"https://umqlgklqpolmiqoyqkbu.supabase.co/functions/v1/telegram-user";
 
 if(user){
-  document.getElementById("user").textContent=
-    "👤 "+(user.first_name||"Player");
+  document.getElementById("user").textContent =
+    "👤 " + (user.first_name || "Player");
 }
 
-let s={
-  balance:0,
-  energy:1000,
-  level:1,
-  lastBonus:0,
-  referrals:0
+let s = {
+  balance: 0,
+  energy: 1000,
+  level: 1,
+  lastBonus: 0,
+  referrals: 0
 };
 
-const maxEnergy=1000;
-let connected=false;
+let connected = false;
+let saving = false;
+
+const maxEnergy = 1000;
 
 function render(){
-  document.getElementById("balance").textContent=Math.floor(s.balance);
-  document.getElementById("energy").textContent=Math.floor(s.energy);
-  document.getElementById("level").textContent=s.level;
-  document.getElementById("friends").textContent=s.referrals+" referrals";
-  document.getElementById("fill").style.width=
-    Math.max(0,Math.min(100,s.energy/maxEnergy*100))+"%";
-  document.getElementById("upgrade").textContent=
-    "Upgrade "+(s.level*100);
+
+  document.getElementById("balance").textContent =
+    Math.floor(s.balance);
+
+  document.getElementById("energy").textContent =
+    Math.floor(s.energy);
+
+  document.getElementById("level").textContent =
+    s.level;
+
+  document.getElementById("friends").textContent =
+    s.referrals + " referrals";
+
+  document.getElementById("fill").style.width =
+    Math.max(0,Math.min(100,
+      s.energy / maxEnergy * 100
+    )) + "%";
+
+  document.getElementById("upgrade").textContent =
+    "Upgrade " + (s.level * 100);
 }
 
 function message(text){
-  document.getElementById("msg").textContent=text;
-  setTimeout(()=>{
-    document.getElementById("msg").textContent="";
+
+  document.getElementById("msg").textContent = text;
+
+  setTimeout(function(){
+    document.getElementById("msg").textContent = "";
   },1800);
 }
 
-async function saveToServer(){
+async function requestServer(game){
 
-  if(!connected||!userId) return;
+  if(!user){
+    return null;
+  }
 
   try{
 
-    const response=await fetch(FUNCTION_URL,{
+    const response = await fetch(FUNCTION_URL,{
       method:"POST",
+      mode:"cors",
       headers:{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
+
         user:{
           id:user.id,
-          username:user.username||null,
-          first_name:user.first_name||"Player"
+          username:user.username || null,
+          first_name:user.first_name || "Player"
         },
-        game:{
-          balance:s.balance,
-          energy:s.energy,
-          level:s.level,
-          last_bonus:s.lastBonus,
-          referrals:s.referrals
-        }
+
+        game:game || undefined
+
       })
     });
 
-    const data=await response.json();
+    const text = await response.text();
 
-    if(!data.success){
-      console.log("Save error:",data);
+    let data;
+
+    try{
+      data = JSON.parse(text);
+    }catch(e){
+      console.log("Server text:",text);
+      return null;
     }
 
+    console.log("ELCOIN SERVER:",data);
+
+    return data;
+
   }catch(error){
-    console.log("Server error:",error);
+
+    console.log("ELCOIN ERROR:",error);
+
+    return null;
   }
 }
 
 async function connectUser(){
 
   if(!user){
+
     message("Telegram daxilində açılmalıdır.");
+
     return;
   }
 
-  try{
+  const data = await requestServer(null);
 
-    const response=await fetch(FUNCTION_URL,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        user:{
-          id:user.id,
-          username:user.username||null,
-          first_name:user.first_name||"Player"
-        }
-      })
-    });
+  if(data && data.success && data.player){
 
-    const data=await response.json();
+    s.balance =
+      Number(data.player.balance) || 0;
 
-    console.log("Server:",data);
+    s.energy =
+      Number(data.player.energy) || 1000;
 
-    if(data.success&&data.player){
+    s.level =
+      Number(data.player.level) || 1;
 
-      s.balance=Number(data.player.balance)||0;
-      s.energy=Number(data.player.energy) || 1000;
-      s.level=Number(data.player.level)||1;
-      s.lastBonus=data.player.last_bonus
-        ? new Date(data.player.last_bonus).getTime()
-        : 0;
-      s.referrals=Number(data.player.referrals)||0;
+    s.lastBonus =
+      data.player.last_bonus
+      ? new Date(data.player.last_bonus).getTime()
+      : 0;
 
-      connected=true;
+    s.referrals =
+      Number(data.player.referrals) || 0;
 
-      render();
-      message("✅ Hesab qoşuldu!");
+    connected = true;
 
-    }else{
+    render();
 
-      message("⚠️ Hesab qoşulmadı.");
-      console.log(data);
+    message("✅ Hesab qoşuldu!");
 
-    }
+  }else{
 
-  }catch(error){
+    /*
+      Serverdən məlumat alınmasa belə
+      oyun bağlanmır.
+    */
 
-    console.log(error);
-    message("⚠️ Server bağlantı xətası.");
+    connected = true;
+
+    render();
+
+    message("⚠️ Serverə yenidən qoşulmağa çalışılır...");
 
   }
 }
 
-document.getElementById("coin").onclick=async()=>{
+async function saveToServer(){
 
-  if(s.energy<1){
-    message("⚡ Enerjin bitib!");
+  if(!connected || !user || saving){
     return;
   }
 
-  s.balance+=s.level;
+  saving = true;
+
+  const data = await requestServer({
+
+    balance:s.balance,
+    energy:s.energy,
+    level:s.level,
+    last_bonus:
+      s.lastBonus
+      ? new Date(s.lastBonus).toISOString()
+      : null,
+    referrals:s.referrals
+
+  });
+
+  saving = false;
+
+  if(data && data.success && data.player){
+
+    s.balance =
+      Number(data.player.balance) || s.balance;
+
+    s.energy =
+      Number(data.player.energy) || s.energy;
+
+    s.level =
+      Number(data.player.level) || s.level;
+
+    s.referrals =
+      Number(data.player.referrals) || s.referrals;
+
+    render();
+  }
+}
+
+document.getElementById("coin").onclick = async function(){
+
+  if(!connected){
+
+    message("⏳ Hesab qoşulur...");
+
+    return;
+  }
+
+  if(s.energy < 1){
+
+    message("⚡ Enerjin bitib!");
+
+    return;
+  }
+
+  s.balance += s.level;
   s.energy--;
 
   render();
 
-  await saveToServer();
+  saveToServer();
 };
 
-document.getElementById("bonus").onclick=async()=>{
+document.getElementById("bonus").onclick = async function(){
 
-  if(Date.now()-s.lastBonus<86400000){
-    message("🎁 Bonus artıq götürülüb.");
+  if(!connected){
+
+    message("⏳ Hesab qoşulur...");
+
     return;
   }
 
-  s.balance+=500;
-  s.lastBonus=Date.now();
+  if(Date.now() - s.lastBonus < 86400000){
+
+    message("🎁 Bonus artıq götürülüb.");
+
+    return;
+  }
+
+  s.balance += 500;
+  s.lastBonus = Date.now();
 
   render();
 
-  await saveToServer();
+  saveToServer();
 
   message("+500 ELCOIN! 🎉");
 };
 
-document.getElementById("upgrade").onclick=async()=>{
+document.getElementById("upgrade").onclick = async function(){
 
-  const cost=s.level*100;
+  if(!connected){
 
-  if(s.balance<cost){
-    message("🪙 Kifayət qədər coin yoxdur.");
+    message("⏳ Hesab qoşulur...");
+
     return;
   }
 
-  s.balance-=cost;
+  const cost = s.level * 100;
+
+  if(s.balance < cost){
+
+    message("🪙 Kifayət qədər coin yoxdur.");
+
+    return;
+  }
+
+  s.balance -= cost;
   s.level++;
 
   render();
 
-  await saveToServer();
+  saveToServer();
 
   message("📈 Level yüksəldi!");
 };
 
-setInterval(async()=>{
+setInterval(function(){
 
-  if(s.energy<maxEnergy){
+  if(s.energy < maxEnergy){
 
     s.energy++;
 
     render();
 
-    await saveToServer();
+    saveToServer();
   }
 
 },3000);
 
 render();
+
 connectUser();
+
 </script>
 
 </body>
