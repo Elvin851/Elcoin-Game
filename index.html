@@ -1,9 +1,15 @@
 <!doctype html>
-
 <html lang="az">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>ELCOIN</title><script src="https://telegram.org/js/telegram-web-app.js"></script><style>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<title>ELCOIN</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
@@ -12,9 +18,7 @@
 html,body{
   margin:0;
   padding:0;
-  width:100%;
-  min-height:100%;
-  background:#070b14;
+  background:#020812;
   color:#fff;
   font-family:Arial,sans-serif;
 }
@@ -24,48 +28,56 @@ body{
 }
 
 .app{
-  width:100%;
   max-width:520px;
-  margin:auto;
   min-height:100vh;
-  padding:14px 14px 105px;
+  margin:auto;
+  padding:12px 12px 105px;
   position:relative;
-  overflow:hidden;
 }
 
 /* BACKGROUND */
 
-.bg{
+body:before{
+  content:"";
   position:fixed;
   inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:-1;
+  z-index:-2;
   background:
-    radial-gradient(circle at 50% 20%,#17345c 0,#0b1425 35%,#070b14 75%);
+    radial-gradient(circle at 50% 35%,#12365b 0%,#061426 38%,#020812 80%);
 }
 
-.bg:before{
+body:after{
   content:"";
-  position:absolute;
-  width:500px;
-  height:500px;
-  left:50%;
-  top:20%;
-  transform:translate(-50%,-50%);
-  background:radial-gradient(circle,#1c5b91 0,transparent 65%);
-  opacity:.22;
-}
-
-.city-lines{
-  position:absolute;
-  bottom:0;
+  position:fixed;
   left:0;
-  width:100%;
-  height:35%;
-  opacity:.18;
+  right:0;
+  bottom:0;
+  height:38%;
+  z-index:-1;
+  opacity:.22;
   background:
-    linear-gradient(90deg,transparent 0 5%,#2b86b8 5% 6%,transparent 6% 12%,#2b86b8 12% 15%,transparent 15% 20%,#2b86b8 20% 22%,transparent 22% 29%,#2b86b8 29% 33%,transparent 33% 40%,#2b86b8 40% 43%,transparent 43% 50%,#2b86b8 50% 55%,transparent 55% 63%,#2b86b8 63% 66%,transparent 66% 73%,#2b86b8 73% 78%,transparent 78% 85%,#2b86b8 85% 89%,transparent 89%);
+    linear-gradient(90deg,
+      transparent 0 4%,
+      #17466b 4% 9%,
+      transparent 9% 12%,
+      #21618a 12% 18%,
+      transparent 18% 21%,
+      #123d61 21% 27%,
+      transparent 27% 30%,
+      #23698e 30% 38%,
+      transparent 38% 43%,
+      #184d72 43% 48%,
+      transparent 48% 53%,
+      #24698c 53% 59%,
+      transparent 59% 64%,
+      #143f61 64% 70%,
+      transparent 70% 75%,
+      #286d90 75% 82%,
+      transparent 82% 88%,
+      #174765 88% 95%,
+      transparent 95%
+    );
+  filter:blur(1px);
 }
 
 /* HEADER */
@@ -74,122 +86,286 @@ body{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:15px;
+  height:68px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
 
 .logo{
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-
-.logo span{
-  color:#ffd447;
-}
-
-.icon{
-  width:42px;
-  height:42px;
-  border:1px solid #26344d;
-  background:#101827;
-  color:#fff;
-  border-radius:14px;
-  font-size:19px;
-}
-
-/* PROFILE */
-
-.profile{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  background:linear-gradient(135deg,#111b2d,#0d1422);
-  border:1px solid #24334d;
-  border-radius:18px;
-  padding:12px;
-  box-shadow:0 12px 30px #0005;
-}
-
-.avatar{
-  width:45px;
-  height:45px;
+  width:58px;
+  height:58px;
   border-radius:50%;
-  background:linear-gradient(135deg,#ffd447,#c88612);
+  border:3px solid #f5bd25;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#171108;
-  font-size:21px;
-  font-weight:bold;
+  color:#ffd447;
+  font-size:31px;
+  font-weight:900;
+  background:
+    radial-gradient(circle,#ffdf55,#c6810c);
+  box-shadow:
+    0 0 18px #e8ad2c66,
+    inset 0 0 10px #fff8;
 }
 
-.profile-name{
-  font-weight:bold;
-  font-size:15px;
+.brand-text{
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:-1px;
+  color:#fff;
 }
 
-.profile-level{
-  color:#8290a8;
-  font-size:12px;
+.brand-text span{
+  color:#ffd23c;
+}
+
+.tagline{
+  font-size:9px;
+  color:#aebbd0;
+  letter-spacing:3px;
   margin-top:3px;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.header-btn{
+  width:43px;
+  height:43px;
+  border:1px solid #203754;
+  background:#071423;
+  border-radius:14px;
+  color:#fff;
+  font-size:20px;
+}
+
+.profile-mini{
+  border:1px solid #203754;
+  background:#071423;
+  border-radius:15px;
+  padding:7px 10px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  min-width:100px;
+}
+
+.profile-mini-icon{
+  font-size:22px;
+}
+
+.profile-mini-name{
+  font-size:13px;
+  font-weight:bold;
+  max-width:75px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.profile-mini-id{
+  font-size:9px;
+  color:#788aa2;
+  margin-top:2px;
+}
+
+/* MAIN GAME CARD */
+
+.game-card{
+  margin-top:12px;
+  border:1px solid #27466a;
+  border-radius:21px;
+  padding:13px;
+  min-height:455px;
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at 68% 54%,#24496755,transparent 35%),
+    linear-gradient(135deg,#071523,#03101e 70%,#071728);
+
+  box-shadow:
+    0 20px 60px #0008,
+    inset 0 0 30px #0b3c6255;
+}
+
+/* SKYLINE */
+
+.skyline{
+  position:absolute;
+  right:-20px;
+  top:40px;
+  width:58%;
+  height:210px;
+  opacity:.48;
+}
+
+.building{
+  position:absolute;
+  bottom:0;
+  background:linear-gradient(#102b43,#071625);
+  border:1px solid #1e4767;
+}
+
+.building:after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #f6c936 0 3px,
+      transparent 3px 13px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 11px,
+      #f6c936 11px 14px,
+      transparent 14px 24px
+    );
+  opacity:.32;
+}
+
+.b1{left:5%;width:18%;height:70%}
+.b2{left:25%;width:19%;height:48%}
+.b3{left:45%;width:20%;height:100%}
+.b4{left:67%;width:15%;height:61%}
+.b5{left:83%;width:13%;height:43%}
+
+.city-light{
+  position:absolute;
+  right:4%;
+  top:26px;
+  width:10px;
+  height:150px;
+  background:linear-gradient(#6eb1df,#1d4e70);
+  clip-path:polygon(48% 0,55% 0,100% 100%,0 100%);
+  opacity:.55;
 }
 
 /* BALANCE */
 
-.balance-box{
-  text-align:center;
-  padding:22px 0 8px;
+.balance-area{
+  position:relative;
+  z-index:2;
+  width:55%;
 }
 
 .balance-label{
-  color:#8290a8;
-  font-size:11px;
-  letter-spacing:2px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:17px;
+  font-weight:bold;
+  color:#d8e2f0;
+}
+
+.balance-coin{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#fff06d,#d99510);
+  border:2px solid #ffd84c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#8c5c05;
   font-weight:bold;
 }
 
 .balance{
-  font-size:39px;
+  font-size:50px;
   line-height:1;
   font-weight:900;
-  margin:9px 0 4px;
-  text-shadow:0 0 25px #ffc92855;
+  margin-top:9px;
+  letter-spacing:-2px;
 }
 
 .balance-unit{
-  color:#ffd447;
+  color:#ffd23c;
+  font-size:22px;
+  font-weight:bold;
+  margin-left:5px;
+}
+
+.income{
+  margin-top:7px;
+  color:#55e891;
   font-size:13px;
   font-weight:bold;
 }
 
-/* COIN */
+/* SLOGAN */
 
-.coin-wrap{
+.slogan{
+  position:absolute;
+  right:15px;
+  top:15px;
+  width:100px;
+  color:#ffd23c;
+  font-size:17px;
+  line-height:1.05;
+  font-weight:bold;
+  font-style:italic;
+  text-align:center;
+  transform:rotate(-5deg);
+}
+
+/* BIG COIN */
+
+.coin-zone{
+  position:absolute;
+  left:0;
+  bottom:72px;
+  width:63%;
+  height:265px;
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:18px 0 22px;
+}
+
+.coin-glow{
+  position:absolute;
+  width:220px;
+  height:55px;
+  bottom:18px;
+  border-radius:50%;
+  background:#ffc72f66;
+  filter:blur(15px);
 }
 
 .coin{
-  width:205px;
-  height:205px;
+  width:190px;
+  height:190px;
   border-radius:50%;
   position:relative;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
+
   background:
-    radial-gradient(circle at 32% 25%,#fff3a1 0,#ffd947 18%,#e5a91d 52%,#9b5e05 100%);
-  border:8px solid #f7c52d;
+    radial-gradient(circle at 30% 22%,#fff8a4 0,#ffd944 17%,#e3a51b 48%,#8e5704 100%);
+
+  border:9px solid #f5bf27;
+
   box-shadow:
-    0 0 0 5px #60430d,
-    0 0 35px #f7c52d66,
-    inset 12px 12px 25px #fff6,
-    inset -15px -18px 25px #70400088;
+    0 0 0 5px #503b0b,
+    0 0 25px #f8c934,
+    0 0 65px #f6b91f66,
+    inset 12px 12px 25px #fff8,
+    inset -15px -15px 25px #6c410088;
+
   transition:.12s;
-  user-select:none;
   touch-action:manipulation;
+  user-select:none;
 }
 
 .coin:before{
@@ -197,62 +373,109 @@ body{
   position:absolute;
   inset:13px;
   border-radius:50%;
-  border:2px solid #fff5;
+  border:2px solid #fff7;
 }
 
 .coin:after{
   content:"";
   position:absolute;
   width:70px;
-  height:18px;
-  background:#fff7;
-  filter:blur(12px);
+  height:20px;
+  left:37px;
+  top:28px;
   border-radius:50%;
-  top:27px;
-  left:48px;
-  transform:rotate(-25deg);
+  background:#fff8;
+  filter:blur(10px);
+  transform:rotate(-28deg);
 }
 
 .coin-inner{
-  position:relative;
-  z-index:2;
-  width:108px;
-  height:108px;
+  width:105px;
+  height:105px;
   border-radius:50%;
+  border:4px solid #9b6208;
   display:flex;
   align-items:center;
   justify-content:center;
-  border:4px solid #8d5905;
-  color:#7b4b00;
-  font-size:55px;
+  font-size:60px;
   font-weight:900;
-  text-shadow:1px 2px #ffe984;
-  background:linear-gradient(145deg,#ffe979,#e8ad20);
-  box-shadow:inset 5px 5px 10px #fff6,inset -7px -7px 10px #82500055;
+  color:#a66b08;
+
+  background:
+    linear-gradient(145deg,#ffe979,#e8ae1d);
+
+  box-shadow:
+    inset 6px 6px 12px #fff7,
+    inset -8px -8px 12px #75450066;
 }
 
 .coin:active{
-  transform:scale(.91) rotate(-2deg);
+  transform:scale(.91);
+}
+
+/* DAILY + UPGRADE */
+
+.side-actions{
+  position:absolute;
+  z-index:3;
+  right:12px;
+  bottom:74px;
+  width:42%;
+}
+
+.side-card{
+  background:linear-gradient(135deg,#081726,#06101d);
+  border:1px solid #1e3b59;
+  border-radius:18px;
+  padding:13px;
+  margin-top:10px;
+  box-shadow:0 10px 25px #0007;
+}
+
+.side-title{
+  font-size:16px;
+  font-weight:bold;
+}
+
+.side-sub{
+  color:#8494aa;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.gold-btn{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:12px 8px;
+  margin-top:10px;
+  background:linear-gradient(#ffdb4c,#f4b817);
+  color:#171006;
+  font-size:14px;
+  font-weight:900;
+  box-shadow:0 5px 12px #0005;
+}
+
+.gold-btn:active{
+  transform:scale(.97);
 }
 
 /* ENERGY */
 
-.energy-card{
-  background:#101827;
-  border:1px solid #22314a;
-  border-radius:18px;
-  padding:14px;
+.energy-box{
+  position:absolute;
+  left:13px;
+  bottom:15px;
+  width:60%;
+  z-index:5;
 }
 
 .energy-top{
   display:flex;
-  justify-content:space-between;
-  font-size:13px;
-  margin-bottom:9px;
-}
-
-.energy-top span{
-  color:#8d9ab0;
+  align-items:center;
+  gap:8px;
+  font-size:16px;
+  margin-bottom:7px;
 }
 
 .energy-top b{
@@ -260,202 +483,227 @@ body{
 }
 
 .energy-bar{
+  height:12px;
   width:100%;
-  height:10px;
+  background:#1c3148;
   border-radius:20px;
-  background:#202b3d;
   overflow:hidden;
+  border:1px solid #29445e;
 }
 
 .energy-fill{
   height:100%;
   width:100%;
-  background:linear-gradient(90deg,#27d87d,#8affbd);
   border-radius:20px;
-  box-shadow:0 0 12px #31e48588;
+  background:linear-gradient(90deg,#ffc928,#ffe86b);
+  box-shadow:0 0 10px #ffc92899;
   transition:.2s;
 }
 
-/* XP */
+/* QUICK MENU */
 
-.xp{
-  margin-top:9px;
-  height:5px;
-  background:#202b3d;
-  border-radius:10px;
-  overflow:hidden;
-}
-
-.xp-fill{
-  height:100%;
-  width:35%;
-  background:#ffd447;
-}
-
-/* MESSAGE */
-
-.msg{
-  height:28px;
-  text-align:center;
-  color:#ffd447;
-  font-size:13px;
-  padding-top:9px;
-}
-
-/* STATS */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin-top:8px;
-}
-
-.stat{
-  background:#101827;
-  border:1px solid #22314a;
-  border-radius:15px;
-  padding:12px 5px;
-  text-align:center;
-}
-
-.stat-icon{
-  font-size:18px;
-}
-
-.stat-number{
-  font-size:15px;
-  font-weight:bold;
-  margin-top:5px;
-}
-
-.stat-label{
-  color:#718098;
-  font-size:9px;
-  margin-top:3px;
-}
-
-/* QUICK ACTIONS */
-
-.section-title{
-  margin:19px 2px 9px;
-  font-size:14px;
-  font-weight:bold;
-  color:#aeb9ca;
-}
-
-.actions{
+.quick{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:9px;
-}
-
-.action{
-  border:1px solid #26354d;
-  background:linear-gradient(145deg,#131e30,#0e1624);
-  border-radius:17px;
-  padding:15px 12px;
-  text-align:left;
-  color:#fff;
-}
-
-.action:active{
-  transform:scale(.97);
-}
-
-.action-icon{
-  font-size:25px;
-}
-
-.action-title{
-  font-weight:bold;
-  margin-top:9px;
-  font-size:14px;
-}
-
-.action-sub{
-  color:#718098;
-  font-size:10px;
-  margin-top:4px;
-}
-
-/* DAILY */
-
-.daily{
   margin-top:10px;
-  padding:14px;
-  border-radius:17px;
-  border:1px solid #5b4919;
-  background:linear-gradient(135deg,#201b0d,#14130d);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
 }
 
-.daily-left{
+.quick-card{
+  min-height:76px;
+  background:linear-gradient(135deg,#071727,#06111e);
+  border:1px solid #1e3955;
+  border-radius:17px;
+  padding:12px;
+  color:#fff;
+  text-align:left;
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.daily-icon{
-  font-size:27px;
+.quick-card:active{
+  transform:scale(.98);
 }
 
-.daily-title{
-  font-size:13px;
+.quick-icon{
+  width:47px;
+  height:47px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  background:radial-gradient(circle,#253e55,#0c1a29);
+  border:1px solid #29445e;
+}
+
+.quick-title{
   font-weight:bold;
+  font-size:14px;
 }
 
-.daily-sub{
-  color:#887d5a;
+.quick-sub{
+  color:#8292a8;
   font-size:10px;
+  margin-top:5px;
+}
+
+/* THREE BUTTONS */
+
+.three{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:9px;
+}
+
+.small-card{
+  min-height:76px;
+  background:#071522;
+  border:1px solid #1d3854;
+  border-radius:16px;
+  padding:10px 8px;
+  text-align:center;
+}
+
+.small-icon{
+  font-size:23px;
+}
+
+.small-title{
+  font-size:12px;
+  font-weight:bold;
+  margin-top:6px;
+}
+
+.small-sub{
+  color:#74869d;
+  font-size:9px;
   margin-top:3px;
 }
 
-.claim{
-  border:0;
-  background:#ffd447;
-  color:#171108;
-  font-weight:bold;
-  border-radius:10px;
-  padding:10px 13px;
+/* TOP 10 */
+
+.top10{
+  margin-top:10px;
+  background:#061320;
+  border:1px solid #1d3854;
+  border-radius:18px;
+  padding:13px;
 }
 
-/* BOTTOM */
+.top-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:9px;
+}
+
+.top-title{
+  font-size:16px;
+  font-weight:bold;
+}
+
+.top-link{
+  color:#a6b4c8;
+  font-size:11px;
+}
+
+.rank-scroll{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.rank-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.rank{
+  min-width:145px;
+  background:#0b1a2a;
+  border:1px solid #1a344e;
+  border-radius:14px;
+  padding:9px;
+}
+
+.rank-top{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.rank-medal{
+  font-size:23px;
+}
+
+.rank-avatar{
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#172c40;
+  border:1px solid #54708b;
+}
+
+.rank-name{
+  font-size:12px;
+  font-weight:bold;
+}
+
+.rank-coins{
+  color:#ffd23c;
+  font-size:10px;
+  margin-top:7px;
+}
+
+/* BOTTOM NAV */
 
 .bottom{
   position:fixed;
-  z-index:20;
+  z-index:100;
   bottom:0;
   left:50%;
   transform:translateX(-50%);
   width:100%;
   max-width:520px;
-  background:#0b111d;
-  border-top:1px solid #22304a;
+  background:#020a14ee;
+  backdrop-filter:blur(12px);
+  border-top:1px solid #1c334c;
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  padding:7px 4px calc(7px + env(safe-area-inset-bottom));
-  box-shadow:0 -10px 30px #0007;
+  padding:7px 5px calc(7px + env(safe-area-inset-bottom));
 }
 
 .bottom button{
   border:0;
   background:none;
-  color:#68778e;
-  font-size:9px;
-  padding:4px 2px;
+  color:#8797ad;
+  font-size:10px;
+  padding:4px;
 }
 
 .bottom button.active{
-  color:#ffd447;
+  color:#ffd23c;
 }
 
-.bottom span{
+.bottom-icon{
   display:block;
-  font-size:21px;
+  font-size:22px;
   margin-bottom:3px;
+}
+
+.bottom button.active:after{
+  content:"";
+  display:block;
+  width:55px;
+  height:2px;
+  margin:4px auto 0;
+  background:#ffd23c;
 }
 
 /* PANELS */
@@ -463,11 +711,11 @@ body{
 .panel{
   display:none;
   position:fixed;
+  z-index:200;
   inset:0;
-  z-index:50;
-  background:#080d17;
   overflow:auto;
-  padding:16px 14px 100px;
+  background:#030a13;
+  padding:15px 13px 100px;
 }
 
 .panel-inner{
@@ -477,399 +725,842 @@ body{
 
 .panel-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:18px;
+  align-items:center;
+  margin-bottom:16px;
 }
 
-.panel h2{
+.panel-head h2{
   margin:0;
-  font-size:22px;
+  font-size:23px;
 }
 
 .close{
-  border:1px solid #29364d;
-  background:#111a29;
+  border:1px solid #28415b;
+  background:#091624;
   color:#fff;
-  border-radius:11px;
-  padding:9px 12px;
+  border-radius:12px;
+  padding:10px 13px;
 }
 
 .panel-card{
-  background:#111a29;
-  border:1px solid #25344c;
+  background:#081625;
+  border:1px solid #1c3853;
   border-radius:17px;
   padding:16px;
   margin-bottom:10px;
 }
 
 .panel-card b{
-  display:block;
-  margin-bottom:6px;
+  font-size:16px;
 }
 
 .small{
-  color:#78869b;
+  color:#8494a9;
   font-size:12px;
   line-height:1.5;
+  margin-top:6px;
 }
 
 .panel-btn{
   width:100%;
   border:0;
-  background:#ffd447;
-  color:#171108;
+  border-radius:12px;
+  background:linear-gradient(#ffda4b,#efb318);
   padding:12px;
-  border-radius:11px;
-  font-weight:bold;
-  margin-top:10px;
-}
-
-/* RANK */
-
-.rank{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:#111a29;
-  border:1px solid #25344c;
-  padding:14px;
-  margin:8px 0;
-  border-radius:14px;
-}
-
-.rank-left{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-
-.rank-number{
-  font-size:20px;
-}
-
-/* TAXI */
-
-.taxi{
-  padding:16px;
-  border-radius:17px;
-  background:linear-gradient(135deg,#131f31,#0d1522);
-  border:1px solid #26364f;
-  margin-bottom:10px;
-}
-
-.taxi b{
-  font-size:15px;
-}
-
-.taxi .reward{
-  color:#ffd447;
-  font-weight:bold;
-  margin-top:7px;
-}
-
-.taxi button{
-  width:100%;
-  border:0;
-  border-radius:11px;
-  background:#ffd447;
-  padding:11px;
-  margin-top:10px;
+  margin-top:12px;
   font-weight:bold;
 }
 
-/* TASK */
-
-.task{
-  background:#111a29;
-  border:1px solid #25344c;
-  border-radius:16px;
-  padding:15px;
-  margin-bottom:9px;
-}
-
-.task-progress{
-  margin-top:8px;
-  color:#ffd447;
-  font-size:12px;
-}
-
-/* FLOAT COIN */
+/* FLOAT */
 
 .float{
   position:fixed;
+  z-index:500;
   pointer-events:none;
-  z-index:100;
-  color:#ffd447;
+  color:#ffd23c;
   font-size:22px;
-  font-weight:bold;
+  font-weight:900;
   animation:floatUp .8s ease-out forwards;
 }
 
 @keyframes floatUp{
-  from{
+  0%{
     opacity:1;
     transform:translateY(0) scale(1);
   }
-  to{
+  100%{
     opacity:0;
-    transform:translateY(-90px) scale(1.4);
+    transform:translateY(-100px) scale(1.4);
   }
 }
-</style></head><body><div class="bg">
-  <div class="city-lines"></div>
-</div><div class="app">  <div class="header">
-    <button class="icon" onclick="showMessage('🔔 Bildirişlər tezliklə')">🔔</button><div class="logo">EL<span>COIN</span></div>
 
-<button class="icon" onclick="showMessage('☰ Menyu tezliklə')">☰</button>
+</style>
+</head>
 
-  </div>  <div class="profile">
-    <div class="avatar">🪙</div><div>
-  <div class="profile-name" id="user">Player</div>
-  <div class="profile-level">
-    Level <span id="profileLevel">1</span> · ELCOIN CITY
-  </div>
-</div>
+<body>
 
-  </div>  <div class="balance-box">
-    <div class="balance-label">TOTAL BALANCE</div>
-    <div class="balance" id="balance">0</div>
-    <div class="balance-unit">ELCOIN</div>
-  </div>  <div class="coin-wrap"><div class="coin" id="coin">
-  <div class="coin-inner">E</div>
-</div>
+<div class="app">
 
-  </div>  <div class="energy-card"><div class="energy-top">
-  <span>⚡ ENERGY</span>
-  <b><span id="energy">1000</span> / 1000</b>
-</div>
+  <!-- HEADER -->
 
-<div class="energy-bar">
-  <div class="energy-fill" id="fill"></div>
-</div>
+  <div class="header">
 
-<div class="xp">
-  <div class="xp-fill" id="xpFill"></div>
-</div>
+    <div class="brand">
 
-  </div>  <div class="msg" id="msg"></div>  <div class="stats"><div class="stat">
-  <div class="stat-icon">📈</div>
-  <div class="stat-number" id="level">1</div>
-  <div class="stat-label">LEVEL</div>
-</div>
+      <div class="logo">E</div>
 
-<div class="stat">
-  <div class="stat-icon">🚕</div>
-  <div class="stat-number" id="rides">0</div>
-  <div class="stat-label">RIDES</div>
-</div>
+      <div>
+        <div class="brand-text">
+          EL<span>COIN</span>
+        </div>
 
-<div class="stat">
-  <div class="stat-icon">👥</div>
-  <div class="stat-number" id="friends">0</div>
-  <div class="stat-label">FRIENDS</div>
-</div>
+        <div class="tagline">
+          PLAY · EARN · GROW
+        </div>
+      </div>
 
-  </div>  <div class="section-title">QUICK ACTIONS</div>  <div class="actions"><button class="action" onclick="openPanel('taxiPanel')">
-  <div class="action-icon">🚕</div>
-  <div class="action-title">ELCOIN TAXI</div>
-  <div class="action-sub">Drive & earn coins</div>
-</button>
+    </div>
 
-<button class="action" onclick="openPanel('cityPanel')">
-  <div class="action-icon">🏙️</div>
-  <div class="action-title">ELCOIN CITY</div>
-  <div class="action-sub">Build your city</div>
-</button>
+    <div class="header-actions">
 
-  </div>  <div class="daily"><div class="daily-left">
+      <div class="profile-mini">
 
-  <div class="daily-icon">🎁</div>
+        <div class="profile-mini-icon">
+          👤
+        </div>
 
-  <div>
-    <div class="daily-title">DAILY BONUS</div>
-    <div class="daily-sub">Claim your daily reward</div>
+        <div>
+
+          <div class="profile-mini-name"
+               id="user">
+            Player
+          </div>
+
+          <div class="profile-mini-id">
+            ELCOIN PLAYER
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="header-btn"
+              onclick="showMessage('🔔 Bildirişlər tezliklə')">
+        🔔
+      </button>
+
+      <button class="header-btn"
+              onclick="showMessage('☰ Menyu tezliklə')">
+        ☰
+      </button>
+
+    </div>
+
   </div>
 
-</div>
 
-<button class="claim" id="bonus">+500</button>
+  <!-- MAIN GAME -->
 
-  </div></div><!-- BOTTOM MENU --><div class="bottom">  <button class="active" onclick="closePanels()">
-    <span>⌂</span>
-    Home
-  </button>  <button onclick="openPanel('taxiPanel')">
-    <span>🚕</span>
-    Taxi
-  </button>  <button onclick="openPanel('cityPanel')">
-    <span>🏙️</span>
-    City
-  </button>  <button onclick="openPanel('friendsPanel')">
-    <span>👥</span>
-    Friends
-  </button>  <button onclick="openPanel('rankingPanel')">
-    <span>🏆</span>
-    Rank
-  </button></div><!-- TAXI PANEL --><div class="panel" id="taxiPanel">  <div class="panel-inner"><div class="panel-head">
-  <h2>🚕 ELCOIN TAXI</h2>
-  <button class="close" onclick="closePanels()">✕</button>
-</div>
+  <div class="game-card">
 
-<div class="taxi">
-  <b>🚕 Normal Taxi</b>
-  <div class="small">10 Energy</div>
-  <div class="reward">+25 ELCOIN</div>
-  <button onclick="takeTaxi(25,10)">RIDE</button>
-</div>
+    <div class="skyline">
 
-<div class="taxi">
-  <b>🚖 Premium Taxi</b>
-  <div class="small">20 Energy · Level 5 required</div>
-  <div class="reward">+60 ELCOIN</div>
-  <button onclick="takeTaxi(60,20,5)">RIDE</button>
-</div>
+      <div class="building b1"></div>
+      <div class="building b2"></div>
+      <div class="building b3"></div>
+      <div class="building b4"></div>
+      <div class="building b5"></div>
 
-<div class="taxi">
-  <b>🏎️ Luxury Taxi</b>
-  <div class="small">35 Energy · Level 10 required</div>
-  <div class="reward">+150 ELCOIN</div>
-  <button onclick="takeTaxi(150,35,10)">RIDE</button>
-</div>
+      <div class="city-light"></div>
 
-  </div></div><!-- CITY PANEL --><div class="panel" id="cityPanel">  <div class="panel-inner"><div class="panel-head">
-  <h2>🏙️ ELCOIN CITY</h2>
-  <button class="close" onclick="closePanels()">✕</button>
-</div>
+    </div>
 
-<div class="panel-card">
-  <b>🌆 Your City</b>
 
-  <div class="small">
-    City Level: <strong id="cityLevel">1</strong>
+    <div class="balance-area">
+
+      <div class="balance-label">
+
+        <div class="balance-coin">
+          E
+        </div>
+
+        ELCOIN
+
+      </div>
+
+      <div class="balance">
+        <span id="balance">0</span>
+        <span class="balance-unit">ELCOIN</span>
+      </div>
+
+      <div class="income">
+        ▲ +<span id="income">0</span> / gün
+      </div>
+
+    </div>
+
+
+    <div class="slogan">
+      👑<br>
+      Bigger<br>
+      Stronger<br>
+      Together
+    </div>
+
+
+    <!-- COIN -->
+
+    <div class="coin-zone">
+
+      <div class="coin-glow"></div>
+
+      <div class="coin" id="coin">
+
+        <div class="coin-inner">
+          E
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SIDE CARDS -->
+
+    <div class="side-actions">
+
+      <div class="side-card">
+
+        <div class="side-title">
+          🎁 Daily Bonus
+        </div>
+
+        <div class="side-sub">
+          Gündəlik bonusunu götür
+        </div>
+
+        <button class="gold-btn"
+                id="bonus">
+          🎁 +500 Claim
+        </button>
+
+      </div>
+
+
+      <div class="side-card">
+
+        <div class="side-title">
+          📈 Upgrade
+        </div>
+
+        <div class="side-sub">
+          Level <span id="level">1</span>
+        </div>
+
+        <button class="gold-btn"
+                id="upgrade">
+          ⬆ Upgrade
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ENERGY -->
+
+    <div class="energy-box">
+
+      <div class="energy-top">
+        ⚡ ENERGY
+        <b>
+          <span id="energy">1000</span>/1000
+        </b>
+      </div>
+
+      <div class="energy-bar">
+        <div class="energy-fill"
+             id="fill"></div>
+      </div>
+
+    </div>
+
   </div>
 
-  <button class="panel-btn" onclick="upgradeCity()">
-    UPGRADE CITY
+
+  <div class="msg"
+       id="msg">
+  </div>
+
+
+  <!-- TAXI + CITY -->
+
+  <div class="quick">
+
+    <button class="quick-card"
+            onclick="openPanel('taxiPanel')">
+
+      <div class="quick-icon">
+        🚕
+      </div>
+
+      <div>
+
+        <div class="quick-title">
+          Taksilər
+        </div>
+
+        <div class="quick-sub">
+          Maşınlar al və qazan
+        </div>
+
+      </div>
+
+      <div>›</div>
+
+    </button>
+
+
+    <button class="quick-card"
+            onclick="openPanel('cityPanel')">
+
+      <div class="quick-icon">
+        🏙️
+      </div>
+
+      <div>
+
+        <div class="quick-title">
+          Şəhər
+        </div>
+
+        <div class="quick-sub">
+          Yeni şəhərlərə get
+        </div>
+
+      </div>
+
+      <div>›</div>
+
+    </button>
+
+  </div>
+
+
+  <!-- THREE -->
+
+  <div class="three">
+
+    <button class="small-card"
+            onclick="openPanel('friendsPanel')">
+
+      <div class="small-icon">
+        👥
+      </div>
+
+      <div class="small-title">
+        Dostlar
+      </div>
+
+      <div class="small-sub">
+        Referral linkini paylaş
+      </div>
+
+    </button>
+
+
+    <button class="small-card"
+            onclick="openPanel('rankingPanel')">
+
+      <div class="small-icon">
+        🏆
+      </div>
+
+      <div class="small-title">
+        Reytinq
+      </div>
+
+      <div class="small-sub">
+        TOP oyunçular
+      </div>
+
+    </button>
+
+
+    <button class="small-card"
+            onclick="openPanel('tasksPanel')">
+
+      <div class="small-icon">
+        📋
+      </div>
+
+      <div class="small-title">
+        Tapşırıqlar
+      </div>
+
+      <div class="small-sub">
+        Mükafatlar qazan
+      </div>
+
+    </button>
+
+  </div>
+
+
+  <!-- TOP 10 -->
+
+  <div class="top10">
+
+    <div class="top-header">
+
+      <div class="top-title">
+        👑 Həftəlik TOP 10
+      </div>
+
+      <div class="top-link"
+           onclick="openPanel('rankingPanel')">
+        Bütün reytinq →
+      </div>
+
+    </div>
+
+    <div class="rank-scroll">
+
+      <div class="rank">
+
+        <div class="rank-top">
+
+          <div class="rank-medal">🥇</div>
+
+          <div class="rank-avatar">👤</div>
+
+          <div class="rank-name">
+            Player
+          </div>
+
+        </div>
+
+        <div class="rank-coins">
+          🪙 ---
+        </div>
+
+      </div>
+
+
+      <div class="rank">
+
+        <div class="rank-top">
+
+          <div class="rank-medal">🥈</div>
+
+          <div class="rank-avatar">👤</div>
+
+          <div class="rank-name">
+            Player
+          </div>
+
+        </div>
+
+        <div class="rank-coins">
+          🪙 ---
+        </div>
+
+      </div>
+
+
+      <div class="rank">
+
+        <div class="rank-top">
+
+          <div class="rank-medal">🥉</div>
+
+          <div class="rank-avatar">👤</div>
+
+          <div class="rank-name">
+            Player
+          </div>
+
+        </div>
+
+        <div class="rank-coins">
+          🪙 ---
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom">
+
+  <button class="active"
+          onclick="closePanels()">
+
+    <span class="bottom-icon">
+      🏠
+    </span>
+
+    Əsas
+
   </button>
-</div>
 
-<div class="panel-card">
-  <b>🔓 Future Zones</b>
 
-  <div class="small">
-    Upgrade your city to unlock new districts,
-    buildings and earning opportunities.
-  </div>
-</div>
+  <button onclick="openPanel('taxiPanel')">
 
-  </div></div><!-- FRIENDS PANEL --><div class="panel" id="friendsPanel">  <div class="panel-inner"><div class="panel-head">
-  <h2>👥 FRIENDS</h2>
-  <button class="close" onclick="closePanels()">✕</button>
-</div>
+    <span class="bottom-icon">
+      🚕
+    </span>
 
-<div class="panel-card">
+    Taksilər
 
-  <b>Invite Friends</b>
+  </button>
 
-  <div class="small">
-    Invite friends and earn rewards.
-  </div>
 
-  <p id="inviteCode">
-    ELCOIN
-  </p>
+  <button onclick="openPanel('cityPanel')">
 
-  <button class="panel-btn" onclick="copyInvite()">
-    COPY INVITE
+    <span class="bottom-icon">
+      🏙️
+    </span>
+
+    Şəhər
+
+  </button>
+
+
+  <button onclick="openPanel('friendsPanel')">
+
+    <span class="bottom-icon">
+      👥
+    </span>
+
+    Dostlar
+
+  </button>
+
+
+  <button onclick="openPanel('rankingPanel')">
+
+    <span class="bottom-icon">
+      🏆
+    </span>
+
+    Reytinq
+
   </button>
 
 </div>
 
-<div class="panel-card">
 
-  <b>Your Referrals</b>
+<!-- TAXI PANEL -->
 
-  <div style="font-size:28px;margin-top:8px">
-    <span id="friendsPanelCount">0</span>
-  </div>
+<div class="panel"
+     id="taxiPanel">
 
-</div>
+  <div class="panel-inner">
 
-  </div></div><!-- RANKING --><div class="panel" id="rankingPanel">  <div class="panel-inner"><div class="panel-head">
-  <h2>🏆 RANKING</h2>
-  <button class="close" onclick="closePanels()">✕</button>
-</div>
+    <div class="panel-head">
 
-<div class="small">
-  Only game nicknames are displayed.
-</div>
+      <h2>🚕 ELCOIN TAXI</h2>
 
-<div id="rankingList">
+      <button class="close"
+              onclick="closePanels()">
+        ✕
+      </button>
 
-  <div class="rank">
-    <div class="rank-left">
-      <div class="rank-number">🥇</div>
-      <div>Player</div>
     </div>
-    <b>---</b>
-  </div>
 
-  <div class="rank">
-    <div class="rank-left">
-      <div class="rank-number">🥈</div>
-      <div>Player</div>
+
+    <div class="panel-card">
+
+      <b>🚕 Normal Taxi</b>
+
+      <div class="small">
+        10 Energy istifadə et.
+        <br>
+        Mükafat: +25 ELCOIN
+      </div>
+
+      <button class="panel-btn"
+              onclick="takeTaxi(25,10)">
+        RIDE +25
+      </button>
+
     </div>
-    <b>---</b>
-  </div>
 
-  <div class="rank">
-    <div class="rank-left">
-      <div class="rank-number">🥉</div>
-      <div>Player</div>
+
+    <div class="panel-card">
+
+      <b>🚖 Premium Taxi</b>
+
+      <div class="small">
+        Level 5 tələb olunur.
+        <br>
+        20 Energy · +60 ELCOIN
+      </div>
+
+      <button class="panel-btn"
+              onclick="takeTaxi(60,20,5)">
+        RIDE +60
+      </button>
+
     </div>
-    <b>---</b>
+
+
+    <div class="panel-card">
+
+      <b>🏎️ Luxury Taxi</b>
+
+      <div class="small">
+        Level 10 tələb olunur.
+        <br>
+        35 Energy · +150 ELCOIN
+      </div>
+
+      <button class="panel-btn"
+              onclick="takeTaxi(150,35,10)">
+        RIDE +150
+      </button>
+
+    </div>
+
   </div>
 
 </div>
 
-  </div></div><!-- TASKS --><div class="panel" id="tasksPanel">  <div class="panel-inner"><div class="panel-head">
-  <h2>📋 TASKS</h2>
-  <button class="close" onclick="closePanels()">✕</button>
+
+<!-- CITY PANEL -->
+
+<div class="panel"
+     id="cityPanel">
+
+  <div class="panel-inner">
+
+    <div class="panel-head">
+
+      <h2>🏙️ ELCOIN CITY</h2>
+
+      <button class="close"
+              onclick="closePanels()">
+        ✕
+      </button>
+
+    </div>
+
+
+    <div class="panel-card">
+
+      <b>🌆 Şəhərin</b>
+
+      <div class="small">
+        City Level:
+        <strong id="cityLevel">1</strong>
+      </div>
+
+      <button class="panel-btn"
+              onclick="upgradeCity()">
+        🏙️ UPGRADE CITY
+      </button>
+
+    </div>
+
+
+    <div class="panel-card">
+
+      <b>🔓 Yeni zonalar</b>
+
+      <div class="small">
+        Daha yüksək city level yeni
+        rayonları və qazanc imkanlarını açacaq.
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
-<div class="task">
-  <b>🪙 100 Taps</b>
-  <div class="small">
-    Tap the ELCOIN 100 times.
+
+<!-- FRIENDS PANEL -->
+
+<div class="panel"
+     id="friendsPanel">
+
+  <div class="panel-inner">
+
+    <div class="panel-head">
+
+      <h2>👥 DOSTLAR</h2>
+
+      <button class="close"
+              onclick="closePanels()">
+        ✕
+      </button>
+
+    </div>
+
+
+    <div class="panel-card">
+
+      <b>Dostlarını dəvət et</b>
+
+      <div class="small">
+        Dostlarını dəvət et və bonus qazan.
+      </div>
+
+      <p id="inviteCode">
+        ELCOIN
+      </p>
+
+      <button class="panel-btn"
+              onclick="copyInvite()">
+        📋 INVITE KODUNU KOPYALA
+      </button>
+
+    </div>
+
+
+    <div class="panel-card">
+
+      <b>👥 Sənin dostların</b>
+
+      <div style="font-size:30px;margin-top:8px">
+        <span id="friends">0</span>
+      </div>
+
+    </div>
+
   </div>
-  <div class="task-progress">
-    <span id="tapProgress">0</span> / 100
-  </div>
+
 </div>
 
-<div class="task">
-  <b>🚕 10 Taxi Rides</b>
-  <div class="small">
-    Complete 10 taxi rides.
+
+<!-- RANKING PANEL -->
+
+<div class="panel"
+     id="rankingPanel">
+
+  <div class="panel-inner">
+
+    <div class="panel-head">
+
+      <h2>🏆 REYTİNQ</h2>
+
+      <button class="close"
+              onclick="closePanels()">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="small">
+      Oyunçuların oyun adları göstərilir.
+    </div>
+
+    <div id="rankingList">
+
+      <div class="panel-card">
+        🥇 Player
+        <span style="float:right">---</span>
+      </div>
+
+      <div class="panel-card">
+        🥈 Player
+        <span style="float:right">---</span>
+      </div>
+
+      <div class="panel-card">
+        🥉 Player
+        <span style="float:right">---</span>
+      </div>
+
+    </div>
+
   </div>
-  <div class="task-progress">
-    <span id="rideProgress">0</span> / 10
-  </div>
+
 </div>
 
-<div class="task">
-  <b>👥 Invite Friend</b>
-  <div class="small">
-    Invite one friend.
+
+<!-- TASKS PANEL -->
+
+<div class="panel"
+     id="tasksPanel">
+
+  <div class="panel-inner">
+
+    <div class="panel-head">
+
+      <h2>📋 TAPŞIRIQLAR</h2>
+
+      <button class="close"
+              onclick="closePanels()">
+        ✕
+      </button>
+
+    </div>
+
+
+    <div class="panel-card">
+
+      <b>🪙 100 Tap</b>
+
+      <div class="small">
+        Coinə 100 dəfə toxun.
+      </div>
+
+      <div style="margin-top:8px;color:#ffd23c">
+        <span id="tapProgress">0</span> / 100
+      </div>
+
+    </div>
+
+
+    <div class="panel-card">
+
+      <b>🚕 10 Taxi Ride</b>
+
+      <div class="small">
+        10 dəfə taksi sür.
+      </div>
+
+      <div style="margin-top:8px;color:#ffd23c">
+        <span id="rideProgress">0</span> / 10
+      </div>
+
+    </div>
+
+
+    <div class="panel-card">
+
+      <b>👥 Invite Friend</b>
+
+      <div class="small">
+        1 dost dəvət et.
+      </div>
+
+      <div style="margin-top:8px;color:#ffd23c">
+        <span id="refProgress">0</span> / 1
+      </div>
+
+    </div>
+
   </div>
-  <div class="task-progress">
-    <span id="refProgress">0</span> / 1
-  </div>
+
 </div>
 
-  </div></div><script>
 
-const tg = window.Telegram.WebApp;
+<script>
+
+/* TELEGRAM */
+
+const tg =
+  window.Telegram.WebApp;
 
 tg.ready();
 tg.expand();
@@ -878,9 +1569,14 @@ const telegramUser =
   tg.initDataUnsafe &&
   tg.initDataUnsafe.user;
 
+
+/* SUPABASE FUNCTION */
+
 const FUNCTION_URL =
 "https://umqlgklqpolmiqoyqkbu.supabase.co/functions/v1/telegram-user";
 
+
+/* GAME DATA */
 
 let game = {
 
@@ -937,7 +1633,8 @@ function openPanel(id){
 
     });
 
-  document.getElementById(id).style.display = "block";
+  document.getElementById(id).style.display =
+    "block";
 
 }
 
@@ -954,7 +1651,7 @@ function closePanels(){
 }
 
 
-/* FLOAT COIN */
+/* FLOAT */
 
 function createFloat(x,y,value){
 
@@ -994,13 +1691,7 @@ function render(){
   document.getElementById("level").textContent =
     game.level;
 
-  document.getElementById("profileLevel").textContent =
-    game.level;
-
   document.getElementById("friends").textContent =
-    game.referrals;
-
-  document.getElementById("friendsPanelCount").textContent =
     game.referrals;
 
   document.getElementById("cityLevel").textContent =
@@ -1018,7 +1709,8 @@ function render(){
   document.getElementById("refProgress").textContent =
     game.referrals;
 
-  const energyPercent =
+
+  const percent =
     Math.max(
       0,
       Math.min(
@@ -1028,21 +1720,24 @@ function render(){
     );
 
   document.getElementById("fill").style.width =
-    energyPercent + "%";
+    percent + "%";
 
-  const xp =
-    Math.min(
-      100,
-      (game.totalTaps % 100)
-    );
 
-  document.getElementById("xpFill").style.width =
-    xp + "%";
+  const income =
+    game.level;
+
+  document.getElementById("income").textContent =
+    income;
+
+
+  document.getElementById("upgrade").textContent =
+    "⬆ Upgrade " +
+    (game.level * 100);
 
 }
 
 
-/* SERVER */
+/* SERVER REQUEST */
 
 async function requestServer(data){
 
@@ -1090,30 +1785,15 @@ async function requestServer(data){
       result =
         JSON.parse(text);
 
-    }catch(error){
-
-      console.log(
-        "SERVER RESPONSE:",
-        text
-      );
+    }catch(e){
 
       return null;
 
     }
 
-    console.log(
-      "ELCOIN SERVER:",
-      result
-    );
-
     return result;
 
-  }catch(error){
-
-    console.log(
-      "SERVER ERROR:",
-      error
-    );
+  }catch(e){
 
     return null;
 
@@ -1129,19 +1809,30 @@ async function connectUser(){
   if(!telegramUser){
 
     showMessage(
-      "⚠️ Telegram daxilində açılmalıdır."
+      "⚠️ Oyunu Telegram daxilində aç."
     );
 
     return;
 
   }
 
-  showMessage(
-    "⏳ Hesab qoşulur..."
-  );
+
+  /*
+   * ƏVVƏLCƏ TELEGRAM ADINI GÖSTƏR.
+   */
+
+  const telegramName =
+    telegramUser.first_name ||
+    telegramUser.username ||
+    "Player";
+
+  document.getElementById("user").textContent =
+    telegramName;
+
 
   const data =
     await requestServer(null);
+
 
   if(
     data &&
@@ -1182,20 +1873,25 @@ async function connectUser(){
 
 
     /*
-      REAL AD GÖSTƏRİLMİR.
-    */
+     * Əgər istifadəçi sonradan nickname
+     * dəyişibsə, onu göstər.
+     *
+     * Player / Player_0000 isə qəbul edilmir.
+     */
 
-    const nickname =
-      data.player.nickname ||
-      "Player_" +
-      String(
-        data.player.id || "0000"
-      ).slice(-6);
+    const serverNickname =
+      data.player.nickname;
 
-    document.getElementById(
-      "user"
-    ).textContent =
-      nickname;
+    if(
+      serverNickname &&
+      serverNickname !== "Player" &&
+      !serverNickname.startsWith("Player_")
+    ){
+
+      document.getElementById("user").textContent =
+        serverNickname;
+
+    }
 
 
     connected = true;
@@ -1230,9 +1926,7 @@ async function saveGame(){
     !telegramUser ||
     saving
   ){
-
     return;
-
   }
 
   saving = true;
@@ -1282,44 +1976,36 @@ async function saveGame(){
   ){
 
     game.balance =
-      Number(
-        data.player.balance
-      ) || game.balance;
+      Number(data.player.balance) ||
+      game.balance;
 
     game.energy =
-      Number(
-        data.player.energy
-      ) || game.energy;
+      Number(data.player.energy) ||
+      game.energy;
 
     game.level =
-      Number(
-        data.player.level
-      ) || game.level;
+      Number(data.player.level) ||
+      game.level;
 
     game.referrals =
-      Number(
-        data.player.referrals
-      ) || game.referrals;
+      Number(data.player.referrals) ||
+      game.referrals;
 
     game.taxiLevel =
-      Number(
-        data.player.taxi_level
-      ) || game.taxiLevel;
+      Number(data.player.taxi_level) ||
+      game.taxiLevel;
 
     game.cityLevel =
-      Number(
-        data.player.city_level
-      ) || game.cityLevel;
+      Number(data.player.city_level) ||
+      game.cityLevel;
 
     game.totalTaps =
-      Number(
-        data.player.total_taps
-      ) || game.totalTaps;
+      Number(data.player.total_taps) ||
+      game.totalTaps;
 
     game.totalRides =
-      Number(
-        data.player.total_rides
-      ) || game.totalRides;
+      Number(data.player.total_rides) ||
+      game.totalRides;
 
     render();
 
@@ -1330,9 +2016,7 @@ async function saveGame(){
 
 /* COIN */
 
-document.getElementById(
-  "coin"
-).onclick =
+document.getElementById("coin").onclick =
 async function(event){
 
   if(!connected){
@@ -1355,17 +2039,20 @@ async function(event){
 
   }
 
-  game.balance += game.level;
+  game.balance +=
+    game.level;
 
   game.energy--;
 
   game.totalTaps++;
+
 
   createFloat(
     event.clientX - 10,
     event.clientY - 20,
     game.level
   );
+
 
   render();
 
@@ -1374,11 +2061,9 @@ async function(event){
 };
 
 
-/* DAILY BONUS */
+/* BONUS */
 
-document.getElementById(
-  "bonus"
-).onclick =
+document.getElementById("bonus").onclick =
 async function(){
 
   if(!connected){
@@ -1417,6 +2102,50 @@ async function(){
 
   showMessage(
     "+500 ELCOIN! 🎉"
+  );
+
+};
+
+
+/* UPGRADE */
+
+document.getElementById("upgrade").onclick =
+async function(){
+
+  if(!connected){
+
+    showMessage(
+      "⏳ Hesab qoşulur..."
+    );
+
+    return;
+
+  }
+
+  const cost =
+    game.level * 100;
+
+  if(game.balance < cost){
+
+    showMessage(
+      "🪙 Coin kifayət etmir."
+    );
+
+    return;
+
+  }
+
+  game.balance -=
+    cost;
+
+  game.level++;
+
+  render();
+
+  await saveGame();
+
+  showMessage(
+    "📈 Level yüksəldi!"
   );
 
 };
@@ -1512,7 +2241,7 @@ async function upgradeCity(){
   ){
 
     showMessage(
-      "🪙 Coin çatmır."
+      "🪙 Coin kifayət etmir."
     );
 
     return;
@@ -1529,7 +2258,7 @@ async function upgradeCity(){
   await saveGame();
 
   showMessage(
-    "🏙️ City Level yüksəldi!"
+    "🏙️ Şəhər yüksəldi!"
   );
 
 }
@@ -1557,7 +2286,7 @@ async function copyInvite(){
       "📋 Invite kodu kopyalandı!"
     );
 
-  }catch(error){
+  }catch(e){
 
     showMessage(
       invite
@@ -1568,7 +2297,7 @@ async function copyInvite(){
 }
 
 
-/* ENERGY REGEN */
+/* ENERGY */
 
 setInterval(
   function(){
@@ -1596,5 +2325,7 @@ render();
 
 connectUser();
 
-</script></body>
+</script>
+
+</body>
 </html>
