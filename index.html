@@ -2,8 +2,7 @@
 <html lang="az">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <title>ELCOIN</title>
 
@@ -29,20 +28,13 @@ body{
   overflow-x:hidden;
 }
 
-/* BACKGROUND */
-
 body:before{
   content:"";
   position:fixed;
   inset:0;
   z-index:-5;
   background:
-    radial-gradient(
-      circle at 50% 35%,
-      #102d4b 0%,
-      #061727 42%,
-      #010812 82%
-    );
+    radial-gradient(circle at 50% 35%,#102d4b 0%,#061727 42%,#010812 82%);
 }
 
 body:after{
@@ -80,16 +72,16 @@ body:after{
   filter:blur(2px);
 }
 
-/* APP */
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
 
 .app{
   width:100%;
   max-width:520px;
   margin:auto;
-  padding:
-    10px
-    12px
-    105px;
+  padding:10px 12px 105px;
 }
 
 /* HEADER */
@@ -117,22 +109,12 @@ body:after{
   display:flex;
   align-items:center;
   justify-content:center;
-
   border:3px solid #ffc62d;
-
   background:
-    radial-gradient(
-      circle at 35% 25%,
-      #fff5a0,
-      #ffd535 28%,
-      #d88f0d 65%,
-      #744400
-    );
-
+    radial-gradient(circle at 35% 25%,#fff5a0,#ffd535 28%,#d88f0d 65%,#744400);
   color:#8b5900;
   font-size:31px;
   font-weight:900;
-
   box-shadow:
     0 0 18px #f7c52f99,
     inset 0 0 12px #fff;
@@ -166,26 +148,30 @@ body:after{
   height:47px;
   min-width:108px;
   padding:5px 9px;
-
   display:flex;
   align-items:center;
   gap:7px;
-
   border:1px solid #203b59;
   border-radius:16px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #071727,
-      #04101d
-    );
+  background:linear-gradient(135deg,#071727,#04101d);
 }
 
 .profile-mini-icon{
   width:31px;
-  font-size:25px;
-  text-align:center;
+  height:31px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  overflow:hidden;
+  font-size:23px;
+  flex:none;
+}
+
+.profile-mini-icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .profile-mini-name{
@@ -207,44 +193,26 @@ body:after{
   width:43px;
   height:43px;
   border-radius:15px;
-
   border:1px solid #203b59;
   background:#071727;
-
   color:white;
   font-size:20px;
 }
 
-/* MAIN GAME */
+/* GAME */
 
 .game-card{
   position:relative;
   min-height:535px;
   margin-top:10px;
   padding:14px;
-
   overflow:hidden;
-
   border:1px solid #24496d;
   border-radius:22px;
-
   background:
-    radial-gradient(
-      circle at 36% 75%,
-      #51380055,
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 75% 40%,
-      #143c6255,
-      transparent 38%
-    ),
-    linear-gradient(
-      145deg,
-      #061523,
-      #020c17 75%
-    );
-
+    radial-gradient(circle at 36% 75%,#51380055,transparent 28%),
+    radial-gradient(circle at 75% 40%,#143c6255,transparent 38%),
+    linear-gradient(145deg,#061523,#020c17 75%);
   box-shadow:
     0 20px 60px #000b,
     inset 0 0 35px #0c355055;
@@ -265,25 +233,15 @@ body:after{
 .building{
   position:absolute;
   bottom:48px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #112c43,
-      #061321
-    );
-
+  background:linear-gradient(180deg,#112c43,#061321);
   border:1px solid #244e6d;
-
-  box-shadow:
-    inset 0 0 15px #123f5e;
+  box-shadow:inset 0 0 15px #123f5e;
 }
 
 .building:after{
   content:"";
   position:absolute;
   inset:8px;
-
   background:
     repeating-linear-gradient(
       90deg,
@@ -297,45 +255,15 @@ body:after{
       #f7c82e 10px 13px,
       transparent 13px 22px
     );
-
   opacity:.25;
 }
 
-.b1{
-  left:0;
-  width:17%;
-  height:48%;
-}
-
-.b2{
-  left:17%;
-  width:15%;
-  height:70%;
-}
-
-.b3{
-  left:31%;
-  width:18%;
-  height:45%;
-}
-
-.b4{
-  left:49%;
-  width:19%;
-  height:100%;
-}
-
-.b5{
-  left:68%;
-  width:14%;
-  height:61%;
-}
-
-.b6{
-  left:82%;
-  width:18%;
-  height:42%;
-}
+.b1{left:0;width:17%;height:48%}
+.b2{left:17%;width:15%;height:70%}
+.b3{left:31%;width:18%;height:45%}
+.b4{left:49%;width:19%;height:100%}
+.b5{left:68%;width:14%;height:61%}
+.b6{left:82%;width:18%;height:42%}
 
 .bridge{
   position:absolute;
@@ -354,7 +282,6 @@ body:after{
   right:10%;
   top:4px;
   height:40px;
-
   border-top:2px solid #a66b20;
   border-radius:50%;
 }
@@ -371,7 +298,6 @@ body:after{
   display:flex;
   align-items:center;
   gap:8px;
-
   font-size:18px;
   font-weight:900;
   color:#d8e2ef;
@@ -381,30 +307,19 @@ body:after{
   width:29px;
   height:29px;
   border-radius:50%;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border:2px solid #ffd348;
-
-  background:
-    radial-gradient(
-      circle,
-      #fff06e,
-      #e7a91a
-    );
-
+  background:radial-gradient(circle,#fff06e,#e7a91a);
   color:#8b5b05;
   font-weight:900;
 }
 
 .balance{
   margin-top:7px;
-
   font-size:51px;
   line-height:1;
-
   font-weight:900;
   letter-spacing:-2px;
 }
@@ -429,34 +344,26 @@ body:after{
   z-index:3;
   right:14px;
   top:16px;
-
   width:115px;
-
   color:#ffd12f;
   font-size:17px;
   line-height:1.05;
   font-weight:900;
   font-style:italic;
   text-align:center;
-
   transform:rotate(-5deg);
-
-  text-shadow:
-    0 0 7px #9c6800;
+  text-shadow:0 0 7px #9c6800;
 }
 
-/* COIN AREA */
+/* COIN */
 
 .coin-zone{
   position:absolute;
   z-index:3;
-
   left:0;
   bottom:82px;
-
   width:62%;
   height:285px;
-
   display:flex;
   align-items:center;
   justify-content:center;
@@ -464,14 +371,10 @@ body:after{
 
 .coin-glow{
   position:absolute;
-
   width:230px;
   height:55px;
-
   bottom:14px;
-
   border-radius:50%;
-
   background:#ffbd2377;
   filter:blur(18px);
 }
@@ -479,20 +382,11 @@ body:after{
 .coin-platform{
   position:absolute;
   bottom:12px;
-
   width:230px;
   height:47px;
-
   border-radius:50%;
-
   background:
-    radial-gradient(
-      ellipse,
-      #e3a52b,
-      #4d310c 58%,
-      #090b0c 70%
-    );
-
+    radial-gradient(ellipse,#e3a52b,#4d310c 58%,#090b0c 70%);
   box-shadow:
     0 0 25px #eeb42c,
     inset 0 4px 8px #fff5;
@@ -501,15 +395,11 @@ body:after{
 .coin{
   width:190px;
   height:190px;
-
   border-radius:50%;
-
   position:relative;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   background:
     radial-gradient(
       circle at 30% 20%,
@@ -518,85 +408,58 @@ body:after{
       #e8ac1c 46%,
       #9b6105 100%
     );
-
   border:8px solid #ffc72e;
-
   box-shadow:
     0 0 0 5px #4b350a,
     0 0 25px #ffc52d,
     0 0 70px #ffb51e77,
     inset 12px 12px 25px #fff8,
     inset -17px -17px 27px #6c410088;
-
   touch-action:manipulation;
   user-select:none;
-
-  transition:
-    transform .1s;
+  transition:transform .1s;
 }
 
 .coin:before{
   content:"";
-
   position:absolute;
   inset:13px;
-
   border-radius:50%;
-
   border:2px solid #fff8;
 }
 
 .coin:after{
   content:"";
-
   position:absolute;
-
   width:72px;
   height:22px;
-
   left:38px;
   top:28px;
-
   border-radius:50%;
-
   background:#fff9;
-
   filter:blur(10px);
-
   transform:rotate(-28deg);
 }
 
 .coin-inner{
   width:108px;
   height:108px;
-
   border-radius:50%;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border:4px solid #9d6208;
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffe979,
-      #e3a719
-    );
-
+  background:linear-gradient(145deg,#ffe979,#e3a719);
   color:#a36908;
-
   font-size:62px;
   font-weight:900;
-
   box-shadow:
     inset 7px 7px 14px #fff8,
     inset -9px -9px 13px #74450077;
 }
 
 .coin:active{
-  transform:scale(.91);
+  transform:scale(.91) rotate(-2deg);
 }
 
 /* SIDE */
@@ -604,30 +467,18 @@ body:after{
 .side-actions{
   position:absolute;
   z-index:5;
-
   right:12px;
   bottom:73px;
-
   width:42%;
 }
 
 .side-card{
   padding:13px;
-
   margin-top:10px;
-
   border:1px solid #1f405d;
   border-radius:18px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #071a2b,
-      #04101c
-    );
-
-  box-shadow:
-    0 10px 25px #0008;
+  background:linear-gradient(135deg,#071a2b,#04101c);
+  box-shadow:0 10px 25px #0008;
 }
 
 .side-title{
@@ -643,28 +494,15 @@ body:after{
 
 .gold-btn{
   width:100%;
-
   margin-top:10px;
   padding:12px 8px;
-
   border:0;
   border-radius:13px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #ffdc4b,
-      #f5b717
-    );
-
+  background:linear-gradient(180deg,#ffdc4b,#f5b717);
   color:#171106;
-
   font-size:14px;
   font-weight:900;
-
-  box-shadow:
-    0 5px 15px #0007,
-    inset 0 1px #fff8;
+  box-shadow:0 5px 15px #0007,inset 0 1px #fff8;
 }
 
 .gold-btn:active{
@@ -676,7 +514,6 @@ body:after{
 .energy-box{
   position:absolute;
   z-index:8;
-
   left:13px;
   right:13px;
   bottom:15px;
@@ -686,9 +523,7 @@ body:after{
   display:flex;
   align-items:center;
   gap:8px;
-
   margin-bottom:7px;
-
   font-size:17px;
 }
 
@@ -699,34 +534,19 @@ body:after{
 .energy-bar{
   width:100%;
   height:14px;
-
   overflow:hidden;
-
   border:1px solid #38536e;
   border-radius:20px;
-
   background:#20354b;
-
-  box-shadow:
-    inset 0 2px 5px #0008;
+  box-shadow:inset 0 2px 5px #0008;
 }
 
 .energy-fill{
   width:100%;
   height:100%;
-
   border-radius:20px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ffc526,
-      #ffe866
-    );
-
-  box-shadow:
-    0 0 12px #ffc526;
-
+  background:linear-gradient(90deg,#ffc526,#ffe866);
+  box-shadow:0 0 12px #ffc526;
   transition:.2s;
 }
 
@@ -735,34 +555,20 @@ body:after{
 .quick{
   display:grid;
   grid-template-columns:1fr 1fr;
-
   gap:9px;
-
   margin-top:10px;
 }
 
 .quick-card{
   min-height:86px;
-
   display:flex;
   align-items:center;
-
   gap:10px;
-
   padding:10px;
-
   border:1px solid #1e3b58;
   border-radius:18px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #071827,
-      #04101c
-    );
-
+  background:linear-gradient(135deg,#071827,#04101c);
   color:#fff;
-
   text-align:left;
 }
 
@@ -774,22 +580,12 @@ body:after{
   width:49px;
   height:49px;
   flex:none;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      #1c3a51,
-      #081827
-    );
-
+  background:radial-gradient(circle,#1c3a51,#081827);
   border:1px solid #294962;
-
   font-size:25px;
 }
 
@@ -800,7 +596,6 @@ body:after{
 
 .quick-sub{
   margin-top:5px;
-
   color:#8b9db5;
   font-size:11px;
 }
@@ -816,27 +611,16 @@ body:after{
 .three{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-
   gap:9px;
-
   margin-top:9px;
 }
 
 .small-card{
   min-height:91px;
-
   padding:10px 7px;
-
   border:1px solid #1e3b58;
   border-radius:17px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #071827,
-      #04101b
-    );
-
+  background:linear-gradient(135deg,#071827,#04101b);
   color:#fff;
 }
 
@@ -847,35 +631,23 @@ body:after{
 .small-icon{
   width:42px;
   height:42px;
-
   margin:auto;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      #17334a,
-      #071625
-    );
-
+  background:radial-gradient(circle,#17334a,#071625);
   font-size:22px;
 }
 
 .small-title{
   margin-top:6px;
-
   font-size:12px;
   font-weight:900;
 }
 
 .small-sub{
   margin-top:3px;
-
   color:#8093aa;
   font-size:9px;
 }
@@ -884,12 +656,9 @@ body:after{
 
 .top10{
   margin-top:10px;
-
   padding:13px;
-
   border:1px solid #1e3b58;
   border-radius:18px;
-
   background:#061522;
 }
 
@@ -897,7 +666,6 @@ body:after{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   margin-bottom:9px;
 }
 
@@ -914,7 +682,6 @@ body:after{
 .rank-scroll{
   display:flex;
   gap:8px;
-
   overflow-x:auto;
   scrollbar-width:none;
 }
@@ -925,12 +692,9 @@ body:after{
 
 .rank{
   min-width:185px;
-
   padding:10px;
-
   border:1px solid #18334c;
   border-radius:15px;
-
   background:#0a1c2c;
 }
 
@@ -947,18 +711,19 @@ body:after{
 .rank-avatar{
   width:36px;
   height:36px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border-radius:50%;
-
   border:1px solid #657b90;
-
   background:#172b3e;
-
   overflow:hidden;
+}
+
+.rank-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .rank-name{
@@ -968,7 +733,6 @@ body:after{
 
 .rank-coins{
   margin-top:7px;
-
   color:#ffd23c;
   font-size:11px;
   font-weight:bold;
@@ -979,37 +743,24 @@ body:after{
 .bottom{
   position:fixed;
   z-index:100;
-
   left:50%;
   bottom:0;
-
   transform:translateX(-50%);
-
   width:100%;
   max-width:520px;
-
   display:grid;
   grid-template-columns:repeat(5,1fr);
-
-  padding:
-    7px 5px
-    calc(7px + env(safe-area-inset-bottom));
-
+  padding:7px 5px calc(7px + env(safe-area-inset-bottom));
   background:#020a14ed;
-
   backdrop-filter:blur(15px);
-
   border-top:1px solid #203750;
 }
 
 .bottom button{
   border:0;
   background:none;
-
   color:#8b9bb2;
-
   font-size:10px;
-
   padding:3px;
 }
 
@@ -1019,22 +770,16 @@ body:after{
 
 .bottom-icon{
   display:block;
-
   margin-bottom:3px;
-
   font-size:22px;
 }
 
 .bottom button.active:after{
   content:"";
-
   display:block;
-
   width:55px;
   height:2px;
-
   margin:4px auto 0;
-
   background:#ffd32f;
 }
 
@@ -1042,30 +787,19 @@ body:after{
 
 .msg{
   position:fixed;
-
   z-index:600;
-
   left:50%;
   bottom:95px;
-
   transform:translateX(-50%);
-
   max-width:90%;
-
   padding:10px 16px;
-
   border:1px solid #31516e;
   border-radius:14px;
-
   background:#071827ee;
-
   color:#fff;
-
   font-size:13px;
   font-weight:bold;
-
   text-align:center;
-
   pointer-events:none;
 }
 
@@ -1074,58 +808,36 @@ body:after{
 .float{
   position:fixed;
   z-index:700;
-
   pointer-events:none;
-
   color:#ffd32f;
-
   font-size:23px;
   font-weight:900;
-
-  text-shadow:
-    0 0 8px #9c6500;
-
-  animation:
-    floatUp .8s ease-out forwards;
+  text-shadow:0 0 8px #9c6500;
+  animation:floatUp .8s ease-out forwards;
 }
 
 @keyframes floatUp{
-
   0%{
     opacity:1;
     transform:translateY(0) scale(1);
   }
-
   100%{
     opacity:0;
     transform:translateY(-105px) scale(1.45);
   }
-
 }
 
 /* PANELS */
 
 .panel{
   display:none;
-
   position:fixed;
   z-index:200;
-
   inset:0;
-
   overflow:auto;
-
-  padding:
-    15px
-    13px
-    100px;
-
+  padding:15px 13px 100px;
   background:
-    radial-gradient(
-      circle at 50% 20%,
-      #0b2942,
-      #020912 65%
-    );
+    radial-gradient(circle at 50% 20%,#0b2942,#020912 65%);
 }
 
 .panel-inner{
@@ -1138,39 +850,29 @@ body:after{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   margin-bottom:16px;
 }
 
 .panel-head h2{
   margin:0;
-
   font-size:23px;
 }
 
 .close{
   padding:10px 13px;
-
   border:1px solid #29445f;
   border-radius:12px;
-
   background:#081827;
-
   color:#fff;
 }
 
 .panel-card{
   padding:16px;
-
   margin-bottom:10px;
-
   border:1px solid #1e3b57;
   border-radius:17px;
-
   background:#071827;
-
-  box-shadow:
-    0 10px 25px #0006;
+  box-shadow:0 10px 25px #0006;
 }
 
 .panel-card b{
@@ -1179,36 +881,56 @@ body:after{
 
 .small{
   margin-top:6px;
-
   color:#899bb0;
-
   font-size:12px;
   line-height:1.5;
 }
 
 .panel-btn{
   width:100%;
-
   margin-top:12px;
   padding:13px;
-
   border:0;
   border-radius:13px;
-
-  background:
-    linear-gradient(
-      #ffdc4b,
-      #efb318
-    );
-
+  background:linear-gradient(#ffdc4b,#efb318);
   color:#171006;
-
   font-weight:900;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:10px;
+}
+
+.stat{
+  padding:13px;
+  border:1px solid #1e3b57;
+  border-radius:15px;
+  background:#061522;
+}
+
+.stat-number{
+  font-size:22px;
+  font-weight:900;
+  color:#ffd33b;
+}
+
+.stat-label{
+  margin-top:4px;
+  color:#8c9eb3;
+  font-size:10px;
 }
 
 /* MOBILE */
 
 @media(max-width:400px){
+
+  .app{
+    padding-left:9px;
+    padding-right:9px;
+  }
 
   .brand-text{
     font-size:23px;
@@ -1270,7 +992,6 @@ body:after{
   .gold-btn{
     font-size:12px;
   }
-
 }
 
 </style>
@@ -1279,8 +1000,6 @@ body:after{
 <body>
 
 <div class="app">
-
-<!-- HEADER -->
 
 <div class="header">
 
@@ -1306,7 +1025,9 @@ body:after{
 
     <div class="profile-mini">
 
-      <div class="profile-mini-icon">
+      <div
+        class="profile-mini-icon"
+        id="profileIcon">
         👤
       </div>
 
@@ -1343,11 +1064,7 @@ body:after{
 </div>
 
 
-<!-- GAME -->
-
 <div class="game-card">
-
-  <!-- CITY -->
 
   <div class="city">
 
@@ -1362,8 +1079,6 @@ body:after{
 
   </div>
 
-
-  <!-- BALANCE -->
 
   <div class="balance-area">
 
@@ -1394,19 +1109,13 @@ body:after{
   </div>
 
 
-  <!-- SLOGAN -->
-
   <div class="slogan">
-
     👑<br>
     Bigger<br>
     Stronger<br>
     Together
-
   </div>
 
-
-  <!-- COIN -->
 
   <div class="coin-zone">
 
@@ -1427,8 +1136,6 @@ body:after{
   </div>
 
 
-  <!-- SIDE -->
-
   <div class="side-actions">
 
     <div class="side-card">
@@ -1437,7 +1144,9 @@ body:after{
         🎁 Daily Bonus
       </div>
 
-      <div class="side-sub">
+      <div
+        class="side-sub"
+        id="bonusStatus">
         Gündəlik bonusunu götür
       </div>
 
@@ -1459,10 +1168,8 @@ body:after{
       </div>
 
       <div class="side-sub">
-
         Level
         <span id="level">1</span>
-
       </div>
 
       <button
@@ -1477,8 +1184,6 @@ body:after{
 
   </div>
 
-
-  <!-- ENERGY -->
 
   <div class="energy-box">
 
@@ -1512,33 +1217,20 @@ body:after{
 </div>
 
 
-<!-- TAXI + CITY -->
-
 <div class="quick">
 
   <button
     class="quick-card"
     onclick="openPanel('taxiPanel')">
 
-    <div class="quick-icon">
-      🚕
-    </div>
+    <div class="quick-icon">🚕</div>
 
     <div>
-
-      <div class="quick-title">
-        Taksilər
-      </div>
-
-      <div class="quick-sub">
-        Maşınlar al və qazan
-      </div>
-
+      <div class="quick-title">Taksilər</div>
+      <div class="quick-sub">Maşınlar al və qazan</div>
     </div>
 
-    <div class="quick-arrow">
-      ›
-    </div>
+    <div class="quick-arrow">›</div>
 
   </button>
 
@@ -1547,32 +1239,19 @@ body:after{
     class="quick-card"
     onclick="openPanel('cityPanel')">
 
-    <div class="quick-icon">
-      🏙️
-    </div>
+    <div class="quick-icon">🏙️</div>
 
     <div>
-
-      <div class="quick-title">
-        Şəhər
-      </div>
-
-      <div class="quick-sub">
-        Yeni şəhərlərə get
-      </div>
-
+      <div class="quick-title">Şəhər</div>
+      <div class="quick-sub">Yeni şəhərlərə get</div>
     </div>
 
-    <div class="quick-arrow">
-      ›
-    </div>
+    <div class="quick-arrow">›</div>
 
   </button>
 
 </div>
 
-
-<!-- THREE -->
 
 <div class="three">
 
@@ -1580,17 +1259,11 @@ body:after{
     class="small-card"
     onclick="openPanel('friendsPanel')">
 
-    <div class="small-icon">
-      👥
-    </div>
+    <div class="small-icon">👥</div>
 
-    <div class="small-title">
-      Dostlar
-    </div>
+    <div class="small-title">Dostlar</div>
 
-    <div class="small-sub">
-      Referral linkini paylaş
-    </div>
+    <div class="small-sub">Referral linkini paylaş</div>
 
   </button>
 
@@ -1599,17 +1272,11 @@ body:after{
     class="small-card"
     onclick="openPanel('rankingPanel')">
 
-    <div class="small-icon">
-      🏆
-    </div>
+    <div class="small-icon">🏆</div>
 
-    <div class="small-title">
-      Reytinq
-    </div>
+    <div class="small-title">Reytinq</div>
 
-    <div class="small-sub">
-      TOP oyunçular
-    </div>
+    <div class="small-sub">TOP oyunçular</div>
 
   </button>
 
@@ -1618,24 +1285,16 @@ body:after{
     class="small-card"
     onclick="openPanel('tasksPanel')">
 
-    <div class="small-icon">
-      📋
-    </div>
+    <div class="small-icon">📋</div>
 
-    <div class="small-title">
-      Tapşırıqlar
-    </div>
+    <div class="small-title">Tapşırıqlar</div>
 
-    <div class="small-sub">
-      Mükafatlar qazan
-    </div>
+    <div class="small-sub">Mükafatlar qazan</div>
 
   </button>
 
 </div>
 
-
-<!-- TOP 10 -->
 
 <div class="top10">
 
@@ -1662,12 +1321,10 @@ body:after{
 
       <div class="rank-top">
 
-        <div class="rank-medal">
-          🥇
-        </div>
+        <div class="rank-medal">🥇</div>
 
         <div class="rank-avatar">
-          👤
+          <span>👤</span>
         </div>
 
         <div class="rank-name">
@@ -1687,12 +1344,10 @@ body:after{
 
       <div class="rank-top">
 
-        <div class="rank-medal">
-          🥈
-        </div>
+        <div class="rank-medal">🥈</div>
 
         <div class="rank-avatar">
-          👤
+          <span>👤</span>
         </div>
 
         <div class="rank-name">
@@ -1712,12 +1367,10 @@ body:after{
 
       <div class="rank-top">
 
-        <div class="rank-medal">
-          🥉
-        </div>
+        <div class="rank-medal">🥉</div>
 
         <div class="rank-avatar">
-          👤
+          <span>👤</span>
         </div>
 
         <div class="rank-name">
@@ -1739,18 +1392,13 @@ body:after{
 </div>
 
 
-<!-- BOTTOM NAV -->
-
 <div class="bottom">
 
   <button
     class="active"
     onclick="closePanels()">
 
-    <span class="bottom-icon">
-      🏠
-    </span>
-
+    <span class="bottom-icon">🏠</span>
     Əsas
 
   </button>
@@ -1759,10 +1407,7 @@ body:after{
   <button
     onclick="openPanel('taxiPanel')">
 
-    <span class="bottom-icon">
-      🚕
-    </span>
-
+    <span class="bottom-icon">🚕</span>
     Taksilər
 
   </button>
@@ -1771,10 +1416,7 @@ body:after{
   <button
     onclick="openPanel('cityPanel')">
 
-    <span class="bottom-icon">
-      🏙️
-    </span>
-
+    <span class="bottom-icon">🏙️</span>
     Şəhər
 
   </button>
@@ -1783,10 +1425,7 @@ body:after{
   <button
     onclick="openPanel('friendsPanel')">
 
-    <span class="bottom-icon">
-      👥
-    </span>
-
+    <span class="bottom-icon">👥</span>
     Dostlar
 
   </button>
@@ -1795,10 +1434,7 @@ body:after{
   <button
     onclick="openPanel('rankingPanel')">
 
-    <span class="bottom-icon">
-      🏆
-    </span>
-
+    <span class="bottom-icon">🏆</span>
     Reytinq
 
   </button>
@@ -1806,7 +1442,7 @@ body:after{
 </div>
 
 
-<!-- TAXI PANEL -->
+<!-- TAXI -->
 
 <div
   class="panel"
@@ -1880,6 +1516,33 @@ body:after{
         onclick="takeTaxi(150,35,10)">
         RIDE +150
       </button>
+
+    </div>
+
+
+    <div class="stat-grid">
+
+      <div class="stat">
+        <div
+          class="stat-number"
+          id="taxiRidesStat">
+          0
+        </div>
+        <div class="stat-label">
+          TAXI RIDE
+        </div>
+      </div>
+
+      <div class="stat">
+        <div
+          class="stat-number"
+          id="taxiLevelStat">
+          1
+        </div>
+        <div class="stat-label">
+          TAXI LEVEL
+        </div>
+      </div>
 
     </div>
 
@@ -2038,23 +1701,17 @@ body:after{
 
       <div class="panel-card">
         🥇 Player
-        <span style="float:right">
-          ---
-        </span>
+        <span style="float:right">---</span>
       </div>
 
       <div class="panel-card">
         🥈 Player
-        <span style="float:right">
-          ---
-        </span>
+        <span style="float:right">---</span>
       </div>
 
       <div class="panel-card">
         🥉 Player
-        <span style="float:right">
-          ---
-        </span>
+        <span style="float:right">---</span>
       </div>
 
     </div>
@@ -2093,13 +1750,20 @@ body:after{
         Coinə 100 dəfə toxun.
       </div>
 
-      <div
-        style="margin-top:8px;color:#ffd23c">
+      <div style="margin-top:8px;color:#ffd23c">
 
-        <span id="tapProgress">
-          0
-        </span>
+        <span id="tapProgress">0</span>
         / 100
+
+      </div>
+
+      <div class="energy-bar" style="margin-top:8px;height:8px">
+
+        <div
+          class="energy-fill"
+          id="tapFill"
+          style="width:0%">
+        </div>
 
       </div>
 
@@ -2114,13 +1778,20 @@ body:after{
         10 dəfə taksi sür.
       </div>
 
-      <div
-        style="margin-top:8px;color:#ffd23c">
+      <div style="margin-top:8px;color:#ffd23c">
 
-        <span id="rideProgress">
-          0
-        </span>
+        <span id="rideProgress">0</span>
         / 10
+
+      </div>
+
+      <div class="energy-bar" style="margin-top:8px;height:8px">
+
+        <div
+          class="energy-fill"
+          id="rideFill"
+          style="width:0%">
+        </div>
 
       </div>
 
@@ -2135,13 +1806,20 @@ body:after{
         1 dost dəvət et.
       </div>
 
-      <div
-        style="margin-top:8px;color:#ffd23c">
+      <div style="margin-top:8px;color:#ffd23c">
 
-        <span id="refProgress">
-          0
-        </span>
+        <span id="refProgress">0</span>
         / 1
+
+      </div>
+
+      <div class="energy-bar" style="margin-top:8px;height:8px">
+
+        <div
+          class="energy-fill"
+          id="refFill"
+          style="width:0%">
+        </div>
 
       </div>
 
@@ -2198,9 +1876,7 @@ let game = {
 };
 
 let connected = false;
-
 let saving = false;
-
 const maxEnergy = 1000;
 
 
@@ -2280,10 +1956,39 @@ function createFloat(x,y,value){
   document.body.appendChild(el);
 
   setTimeout(function(){
-
     el.remove();
-
   },800);
+
+}
+
+
+/* PROFILE */
+
+function updateTelegramProfile(){
+
+  if(!telegramUser){
+    return;
+  }
+
+  const name =
+    telegramUser.first_name ||
+    telegramUser.username ||
+    "Player";
+
+  document.getElementById("user").textContent =
+    name;
+
+  if(telegramUser.photo_url){
+
+    const icon =
+      document.getElementById("profileIcon");
+
+    icon.innerHTML =
+      '<img src="' +
+      telegramUser.photo_url +
+      '" alt="profile">';
+
+  }
 
 }
 
@@ -2308,13 +2013,19 @@ function render(){
     game.cityLevel;
 
   document.getElementById("tapProgress").textContent =
-    game.totalTaps;
+    Math.min(game.totalTaps,100);
 
   document.getElementById("rideProgress").textContent =
-    game.totalRides;
+    Math.min(game.totalRides,10);
 
   document.getElementById("refProgress").textContent =
-    game.referrals;
+    Math.min(game.referrals,1);
+
+  document.getElementById("taxiRidesStat").textContent =
+    game.totalRides;
+
+  document.getElementById("taxiLevelStat").textContent =
+    game.taxiLevel;
 
 
   const percent =
@@ -2337,6 +2048,55 @@ function render(){
   document.getElementById("upgrade").textContent =
     "⬆ Upgrade " +
     (game.level * 100);
+
+
+  document.getElementById("tapFill").style.width =
+    Math.min(game.totalTaps,100) + "%";
+
+  document.getElementById("rideFill").style.width =
+    Math.min(game.totalRides * 10,100) + "%";
+
+  document.getElementById("refFill").style.width =
+    Math.min(game.referrals * 100,100) + "%";
+
+
+  const bonusButton =
+    document.getElementById("bonus");
+
+  const bonusStatus =
+    document.getElementById("bonusStatus");
+
+
+  if(
+    game.lastBonus &&
+    Date.now() - game.lastBonus < 86400000
+  ){
+
+    bonusButton.textContent =
+      "✅ Claimed";
+
+    bonusButton.disabled = true;
+
+    bonusButton.style.opacity =
+      ".55";
+
+    bonusStatus.textContent =
+      "24 saat ərzində yenidən götürə bilməzsən.";
+
+  }else{
+
+    bonusButton.textContent =
+      "🎁 +500 Claim";
+
+    bonusButton.disabled = false;
+
+    bonusButton.style.opacity =
+      "1";
+
+    bonusStatus.textContent =
+      "Gündəlik bonusunu götür";
+
+  }
 
 }
 
@@ -2379,6 +2139,7 @@ async function requestServer(data){
         }
       );
 
+
     const text =
       await response.text();
 
@@ -2391,6 +2152,8 @@ async function requestServer(data){
 
     }catch(e){
 
+      console.log("Server JSON xətası:",text);
+
       return null;
 
     }
@@ -2398,6 +2161,8 @@ async function requestServer(data){
     return result;
 
   }catch(e){
+
+    console.log("Server xətası:",e);
 
     return null;
 
@@ -2421,13 +2186,7 @@ async function connectUser(){
   }
 
 
-  const telegramName =
-    telegramUser.first_name ||
-    telegramUser.username ||
-    "Player";
-
-  document.getElementById("user").textContent =
-    telegramName;
+  updateTelegramProfile();
 
 
   const data =
@@ -2525,6 +2284,7 @@ async function saveGame(){
 
   saving = true;
 
+
   const data =
     await requestServer({
 
@@ -2561,6 +2321,7 @@ async function saveGame(){
 
     });
 
+
   saving = false;
 
 
@@ -2571,28 +2332,28 @@ async function saveGame(){
   ){
 
     game.balance =
-      Number(data.player.balance);
+      Number(data.player.balance) || 0;
 
     game.energy =
-      Number(data.player.energy);
+      Number(data.player.energy) || 1000;
 
     game.level =
-      Number(data.player.level);
+      Number(data.player.level) || 1;
 
     game.referrals =
-      Number(data.player.referrals);
+      Number(data.player.referrals) || 0;
 
     game.taxiLevel =
-      Number(data.player.taxi_level);
+      Number(data.player.taxi_level) || 1;
 
     game.cityLevel =
-      Number(data.player.city_level);
+      Number(data.player.city_level) || 1;
 
     game.totalTaps =
-      Number(data.player.total_taps);
+      Number(data.player.total_taps) || 0;
 
     game.totalRides =
-      Number(data.player.total_rides);
+      Number(data.player.total_rides) || 0;
 
     render();
 
@@ -2877,7 +2638,13 @@ async function upgradeCity(){
 async function copyInvite(){
 
   if(!telegramUser){
+
+    showMessage(
+      "⚠️ Telegram hesabı tapılmadı."
+    );
+
     return;
+
   }
 
 
@@ -2933,13 +2700,27 @@ setInterval(
 );
 
 
+/* BONUS TIMER REFRESH */
+
+setInterval(
+  function(){
+
+    if(connected){
+      render();
+    }
+
+  },
+  60000
+);
+
+
 /* START */
 
 render();
-
+updateTelegramProfile();
 connectUser();
 
 </script>
 
 </body>
-</html>
+          </html>
