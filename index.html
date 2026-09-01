@@ -2807,5 +2807,75 @@ function showNewRanking(){
 
 setTimeout(showNewRanking,500);
 </script>
+  <script>
+async function loadRanking(){
+
+  try{
+
+    const response = await fetch(
+      "https://umqlgklqpolmiqoyqkbu.supabase.co/rest/v1/elcoin_ranking?select=*&order=rank.asc",
+      {
+        headers:{
+          "apikey":"BURAYA_SUPABASE_ANON_KEY_YAZ"
+        }
+      }
+    );
+
+    const players = await response.json();
+
+    const list = document.getElementById("rankingList");
+
+    if(!list || !Array.isArray(players)) return;
+
+    list.innerHTML = "";
+
+    players.forEach(function(player,index){
+
+      let medal =
+        index === 0 ? "🥇" :
+        index === 1 ? "🥈" :
+        index === 2 ? "🥉" :
+        (index + 1) + "️⃣";
+
+      const row = document.createElement("div");
+
+      row.className = "rank-row";
+
+      row.innerHTML = `
+        <div class="rank-position">${medal}</div>
+
+        <div class="rank-row-avatar">
+          👤
+        </div>
+
+        <div class="rank-row-info">
+
+          <div class="rank-row-name">
+            ${player.nickname || "Player"}
+          </div>
+
+          <div class="rank-row-coins">
+            🪙 ${Math.floor(Number(player.balance) || 0)}
+          </div>
+
+        </div>
+      `;
+
+      list.appendChild(row);
+
+    });
+
+  }catch(error){
+
+    console.log("Ranking error:",error);
+
+  }
+
+}
+
+loadRanking();
+
+setInterval(loadRanking,30000);
+  </script>
 </body>
           </html>
