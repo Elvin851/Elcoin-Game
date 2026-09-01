@@ -2721,6 +2721,91 @@ updateTelegramProfile();
 connectUser();
 
 </script>
+<style>
+.ranking-box{
+  margin-top:12px;
+  padding:15px;
+  border:1px solid #294966;
+  border-radius:20px;
+  background:linear-gradient(135deg,#091d2e,#04101c);
+}
 
+.ranking-box h3{
+  margin:0 0 12px;
+  font-size:20px;
+}
+
+.ranking-player{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px;
+  margin-top:8px;
+  border:1px solid #1e405d;
+  border-radius:15px;
+  background:#071827;
+}
+
+.ranking-number{
+  width:30px;
+  font-size:20px;
+  text-align:center;
+}
+
+.ranking-avatar{
+  width:40px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#142b3e;
+}
+
+.ranking-name{
+  flex:1;
+  font-weight:900;
+}
+
+.ranking-coins{
+  color:#ffd33a;
+  font-weight:900;
+  font-size:12px;
+}
+</style>
+
+<script>
+function showNewRanking(){
+
+  const box=document.getElementById("newRanking");
+
+  if(!box) return;
+
+  box.innerHTML=`
+    <div class="ranking-player">
+      <div class="ranking-number">🥇</div>
+      <div class="ranking-avatar">👤</div>
+      <div class="ranking-name">Player</div>
+      <div class="ranking-coins">🪙 ---</div>
+    </div>
+
+    <div class="ranking-player">
+      <div class="ranking-number">🥈</div>
+      <div class="ranking-avatar">👤</div>
+      <div class="ranking-name">Player</div>
+      <div class="ranking-coins">🪙 ---</div>
+    </div>
+
+    <div class="ranking-player">
+      <div class="ranking-number">🥉</div>
+      <div class="ranking-avatar">👤</div>
+      <div class="ranking-name">Player</div>
+      <div class="ranking-coins">🪙 ---</div>
+    </div>
+  `;
+}
+
+setTimeout(showNewRanking,500);
+</script>
 </body>
           </html>
