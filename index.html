@@ -2896,24 +2896,43 @@ async function loadRanking(){
 
     players.forEach(function(player,index){
 
-      const medal =
-        index === 0 ? "🥇" :
-        index === 1 ? "🥈" :
-        index === 2 ? "🥉" :
-        "🏅";
+  if(index >= 10) return;
 
-      const row = document.createElement("div");
+  const medal =
+    index === 0 ? "🥇" :
+    index === 1 ? "🥈" :
+    index === 2 ? "🥉" :
+    "🏅";
 
-      row.className = "panel-card";
+  const row = document.createElement("div");
 
-      row.innerHTML = `
-        ${medal} ${player.nickname || "Player"}
-        <span style="float:right;color:#ffd23c">
-          🪙 ${Math.floor(Number(player.balance) || 0)}
-        </span>
-      `;
+  row.className = "rank";
 
-      list.appendChild(row);
+  row.innerHTML = `
+    <div class="rank-top">
+
+      <div class="rank-medal">
+        ${medal}
+      </div>
+
+      <div class="rank-avatar">
+        <span>👤</span>
+      </div>
+
+      <div class="rank-name">
+        ${player.nickname || "Player"}
+      </div>
+
+    </div>
+
+    <div class="rank-coins">
+      🪙 ${Math.floor(Number(player.balance) || 0)}
+    </div>
+  `;
+
+  list.appendChild(row);
+
+});
 
     });
 
