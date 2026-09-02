@@ -2823,7 +2823,7 @@ async function loadRanking(){
 
     const players = await response.json();
 
-    const list = document.getElementById("rankingList");
+    const list = document.getElementById("weeklyRanking");
 
     if(!list || !Array.isArray(players)) return;
 
