@@ -2875,7 +2875,7 @@ async function loadWeeklyRanking(){
 
 loadWeeklyRanking();
 
-setInterval(loadRanking,30000);
+setInterval(loadWeeklyRanking,30000);
   </script>
   <script>
 async function loadRanking(){
@@ -2934,8 +2934,6 @@ async function loadRanking(){
 
 });
 
-    });
-
   }catch(error){
 
     console.log("Ranking error:",error);
@@ -2946,7 +2944,7 @@ async function loadRanking(){
 
 loadRanking();
 
-setInterval(loadWeeklyRanking,30000);
+setInterval(loadRanking,30000);
 </script>
   <script>
 async function updateNickname(){
