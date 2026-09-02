@@ -2929,5 +2929,21 @@ loadRanking();
 
 setInterval(loadRanking,30000);
 </script>
+  <script>
+async function updateNickname(){
+
+  if(!telegramUser) return;
+
+  await requestServer({
+    nickname:
+      telegramUser.first_name ||
+      telegramUser.username ||
+      "Player"
+  });
+
+}
+
+setTimeout(updateNickname, 1500);
+  </script>
 </body>
           </html>
