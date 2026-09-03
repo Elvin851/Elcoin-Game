@@ -2883,9 +2883,13 @@ async function loadRanking(){
   try{
 
     const response = await fetch(
-      "https://umqlgklqpolmiqoyqkbu.supabase.co/rest/v1/elcoin_ranking?select=*&order=rank.asc"
-    );
-
+  "https://umqlgklqpolmiqoyqkbu.supabase.co/rest/v1/elcoin_ranking?select=*&order=rank.asc",
+  {
+    headers:{
+      "apikey":"sb_publishable_unLN1x7hk9GpbgxuAmTj6Q_GwMAWMVp"
+    }
+  }
+);
     const players = await response.json();
 
     const list = document.getElementById("rankingList");
