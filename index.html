@@ -2828,7 +2828,11 @@ async function loadWeeklyRanking(){
 
     list.innerHTML = "";
 
-    players.forEach(function(player,index){
+    const visiblePlayers = players.filter(function(player){
+  return !telegramUser || String(player.telegram_id) !== String(telegramUser.id);
+});
+
+visiblePlayers.forEach(function(player,index){
 
       let medal =
         index === 0 ? "🥇" :
