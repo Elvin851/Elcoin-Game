@@ -1612,9 +1612,7 @@ button{
 
 <!-- FRIENDS -->
 
-<div
-  class="panel"
-  id="friendsPanel">
+<div class="panel" id="friendsPanel">
 
   <div class="panel-inner">
 
@@ -1630,10 +1628,62 @@ button{
 
     </div>
 
+    <!-- AXTARIŞ -->
 
     <div class="panel-card">
 
-      <b>Dostlarını dəvət et</b>
+      <b>🔎 Oyunçu axtar</b>
+
+      <div class="small">
+        Dost olmaq istədiyin oyunçunun adını yaz.
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:12px;">
+
+        <input
+          id="friendSearch"
+          type="text"
+          placeholder="Oyunçu adı..."
+          style="flex:1;padding:12px;border-radius:12px;border:1px solid #555;background:#111;color:white;"
+        >
+
+        <button
+          class="panel-btn"
+          onclick="searchFriend()">
+          🔎
+        </button>
+
+      </div>
+
+      <div id="friendSearchResult"></div>
+
+    </div>
+
+
+    <!-- DOSTLAR -->
+
+    <div class="panel-card">
+
+      <b>👥 Sənin dostların</b>
+
+      <div
+        id="friendsList"
+        style="margin-top:12px;">
+        
+        <div class="small">
+          Hələ dostun yoxdur.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- DƏVƏT -->
+
+    <div class="panel-card">
+
+      <b>🎁 Dostlarını dəvət et</b>
 
       <div class="small">
         Dostlarını dəvət et və bonus qazan.
@@ -1653,28 +1703,12 @@ button{
 
     </div>
 
-
-    <div class="panel-card">
-
-      <b>👥 Sənin dostların</b>
-
-      <div style="font-size:30px;margin-top:8px">
-
-        <span id="friends">
-          0
-        </span>
-
-      </div>
-
-    </div>
-
   </div>
 
 </div>
 
 
 <!-- RANKING -->
-
 <div
   class="panel"
   id="rankingPanel">
@@ -1878,7 +1912,118 @@ let game = {
 let connected = false;
 let saving = false;
 const maxEnergy = 1000;
+/* SUPABASE */
 
+const FUNCTION_URL =
+"https://umqlgklqpolmiqoyqkbu.supabase.co/functions/v1/telegram-user";
+
+
+/* GAME */
+
+let game = {
+
+  balance:0,
+
+  energy:1000,
+
+  level:1,
+
+  lastBonus:0,
+
+  referrals:0,
+
+  taxiLevel:1,
+
+  cityLevel:1,
+
+  totalTaps:0,
+
+  totalRides:0
+
+};
+
+let connected = false;
+let saving = false;
+const maxEnergy = 1000;
+  
+/* FRIEND SEARCH */
+
+async function searchFriend(){
+
+  const input = document.getElementById("friendSearch");
+  const result = document.getElementById("friendSearchResult");
+
+  if(!input || !result) return;
+
+  const name = input.value.trim();
+
+  if(!name){
+    result.innerHTML = "⚠️ Oyunçu adı yaz.";
+    return;
+  }
+
+  result.innerHTML = "🔎 Axtarılır...";
+
+  try{
+
+    const response = await fetch(
+      "https://umqlgklqpolmiqoyqkbu.supabase.co/rest/v1/players?first_name=ilike.*" +
+      encodeURIComponent(name) +
+      "*&select=telegram_id,first_name,nickname",
+      {
+        headers:{
+          "apikey":"sb_publishable_unLN1x7hk9GpbgxuAmTj6Q_GwMAWMVp"
+        }
+      }
+    );
+
+    const players = await response.json();
+
+    if(!Array.isArray(players) || players.length === 0){
+
+      result.innerHTML = `
+        <div class="small" style="margin-top:12px;">
+          ❌ Oyunçu tapılmadı.
+        </div>
+      `;
+
+      return;
+    }
+
+    result.innerHTML = players.map(function(player){
+
+      return `
+        <div class="panel-card" style="margin-top:12px;">
+
+          <b>👤 ${player.first_name || "Player"}</b>
+
+          <div class="small">
+            🎮 ${player.nickname || "Player"}
+          </div>
+
+          <button
+            class="panel-btn"
+            onclick="sendFriendRequest('${player.telegram_id}')">
+
+            ➕ DOSTLUQ SORĞUSU GÖNDƏR
+
+          </button>
+
+        </div>
+      `;
+
+    }).join("");
+
+  }catch(error){
+
+    console.log("Friend search error:",error);
+
+    result.innerHTML =
+      "❌ Axtarış zamanı xəta baş verdi.";
+
+  }
+
+}
 
 /* MESSAGE */
 
