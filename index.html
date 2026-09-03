@@ -2770,6 +2770,65 @@ ${escapeHtml(playerName(p))}
 }
 
 async function loadMyRank(){
+  if(!telegramUser)return;
+
+  const box=document.getElementById('myRank');
+
+  box.innerHTML='⏳ Sənin yerin hesablanır...';
+
+  const id=encodeURIComponent(String(telegramUser.id));
+
+  // Əsas reytinq sistemi
+  const d=await apiGet(
+    '/rest/v1/elcoin_ranking?telegram_id=eq.'+
+    id+
+    '&select=*&limit=1'
+  );
+
+  if(Array.isArray(d)&&d.length>0){
+
+    const rank=Number(d[0].rank);
+
+    box.innerHTML=
+      '🏆 Sənin şəxsi yerin: <b>#'+
+      (Number.isFinite(rank)?rank:'?')+
+      '</b>'+
+      '<div class="small">Nickname: '+
+      escapeHtml(d[0].nickname||getNickname())+
+      '</div>';
+
+    return;
+  }
+
+  // Əgər ranking view işləməsə, alternativ üsul
+  const ps=await apiGet(
+    '/rest/v1/players?select=telegram_id,balance&order=balance.desc'
+  );
+
+  if(Array.isArray(ps)){
+
+    const i=ps.findIndex(
+      p=>String(p.telegram_id)===String(telegramUser.id)
+    );
+
+    if(i>=0){
+
+      box.innerHTML=
+        '🏆 Sənin şəxsi yerin: <b>#'+
+        (i+1)+
+        '</b>'+
+        '<div class="small">Nickname: '+
+        escapeHtml(getNickname())+
+        '</div>';
+
+      return;
+    }
+  }
+
+  box.innerHTML=
+    '🏆 Sənin yerin tapılmadı.'+
+    '<div class="small">Reytinq məlumatı serverdən gəlmədi.</div>';
+}
 
 if(!telegramUser)return;
 
