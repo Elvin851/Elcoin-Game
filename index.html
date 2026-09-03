@@ -2897,8 +2897,12 @@ async function loadRanking(){
 
     list.innerHTML = "";
 
-    players.forEach(function(player,index){
+    
+const visiblePlayers = players.filter(function(player){
+  return !telegramUser || String(player.telegram_id) !== String(telegramUser.id);
+});
 
+visiblePlayers.forEach(function(player,index){
   if(index >= 10) return;
 
   const medal =
