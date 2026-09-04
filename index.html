@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#050914">
 
+<meta name="theme-color" content="#050914">
 <title>ELCOIN</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -15,13 +15,12 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html,body{
   margin:0;
   padding:0;
   width:100%;
   min-height:100%;
-  background:#030711;
+  background:#030712;
   color:#fff;
   font-family:Arial,Helvetica,sans-serif;
   overflow-x:hidden;
@@ -31,34 +30,43 @@ body{
   min-height:100vh;
   min-height:100dvh;
   background:
-    radial-gradient(circle at 50% 8%,rgba(0,139,255,.18),transparent 32%),
-    radial-gradient(circle at 100% 45%,rgba(255,193,7,.09),transparent 28%),
-    linear-gradient(180deg,#071222 0%,#030711 55%,#01040a 100%);
+    radial-gradient(circle at 50% 5%,rgba(0,132,255,.18),transparent 32%),
+    radial-gradient(circle at 0% 55%,rgba(0,174,255,.08),transparent 28%),
+    linear-gradient(180deg,#071222 0%,#040914 55%,#02050a 100%);
 }
 
 button{
   font:inherit;
+  color:inherit;
   border:0;
   outline:0;
-  color:inherit;
+  -webkit-appearance:none;
 }
 
-button,
-.coin{
-  user-select:none;
-  -webkit-user-select:none;
+button:disabled{
+  cursor:default;
+}
+
+.app{
+  position:relative;
+  width:100%;
+  max-width:520px;
+  min-height:100vh;
+  min-height:100dvh;
+  margin:auto;
+  padding-bottom:105px;
 }
 
 .bg-grid{
   position:fixed;
   inset:0;
   pointer-events:none;
-  opacity:.11;
+  opacity:.12;
   background-image:
     linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size:34px 34px;
-  mask-image:linear-gradient(to bottom,#000,transparent);
+  background-size:35px 35px;
+  mask-image:linear-gradient(to bottom,black,transparent);
 }
 
 .glow{
@@ -66,40 +74,32 @@ button,
   width:260px;
   height:260px;
   border-radius:50%;
-  filter:blur(85px);
-  opacity:.11;
+  filter:blur(90px);
+  opacity:.10;
   pointer-events:none;
 }
 
-.glow.a{
+.glow.one{
   background:#008cff;
-  left:-150px;
-  top:90px;
+  left:-140px;
+  top:100px;
 }
 
-.glow.b{
-  background:#ffd000;
-  right:-150px;
-  top:380px;
+.glow.two{
+  background:#ffc400;
+  right:-140px;
+  top:360px;
 }
 
-.app{
-  width:100%;
-  max-width:520px;
-  min-height:100vh;
-  min-height:100dvh;
-  margin:auto;
-  position:relative;
-  padding-bottom:105px;
-}
+/* HEADER */
 
 .header{
   position:relative;
   z-index:5;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:15px 15px 10px;
+  justify-content:space-between;
+  padding:16px 15px 10px;
 }
 
 .brand{
@@ -109,21 +109,21 @@ button,
 }
 
 .logo{
-  width:46px;
-  height:46px;
-  border-radius:15px;
+  width:45px;
+  height:45px;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#171000;
+  border-radius:14px;
   font-size:25px;
   font-weight:1000;
+  color:#07101c;
   background:
-    linear-gradient(145deg,#fff7a6,#ffd11c,#f39a00);
+    linear-gradient(145deg,#fff7a4,#ffd000,#ff9b00);
   box-shadow:
-    0 0 20px rgba(255,190,0,.25),
-    inset 0 2px 5px rgba(255,255,255,.85),
-    inset 0 -4px 7px rgba(100,45,0,.25);
+    0 0 20px rgba(255,190,0,.35),
+    inset 0 2px 4px rgba(255,255,255,.8),
+    inset 0 -3px 6px rgba(110,50,0,.35);
 }
 
 .brand-name{
@@ -133,9 +133,9 @@ button,
 }
 
 .brand-sub{
-  color:#74839b;
-  margin-top:3px;
-  font-size:8px;
+  margin-top:2px;
+  font-size:9px;
+  color:#8190a8;
   letter-spacing:2px;
 }
 
@@ -143,72 +143,75 @@ button,
   display:flex;
   align-items:center;
   gap:8px;
-  padding:6px 9px 6px 6px;
-  border-radius:15px;
+  padding:7px 10px 7px 7px;
   border:1px solid rgba(255,255,255,.08);
   background:rgba(255,255,255,.035);
+  border-radius:15px;
   backdrop-filter:blur(12px);
 }
 
 .avatar{
-  width:32px;
-  height:32px;
+  width:31px;
+  height:31px;
   display:flex;
   align-items:center;
   justify-content:center;
   border-radius:50%;
-  border:1px solid rgba(255,210,50,.35);
-  background:#10223a;
+  background:linear-gradient(145deg,#193556,#071221);
+  border:1px solid rgba(255,210,60,.4);
+  font-size:15px;
 }
 
 .profile-name{
-  max-width:90px;
+  max-width:95px;
   overflow:hidden;
-  white-space:nowrap;
   text-overflow:ellipsis;
-  font-size:10px;
-  font-weight:900;
+  white-space:nowrap;
+  font-size:11px;
+  font-weight:800;
 }
+
+/* BALANCE */
 
 .balance-card{
   position:relative;
-  overflow:hidden;
   margin:5px 14px 0;
   padding:18px 16px;
   border-radius:23px;
   border:1px solid rgba(255,255,255,.08);
   background:
-    linear-gradient(145deg,rgba(19,39,66,.96),rgba(6,13,25,.98));
+    linear-gradient(145deg,rgba(19,39,65,.96),rgba(6,14,27,.98));
   box-shadow:
-    0 18px 45px rgba(0,0,0,.32),
-    inset 0 1px rgba(255,255,255,.05);
+    0 15px 40px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  overflow:hidden;
 }
 
-.balance-card:after{
+.balance-card:before{
   content:"";
   position:absolute;
-  width:170px;
-  height:170px;
-  right:-80px;
-  top:-100px;
+  width:180px;
+  height:180px;
   border-radius:50%;
-  background:#008dff;
-  opacity:.08;
-  filter:blur(35px);
+  right:-80px;
+  top:-90px;
+  background:#009dff;
+  opacity:.07;
+  filter:blur(40px);
 }
 
 .balance-label{
-  color:#7e8ca4;
-  font-size:10px;
-  letter-spacing:1.5px;
+  color:#8291a9;
+  font-size:11px;
   text-transform:uppercase;
+  letter-spacing:1.5px;
 }
 
 .balance-row{
   display:flex;
   align-items:center;
   gap:10px;
-  margin-top:7px;
+  margin-top:6px;
 }
 
 .small-coin{
@@ -219,71 +222,78 @@ button,
   align-items:center;
   justify-content:center;
   border-radius:50%;
+  background:linear-gradient(145deg,#fff4a1,#ffd000,#e99a00);
   color:#754b00;
-  font-size:15px;
   font-weight:1000;
-  background:linear-gradient(145deg,#fff6a0,#ffd000,#e99800);
-  box-shadow:0 0 17px rgba(255,196,0,.25);
+  box-shadow:0 0 15px rgba(255,200,0,.25);
 }
 
 .balance{
-  font-size:31px;
+  min-width:0;
+  font-size:32px;
+  line-height:1;
   font-weight:1000;
   letter-spacing:-1px;
 }
 
 .balance-unit{
-  color:#ffd43a;
-  font-size:12px;
+  font-size:13px;
   font-weight:900;
+  color:#f8cb32;
 }
 
 .income{
   display:flex;
   justify-content:space-between;
   margin-top:13px;
-  color:#77869d;
-  font-size:10px;
+  color:#8190a8;
+  font-size:11px;
 }
 
 .income strong{
   color:#55e89b;
 }
 
+/* GAME TITLE */
+
 .game-title{
-  margin-top:18px;
   text-align:center;
+  margin-top:19px;
 }
 
 .game-title h1{
   margin:0;
   font-size:17px;
-  letter-spacing:.7px;
+  letter-spacing:1px;
 }
 
 .game-title p{
   margin:5px 0 0;
-  color:#687891;
-  font-size:9px;
+  color:#73839c;
+  font-size:10px;
 }
+
+/* COIN */
 
 .coin-area{
   position:relative;
-  height:330px;
+  height:325px;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   touch-action:manipulation;
+  user-select:none;
+  -webkit-user-select:none;
 }
 
 .coin-shadow{
   position:absolute;
+  width:210px;
+  height:38px;
   bottom:42px;
-  width:215px;
-  height:40px;
   border-radius:50%;
-  background:rgba(0,0,0,.7);
-  filter:blur(16px);
+  background:rgba(0,0,0,.65);
+  filter:blur(15px);
 }
 
 .coin{
@@ -295,21 +305,19 @@ button,
   transform:translateZ(0);
   transition:transform .07s ease;
   background:
-    radial-gradient(
-      circle at 35% 27%,
-      #fff9ad 0%,
-      #ffdc43 18%,
-      #ffb900 46%,
-      #d77b00 72%,
-      #934800 100%
-    );
-  border:8px solid #b96700;
+    radial-gradient(circle at 35% 27%,
+      #fff9b0 0 3%,
+      #ffdc4d 18%,
+      #ffb300 48%,
+      #d87900 73%,
+      #914500 100%);
+  border:8px solid #b76500;
   box-shadow:
-    0 0 0 5px rgba(255,205,50,.22),
-    0 0 48px rgba(255,183,0,.27),
-    inset 10px 10px 20px rgba(255,255,255,.42),
-    inset -16px -20px 27px rgba(94,40,0,.48),
-    0 24px 35px rgba(0,0,0,.5);
+    0 0 0 5px rgba(255,201,49,.22),
+    0 0 45px rgba(255,183,0,.30),
+    inset 10px 10px 18px rgba(255,255,255,.43),
+    inset -15px -20px 25px rgba(105,45,0,.45),
+    0 22px 30px rgba(0,0,0,.45);
 }
 
 .coin:before{
@@ -317,19 +325,19 @@ button,
   position:absolute;
   inset:12px;
   border-radius:50%;
-  border:2px solid rgba(255,247,160,.65);
+  border:2px solid rgba(255,247,158,.65);
   box-shadow:
-    inset 0 0 0 5px rgba(165,84,0,.23),
-    inset 0 0 0 7px rgba(255,240,110,.22);
+    inset 0 0 0 5px rgba(179,98,0,.25),
+    inset 0 0 0 7px rgba(255,238,112,.25);
 }
 
 .coin:after{
   content:"";
   position:absolute;
-  width:83px;
-  height:36px;
-  left:41px;
-  top:24px;
+  width:80px;
+  height:35px;
+  left:42px;
+  top:25px;
   border-radius:50%;
   transform:rotate(-25deg);
   background:rgba(255,255,255,.18);
@@ -344,50 +352,52 @@ button,
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  text-shadow:0 3px 3px rgba(95,43,0,.5);
+  text-shadow:0 3px 3px rgba(98,45,0,.5);
 }
 
 .coin-e{
-  color:#fff5a5;
   font-size:86px;
   line-height:.8;
   font-weight:1000;
-  filter:drop-shadow(0 4px 2px #975000);
+  color:#fff4a3;
+  filter:drop-shadow(0 4px 2px #9d5300);
 }
 
 .coin-text{
-  margin-top:10px;
-  color:#fff7c0;
+  margin-top:9px;
   font-size:15px;
   font-weight:1000;
   letter-spacing:4px;
+  color:#fff7bf;
 }
 
 .coin:active{
-  transform:scale(.93);
+  transform:scale(.94);
 }
 
 .float{
   position:absolute;
-  z-index:30;
+  z-index:20;
   pointer-events:none;
-  color:#ffe15a;
+  color:#ffe25a;
   font-size:23px;
   font-weight:1000;
-  text-shadow:0 2px 9px #000;
+  text-shadow:0 2px 8px rgba(0,0,0,.7);
   animation:floatUp .75s ease-out forwards;
 }
 
 @keyframes floatUp{
-  from{
+  0%{
     opacity:1;
     transform:translate(-50%,0) scale(.8);
   }
-  to{
+  100%{
     opacity:0;
-    transform:translate(-50%,-100px) scale(1.25);
+    transform:translate(-50%,-95px) scale(1.25);
   }
 }
+
+/* STATS */
 
 .stats{
   display:grid;
@@ -397,8 +407,8 @@ button,
 }
 
 .stat{
-  min-height:67px;
-  padding:10px 7px;
+  min-height:66px;
+  padding:10px 8px;
   text-align:center;
   border-radius:16px;
   border:1px solid rgba(255,255,255,.07);
@@ -417,16 +427,19 @@ button,
 
 .stat-label{
   margin-top:3px;
-  color:#66758d;
-  font-size:8px;
+  color:#718099;
+  font-size:9px;
 }
+
+/* ENERGY */
 
 .energy-card{
   margin:11px 14px 0;
   padding:13px;
   border-radius:17px;
+  background:
+    linear-gradient(145deg,rgba(18,31,51,.95),rgba(7,13,24,.95));
   border:1px solid rgba(255,255,255,.07);
-  background:linear-gradient(145deg,#121f33,#070d18);
 }
 
 .energy-head{
@@ -442,7 +455,7 @@ button,
 }
 
 .energy-value{
-  color:#6ddfff;
+  color:#72dfff;
   font-size:11px;
   font-weight:900;
 }
@@ -451,18 +464,20 @@ button,
   height:9px;
   overflow:hidden;
   border-radius:20px;
-  background:#111c2c;
+  background:#111d2e;
   box-shadow:inset 0 2px 4px rgba(0,0,0,.5);
 }
 
 .energy-fill{
-  width:100%;
   height:100%;
+  width:100%;
   border-radius:20px;
-  background:linear-gradient(90deg,#009eff,#42e3ff);
-  box-shadow:0 0 12px rgba(0,190,255,.4);
+  background:linear-gradient(90deg,#00a9ff,#39e0ff);
+  box-shadow:0 0 12px rgba(0,191,255,.4);
   transition:width .2s;
 }
+
+/* QUICK */
 
 .section-title{
   display:flex;
@@ -477,8 +492,8 @@ button,
 }
 
 .section-title span{
-  color:#617089;
-  font-size:8px;
+  color:#66758c;
+  font-size:9px;
 }
 
 .quick-grid{
@@ -492,25 +507,32 @@ button,
   position:relative;
   min-height:105px;
   padding:14px;
-  overflow:hidden;
   text-align:left;
   border-radius:19px;
+  overflow:hidden;
   border:1px solid rgba(255,255,255,.07);
-  background:linear-gradient(145deg,#142740,#070e1b);
+  background:
+    linear-gradient(145deg,rgba(20,38,63,.95),rgba(7,14,26,.98));
   box-shadow:0 8px 20px rgba(0,0,0,.18);
   cursor:pointer;
+  transition:.15s;
 }
 
 .quick:active{
   transform:scale(.97);
 }
 
-.quick-arrow{
+.quick:before{
+  content:"";
   position:absolute;
-  top:13px;
-  right:13px;
-  color:#596980;
-  font-size:20px;
+  width:80px;
+  height:80px;
+  right:-30px;
+  bottom:-30px;
+  border-radius:50%;
+  background:#00a9ff;
+  opacity:.08;
+  filter:blur(15px);
 }
 
 .quick-icon{
@@ -525,19 +547,30 @@ button,
 
 .quick-desc{
   margin-top:4px;
-  color:#687891;
-  font-size:8px;
+  color:#6f7e95;
+  font-size:9px;
 }
+
+.quick-arrow{
+  position:absolute;
+  right:13px;
+  top:14px;
+  color:#56667d;
+  font-size:20px;
+}
+
+/* BONUS */
 
 .bonus{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:13px;
   margin:12px 14px 0;
-  padding:14px;
+  padding:15px;
   border-radius:19px;
-  border:1px solid rgba(255,197,45,.16);
-  background:linear-gradient(135deg,rgba(65,48,12,.55),rgba(12,18,27,.96));
+  border:1px solid rgba(255,196,47,.16);
+  background:
+    linear-gradient(135deg,rgba(63,47,14,.55),rgba(15,20,27,.95));
 }
 
 .bonus-icon{
@@ -548,8 +581,9 @@ button,
   align-items:center;
   justify-content:center;
   border-radius:15px;
-  background:rgba(255,198,47,.11);
-  font-size:24px;
+  font-size:25px;
+  background:rgba(255,196,47,.12);
+  border:1px solid rgba(255,196,47,.18);
 }
 
 .bonus-info{
@@ -563,24 +597,26 @@ button,
 
 .bonus-reward{
   margin-top:4px;
-  color:#ffd43a;
-  font-size:9px;
+  color:#ffd43b;
+  font-size:10px;
 }
 
 .claim{
   padding:10px 13px;
   border-radius:11px;
-  color:#251700;
-  background:linear-gradient(145deg,#fff09a,#ffc400,#ff9d00);
+  color:#241600;
+  background:linear-gradient(145deg,#fff09b,#ffc400,#ff9d00);
+  box-shadow:0 4px 15px rgba(255,185,0,.2);
   font-size:10px;
   font-weight:1000;
   cursor:pointer;
 }
 
 .claim:disabled{
-  opacity:.38;
-  cursor:default;
+  opacity:.4;
 }
+
+/* PANELS */
 
 .panel{
   position:fixed;
@@ -588,8 +624,8 @@ button,
   z-index:100;
   display:none;
   align-items:flex-end;
-  background:rgba(0,0,0,.67);
-  backdrop-filter:blur(6px);
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(5px);
 }
 
 .panel.show{
@@ -599,14 +635,24 @@ button,
 .sheet{
   width:100%;
   max-width:520px;
-  max-height:86vh;
+  max-height:85vh;
   margin:auto auto 0;
   overflow:auto;
   padding:18px 15px 30px;
   border-radius:25px 25px 0 0;
-  border-top:1px solid rgba(255,255,255,.1);
   background:linear-gradient(180deg,#101d30,#060b14);
-  box-shadow:0 -20px 60px rgba(0,0,0,.55);
+  border-top:1px solid rgba(255,255,255,.1);
+  box-shadow:0 -20px 60px rgba(0,0,0,.5);
+  animation:sheetIn .22s ease;
+}
+
+@keyframes sheetIn{
+  from{
+    transform:translateY(100%);
+  }
+  to{
+    transform:translateY(0);
+  }
 }
 
 .sheet-head{
@@ -626,7 +672,7 @@ button,
   height:34px;
   border-radius:11px;
   background:rgba(255,255,255,.06);
-  color:#9caabe;
+  color:#a5b2c4;
   cursor:pointer;
 }
 
@@ -652,8 +698,8 @@ button,
 }
 
 .panel-big-icon{
-  width:43px;
-  height:43px;
+  width:42px;
+  height:42px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -676,12 +722,18 @@ button,
 .action{
   padding:9px 12px;
   border-radius:10px;
-  color:#241700;
+  color:#261800;
   background:linear-gradient(145deg,#ffd94d,#f59e00);
   font-size:10px;
   font-weight:1000;
   cursor:pointer;
 }
+
+.action:disabled{
+  opacity:.45;
+}
+
+/* RANKING */
 
 .rank-item{
   display:flex;
@@ -694,7 +746,7 @@ button,
 .rank-number{
   width:27px;
   text-align:center;
-  color:#8290a4;
+  color:#8795a9;
   font-size:12px;
   font-weight:1000;
 }
@@ -716,8 +768,8 @@ button,
 
 .rank-user-name{
   overflow:hidden;
-  white-space:nowrap;
   text-overflow:ellipsis;
+  white-space:nowrap;
   font-size:11px;
   font-weight:1000;
 }
@@ -734,6 +786,8 @@ button,
   font-weight:1000;
 }
 
+/* BOTTOM NAV */
+
 .bottom-nav{
   position:fixed;
   z-index:50;
@@ -741,17 +795,17 @@ button,
   bottom:0;
   transform:translateX(-50%);
   width:min(520px,100%);
-  padding:7px 8px calc(7px + env(safe-area-inset-bottom));
+  padding:8px 9px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(5,10,18,.94);
+  border-top:1px solid rgba(255,255,255,.07);
+  backdrop-filter:blur(18px);
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  border-top:1px solid rgba(255,255,255,.07);
-  background:rgba(4,9,17,.94);
-  backdrop-filter:blur(18px);
 }
 
 .nav-btn{
-  min-height:58px;
   position:relative;
+  min-height:57px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -759,7 +813,7 @@ button,
   gap:4px;
   border-radius:14px;
   background:transparent;
-  color:#607088;
+  color:#65758c;
   cursor:pointer;
 }
 
@@ -788,24 +842,25 @@ button,
   background:#ffd33d;
 }
 
+/* TOAST */
+
 .toast{
   position:fixed;
   z-index:300;
   left:50%;
   top:75px;
-  max-width:90%;
-  padding:11px 15px;
-  border-radius:13px;
+  transform:translate(-50%,-20px);
   opacity:0;
   pointer-events:none;
-  transform:translate(-50%,-20px);
+  padding:11px 15px;
+  border-radius:13px;
+  background:rgba(13,25,42,.96);
   border:1px solid rgba(255,255,255,.1);
-  background:rgba(12,24,40,.96);
-  box-shadow:0 8px 30px rgba(0,0,0,.4);
-  font-size:10px;
+  box-shadow:0 8px 30px rgba(0,0,0,.35);
+  font-size:11px;
   font-weight:900;
-  white-space:nowrap;
   transition:.25s;
+  white-space:nowrap;
 }
 
 .toast.show{
@@ -813,9 +868,69 @@ button,
   transform:translate(-50%,0);
 }
 
+/* LOADING */
+
+.loading-overlay{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#030712;
+  transition:opacity .25s;
+}
+
+.loading-overlay.hide{
+  opacity:0;
+  pointer-events:none;
+}
+
+.loading-box{
+  text-align:center;
+}
+
+.loading-logo{
+  width:70px;
+  height:70px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:22px;
+  color:#07101c;
+  font-size:40px;
+  font-weight:1000;
+  background:linear-gradient(145deg,#fff6a0,#ffc400,#ff9f00);
+  box-shadow:0 0 35px rgba(255,190,0,.3);
+}
+
+.loading-text{
+  margin-top:15px;
+  color:#a5b2c4;
+  font-size:11px;
+  font-weight:800;
+}
+
+.loading-dot{
+  display:inline-block;
+  width:6px;
+  height:6px;
+  margin-left:3px;
+  border-radius:50%;
+  background:#ffd33d;
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:.25}
+  50%{opacity:1}
+}
+
 @media(max-height:700px){
+
   .coin-area{
-    height:280px;
+    height:275px;
   }
 
   .coin{
@@ -826,6 +941,20 @@ button,
   .coin-e{
     font-size:70px;
   }
+
+}
+
+@media(min-width:700px){
+
+  body{
+    background:#03070e;
+  }
+
+  .app{
+    border-left:1px solid rgba(255,255,255,.04);
+    border-right:1px solid rgba(255,255,255,.04);
+  }
+
 }
 </style>
 </head>
@@ -833,10 +962,24 @@ button,
 <body>
 
 <div class="bg-grid"></div>
-<div class="glow a"></div>
-<div class="glow b"></div>
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<!-- LOADING -->
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-box">
+    <div class="loading-logo">E</div>
+    <div class="loading-text">
+      ELCOIN yüklənir
+      <span class="loading-dot"></span>
+    </div>
+  </div>
+</div>
 
 <div class="app">
+
+<!-- HEADER -->
 
 <header class="header">
 
@@ -857,8 +1000,7 @@ button,
 
     <div
       class="profile-name"
-      id="profileName"
-    >
+      id="profileName">
       PLAYER
     </div>
 
@@ -866,6 +1008,7 @@ button,
 
 </header>
 
+<!-- BALANCE -->
 
 <section class="balance-card">
 
@@ -875,12 +1018,13 @@ button,
 
   <div class="balance-row">
 
-    <div class="small-coin">E</div>
+    <div class="small-coin">
+      E
+    </div>
 
     <div
       class="balance"
-      id="balance"
-    >
+      id="balance">
       0
     </div>
 
@@ -904,6 +1048,7 @@ button,
 
 </section>
 
+<!-- GAME -->
 
 <div class="game-title">
 
@@ -917,18 +1062,15 @@ button,
 
 </div>
 
-
 <section
   class="coin-area"
-  id="coinArea"
->
+  id="coinArea">
 
   <div class="coin-shadow"></div>
 
   <div
     class="coin"
-    id="mainCoin"
-  >
+    id="mainCoin">
 
     <div class="coin-face">
 
@@ -946,6 +1088,7 @@ button,
 
 </section>
 
+<!-- STATS -->
 
 <section class="stats">
 
@@ -957,8 +1100,7 @@ button,
 
     <div
       class="stat-value"
-      id="tapPower"
-    >
+      id="tapPower">
       +1
     </div>
 
@@ -968,7 +1110,6 @@ button,
 
   </div>
 
-
   <div class="stat">
 
     <div class="stat-icon">
@@ -977,8 +1118,7 @@ button,
 
     <div
       class="stat-value"
-      id="rideCount"
-    >
+      id="rideCount">
       0
     </div>
 
@@ -988,7 +1128,6 @@ button,
 
   </div>
 
-
   <div class="stat">
 
     <div class="stat-icon">
@@ -997,8 +1136,7 @@ button,
 
     <div
       class="stat-value"
-      id="level"
-    >
+      id="level">
       1
     </div>
 
@@ -1010,6 +1148,7 @@ button,
 
 </section>
 
+<!-- ENERGY -->
 
 <section class="energy-card">
 
@@ -1020,16 +1159,7 @@ button,
     </div>
 
     <div class="energy-value">
-
-      <span id="energy">
-        1000
-      </span>
-
-      /
-      <span id="maxEnergy">
-        1000
-      </span>
-
+      <span id="energy">1000</span>/1000
     </div>
 
   </div>
@@ -1038,13 +1168,14 @@ button,
 
     <div
       class="energy-fill"
-      id="energyFill"
-    ></div>
+      id="energyFill">
+    </div>
 
   </div>
 
 </section>
 
+<!-- QUICK MENU -->
 
 <div class="section-title">
 
@@ -1058,13 +1189,11 @@ button,
 
 </div>
 
-
 <section class="quick-grid">
 
   <button
     class="quick"
-    onclick="openPanel('taxiPanel')"
-  >
+    onclick="openPanel('taxiPanel')">
 
     <div class="quick-arrow">
       ›
@@ -1084,11 +1213,9 @@ button,
 
   </button>
 
-
   <button
     class="quick"
-    onclick="openPanel('cityPanel')"
-  >
+    onclick="openPanel('cityPanel')">
 
     <div class="quick-arrow">
       ›
@@ -1108,11 +1235,9 @@ button,
 
   </button>
 
-
   <button
     class="quick"
-    onclick="openPanel('friendsPanel')"
-  >
+    onclick="openPanel('friendsPanel')">
 
     <div class="quick-arrow">
       ›
@@ -1132,11 +1257,9 @@ button,
 
   </button>
 
-
   <button
     class="quick"
-    onclick="openPanel('rankingPanel')"
-  >
+    onclick="openPanel('rankingPanel')">
 
     <div class="quick-arrow">
       ›
@@ -1158,6 +1281,7 @@ button,
 
 </section>
 
+<!-- BONUS -->
 
 <section class="bonus">
 
@@ -1180,8 +1304,7 @@ button,
   <button
     class="claim"
     id="claimBtn"
-    onclick="claimBonus()"
-  >
+    onclick="claimBonus()">
     CLAIM
   </button>
 
@@ -1189,14 +1312,12 @@ button,
 
 </div>
 
-
-<!-- TAXI PANEL -->
+<!-- TAXI -->
 
 <div
   class="panel"
   id="taxiPanel"
-  onclick="closeOutside(event,'taxiPanel')"
->
+  onclick="closeOutside(event,'taxiPanel')">
 
   <div class="sheet">
 
@@ -1208,13 +1329,11 @@ button,
 
       <button
         class="close"
-        onclick="closePanel('taxiPanel')"
-      >
+        onclick="closePanel('taxiPanel')">
         ✕
       </button>
 
     </div>
-
 
     <div class="panel-card">
 
@@ -1239,10 +1358,7 @@ button,
                 1
               </span>
 
-              · Tap Power
-              <span id="taxiPower">
-                +1
-              </span>
+              · Income +50/day
 
             </div>
 
@@ -1250,11 +1366,10 @@ button,
 
         </div>
 
-
         <button
           class="action"
-          onclick="upgradeTaxi()"
-        >
+          id="taxiUpgradeBtn"
+          onclick="upgradeTaxi()">
 
           <span id="taxiCost">
             400
@@ -1267,7 +1382,6 @@ button,
       </div>
 
     </div>
-
 
     <div class="panel-card">
 
@@ -1297,14 +1411,12 @@ button,
 
 </div>
 
-
-<!-- CITY PANEL -->
+<!-- CITY -->
 
 <div
   class="panel"
   id="cityPanel"
-  onclick="closeOutside(event,'cityPanel')"
->
+  onclick="closeOutside(event,'cityPanel')">
 
   <div class="sheet">
 
@@ -1316,13 +1428,11 @@ button,
 
       <button
         class="close"
-        onclick="closePanel('cityPanel')"
-      >
+        onclick="closePanel('cityPanel')">
         ✕
       </button>
 
     </div>
-
 
     <div class="panel-card">
 
@@ -1353,11 +1463,10 @@ button,
 
         </div>
 
-
         <button
           class="action"
-          onclick="upgradeCity()"
-        >
+          id="cityUpgradeBtn"
+          onclick="upgradeCity()">
 
           <span id="cityCost">
             500
@@ -1371,15 +1480,19 @@ button,
 
     </div>
 
-
     <div class="panel-card">
 
       <div class="panel-name">
         🏢 Buildings
       </div>
 
-      <div class="panel-small">
-        Şəhər səviyyəsini artırdıqca yeni binalar açılacaq.
+      <div
+        class="panel-small"
+        style="margin-top:8px">
+
+        Daha çox bina açmaq üçün
+        şəhər səviyyəsini yüksəlt.
+
       </div>
 
     </div>
@@ -1388,14 +1501,12 @@ button,
 
 </div>
 
-
-<!-- FRIENDS PANEL -->
+<!-- FRIENDS -->
 
 <div
   class="panel"
   id="friendsPanel"
-  onclick="closeOutside(event,'friendsPanel')"
->
+  onclick="closeOutside(event,'friendsPanel')">
 
   <div class="sheet">
 
@@ -1407,41 +1518,43 @@ button,
 
       <button
         class="close"
-        onclick="closePanel('friendsPanel')"
-      >
+        onclick="closePanel('friendsPanel')">
         ✕
       </button>
 
     </div>
 
-
     <div class="panel-card">
 
-      <div style="font-size:25px">
+      <div style="font-size:24px">
         👥
       </div>
 
       <div
         class="panel-name"
-        style="margin-top:10px"
-      >
+        style="margin-top:10px">
+
         Invite your friends
+
       </div>
 
       <div class="panel-small">
-        Dostlarını dəvət et və bonus ELCOIN qazan.
+
+        Dostlarını dəvət et və bonus
+        ELCOIN qazan.
+
       </div>
 
       <button
         class="action"
-        style="width:100%;margin-top:13px"
-        onclick="inviteFriends()"
-      >
+        style="margin-top:13px;width:100%"
+        onclick="inviteFriends()">
+
         INVITE FRIENDS
+
       </button>
 
     </div>
-
 
     <div class="panel-card">
 
@@ -1471,14 +1584,12 @@ button,
 
 </div>
 
-
-<!-- RANKING PANEL -->
+<!-- RANKING -->
 
 <div
   class="panel"
   id="rankingPanel"
-  onclick="closeOutside(event,'rankingPanel')"
->
+  onclick="closeOutside(event,'rankingPanel')">
 
   <div class="sheet">
 
@@ -1490,8 +1601,7 @@ button,
 
       <button
         class="close"
-        onclick="closePanel('rankingPanel')"
-      >
+        onclick="closePanel('rankingPanel')">
         ✕
       </button>
 
@@ -1509,15 +1619,13 @@ button,
 
 </div>
 
-
 <!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
   <button
     class="nav-btn active"
-    onclick="goHome(this)"
-  >
+    onclick="goHome(this)">
 
     <div class="nav-icon">
       🏠
@@ -1529,11 +1637,9 @@ button,
 
   </button>
 
-
   <button
     class="nav-btn"
-    onclick="openPanel('taxiPanel');setActive(this)"
-  >
+    onclick="openPanel('taxiPanel');setActive(this)">
 
     <div class="nav-icon">
       🚕
@@ -1545,11 +1651,9 @@ button,
 
   </button>
 
-
   <button
     class="nav-btn"
-    onclick="openPanel('cityPanel');setActive(this)"
-  >
+    onclick="openPanel('cityPanel');setActive(this)">
 
     <div class="nav-icon">
       🏙️
@@ -1561,11 +1665,9 @@ button,
 
   </button>
 
-
   <button
     class="nav-btn"
-    onclick="openPanel('friendsPanel');setActive(this)"
-  >
+    onclick="openPanel('friendsPanel');setActive(this)">
 
     <div class="nav-icon">
       👥
@@ -1577,11 +1679,9 @@ button,
 
   </button>
 
-
   <button
     class="nav-btn"
-    onclick="openPanel('rankingPanel');setActive(this)"
-  >
+    onclick="openPanel('rankingPanel');setActive(this)">
 
     <div class="nav-icon">
       🏆
@@ -1595,25 +1695,12 @@ button,
 
 </nav>
 
-
 <div
   class="toast"
-  id="toast"
-></div>
-
+  id="toast">
+</div>
 
 <script>
-
-/* =========================================================
-   CONFIG
-========================================================= */
-
-const SUPABASE_URL =
-  "https://umqlgklqpolmiqoyqkbu.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_unLN1x7hk9GpbgxuAmTj6Q_GwMAWMVp";
-
 
 /* =========================================================
    TELEGRAM
@@ -1625,13 +1712,11 @@ const tg =
     ? window.Telegram.WebApp
     : null;
 
-
 if(tg){
 
   try{
 
     tg.ready();
-
     tg.expand();
 
     if(tg.setHeaderColor){
@@ -1644,10 +1729,7 @@ if(tg){
 
   }catch(error){
 
-    console.error(
-      "Telegram setup error",
-      error
-    );
+    console.log("Telegram init:",error);
 
   }
 
@@ -1655,10 +1737,91 @@ if(tg){
 
 
 /* =========================================================
-   GAME STATE
+   SUPABASE
 ========================================================= */
 
-const DEFAULT_PLAYER = {
+const SUPABASE_URL =
+  "https://umqlgklqpolmiqoyqkbu.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_unLN1x7hk9GpbgxuAmTj6Q_GwMAWMVp";
+
+
+async function supabaseRequest(
+  endpoint,
+  options={}
+){
+
+  const response =
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/" +
+      endpoint,
+      {
+        ...options,
+
+        headers:{
+          "apikey":
+            SUPABASE_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_KEY,
+
+          "Content-Type":
+            "application/json",
+
+          ...(options.headers || {})
+        }
+      }
+    );
+
+  const text =
+    await response.text();
+
+  let data=null;
+
+  try{
+
+    data =
+      text
+        ? JSON.parse(text)
+        : null;
+
+  }catch(error){
+
+    data=text;
+
+  }
+
+  if(!response.ok){
+
+    console.error(
+      "SUPABASE",
+      response.status,
+      data
+    );
+
+    throw new Error(
+      data?.message ||
+      data?.error ||
+      "Supabase error"
+    );
+
+  }
+
+  return data;
+
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+let player = {
+
+  id:null,
 
   telegramId:null,
 
@@ -1688,25 +1851,14 @@ const DEFAULT_PLAYER = {
 
   dailyIncome:120,
 
-  lastBonus:0,
-
-  totalTaps:0,
-
-  lastSeen:Date.now()
+  lastBonus:0
 
 };
 
 
-let player = {
-  ...DEFAULT_PLAYER
-};
+let loadingPlayer=false;
 
-
-let playerLoaded = false;
-
-let saveTimer = null;
-
-let saveInProgress = false;
+let saveTimer=null;
 
 
 /* =========================================================
@@ -1720,8 +1872,7 @@ function getTelegramUser(){
     if(
       tg &&
       tg.initDataUnsafe &&
-      tg.initDataUnsafe.user &&
-      tg.initDataUnsafe.user.id
+      tg.initDataUnsafe.user
     ){
 
       return tg.initDataUnsafe.user;
@@ -1730,310 +1881,125 @@ function getTelegramUser(){
 
   }catch(error){
 
-    console.error(
-      "Telegram user error",
-      error
-    );
+    console.log(error);
 
   }
 
   return null;
+
 }
 
 
 /* =========================================================
-   LOCAL PLAYER ID
+   LOCAL FALLBACK ID
 ========================================================= */
 
-function getLocalPlayer(){
+function getLocalPlayerId(){
 
-  try{
-
-    const saved =
-      localStorage.getItem(
-        "elcoin_player"
-      );
-
-    if(saved){
-
-      const data =
-        JSON.parse(saved);
-
-      return {
-        ...DEFAULT_PLAYER,
-        ...data
-      };
-
-    }
-
-  }catch(error){
-
-    console.error(
-      "Local player error",
-      error
+  let id =
+    localStorage.getItem(
+      "elcoin_demo_id"
     );
 
-  }
+  if(!id){
 
-  return null;
-}
-
-
-function saveLocalPlayer(){
-
-  try{
+    id =
+      "local_" +
+      Math.random()
+        .toString(36)
+        .slice(2,10);
 
     localStorage.setItem(
-      "elcoin_player",
-      JSON.stringify(player)
-    );
-
-  }catch(error){
-
-    console.error(
-      "Local save error",
-      error
+      "elcoin_demo_id",
+      id
     );
 
   }
+
+  return id;
 
 }
 
 
 /* =========================================================
-   IDENTIFY USER
+   PLAYER NAME
 ========================================================= */
 
-function identifyUser(){
+function setupPlayerName(){
 
   const user =
     getTelegramUser();
 
+  let name="PLAYER";
 
   if(user){
 
-    player.telegramId =
-      String(user.id);
+    if(user.username){
 
-    player.username =
-      user.username || "";
+      name =
+        user.username;
 
-    player.firstName =
-      user.first_name || "";
+    }else{
 
-    player.nickname =
-      user.username ||
-      (
+      name =
         "player_" +
-        String(user.id).slice(-4)
-      );
+        String(user.id)
+          .slice(-4);
 
-    document.getElementById(
-      "profileName"
-    ).textContent =
-      player.nickname;
+    }
 
-    return true;
+  }else{
 
-  }
-
-
-  /*
-   * Telegram məlumatı yoxdursa,
-   * lokal oyunçu göstərilir.
-   */
-
-  const local =
-    getLocalPlayer();
-
-  if(local){
-
-    player = {
-      ...DEFAULT_PLAYER,
-      ...local
-    };
-
-    document.getElementById(
-      "profileName"
-    ).textContent =
-      player.nickname ||
-      "PLAYER";
-
-    return false;
+    name =
+      "player_" +
+      getLocalPlayerId()
+        .slice(-4);
 
   }
-
-
-  /*
-   * Web səhifədə test üçün.
-   * Telegram-a açıldıqda real ID istifadə olunacaq.
-   */
-
-  player.nickname =
-    "player_demo";
 
   document.getElementById(
     "profileName"
-  ).textContent =
-    player.nickname;
-
-  return false;
-}
-
-
-/* =========================================================
-   SUPABASE REQUEST
-========================================================= */
-
-async function supabaseRequest(
-  endpoint,
-  options={}
-){
-
-  const controller =
-    new AbortController();
-
-  const timeout =
-    setTimeout(
-      ()=>{
-        controller.abort();
-      },
-      8000
-    );
-
-
-  try{
-
-    const response =
-      await fetch(
-        SUPABASE_URL +
-        "/rest/v1/" +
-        endpoint,
-        {
-          ...options,
-
-          signal:
-            controller.signal,
-
-          headers:{
-            "apikey":
-              SUPABASE_KEY,
-
-            "Authorization":
-              "Bearer " +
-              SUPABASE_KEY,
-
-            "Content-Type":
-              "application/json",
-
-            ...(options.headers || {})
-          }
-        }
-      );
-
-
-    const text =
-      await response.text();
-
-
-    let data = null;
-
-
-    try{
-
-      data =
-        text
-          ? JSON.parse(text)
-          : null;
-
-    }catch(error){
-
-      data = text;
-
-    }
-
-
-    if(!response.ok){
-
-      console.error(
-        "Supabase error:",
-        response.status,
-        data
-      );
-
-      throw new Error(
-        data?.message ||
-        data?.error ||
-        "Supabase error"
-      );
-
-    }
-
-
-    return data;
-
-  }catch(error){
-
-    if(
-      error.name ===
-      "AbortError"
-    ){
-
-      throw new Error(
-        "Supabase timeout"
-      );
-
-    }
-
-    throw error;
-
-  }finally{
-
-    clearTimeout(
-      timeout
-    );
-
-  }
+  ).textContent=name;
 
 }
 
 
 /* =========================================================
-   DATABASE → GAME
+   APPLY DATABASE
 ========================================================= */
 
 function applyDatabasePlayer(row){
+
+  player.id =
+    row.id ??
+    row.Id ??
+    null;
 
   player.telegramId =
     String(
       row.Telegram_id ??
       row.telegram_id ??
-      player.telegramId ??
       ""
     );
 
-
   player.username =
-    row["User name"] ??
-    row.user_name ??
-    player.username ??
+    row["User name"] ||
+    row.user_name ||
     "";
-
 
   player.firstName =
-    row["First name"] ??
-    row.first_name ??
-    player.firstName ??
+    row["First name"] ||
+    row.first_name ||
     "";
-
 
   player.nickname =
     player.username ||
     (
-      "player_" +
-      player.telegramId.slice(-4)
+      player.telegramId
+        ? "player_" +
+          player.telegramId.slice(-4)
+        : "PLAYER"
     );
-
 
   player.balance =
     Number(
@@ -2042,14 +2008,12 @@ function applyDatabasePlayer(row){
       0
     );
 
-
   player.energy =
     Number(
       row.Energy ??
       row.energy ??
       1000
     );
-
 
   player.level =
     Number(
@@ -2058,6 +2022,12 @@ function applyDatabasePlayer(row){
       1
     );
 
+  player.rides =
+    Number(
+      row.Total_rides ??
+      row.total_rides ??
+      0
+    );
 
   player.referrals =
     Number(
@@ -2066,30 +2036,12 @@ function applyDatabasePlayer(row){
       0
     );
 
-
-  player.rides =
-    Number(
-      row.Total_rides ??
-      row.total_rides ??
-      0
-    );
-
-
-  player.totalTaps =
-    Number(
-      row.Total_taps ??
-      row.total_taps ??
-      0
-    );
-
-
   player.taxiLevel =
     Number(
       row.Taxi_level ??
       row.taxi_level ??
       1
     );
-
 
   player.cityLevel =
     Number(
@@ -2098,7 +2050,6 @@ function applyDatabasePlayer(row){
       1
     );
 
-
   player.lastBonus =
     Number(
       row["Last bonus"] ??
@@ -2106,38 +2057,44 @@ function applyDatabasePlayer(row){
       0
     );
 
+  calculateStats();
+
+  updateUI();
+
+}
+
+
+/* =========================================================
+   CALCULATE STATS
+========================================================= */
+
+function calculateStats(){
 
   player.tapPower =
-    1 +
+    Math.max(
+      1,
+      player.taxiLevel
+    );
+
+  player.dailyIncome =
+    120 +
     Math.max(
       0,
       player.taxiLevel - 1
+    ) * 50 +
+    Math.max(
+      0,
+      player.cityLevel - 1
+    ) * 80;
+
+  player.level =
+    Math.max(
+      1,
+      Math.floor(
+        Number(player.balance || 0) /
+        1000
+      ) + 1
     );
-
-
-  calculateIncome();
-
-
-  if(
-    player.energy >
-    player.maxEnergy
-  ){
-
-    player.energy =
-      player.maxEnergy;
-
-  }
-
-
-  document.getElementById(
-    "profileName"
-  ).textContent =
-    player.nickname;
-
-
-  playerLoaded = true;
-
-  updateUI();
 
 }
 
@@ -2151,445 +2108,288 @@ async function loadPlayer(){
   const user =
     getTelegramUser();
 
+  /*
+     TELEGRAMDA İSTİFADƏÇİ VARSA
+     REAL SUPABASE PLAYER
+  */
+
+  if(user && user.id){
+
+    loadingPlayer=true;
+
+    try{
+
+      const telegramId =
+        String(user.id);
+
+      const rows =
+        await supabaseRequest(
+          "players?Telegram_id=eq." +
+          encodeURIComponent(
+            telegramId
+          ) +
+          "&select=*"
+        );
+
+      if(
+        rows &&
+        rows.length
+      ){
+
+        applyDatabasePlayer(
+          rows[0]
+        );
+
+      }else{
+
+        const nickname =
+          user.username ||
+          "player_" +
+          String(user.id)
+            .slice(-4);
+
+        const newPlayer={
+
+          Telegram_id:
+            telegramId,
+
+          "User name":
+            nickname,
+
+          "First name":
+            user.first_name || "",
+
+          Balance:0,
+
+          Energy:1000,
+
+          Level:1,
+
+          "Last bonus":0,
+
+          Referrals:0,
+
+          Taxi_level:1,
+
+          City_level:1,
+
+          Total_taps:0,
+
+          Total_rides:0,
+
+          Referred_by:null
+
+        };
+
+        const created =
+          await supabaseRequest(
+            "players",
+            {
+              method:"POST",
+
+              headers:{
+                "Prefer":
+                  "return=representation"
+              },
+
+              body:
+                JSON.stringify(
+                  newPlayer
+                )
+            }
+          );
+
+        if(
+          created &&
+          created.length
+        ){
+
+          applyDatabasePlayer(
+            created[0]
+          );
+
+        }
+
+      }
+
+      return true;
+
+    }catch(error){
+
+      console.error(
+        "PLAYER LOAD",
+        error
+      );
+
+      showToast(
+        "⚠️ Serverə qoşulmaq mümkün olmadı"
+      );
+
+      /*
+        OYUN DONMAYACAQ.
+        TELEGRAM USER VARSA DA,
+        SERVER XƏTASINDA LOKAL OYUN DAVAM EDƏCƏK.
+      */
+
+      player.telegramId =
+        String(user.id);
+
+      player.nickname =
+        user.username ||
+        "player_" +
+        String(user.id)
+          .slice(-4);
+
+      updateUI();
+
+      return false;
+
+    }finally{
+
+      loadingPlayer=false;
+
+    }
+
+  }
+
 
   /*
-   * Telegram xaricində açılan səhifə
-   */
+     TELEGRAM WEB APP-DAN KƏNAR AÇILANDA
+     DEMO MODE.
+  */
 
-  if(
-    !user ||
-    !user.id
-  ){
+  player.telegramId =
+    getLocalPlayerId();
 
-    playerLoaded = true;
+  player.nickname =
+    "player_" +
+    player.telegramId.slice(-4);
 
-    updateUI();
-
-    showToast(
-      "ℹ️ Telegram daxilində açıldıqda hesab avtomatik qoşulacaq"
+  player.balance =
+    Number(
+      localStorage.getItem(
+        "elcoin_balance"
+      ) || 0
     );
 
-    return;
-
-  }
-
-
-  try{
-
-    const telegramId =
-      String(user.id);
-
-
-    const rows =
-      await supabaseRequest(
-        "players?Telegram_id=eq." +
-        encodeURIComponent(
-          telegramId
-        ) +
-        "&select=*"
-      );
-
-
-    if(
-      rows &&
-      rows.length
-    ){
-
-      applyDatabasePlayer(
-        rows[0]
-      );
-
-      saveLocalPlayer();
-
-      return;
-
-    }
-
-
-    /*
-     * YENİ OYUNÇU
-     */
-
-    const nickname =
-      user.username ||
-      (
-        "player_" +
-        String(user.id).slice(-4)
-      );
-
-
-    const newPlayer = {
-
-      Telegram_id:
-        telegramId,
-
-      "User name":
-        nickname,
-
-      "First name":
-        user.first_name || "",
-
-      Balance:0,
-
-      Energy:1000,
-
-      Level:1,
-
-      "Last bonus":0,
-
-      Referrals:0,
-
-      Taxi_level:1,
-
-      City_level:1,
-
-      Total_taps:0,
-
-      Total_rides:0,
-
-      Referred_by:null
-
-    };
-
-
-    const created =
-      await supabaseRequest(
-        "players",
-        {
-          method:"POST",
-
-          headers:{
-            "Prefer":
-              "return=representation"
-          },
-
-          body:
-            JSON.stringify(
-              newPlayer
-            )
-        }
-      );
-
-
-    if(
-      created &&
-      created.length
-    ){
-
-      applyDatabasePlayer(
-        created[0]
-      );
-
-      saveLocalPlayer();
-
-    }
-
-
-  }catch(error){
-
-    console.error(
-      "Player load error:",
-      error
+  player.energy =
+    Number(
+      localStorage.getItem(
+        "elcoin_energy"
+      ) || 1000
     );
 
-
-    /*
-     * Server problemi oyunu dondurmur.
-     */
-
-    playerLoaded = true;
-
-    updateUI();
-
-    showToast(
-      "⚠️ Serverə qoşulmaq alınmadı"
+  player.taxiLevel =
+    Number(
+      localStorage.getItem(
+        "elcoin_taxi"
+      ) || 1
     );
 
-  }
-
-}
-
-
-/* =========================================================
-   CALCULATE INCOME
-========================================================= */
-
-function calculateIncome(){
-
-  player.dailyIncome =
-    120 +
-
-    Math.max(
-      0,
-      player.taxiLevel - 1
-    ) * 50 +
-
-    Math.max(
-      0,
-      player.cityLevel - 1
-    ) * 80;
-
-}
-
-
-/* =========================================================
-   FORMAT NUMBER
-========================================================= */
-
-function formatNumber(value){
-
-  value =
-    Number(value) || 0;
-
-
-  if(
-    value >= 1000000000
-  ){
-
-    return (
-      (value / 1000000000)
-        .toFixed(2)
-        .replace(/\.00$/,"")
-      + "B"
+  player.cityLevel =
+    Number(
+      localStorage.getItem(
+        "elcoin_city"
+      ) || 1
     );
 
-  }
-
-
-  if(
-    value >= 1000000
-  ){
-
-    return (
-      (value / 1000000)
-        .toFixed(2)
-        .replace(/\.00$/,"")
-      + "M"
+  player.rides =
+    Number(
+      localStorage.getItem(
+        "elcoin_rides"
+      ) || 0
     );
 
-  }
-
-
-  if(
-    value >= 1000
-  ){
-
-    return (
-      (value / 1000)
-        .toFixed(2)
-        .replace(/\.00$/,"")
-      + "K"
+  player.lastBonus =
+    Number(
+      localStorage.getItem(
+        "elcoin_bonus"
+      ) || 0
     );
 
-  }
+  calculateStats();
 
+  updateUI();
 
-  return Math.floor(
-    value
-  ).toLocaleString();
-
-}
-
-
-/* =========================================================
-   UPDATE UI
-========================================================= */
-
-function updateUI(){
-
-  document.getElementById(
-    "balance"
-  ).textContent =
-    formatNumber(
-      player.balance
-    );
-
-
-  document.getElementById(
-    "energy"
-  ).textContent =
-    Math.floor(
-      player.energy
-    );
-
-
-  document.getElementById(
-    "maxEnergy"
-  ).textContent =
-    player.maxEnergy;
-
-
-  document.getElementById(
-    "tapPower"
-  ).textContent =
-    "+" +
-    player.tapPower;
-
-
-  document.getElementById(
-    "rideCount"
-  ).textContent =
-    player.rides;
-
-
-  document.getElementById(
-    "level"
-  ).textContent =
-    player.level;
-
-
-  document.getElementById(
-    "dailyIncome"
-  ).textContent =
-    "+" +
-    formatNumber(
-      player.dailyIncome
-    ) +
-    " ELC/day";
-
-
-  const percent =
-    (
-      player.energy /
-      player.maxEnergy
-    ) * 100;
-
-
-  document.getElementById(
-    "energyFill"
-  ).style.width =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        percent
-      )
-    ) + "%";
-
-
-  document.getElementById(
-    "taxiLevel"
-  ).textContent =
-    player.taxiLevel;
-
-
-  document.getElementById(
-    "taxiPower"
-  ).textContent =
-    "+" +
-    player.tapPower;
-
-
-  document.getElementById(
-    "cityLevel"
-  ).textContent =
-    player.cityLevel;
-
-
-  document.getElementById(
-    "panelRides"
-  ).textContent =
-    player.rides;
-
-
-  document.getElementById(
-    "referrals"
-  ).textContent =
-    player.referrals;
-
-
-  document.getElementById(
-    "taxiCost"
-  ).textContent =
-    formatNumber(
-      400 *
-      player.taxiLevel
-    );
-
-
-  document.getElementById(
-    "cityCost"
-  ).textContent =
-    formatNumber(
-      500 *
-      player.cityLevel
-    );
-
-
-  checkBonus();
-
-  saveLocalPlayer();
-
-}
-
-
-/* =========================================================
-   SAVE
-========================================================= */
-
-function saveGame(){
-
-  saveLocalPlayer();
-
-
-  if(
-    !player.telegramId
-  ){
-
-    return;
-
-  }
-
-
-  clearTimeout(
-    saveTimer
+  showToast(
+    "ℹ️ Demo rejim"
   );
 
-
-  saveTimer =
-    setTimeout(
-      savePlayerToDatabase,
-      600
-    );
+  return true;
 
 }
 
 
 /* =========================================================
-   DATABASE SAVE
+   SAVE LOCAL
 ========================================================= */
 
-async function savePlayerToDatabase(){
+function saveLocal(){
+
+  localStorage.setItem(
+    "elcoin_balance",
+    String(player.balance)
+  );
+
+  localStorage.setItem(
+    "elcoin_energy",
+    String(player.energy)
+  );
+
+  localStorage.setItem(
+    "elcoin_taxi",
+    String(player.taxiLevel)
+  );
+
+  localStorage.setItem(
+    "elcoin_city",
+    String(player.cityLevel)
+  );
+
+  localStorage.setItem(
+    "elcoin_rides",
+    String(player.rides)
+  );
+
+  localStorage.setItem(
+    "elcoin_bonus",
+    String(player.lastBonus)
+  );
+
+}
+
+
+/* =========================================================
+   SAVE SUPABASE
+========================================================= */
+
+async function savePlayer(){
+
+  saveLocal();
 
   if(
     !player.telegramId ||
-    saveInProgress
+    String(player.telegramId)
+      .startsWith("local_") ||
+    loadingPlayer
   ){
 
     return;
 
   }
 
-
-  saveInProgress = true;
-
-
   try{
 
-    const update = {
+    const update={
 
       "User name":
         player.nickname,
 
       Balance:
-        Math.floor(
-          player.balance
-        ),
+        player.balance,
 
       Energy:
-        Math.floor(
-          player.energy
-        ),
+        player.energy,
 
       Level:
         player.level,
@@ -2606,14 +2406,10 @@ async function savePlayerToDatabase(){
       City_level:
         player.cityLevel,
 
-      Total_taps:
-        player.totalTaps,
-
       Total_rides:
         player.rides
 
     };
-
 
     await supabaseRequest(
 
@@ -2634,26 +2430,18 @@ async function savePlayerToDatabase(){
         },
 
         body:
-          JSON.stringify(
-            update
-          )
+          JSON.stringify(update)
 
       }
 
     );
 
-
   }catch(error){
 
     console.error(
-      "Save error:",
+      "SAVE ERROR",
       error
     );
-
-  }finally{
-
-    saveInProgress =
-      false;
 
   }
 
@@ -2661,14 +2449,214 @@ async function savePlayerToDatabase(){
 
 
 /* =========================================================
-   TAP
+   SAVE GAME
+========================================================= */
+
+function saveGame(){
+
+  saveLocal();
+
+  clearTimeout(
+    saveTimer
+  );
+
+  saveTimer =
+    setTimeout(
+      savePlayer,
+      500
+    );
+
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+function formatNumber(value){
+
+  value =
+    Number(value) || 0;
+
+  if(value >= 1000000000){
+
+    return (
+      (value / 1000000000)
+        .toFixed(2)
+        .replace(/\.00$/,"")
+      + "B"
+    );
+
+  }
+
+  if(value >= 1000000){
+
+    return (
+      (value / 1000000)
+        .toFixed(2)
+        .replace(/\.00$/,"")
+      + "M"
+    );
+
+  }
+
+  if(value >= 1000){
+
+    return (
+      (value / 1000)
+        .toFixed(2)
+        .replace(/\.00$/,"")
+      + "K"
+    );
+
+  }
+
+  return Math.floor(
+    value
+  ).toLocaleString();
+
+}
+
+
+/* =========================================================
+   UI
+========================================================= */
+
+function updateUI(){
+
+  document.getElementById(
+    "balance"
+  ).textContent =
+    formatNumber(
+      player.balance
+    );
+
+  document.getElementById(
+    "energy"
+  ).textContent =
+    Math.floor(
+      player.energy
+    );
+
+  document.getElementById(
+    "tapPower"
+  ).textContent =
+    "+" +
+    player.tapPower;
+
+  document.getElementById(
+    "level"
+  ).textContent =
+    player.level;
+
+  document.getElementById(
+    "rideCount"
+  ).textContent =
+    player.rides;
+
+  document.getElementById(
+    "dailyIncome"
+  ).textContent =
+    "+" +
+    formatNumber(
+      player.dailyIncome
+    ) +
+    " ELC/day";
+
+  document.getElementById(
+    "energyFill"
+  ).style.width =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        player.energy /
+        player.maxEnergy *
+        100
+      )
+    ) +
+    "%";
+
+  document.getElementById(
+    "taxiLevel"
+  ).textContent =
+    player.taxiLevel;
+
+  document.getElementById(
+    "cityLevel"
+  ).textContent =
+    player.cityLevel;
+
+  document.getElementById(
+    "panelRides"
+  ).textContent =
+    player.rides;
+
+  document.getElementById(
+    "referrals"
+  ).textContent =
+    player.referrals;
+
+  document.getElementById(
+    "taxiCost"
+  ).textContent =
+    formatNumber(
+      400 *
+      player.taxiLevel
+    );
+
+  document.getElementById(
+    "cityCost"
+  ).textContent =
+    formatNumber(
+      500 *
+      player.cityLevel
+    );
+
+  updateUpgradeButtons();
+
+  checkBonus();
+
+}
+
+
+/* =========================================================
+   UPGRADE BUTTONS
+========================================================= */
+
+function updateUpgradeButtons(){
+
+  const taxiCost =
+    400 *
+    player.taxiLevel;
+
+  const cityCost =
+    500 *
+    player.cityLevel;
+
+  document.getElementById(
+    "taxiUpgradeBtn"
+  ).disabled =
+    player.balance <
+    taxiCost;
+
+  document.getElementById(
+    "cityUpgradeBtn"
+  ).disabled =
+    player.balance <
+    cityCost;
+
+}
+
+
+/* =========================================================
+   COIN TAP
 ========================================================= */
 
 const coin =
   document.getElementById(
     "mainCoin"
   );
-
 
 const coinArea =
   document.getElementById(
@@ -2677,6 +2665,18 @@ const coinArea =
 
 
 function tapCoin(event){
+
+  if(
+    loadingPlayer
+  ){
+
+    showToast(
+      "⏳ Oyunçu yüklənir..."
+    );
+
+    return;
+
+  }
 
   if(
     player.energy < 1
@@ -2690,46 +2690,24 @@ function tapCoin(event){
 
   }
 
-
   player.balance +=
     player.tapPower;
 
-
-  player.energy -=
-    1;
-
-
-  player.totalTaps +=
-    1;
-
+  player.energy -= 1;
 
   /*
-   * RIDE ehtimalı
-   */
+     RIDES
+  */
 
   if(
     Math.random() < 0.015
   ){
 
-    player.rides +=
-      1;
+    player.rides += 1;
 
   }
 
-
-  /*
-   * Level
-   */
-
-  player.level =
-    Math.max(
-      1,
-      Math.floor(
-        player.balance /
-        1000
-      ) + 1
-    );
-
+  calculateStats();
 
   createFloat(
     "+" +
@@ -2737,19 +2715,15 @@ function tapCoin(event){
     event
   );
 
-
   coin.style.transform =
     "scale(.94)";
 
-
   setTimeout(
     ()=>{
-      coin.style.transform =
-        "";
+      coin.style.transform="";
     },
     80
   );
-
 
   if(
     tg &&
@@ -2767,7 +2741,6 @@ function tapCoin(event){
 
   }
 
-
   updateUI();
 
   saveGame();
@@ -2778,6 +2751,33 @@ function tapCoin(event){
 coin.addEventListener(
   "click",
   tapCoin
+);
+
+
+/* =========================================================
+   TOUCH
+========================================================= */
+
+coin.addEventListener(
+  "touchstart",
+  function(){
+    coin.style.transform =
+      "scale(.94)";
+  },
+  {passive:true}
+);
+
+coin.addEventListener(
+  "touchend",
+  function(){
+    setTimeout(
+      ()=>{
+        coin.style.transform="";
+      },
+      60
+    );
+  },
+  {passive:true}
 );
 
 
@@ -2795,26 +2795,18 @@ function createFloat(
       "div"
     );
 
+  el.className="float";
 
-  el.className =
-    "float";
-
-
-  el.textContent =
-    text;
-
+  el.textContent=text;
 
   const rect =
     coinArea.getBoundingClientRect();
 
-
   let x =
     rect.width / 2;
 
-
   let y =
     rect.height / 2;
-
 
   if(event){
 
@@ -2827,7 +2819,6 @@ function createFloat(
         event.clientX -
         rect.left;
 
-
       y =
         event.clientY -
         rect.top;
@@ -2836,19 +2827,15 @@ function createFloat(
 
   }
 
-
   el.style.left =
     x + "px";
-
 
   el.style.top =
     y + "px";
 
-
   coinArea.appendChild(
     el
   );
-
 
   setTimeout(
     ()=>{
@@ -2861,20 +2848,18 @@ function createFloat(
 
 
 /* =========================================================
-   ENERGY REGEN
+   ENERGY
 ========================================================= */
 
 setInterval(
   ()=>{
-
+    
     if(
       player.energy <
       player.maxEnergy
     ){
 
-      player.energy +=
-        1;
-
+      player.energy += 1;
 
       if(
         player.energy >
@@ -2886,7 +2871,6 @@ setInterval(
 
       }
 
-
       updateUI();
 
       saveGame();
@@ -2895,36 +2879,6 @@ setInterval(
 
   },
   1500
-);
-
-
-/* =========================================================
-   PASSIVE INCOME
-========================================================= */
-
-setInterval(
-  ()=>{
-
-    if(
-      player.dailyIncome <= 0
-    ){
-
-      return;
-
-    }
-
-
-    player.balance +=
-      player.dailyIncome /
-      86400;
-
-
-    updateUI();
-
-    saveGame();
-
-  },
-  1000
 );
 
 
@@ -2939,14 +2893,11 @@ function checkBonus(){
       "claimBtn"
     );
 
-
   const now =
     Date.now();
 
-
   const day =
     86400000;
-
 
   if(
     now -
@@ -2955,19 +2906,15 @@ function checkBonus(){
     ) >= day
   ){
 
-    btn.disabled =
-      false;
+    btn.disabled=false;
 
-    btn.textContent =
-      "CLAIM";
+    btn.textContent="CLAIM";
 
   }else{
 
-    btn.disabled =
-      true;
+    btn.disabled=true;
 
-    btn.textContent =
-      "CLAIMED";
+    btn.textContent="CLAIMED";
 
   }
 
@@ -2978,7 +2925,6 @@ async function claimBonus(){
 
   const now =
     Date.now();
-
 
   if(
     now -
@@ -2996,19 +2942,17 @@ async function claimBonus(){
 
   }
 
-
   player.balance +=
     500;
-
 
   player.lastBonus =
     now;
 
+  calculateStats();
 
   updateUI();
 
-  saveGame();
-
+  await savePlayer();
 
   showToast(
     "🎁 +500 ELCOIN qazandın!"
@@ -3028,16 +2972,13 @@ function openPanel(id){
       id
     );
 
-
   if(!panel){
     return;
   }
 
-
   panel.classList.add(
     "show"
   );
-
 
   if(
     id ===
@@ -3058,7 +2999,6 @@ function closePanel(id){
       id
     );
 
-
   if(panel){
 
     panel.classList.remove(
@@ -3076,8 +3016,7 @@ function closeOutside(
 ){
 
   if(
-    event.target.id ===
-    id
+    event.target.id === id
   ){
 
     closePanel(id);
@@ -3097,7 +3036,6 @@ async function upgradeTaxi(){
     400 *
     player.taxiLevel;
 
-
   if(
     player.balance <
     cost
@@ -3111,30 +3049,17 @@ async function upgradeTaxi(){
 
   }
 
-
   player.balance -=
     cost;
-
 
   player.taxiLevel +=
     1;
 
-
-  player.tapPower =
-    1 +
-    (
-      player.taxiLevel -
-      1
-    );
-
-
-  calculateIncome();
-
+  calculateStats();
 
   updateUI();
 
-  saveGame();
-
+  await savePlayer();
 
   showToast(
     "🚕 Taxi Level yüksəldi!"
@@ -3153,7 +3078,6 @@ async function upgradeCity(){
     500 *
     player.cityLevel;
 
-
   if(
     player.balance <
     cost
@@ -3167,22 +3091,17 @@ async function upgradeCity(){
 
   }
 
-
   player.balance -=
     cost;
-
 
   player.cityLevel +=
     1;
 
-
-  calculateIncome();
-
+  calculateStats();
 
   updateUI();
 
-  saveGame();
-
+  await savePlayer();
 
   showToast(
     "🏙️ City Level yüksəldi!"
@@ -3200,10 +3119,8 @@ function inviteFriends(){
   let inviteLink =
     "https://t.me/ElCoinGame_bot";
 
-
   const user =
     getTelegramUser();
-
 
   if(
     user &&
@@ -3216,10 +3133,8 @@ function inviteFriends(){
 
   }
 
-
   const text =
     "🪙 ELCOIN-a qoşul! Tap et, qazan və şəhərini inkişaf etdir.";
-
 
   const share =
     "https://t.me/share/url?url=" +
@@ -3230,7 +3145,6 @@ function inviteFriends(){
     encodeURIComponent(
       text
     );
-
 
   try{
 
@@ -3244,15 +3158,7 @@ function inviteFriends(){
 
     }
 
-  }catch(error){
-
-    console.error(
-      "Telegram share error",
-      error
-    );
-
-  }
-
+  }catch(error){}
 
   window.open(
     share,
@@ -3273,10 +3179,8 @@ async function renderRanking(){
       "rankingList"
     );
 
-
   list.innerHTML =
     '<div class="panel-small">⏳ Ranking yüklənir...</div>';
-
 
   try{
 
@@ -3284,7 +3188,6 @@ async function renderRanking(){
       await supabaseRequest(
         "players?select=%22User%20name%22,Balance,Level&order=Balance.desc&limit=50"
       );
-
 
     if(
       !rows ||
@@ -3298,10 +3201,7 @@ async function renderRanking(){
 
     }
 
-
-    let html =
-      "";
-
+    let html="";
 
     rows.forEach(
       (row,index)=>{
@@ -3310,13 +3210,11 @@ async function renderRanking(){
           row["User name"] ||
           "player";
 
-
         const balance =
           Number(
             row.Balance ||
             0
           );
-
 
         const level =
           Number(
@@ -3324,23 +3222,21 @@ async function renderRanking(){
             1
           );
 
-
         const medal =
-          index === 0
+          index===0
             ? "👑"
-            : index === 1
+            : index===1
             ? "🥈"
-            : index === 2
+            : index===2
             ? "🥉"
             : "👤";
-
 
         html += `
 
           <div class="rank-item">
 
             <div class="rank-number">
-              ${index + 1}
+              ${index+1}
             </div>
 
             <div class="rank-avatar">
@@ -3370,18 +3266,15 @@ async function renderRanking(){
       }
     );
 
-
     list.innerHTML =
       html;
-
 
   }catch(error){
 
     console.error(
-      "Ranking error:",
+      "RANKING",
       error
     );
-
 
     list.innerHTML =
       '<div class="panel-small">⚠️ Ranking yüklənmədi</div>';
@@ -3392,10 +3285,12 @@ async function renderRanking(){
 
 
 /* =========================================================
-   SECURITY
+   ESCAPE HTML
 ========================================================= */
 
-function escapeHtml(value){
+function escapeHtml(
+  value
+){
 
   return String(value)
 
@@ -3431,8 +3326,7 @@ function escapeHtml(value){
    TOAST
 ========================================================= */
 
-let toastTimer;
-
+let toastTimer=null;
 
 function showToast(
   message
@@ -3443,38 +3337,32 @@ function showToast(
       "toast"
     );
 
-
   toast.textContent =
     message;
-
 
   toast.classList.add(
     "show"
   );
 
-
   clearTimeout(
     toastTimer
   );
 
-
   toastTimer =
     setTimeout(
       ()=>{
-
         toast.classList.remove(
           "show"
         );
-
       },
-      2500
+      2200
     );
 
 }
 
 
 /* =========================================================
-   NAVIGATION
+   NAV
 ========================================================= */
 
 function setActive(
@@ -3486,12 +3374,12 @@ function setActive(
       ".nav-btn"
     )
     .forEach(
-      btn =>
+      btn=>{
         btn.classList.remove(
           "active"
-        )
+        );
+      }
     );
-
 
   button.classList.add(
     "active"
@@ -3508,7 +3396,6 @@ function goHome(
     button
   );
 
-
   window.scrollTo({
     top:0,
     behavior:"smooth"
@@ -3518,44 +3405,94 @@ function goHome(
 
 
 /* =========================================================
+   PASSIVE INCOME
+========================================================= */
+
+let passiveCounter=0;
+
+setInterval(
+  ()=>{
+
+    if(
+      loadingPlayer ||
+      !player.telegramId
+    ){
+
+      return;
+
+    }
+
+    /*
+      REAL-TIME GƏLİR
+      1 saniyəlik hissə
+    */
+
+    const income =
+      player.dailyIncome /
+      86400;
+
+    player.balance +=
+      income;
+
+    passiveCounter++;
+
+    calculateStats();
+
+    updateUI();
+
+    /*
+      Hər 10 saniyədə serverə yaz
+    */
+
+    if(
+      passiveCounter >= 10
+    ){
+
+      passiveCounter=0;
+
+      saveGame();
+
+    }
+
+  },
+  1000
+);
+
+
+/* =========================================================
    START
 ========================================================= */
 
 async function startGame(){
 
-  /*
-   * UI əvvəlcə dərhal açılır.
-   * Server cavabını gözləmir.
-   */
-
-  identifyUser();
+  setupPlayerName();
 
   updateUI();
-
-
-  /*
-   * Sonra serverdən oyunçunu yükləyirik.
-   */
 
   await loadPlayer();
 
-
   updateUI();
 
-
   /*
-   * Ranking-i arxa planda yüklə.
-   */
+     Ranking avtomatik yüklənmir.
+     Oyunun açılmasını bloklamasın.
+  */
 
-  setTimeout(
-    ()=>{
-      renderRanking();
-    },
-    500
+  const overlay =
+    document.getElementById(
+      "loadingOverlay"
+    );
+
+  overlay.classList.add(
+    "hide"
   );
 
 }
 
+
+/* =========================================================
+   START GAME
+========================================================= */
 
 startGame();
 
@@ -3588,23 +3525,22 @@ if(tg){
     tg.BackButton.onClick(
       function(){
 
-        const openPanels =
+        const panels =
           document.querySelectorAll(
             ".panel.show"
           );
 
-
         if(
-          openPanels.length
+          panels.length
         ){
 
-          openPanels.forEach(
-            panel =>
+          panels.forEach(
+            panel=>{
               panel.classList.remove(
                 "show"
-              )
+              );
+            }
           );
-
 
           tg.BackButton.hide();
 
@@ -3619,7 +3555,7 @@ if(tg){
 
 
 /* =========================================================
-   BACK BUTTON OBSERVER
+   PANEL BACK BUTTON CONTROL
 ========================================================= */
 
 document
@@ -3637,12 +3573,10 @@ document
               return;
             }
 
-
             const open =
               panel.classList.contains(
                 "show"
               );
-
 
             try{
 
@@ -3657,7 +3591,6 @@ document
                     ".panel.show"
                   );
 
-
                 if(!anyOpen){
 
                   tg.BackButton.hide();
@@ -3670,7 +3603,6 @@ document
 
           }
         );
-
 
       observer.observe(
         panel,
