@@ -2125,9 +2125,9 @@ function tapCoin(event){
       Math.floor(player.tapPower)
     );
 
-  player.balance += power;
+  player.balance = Number(player.balance || 0) + power;
 
-  player.energy -= 1;
+  player.energy = Math.max(0, Number(player.energy || 0) - 1);
 
   player.totalTaps += 1;
 
