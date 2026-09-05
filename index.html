@@ -43,7 +43,1052 @@ body{
       #020202 100%
     );
 }
+<!-- ==================== ELCOIN TAXI SHOP ==================== -->
 
+<style>
+.el-taxi-shop{
+  margin:18px 0;
+  padding:18px;
+  border-radius:22px;
+  background:linear-gradient(145deg,rgba(12,18,38,.96),rgba(5,9,22,.98));
+  border:1px solid rgba(255,196,60,.25);
+  box-shadow:0 10px 35px rgba(0,0,0,.35);
+}
+
+.el-taxi-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.el-taxi-title h2{
+  margin:0;
+  color:#ffd45a;
+  font-size:21px;
+}
+
+.el-taxi-title span{
+  font-size:9px;
+  color:#8e9ab8;
+  text-align:right;
+}
+
+.el-taxi-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.el-taxi-card{
+  position:relative;
+  overflow:hidden;
+  padding:15px;
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(30,38,68,.9),rgba(11,16,34,.95));
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.el-taxi-card.vip{
+  border-color:rgba(255,197,67,.38);
+  box-shadow:0 0 22px rgba(255,193,45,.08);
+}
+
+.el-taxi-car{
+  height:72px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:53px;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.4));
+}
+
+.el-taxi-name{
+  color:#fff;
+  font-size:17px;
+  font-weight:800;
+  margin-top:5px;
+}
+
+.el-taxi-desc{
+  color:#8994ad;
+  font-size:11px;
+  margin-top:4px;
+}
+
+.el-taxi-earn{
+  margin-top:11px;
+  padding:8px 9px;
+  border-radius:10px;
+  background:rgba(255,193,45,.08);
+  color:#ffd45a;
+  font-size:12px;
+  font-weight:700;
+}
+
+.el-taxi-price{
+  margin-top:8px;
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
+}
+
+.el-taxi-buy{
+  width:100%;
+  margin-top:11px;
+  padding:10px 8px;
+  border:0;
+  border-radius:11px;
+  background:linear-gradient(135deg,#ffd75a,#e5a923);
+  color:#111827;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.el-taxi-buy:active{
+  transform:scale(.97);
+}
+
+.el-taxi-garage{
+  margin-top:18px;
+  padding-top:17px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+
+.el-taxi-garage-title{
+  color:#fff;
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:11px;
+}
+
+.el-garage-empty{
+  padding:15px;
+  border-radius:14px;
+  text-align:center;
+  color:#7e89a3;
+  background:rgba(255,255,255,.025);
+  font-size:12px;
+}
+
+.el-garage-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px;
+  margin-top:8px;
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+}
+
+.el-garage-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.el-garage-icon{
+  font-size:30px;
+}
+
+.el-garage-name{
+  color:#fff;
+  font-weight:800;
+  font-size:13px;
+}
+
+.el-garage-info{
+  color:#8994ad;
+  font-size:10px;
+  margin-top:3px;
+}
+
+.el-garage-count{
+  min-width:38px;
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:9px;
+  background:rgba(255,193,45,.1);
+  color:#ffd45a;
+  font-weight:900;
+}
+
+.el-taxi-modal{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(7px);
+}
+
+.el-taxi-modal.show{
+  display:flex;
+}
+
+.el-taxi-modal-box{
+  width:100%;
+  max-width:520px;
+  padding:22px;
+  border-radius:25px 25px 0 0;
+  background:linear-gradient(160deg,#111a35,#070c1b);
+  border-top:1px solid rgba(255,205,70,.3);
+}
+
+.el-modal-title{
+  color:#ffd45a;
+  font-size:20px;
+  font-weight:900;
+}
+
+.el-modal-text{
+  margin-top:10px;
+  color:#aab3c8;
+  font-size:13px;
+  line-height:1.55;
+}
+
+.el-payment-box{
+  margin-top:14px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(255,193,45,.07);
+  border:1px solid rgba(255,193,45,.15);
+}
+
+.el-payment-box b{
+  color:#ffd45a;
+}
+
+.el-payment-placeholder{
+  margin-top:7px;
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+}
+
+.el-modal-buttons{
+  display:flex;
+  gap:9px;
+  margin-top:16px;
+}
+
+.el-modal-confirm,
+.el-modal-close{
+  flex:1;
+  padding:12px;
+  border:0;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.el-modal-confirm{
+  background:linear-gradient(135deg,#ffd75a,#e3a51e);
+  color:#111;
+}
+
+.el-modal-close{
+  background:rgba(255,255,255,.08);
+  color:#fff;
+}
+
+.el-order-status{
+  margin-top:12px;
+  padding:10px;
+  border-radius:11px;
+  display:none;
+  background:rgba(50,200,120,.1);
+  color:#7ff0b0;
+  font-size:12px;
+  text-align:center;
+}
+</style>
+
+
+<div class="el-taxi-shop">
+
+  <div class="el-taxi-title">
+    <h2>🚕 TAXI SHOP</h2>
+    <span>VIRTUAL TAXI SYSTEM</span>
+  </div>
+
+
+  <div class="el-taxi-grid">
+
+    <div class="el-taxi-card">
+
+      <div class="el-taxi-car">🚕</div>
+
+      <div class="el-taxi-name">
+        Economy
+      </div>
+
+      <div class="el-taxi-desc">
+        Başlanğıc səviyyə
+      </div>
+
+      <div class="el-taxi-earn">
+        +150 ELC / ride
+      </div>
+
+      <div class="el-taxi-price">
+        5 USDT
+      </div>
+
+      <button
+        class="el-taxi-buy"
+        onclick="elOpenTaxiOrder('Economy',5,150,'🚕')">
+        BUY TAXI
+      </button>
+
+    </div>
+
+
+    <div class="el-taxi-card">
+
+      <div class="el-taxi-car">🚖</div>
+
+      <div class="el-taxi-name">
+        Comfort
+      </div>
+
+      <div class="el-taxi-desc">
+        Daha yüksək gəlir
+      </div>
+
+      <div class="el-taxi-earn">
+        +200 ELC / ride
+      </div>
+
+      <div class="el-taxi-price">
+        10 USDT
+      </div>
+
+      <button
+        class="el-taxi-buy"
+        onclick="elOpenTaxiOrder('Comfort',10,200,'🚖')">
+        BUY TAXI
+      </button>
+
+    </div>
+
+
+    <div class="el-taxi-card vip">
+
+      <div class="el-taxi-car">🚘</div>
+
+      <div class="el-taxi-name">
+        Comfort+
+      </div>
+
+      <div class="el-taxi-desc">
+        Premium taxi
+      </div>
+
+      <div class="el-taxi-earn">
+        +300 ELC / ride
+      </div>
+
+      <div class="el-taxi-price">
+        20 USDT
+      </div>
+
+      <button
+        class="el-taxi-buy"
+        onclick="elOpenTaxiOrder('Comfort+',20,300,'🚘')">
+        BUY TAXI
+      </button>
+
+    </div>
+
+
+    <div class="el-taxi-card vip">
+
+      <div class="el-taxi-car">🏎️</div>
+
+      <div class="el-taxi-name">
+        Business
+      </div>
+
+      <div class="el-taxi-desc">
+        Ən yüksək gəlir
+      </div>
+
+      <div class="el-taxi-earn">
+        +500 ELC / ride
+      </div>
+
+      <div class="el-taxi-price">
+        40 USDT
+      </div>
+
+      <button
+        class="el-taxi-buy"
+        onclick="elOpenTaxiOrder('Business',40,500,'🏎️')">
+        BUY TAXI
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="el-taxi-garage">
+
+    <div class="el-taxi-garage-title">
+      🚗 MY GARAGE
+    </div>
+
+    <div id="elGarageList">
+
+      <div class="el-garage-empty">
+        Qaraj yüklənir...
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TAXI ORDER MODAL -->
+
+<div
+  class="el-taxi-modal"
+  id="elTaxiModal">
+
+  <div class="el-taxi-modal-box">
+
+    <div
+      class="el-modal-title"
+      id="elModalTaxiTitle">
+      🚕 Economy
+    </div>
+
+
+    <div
+      class="el-modal-text"
+      id="elModalTaxiText">
+      Taxi sifarişi
+    </div>
+
+
+    <div class="el-payment-box">
+
+      <b>💳 ÖDƏNİŞ</b>
+
+      <div class="el-payment-placeholder">
+        Ödəniş məlumatı admin tərəfindən təqdim ediləcək.
+      </div>
+
+    </div>
+
+
+    <div class="el-modal-text">
+
+      Ödənişi etdikdən sonra
+      <b>I PAID</b> düyməsinə bas.
+
+      Sifariş yaradılacaq və
+      ödəniş yoxlanıldıqdan sonra
+      taxi qarajına əlavə ediləcək.
+
+    </div>
+
+
+    <div
+      class="el-order-status"
+      id="elOrderStatus">
+    </div>
+
+
+    <div class="el-modal-buttons">
+
+      <button
+        class="el-modal-close"
+        onclick="elCloseTaxiOrder()">
+        CLOSE
+      </button>
+
+      <button
+        class="el-modal-confirm"
+        onclick="elCreateTaxiOrder()">
+        I PAID
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   ELCOIN TAXI SYSTEM
+   ===================================================== */
+
+
+const EL_SUPABASE_URL =
+  "https://umqlgklqpolmiqoyqkbu.supabase.co";
+
+const EL_SUPABASE_KEY =
+  "sb_publishable_unLN1x7hk9GpbgxuAmTj6Q_GwMAWMVp";
+
+
+const EL_TAXIS = {
+
+  "Economy": {
+    price:5,
+    earn:150,
+    icon:"🚕"
+  },
+
+  "Comfort": {
+    price:10,
+    earn:200,
+    icon:"🚖"
+  },
+
+  "Comfort+": {
+    price:20,
+    earn:300,
+    icon:"🚘"
+  },
+
+  "Business": {
+    price:40,
+    earn:500,
+    icon:"🏎️"
+  }
+
+};
+
+
+let elSelectedTaxi = null;
+
+
+/* =====================================================
+   TELEGRAM USER ID
+   ===================================================== */
+
+function elGetTelegramId(){
+
+  try{
+
+    if(
+      window.Telegram &&
+      Telegram.WebApp &&
+      Telegram.WebApp.initDataUnsafe &&
+      Telegram.WebApp.initDataUnsafe.user
+    ){
+
+      return String(
+        Telegram.WebApp.initDataUnsafe.user.id
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Telegram ID error:",
+      error
+    );
+
+  }
+
+  return "";
+
+}
+
+
+/* =====================================================
+   OPEN TAXI ORDER
+   ===================================================== */
+
+function elOpenTaxiOrder(
+  type,
+  price,
+  earn,
+  icon
+){
+
+  elSelectedTaxi = {
+    type:type,
+    price:price,
+    earn:earn,
+    icon:icon
+  };
+
+
+  const title =
+    document.getElementById(
+      "elModalTaxiTitle"
+    );
+
+  const text =
+    document.getElementById(
+      "elModalTaxiText"
+    );
+
+
+  if(title){
+
+    title.textContent =
+      icon + " " + type;
+
+  }
+
+
+  if(text){
+
+    text.innerHTML =
+      "Bu taxi hər tamamlanan gediş üçün " +
+      "<b>+" + earn + " ELC</b> qazandıracaq." +
+      "<br><br>" +
+      "Qiymət: <b>" +
+      price +
+      " USDT</b>";
+
+  }
+
+
+  const status =
+    document.getElementById(
+      "elOrderStatus"
+    );
+
+
+  if(status){
+
+    status.style.display = "none";
+    status.textContent = "";
+
+  }
+
+
+  const modal =
+    document.getElementById(
+      "elTaxiModal"
+    );
+
+
+  if(modal){
+
+    modal.classList.add("show");
+
+  }
+
+}
+
+
+/* =====================================================
+   CLOSE TAXI ORDER
+   ===================================================== */
+
+function elCloseTaxiOrder(){
+
+  const modal =
+    document.getElementById(
+      "elTaxiModal"
+    );
+
+
+  if(modal){
+
+    modal.classList.remove("show");
+
+  }
+
+
+  elSelectedTaxi = null;
+
+}
+
+
+/* =====================================================
+   CREATE TAXI ORDER
+   ===================================================== */
+
+async function elCreateTaxiOrder(){
+
+  if(!elSelectedTaxi){
+
+    return;
+
+  }
+
+
+  const telegramId =
+    elGetTelegramId();
+
+
+  if(!telegramId){
+
+    alert(
+      "Telegram istifadəçisi tapılmadı."
+    );
+
+    return;
+
+  }
+
+
+  const statusBox =
+    document.getElementById(
+      "elOrderStatus"
+    );
+
+
+  if(statusBox){
+
+    statusBox.style.display = "block";
+
+    statusBox.textContent =
+      "⏳ Sifariş yaradılır...";
+
+  }
+
+
+  try{
+
+    const response =
+      await fetch(
+        EL_SUPABASE_URL +
+        "/rest/v1/taxi_orders",
+        {
+
+          method:"POST",
+
+          headers:{
+
+            "apikey":
+              EL_SUPABASE_KEY,
+
+            "Authorization":
+              "Bearer " +
+              EL_SUPABASE_KEY,
+
+            "Content-Type":
+              "application/json",
+
+            "Prefer":
+              "return=representation"
+
+          },
+
+          body:JSON.stringify({
+
+            telegram_id:
+              telegramId,
+
+            taxi_type:
+              elSelectedTaxi.type,
+
+            amount:
+              elSelectedTaxi.price,
+
+            status:
+              "pending"
+
+          })
+
+        }
+      );
+
+
+    if(!response.ok){
+
+      const errorText =
+        await response.text();
+
+      console.error(
+        "Taxi order error:",
+        errorText
+      );
+
+      throw new Error(
+        "Taxi order failed"
+      );
+
+    }
+
+
+    if(statusBox){
+
+      statusBox.textContent =
+        "✅ Sifariş yaradıldı! Ödəniş yoxlanıldıqdan sonra taxi qarajına əlavə ediləcək.";
+
+    }
+
+
+    setTimeout(
+      function(){
+
+        elCloseTaxiOrder();
+
+        elLoadGarage();
+
+      },
+      1800
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Taxi order error:",
+      error
+    );
+
+
+    if(statusBox){
+
+      statusBox.style.display =
+        "block";
+
+      statusBox.textContent =
+        "❌ Sifariş yaradıla bilmədi.";
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   LOAD GARAGE
+   ===================================================== */
+
+async function elLoadGarage(){
+
+  const garage =
+    document.getElementById(
+      "elGarageList"
+    );
+
+
+  if(!garage){
+
+    return;
+
+  }
+
+
+  const telegramId =
+    elGetTelegramId();
+
+
+  if(!telegramId){
+
+    garage.innerHTML =
+      '<div class="el-garage-empty">' +
+      'Telegram istifadəçisi tapılmadı.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  try{
+
+    const response =
+      await fetch(
+
+        EL_SUPABASE_URL +
+        "/rest/v1/player_taxis" +
+
+        "?telegram_id=eq." +
+        encodeURIComponent(
+          telegramId
+        ) +
+
+        "&order=id.asc",
+
+        {
+
+          method:"GET",
+
+          headers:{
+
+            "apikey":
+              EL_SUPABASE_KEY,
+
+            "Authorization":
+              "Bearer " +
+              EL_SUPABASE_KEY,
+
+            "Content-Type":
+              "application/json"
+
+          }
+
+        }
+
+      );
+
+
+    if(!response.ok){
+
+      const errorText =
+        await response.text();
+
+      console.error(
+        "Garage error:",
+        errorText
+      );
+
+      throw new Error(
+        "Garage load failed"
+      );
+
+    }
+
+
+    const taxis =
+      await response.json();
+
+
+    if(!Array.isArray(taxis)){
+
+      throw new Error(
+        "Invalid garage response"
+      );
+
+    }
+
+
+    if(taxis.length === 0){
+
+      garage.innerHTML =
+        '<div class="el-garage-empty">' +
+        '🚕 Qaraj boşdur.<br><br>' +
+        'Taxi Shop-dan ilk avtomobilini al.' +
+        '</div>';
+
+      return;
+
+    }
+
+
+    garage.innerHTML = "";
+
+
+    taxis.forEach(
+      function(taxi){
+
+        const config =
+          EL_TAXIS[
+            taxi.taxi_type
+          ] || {
+
+            price:0,
+            earn:0,
+            icon:"🚕"
+
+          };
+
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+
+        item.className =
+          "el-garage-item";
+
+
+        item.innerHTML =
+
+          '<div class="el-garage-left">' +
+
+            '<div class="el-garage-icon">' +
+              config.icon +
+            '</div>' +
+
+            '<div>' +
+
+              '<div class="el-garage-name">' +
+                taxi.taxi_type +
+              '</div>' +
+
+              '<div class="el-garage-info">' +
+                '+' +
+                config.earn +
+                ' ELC / ride • Rides: ' +
+                (taxi.total_rides || 0) +
+              '</div>' +
+
+            '</div>' +
+
+          '</div>' +
+
+          '<div class="el-garage-count">' +
+            'x' +
+            (taxi.quantity || 0) +
+          '</div>';
+
+
+        garage.appendChild(
+          item
+        );
+
+      }
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Garage load error:",
+      error
+    );
+
+
+    garage.innerHTML =
+      '<div class="el-garage-empty">' +
+      '⚠️ Qaraj məlumatları yüklənmədi.' +
+      '</div>';
+
+  }
+
+}
+
+
+/* =====================================================
+   START TAXI SYSTEM
+   ===================================================== */
+
+setTimeout(
+  function(){
+
+    elLoadGarage();
+
+  },
+  1000
+);
+
+
+/* =====================================================
+   END
+   ===================================================== */
+
+</script>
+
+<!-- ==================== END ELCOIN TAXI SHOP ==================== -->
 button{
   font:inherit;
   border:0;
