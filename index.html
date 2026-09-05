@@ -49,9 +49,7 @@ button{
   position:relative;
 }
 
-/* =========================================================
-   PREMIUM ELCOIN HEADER LOGO
-========================================================= */
+/* HEADER */
 
 .header{
   display:flex;
@@ -127,7 +125,6 @@ button{
   font-size:23px;
   font-weight:900;
   letter-spacing:1.5px;
-  text-shadow:0 0 15px rgba(255,204,48,.15);
 }
 
 .brand-sub{
@@ -160,9 +157,7 @@ button{
   color:#dce8f7;
 }
 
-/* =========================================================
-   SERVER
-========================================================= */
+/* SERVER */
 
 .server-status{
   width:100%;
@@ -188,9 +183,7 @@ button{
   background:rgba(100,60,0,.15);
 }
 
-/* =========================================================
-   BALANCE
-========================================================= */
+/* BALANCE */
 
 .balance-card{
   position:relative;
@@ -267,9 +260,7 @@ button{
   color:#62ff9d;
 }
 
-/* =========================================================
-   TAP AREA
-========================================================= */
+/* TAP */
 
 .tap-section{
   text-align:center;
@@ -328,7 +319,6 @@ button{
   font-weight:900;
   border:2px solid rgba(115,74,0,.35);
   box-shadow:inset 0 0 15px rgba(255,255,255,.18);
-  text-shadow:0 2px 2px rgba(255,255,255,.25);
 }
 
 .tap-hint{
@@ -336,9 +326,7 @@ button{
   font-size:11px;
 }
 
-/* =========================================================
-   STATS
-========================================================= */
+/* STATS */
 
 .stats{
   display:grid;
@@ -372,9 +360,7 @@ button{
   margin-top:4px;
 }
 
-/* =========================================================
-   ENERGY
-========================================================= */
+/* ENERGY */
 
 .energy-card{
   padding:14px;
@@ -416,9 +402,7 @@ button{
   transition:width .2s;
 }
 
-/* =========================================================
-   QUICK
-========================================================= */
+/* QUICK */
 
 .section-title{
   margin:7px 3px 10px;
@@ -471,9 +455,7 @@ button{
   margin-top:4px;
 }
 
-/* =========================================================
-   BONUS
-========================================================= */
+/* BONUS */
 
 .bonus-card{
   margin-top:11px;
@@ -520,9 +502,7 @@ button{
   opacity:.45;
 }
 
-/* =========================================================
-   PANELS
-========================================================= */
+/* PANELS */
 
 .panel{
   display:none;
@@ -824,7 +804,6 @@ button{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:0;
   background:
     linear-gradient(180deg,rgba(255,196,31,.10),rgba(0,0,0,.75)),
     #03070e;
@@ -906,26 +885,12 @@ button{
 
 <body>
 
-<!-- ======================================================
-     LOADING
-====================================================== -->
-
 <div class="loading" id="loading">
-
   <div class="loading-box">
-
     <div class="loading-logo"></div>
-
-    <div class="loading-brand">
-      ELCOIN
-    </div>
-
-    <div class="loading-text">
-      TAP TO EARN · PLAY · EARN · GROW
-    </div>
-
+    <div class="loading-brand">ELCOIN</div>
+    <div class="loading-text">TAP TO EARN · PLAY · EARN · GROW</div>
   </div>
-
 </div>
 
 <div class="app">
@@ -937,29 +902,15 @@ button{
     <div class="logo"></div>
 
     <div>
-
-      <div class="brand-title">
-        ELCOIN
-      </div>
-
-      <div class="brand-sub">
-        PLAY · EARN · GROW
-      </div>
-
+      <div class="brand-title">ELCOIN</div>
+      <div class="brand-sub">PLAY · EARN · GROW</div>
     </div>
 
   </div>
 
   <div class="profile">
-
-    <div class="profile-icon">
-      👤
-    </div>
-
-    <div id="profileName">
-      PLAYER
-    </div>
-
+    <div class="profile-icon">👤</div>
+    <div id="profileName">PLAYER</div>
   </div>
 
 </header>
@@ -976,29 +927,19 @@ button{
 
   <div class="balance-row">
 
-    <div class="balance-coin">
-      E
-    </div>
+    <div class="balance-coin">E</div>
 
-    <div id="balance">
-      0
-    </div>
+    <div id="balance">0</div>
 
-    <div class="balance-unit">
-      ELC
-    </div>
+    <div class="balance-unit">ELC</div>
 
   </div>
 
   <div class="income">
 
-    <span>
-      Daily income
-    </span>
+    <span>Daily income</span>
 
-    <strong id="dailyIncome">
-      +120 ELC/day
-    </strong>
+    <strong id="dailyIncome">+120 ELC/day</strong>
 
   </div>
 
@@ -1019,9 +960,7 @@ button{
     id="coinButton"
     type="button">
 
-    <div class="coin-inner">
-      E
-    </div>
+    <div class="coin-inner">E</div>
 
   </button>
 
@@ -1034,57 +973,21 @@ button{
 <section class="stats">
 
   <div class="stat">
-
-    <div class="stat-icon">
-      👆
-    </div>
-
-    <div
-      class="stat-value"
-      id="tapPower">
-      +1
-    </div>
-
-    <div class="stat-label">
-      TAP POWER
-    </div>
-
+    <div class="stat-icon">👆</div>
+    <div class="stat-value" id="tapPower">+1</div>
+    <div class="stat-label">TAP POWER</div>
   </div>
 
   <div class="stat">
-
-    <div class="stat-icon">
-      🚕
-    </div>
-
-    <div
-      class="stat-value"
-      id="rides">
-      0
-    </div>
-
-    <div class="stat-label">
-      RIDES
-    </div>
-
+    <div class="stat-icon">🚕</div>
+    <div class="stat-value" id="rides">0</div>
+    <div class="stat-label">RIDES</div>
   </div>
 
   <div class="stat">
-
-    <div class="stat-icon">
-      ⭐
-    </div>
-
-    <div
-      class="stat-value"
-      id="level">
-      1
-    </div>
-
-    <div class="stat-label">
-      LEVEL
-    </div>
-
+    <div class="stat-icon">⭐</div>
+    <div class="stat-value" id="level">1</div>
+    <div class="stat-label">LEVEL</div>
   </div>
 
 </section>
@@ -1093,21 +996,13 @@ button{
 
   <div class="energy-head">
 
-    <span>
-      ⚡ Energy
-    </span>
+    <span>⚡ Energy</span>
 
     <span class="energy-number">
 
-      <span id="energy">
-        5000
-      </span>
-
+      <span id="energy">5000</span>
       /
-
-      <span id="maxEnergy">
-        5000
-      </span>
+      <span id="maxEnergy">5000</span>
 
     </span>
 
@@ -1139,17 +1034,9 @@ button{
     type="button"
     onclick="openPanel('taxiPanel')">
 
-    <div class="quick-icon">
-      🚕
-    </div>
-
-    <div class="quick-name">
-      Taxis
-    </div>
-
-    <div class="quick-info">
-      Upgrade & earn more
-    </div>
+    <div class="quick-icon">🚕</div>
+    <div class="quick-name">Taxis</div>
+    <div class="quick-info">Upgrade & earn more</div>
 
   </button>
 
@@ -1158,17 +1045,9 @@ button{
     type="button"
     onclick="openPanel('cityPanel')">
 
-    <div class="quick-icon">
-      🏙️
-    </div>
-
-    <div class="quick-name">
-      City
-    </div>
-
-    <div class="quick-info">
-      Build your city
-    </div>
+    <div class="quick-icon">🏙️</div>
+    <div class="quick-name">City</div>
+    <div class="quick-info">Build your city</div>
 
   </button>
 
@@ -1177,17 +1056,9 @@ button{
     type="button"
     onclick="openPanel('friendsPanel')">
 
-    <div class="quick-icon">
-      👥
-    </div>
-
-    <div class="quick-name">
-      Friends
-    </div>
-
-    <div class="quick-info">
-      Invite & earn
-    </div>
+    <div class="quick-icon">👥</div>
+    <div class="quick-name">Friends</div>
+    <div class="quick-info">Invite & earn</div>
 
   </button>
 
@@ -1196,17 +1067,9 @@ button{
     type="button"
     onclick="openPanel('rankingPanel');loadRanking()">
 
-    <div class="quick-icon">
-      🏆
-    </div>
-
-    <div class="quick-name">
-      Ranking
-    </div>
-
-    <div class="quick-info">
-      Top players
-    </div>
+    <div class="quick-icon">🏆</div>
+    <div class="quick-name">Ranking</div>
+    <div class="quick-info">Top players</div>
 
   </button>
 
@@ -1216,9 +1079,7 @@ button{
 
   <div class="bonus-left">
 
-    <div class="bonus-icon">
-      🎁
-    </div>
+    <div class="bonus-icon">🎁</div>
 
     <div>
 
@@ -1248,9 +1109,7 @@ button{
 
 </div>
 
-<!-- ======================================================
-     TAXI PANEL
-====================================================== -->
+<!-- TAXI -->
 
 <div
   class="panel"
@@ -1261,9 +1120,7 @@ button{
 
     <div class="panel-head">
 
-      <div class="panel-title">
-        🚕 Taxis
-      </div>
+      <div class="panel-title">🚕 Taxis</div>
 
       <button
         class="close"
@@ -1283,10 +1140,7 @@ button{
         </div>
 
         <div class="level">
-          LEVEL
-          <span id="taxiLevel">
-            1
-          </span>
+          LEVEL <span id="taxiLevel">1</span>
         </div>
 
       </div>
@@ -1311,9 +1165,7 @@ button{
 
 </div>
 
-<!-- ======================================================
-     CITY PANEL
-====================================================== -->
+<!-- CITY -->
 
 <div
   class="panel"
@@ -1324,9 +1176,7 @@ button{
 
     <div class="panel-head">
 
-      <div class="panel-title">
-        🏙️ City
-      </div>
+      <div class="panel-title">🏙️ City</div>
 
       <button
         class="close"
@@ -1340,22 +1190,13 @@ button{
     <div class="city-box">
 
       <div class="city-level">
-        LEVEL
-        <span id="cityLevel">
-          1
-        </span>
+        LEVEL <span id="cityLevel">1</span>
       </div>
 
       <div class="city-income">
-
         Daily income:
-
-        <span id="cityIncome">
-          +120
-        </span>
-
+        <span id="cityIncome">+120</span>
         ELC
-
       </div>
 
       <button
@@ -1373,9 +1214,7 @@ button{
 
 </div>
 
-<!-- ======================================================
-     FRIENDS PANEL
-====================================================== -->
+<!-- FRIENDS -->
 
 <div
   class="panel"
@@ -1386,9 +1225,7 @@ button{
 
     <div class="panel-head">
 
-      <div class="panel-title">
-        👥 Friends
-      </div>
+      <div class="panel-title">👥 Friends</div>
 
       <button
         class="close"
@@ -1430,9 +1267,7 @@ button{
 
 </div>
 
-<!-- ======================================================
-     RANKING PANEL
-====================================================== -->
+<!-- RANKING -->
 
 <div
   class="panel"
@@ -1443,9 +1278,7 @@ button{
 
     <div class="panel-head">
 
-      <div class="panel-title">
-        🏆 Ranking
-      </div>
+      <div class="panel-title">🏆 Ranking</div>
 
       <button
         class="close"
@@ -1460,11 +1293,8 @@ button{
       class="rank-list"
       id="rankList">
 
-      <div
-        style="text-align:center;color:#71839a;padding:20px">
-
+      <div style="text-align:center;color:#71839a;padding:20px">
         Ranking yüklənir...
-
       </div>
 
     </div>
@@ -1473,9 +1303,7 @@ button{
 
 </div>
 
-<!-- ======================================================
-     NAVIGATION
-====================================================== -->
+<!-- NAV -->
 
 <nav class="bottom-nav">
 
@@ -1484,13 +1312,8 @@ button{
     type="button"
     onclick="goHome(this)">
 
-    <div class="nav-icon">
-      🏠
-    </div>
-
-    <div class="nav-label">
-      Home
-    </div>
+    <div class="nav-icon">🏠</div>
+    <div class="nav-label">Home</div>
 
   </button>
 
@@ -1499,13 +1322,8 @@ button{
     type="button"
     onclick="openPanel('taxiPanel');setActive(this)">
 
-    <div class="nav-icon">
-      🚕
-    </div>
-
-    <div class="nav-label">
-      Taxis
-    </div>
+    <div class="nav-icon">🚕</div>
+    <div class="nav-label">Taxis</div>
 
   </button>
 
@@ -1514,13 +1332,8 @@ button{
     type="button"
     onclick="openPanel('cityPanel');setActive(this)">
 
-    <div class="nav-icon">
-      🏙️
-    </div>
-
-    <div class="nav-label">
-      City
-    </div>
+    <div class="nav-icon">🏙️</div>
+    <div class="nav-label">City</div>
 
   </button>
 
@@ -1529,13 +1342,8 @@ button{
     type="button"
     onclick="openPanel('friendsPanel');setActive(this)">
 
-    <div class="nav-icon">
-      👥
-    </div>
-
-    <div class="nav-label">
-      Friends
-    </div>
+    <div class="nav-icon">👥</div>
+    <div class="nav-label">Friends</div>
 
   </button>
 
@@ -1544,22 +1352,14 @@ button{
     type="button"
     onclick="openPanel('rankingPanel');loadRanking();setActive(this)">
 
-    <div class="nav-icon">
-      🏆
-    </div>
-
-    <div class="nav-label">
-      Rank
-    </div>
+    <div class="nav-icon">🏆</div>
+    <div class="nav-label">Rank</div>
 
   </button>
 
 </nav>
 
-<div
-  class="toast"
-  id="toast">
-</div>
+<div class="toast" id="toast"></div>
 
 <script>
 "use strict";
@@ -1611,7 +1411,7 @@ const LOCAL_KEY =
   "ELCOIN_PLAYER_V3";
 
 /* =========================================================
-   ENERGY SYSTEM
+   ENERGY
 ========================================================= */
 
 const MAX_ENERGY =
@@ -1619,13 +1419,6 @@ const MAX_ENERGY =
 
 const ENERGY_FULL_TIME =
   60 * 60 * 1000;
-
-/*
-  Enerji sisteminin versiyası.
-
-  Köhnə save-də 1000 energy varsa,
-  yalnız bir dəfə 5000-ə keçiriləcək.
-*/
 
 const ENERGY_SYSTEM_VERSION =
   2;
@@ -1672,7 +1465,9 @@ let player = {
 
   totalTaps:0,
 
-  updatedAt:null
+  updatedAt:null,
+
+  isPublic:true
 
 };
 
@@ -1740,38 +1535,28 @@ function showToast(message){
 
   el.classList.add("show");
 
-  clearTimeout(
-    toastTimer
-  );
+  clearTimeout(toastTimer);
 
   toastTimer =
     setTimeout(
       function(){
-
         el.classList.remove("show");
-
       },
       2200
     );
 
 }
 
-function setServerStatus(
-  type,
-  text
-){
+function setServerStatus(type,text){
 
   const el =
-    document.getElementById(
-      "serverStatus"
-    );
+    document.getElementById("serverStatus");
 
   if(!el)
     return;
 
   el.className =
-    "server-status " +
-    type;
+    "server-status " + type;
 
   el.textContent =
     text;
@@ -1799,9 +1584,7 @@ function getTelegramUser(){
       !user ||
       !user.id
     ){
-
       return null;
-
     }
 
     return user;
@@ -1831,9 +1614,7 @@ function makeNickname(user){
         .slice(0,20);
 
     if(clean){
-
       return "@" + clean;
-
     }
 
   }
@@ -1843,11 +1624,8 @@ function makeNickname(user){
     user.id
   ){
 
-    const id =
-      String(user.id);
-
     return "player_" +
-      id.slice(-4);
+      String(user.id).slice(-4);
 
   }
 
@@ -1903,10 +1681,7 @@ function regenerateEnergy(){
   if(
     !Number.isFinite(last)
   ){
-
-    last =
-      Date.now();
-
+    last = Date.now();
   }
 
   const now =
@@ -1926,9 +1701,7 @@ function regenerateEnergy(){
       0,
       Math.min(
         MAX_ENERGY,
-        number(
-          player.energy
-        )
+        number(player.energy)
       )
     );
 
@@ -1940,30 +1713,14 @@ function regenerateEnergy(){
     elapsed *
     energyPerMs;
 
-  const newEnergy =
+  player.energy =
     Math.min(
       MAX_ENERGY,
       currentEnergy + gained
     );
 
-  player.energy =
-    newEnergy;
-
-  /*
-    Vaxtı həmişə son hesablamaya çəkirik.
-  */
-
   player.lastEnergyAt =
     now;
-
-  if(
-    player.energy >= MAX_ENERGY
-  ){
-
-    player.energy =
-      MAX_ENERGY;
-
-  }
 
 }
 
@@ -1979,9 +1736,7 @@ function render(){
     Math.max(
       0,
       Math.floor(
-        number(
-          player.balance
-        )
+        number(player.balance)
       )
     );
 
@@ -1993,9 +1748,7 @@ function render(){
       0,
       Math.min(
         MAX_ENERGY,
-        number(
-          player.energy
-        )
+        number(player.energy)
       )
     );
 
@@ -2003,9 +1756,7 @@ function render(){
     Math.max(
       1,
       Math.floor(
-        number(
-          player.level
-        )
+        number(player.level)
       )
     );
 
@@ -2013,9 +1764,7 @@ function render(){
     Math.max(
       1,
       Math.floor(
-        number(
-          player.taxiLevel
-        )
+        number(player.taxiLevel)
       )
     );
 
@@ -2023,9 +1772,7 @@ function render(){
     Math.max(
       1,
       Math.floor(
-        number(
-          player.cityLevel
-        )
+        number(player.cityLevel)
       )
     );
 
@@ -2033,9 +1780,7 @@ function render(){
     Math.max(
       0,
       Math.floor(
-        number(
-          player.totalTaps
-        )
+        number(player.totalTaps)
       )
     );
 
@@ -2043,9 +1788,7 @@ function render(){
     Math.max(
       0,
       Math.floor(
-        number(
-          player.rides
-        )
+        number(player.rides)
       )
     );
 
@@ -2053,9 +1796,7 @@ function render(){
     Math.max(
       0,
       Math.floor(
-        number(
-          player.referrals
-        )
+        number(player.referrals)
       )
     );
 
@@ -2066,125 +1807,83 @@ function render(){
     calculateIncome();
 
   const balance =
-    document.getElementById(
-      "balance"
-    );
+    document.getElementById("balance");
 
   const profileName =
-    document.getElementById(
-      "profileName"
-    );
+    document.getElementById("profileName");
 
   const dailyIncome =
-    document.getElementById(
-      "dailyIncome"
-    );
+    document.getElementById("dailyIncome");
 
   const tapPower =
-    document.getElementById(
-      "tapPower"
-    );
+    document.getElementById("tapPower");
 
   const rides =
-    document.getElementById(
-      "rides"
-    );
+    document.getElementById("rides");
 
   const level =
-    document.getElementById(
-      "level"
-    );
+    document.getElementById("level");
 
   const energy =
-    document.getElementById(
-      "energy"
-    );
+    document.getElementById("energy");
 
   const maxEnergy =
-    document.getElementById(
-      "maxEnergy"
-    );
+    document.getElementById("maxEnergy");
 
   const energyFill =
-    document.getElementById(
-      "energyFill"
-    );
+    document.getElementById("energyFill");
 
   const taxiLevel =
-    document.getElementById(
-      "taxiLevel"
-    );
+    document.getElementById("taxiLevel");
 
   const cityLevel =
-    document.getElementById(
-      "cityLevel"
-    );
+    document.getElementById("cityLevel");
 
   const cityIncome =
-    document.getElementById(
-      "cityIncome"
-    );
+    document.getElementById("cityIncome");
 
   if(balance){
-
     balance.textContent =
       player.balance.toLocaleString();
-
   }
 
   if(profileName){
-
     profileName.textContent =
-      player.nickname ||
-      "PLAYER";
-
+      player.nickname || "PLAYER";
   }
 
   if(dailyIncome){
-
     dailyIncome.textContent =
       "+" +
       player.dailyIncome.toLocaleString() +
       " ELC/day";
-
   }
 
   if(tapPower){
-
     tapPower.textContent =
-      "+" +
-      player.tapPower;
-
+      "+" + player.tapPower;
   }
 
   if(rides){
-
     rides.textContent =
       player.rides;
-
   }
 
   if(level){
-
     level.textContent =
       player.level;
-
   }
 
   if(energy){
-
     energy.textContent =
       Math.floor(
         player.energy
       ).toLocaleString();
-
   }
 
   if(maxEnergy){
-
     maxEnergy.textContent =
       MAX_ENERGY.toLocaleString();
-
   }
 
   if(energyFill){
@@ -2207,24 +1906,18 @@ function render(){
   }
 
   if(taxiLevel){
-
     taxiLevel.textContent =
       player.taxiLevel;
-
   }
 
   if(cityLevel){
-
     cityLevel.textContent =
       player.cityLevel;
-
   }
 
   if(cityIncome){
-
     cityIncome.textContent =
       player.dailyIncome;
-
   }
 
   const taxiCost =
@@ -2278,7 +1971,7 @@ function render(){
 }
 
 /* =========================================================
-   SAVE LOCAL
+   LOCAL SAVE
 ========================================================= */
 
 function saveLocal(){
@@ -2295,7 +1988,7 @@ function saveLocal(){
 }
 
 /* =========================================================
-   LOAD LOCAL
+   LOCAL LOAD + ENERGY MIGRATION
 ========================================================= */
 
 function loadLocal(){
@@ -2329,23 +2022,7 @@ function loadLocal(){
         data.maxEnergy
       );
 
-    const oldEnergy =
-      Number(
-        data.energy
-      );
-
-    /*
-      Köhnə enerji sistemini yalnız
-      BİR DƏFƏ migrate edirik.
-
-      Əgər əvvəlki save 1000 max
-      idisə, 5000 ilə başlayır.
-      
-      Balance, level, taps və s.
-      toxunulmaz qalır.
-    */
-
-    const needsEnergyMigration =
+    const needsMigration =
       oldVersion !==
         ENERGY_SYSTEM_VERSION ||
       !Number.isFinite(oldMax) ||
@@ -2362,14 +2039,9 @@ function loadLocal(){
     player.energySystemVersion =
       ENERGY_SYSTEM_VERSION;
 
-    if(
-      needsEnergyMigration
-    ){
+    if(needsMigration){
 
       player.energy =
-        MAX_ENERGY;
-
-      player.maxEnergy =
         MAX_ENERGY;
 
       player.lastEnergyAt =
@@ -2379,9 +2051,7 @@ function loadLocal(){
 
       if(
         !Number.isFinite(
-          Number(
-            player.energy
-          )
+          Number(player.energy)
         )
       ){
 
@@ -2392,9 +2062,7 @@ function loadLocal(){
 
       if(
         !Number.isFinite(
-          Number(
-            player.lastEnergyAt
-          )
+          Number(player.lastEnergyAt)
         )
       ){
 
@@ -2405,19 +2073,12 @@ function loadLocal(){
 
     }
 
-    /*
-      Əgər enerji mənfi və ya 5000-dən
-      çoxdursa düzəldirik.
-    */
-
     player.energy =
       Math.max(
         0,
         Math.min(
           MAX_ENERGY,
-          number(
-            player.energy
-          )
+          number(player.energy)
         )
       );
 
@@ -2459,9 +2120,7 @@ async function supabaseRequest(
   const timer =
     setTimeout(
       function(){
-
         controller.abort();
-
       },
       timeout
     );
@@ -2503,8 +2162,7 @@ async function supabaseRequest(
     const text =
       await response.text();
 
-    let data =
-      null;
+    let data = null;
 
     try{
 
@@ -2557,9 +2215,7 @@ async function callTelegramFunction(){
     !tg ||
     !tg.initData
   ){
-
     return null;
-
   }
 
   const controller =
@@ -2568,9 +2224,7 @@ async function callTelegramFunction(){
   const timer =
     setTimeout(
       function(){
-
         controller.abort();
-
       },
       7000
     );
@@ -2644,9 +2298,7 @@ async function callTelegramFunction(){
 
     try{
 
-      return JSON.parse(
-        text
-      );
+      return JSON.parse(text);
 
     }catch(e){
 
@@ -2664,6 +2316,7 @@ async function callTelegramFunction(){
 
 /* =========================================================
    APPLY DATABASE PLAYER
+   REAL SUPABASE COLUMN NAMES
 ========================================================= */
 
 function applyDatabasePlayer(row){
@@ -2672,32 +2325,23 @@ function applyDatabasePlayer(row){
     return;
 
   player.id =
-    row.Id ??
     row.id ??
     player.id;
 
   player.telegramId =
-    row.Telegram_id ??
     row.telegram_id ??
     player.telegramId;
 
   player.username =
-    row["User name"] ??
     row.username ??
     player.username;
 
   player.firstName =
-    row["First name"] ??
     row.first_name ??
     player.firstName;
 
-  /*
-    Real ad burada public profilə çıxarılmır.
-  */
-
   player.nickname =
     row.nickname ??
-    row.Nickname ??
     player.nickname;
 
   if(
@@ -2712,33 +2356,29 @@ function applyDatabasePlayer(row){
 
   }
 
+  /*
+    BALANCE
+  */
+
   player.balance =
     number(
-      row.Balance ??
       row.balance ??
       player.balance
     );
 
   /*
-    =====================================================
-    ƏN VACİB DƏYİŞİKLİK
-    =====================================================
+    ENERGY
 
-    Serverdə köhnə Energy = 1000 ola bilər.
+    Lokal yeni sistem varsa,
+    serverdəki köhnə 1000 onu əvəz etmir.
 
-    Əgər lokal save varsa və lokal enerji
-    serverdən yüksəkdirsə, serverin köhnə
-    1000 dəyəri lokal 5000-i silməyəcək.
-
-    Beləliklə köhnə server məlumatı
-    oyunun yeni 5000 sistemini pozmur.
+    Server 5000-dən böyükdürsə,
+    maksimum 5000 olur.
   */
 
   const serverEnergy =
     number(
-      row.Energy ??
-      row.energy ??
-      0
+      row.energy
     );
 
   const localEnergy =
@@ -2746,23 +2386,17 @@ function applyDatabasePlayer(row){
       player.energy
     );
 
-  if(
-    localPlayerLoaded
-  ){
+  if(localPlayerLoaded){
 
-    /*
-      Lokal enerji daha yüksəkdirsə,
-      lokal saxlanılır.
+    if(
+      serverEnergy >
+      localEnergy
+    ){
 
-      Server daha yüksəkdirsə,
-      server dəyərini götürürük.
-    */
+      player.energy =
+        serverEnergy;
 
-    player.energy =
-      Math.max(
-        localEnergy,
-        serverEnergy
-      );
+    }
 
   }else{
 
@@ -2778,9 +2412,7 @@ function applyDatabasePlayer(row){
       0,
       Math.min(
         MAX_ENERGY,
-        number(
-          player.energy
-        )
+        player.energy
       )
     );
 
@@ -2791,74 +2423,120 @@ function applyDatabasePlayer(row){
     ENERGY_SYSTEM_VERSION;
 
   /*
-    Local timestamp yoxdursa,
-    indi-dən başlat.
+    Level
   */
 
-  if(
-    !Number.isFinite(
-      Number(
-        player.lastEnergyAt
-      )
-    )
-  ){
-
-    player.lastEnergyAt =
-      Date.now();
-
-  }
-
   player.level =
-    number(
-      row.Level ??
-      row.level ??
-      player.level
-    ) || 1;
-
-  player.rides =
-    number(
-      row.Total_rides ??
-      row.total_rides ??
-      row.Rides ??
-      row.rides ??
-      player.rides
+    Math.max(
+      1,
+      Math.floor(
+        number(
+          row.level ??
+          player.level
+        )
+      )
     );
 
-  player.referrals =
-    number(
-      row.Referrals ??
-      row.referrals ??
-      player.referrals
-    );
-
-  player.taxiLevel =
-    number(
-      row.Taxi_level ??
-      row.taxi_level ??
-      player.taxiLevel
-    ) || 1;
-
-  player.cityLevel =
-    number(
-      row.City_level ??
-      row.city_level ??
-      player.cityLevel
-    ) || 1;
-
-  player.totalTaps =
-    number(
-      row.Total_taps ??
-      row.total_taps ??
-      player.totalTaps
-    );
+  /*
+    Bonus
+  */
 
   player.lastBonus =
-    row["Last bonus"] ??
     row.last_bonus ??
     player.lastBonus;
 
+  /*
+    Referrals
+  */
+
+  player.referrals =
+    Math.max(
+      0,
+      Math.floor(
+        number(
+          row.referrals ??
+          player.referrals
+        )
+      )
+    );
+
+  /*
+    Taxi
+  */
+
+  player.taxiLevel =
+    Math.max(
+      1,
+      Math.floor(
+        number(
+          row.taxi_level ??
+          player.taxiLevel
+        )
+      )
+    );
+
+  /*
+    City
+  */
+
+  player.cityLevel =
+    Math.max(
+      1,
+      Math.floor(
+        number(
+          row.city_level ??
+          player.cityLevel
+        )
+      )
+    );
+
+  /*
+    Taps
+  */
+
+  player.totalTaps =
+    Math.max(
+      0,
+      Math.floor(
+        number(
+          row.total_taps ??
+          player.totalTaps
+        )
+      )
+    );
+
+  /*
+    Rides
+  */
+
+  player.rides =
+    Math.max(
+      0,
+      Math.floor(
+        number(
+          row.total_rides ??
+          player.rides
+        )
+      )
+    );
+
+  /*
+    Public profile
+  */
+
+  if(
+    row.is_public !== undefined &&
+    row.is_public !== null
+  ){
+
+    player.isPublic =
+      Boolean(
+        row.is_public
+      );
+
+  }
+
   player.updatedAt =
-    row.Updated_at ??
     row.updated_at ??
     player.updatedAt;
 
@@ -2867,6 +2545,17 @@ function applyDatabasePlayer(row){
 
   player.dailyIncome =
     calculateIncome();
+
+  if(
+    !Number.isFinite(
+      Number(player.lastEnergyAt)
+    )
+  ){
+
+    player.lastEnergyAt =
+      Date.now();
+
+  }
 
   regenerateEnergy();
 
@@ -2879,10 +2568,6 @@ function applyDatabasePlayer(row){
 ========================================================= */
 
 async function loadPlayer(){
-
-  /*
-    LOCAL ƏVVƏL
-  */
 
   loadLocal();
 
@@ -2907,14 +2592,84 @@ async function loadPlayer(){
 
   }
 
-  /*
-    Telegram ID-ni yadda saxla.
-  */
-
-  player.telegramId =
+  const telegramId =
     String(
       telegramUser.id
     );
+
+  /*
+    Əgər lokal save başqa Telegram
+    istifadəçisinə aiddirsə, qarışdırmırıq.
+  */
+
+  if(
+    player.telegramId &&
+    String(player.telegramId) !== telegramId
+  ){
+
+    player = {
+
+      ...player,
+
+      id:null,
+
+      telegramId:telegramId,
+
+      username:
+        telegramUser.username || "",
+
+      firstName:
+        telegramUser.first_name || "",
+
+      nickname:
+        makeNickname(
+          telegramUser
+        ),
+
+      balance:0,
+
+      energy:MAX_ENERGY,
+
+      maxEnergy:MAX_ENERGY,
+
+      lastEnergyAt:Date.now(),
+
+      energySystemVersion:
+        ENERGY_SYSTEM_VERSION,
+
+      level:1,
+
+      tapPower:1,
+
+      rides:0,
+
+      referrals:0,
+
+      taxiLevel:1,
+
+      cityLevel:1,
+
+      dailyIncome:120,
+
+      lastBonus:null,
+
+      totalTaps:0,
+
+      updatedAt:null,
+
+      isPublic:true
+
+    };
+
+    localPlayerLoaded =
+      false;
+
+    saveLocal();
+
+  }
+
+  player.telegramId =
+    telegramId;
 
   player.username =
     telegramUser.username || "";
@@ -2980,17 +2735,11 @@ async function loadPlayer(){
 
         render();
 
-        /*
-          Lokal enerji serverə də yazılır.
-        */
-
         setTimeout(
           function(){
-
             savePlayerToServer();
-
           },
-          300
+          500
         );
 
         return;
@@ -3011,6 +2760,7 @@ async function loadPlayer(){
   /*
     =====================================================
     REST FALLBACK
+    DÜZGÜN SÜTUN: telegram_id
     =====================================================
   */
 
@@ -3018,14 +2768,12 @@ async function loadPlayer(){
 
     const id =
       encodeURIComponent(
-        String(
-          telegramUser.id
-        )
+        telegramId
       );
 
     const rows =
       await supabaseRequest(
-        "players?Telegram_id=eq." +
+        "players?telegram_id=eq." +
         id +
         "&select=*",
         {
@@ -3036,7 +2784,7 @@ async function loadPlayer(){
 
     if(
       Array.isArray(rows) &&
-      rows.length
+      rows.length > 0
     ){
 
       applyDatabasePlayer(
@@ -3048,23 +2796,21 @@ async function loadPlayer(){
 
       setServerStatus(
         "online",
-        "🟢 Serverə qoşuldu"
+        "🟢 Serverə qoşuldu • Sinxron"
       );
 
       render();
 
       /*
-        Serverdə köhnə 1000 varsa,
-        yeni lokal enerji geri yazılır.
+        Lokal enerji və digər yeniliklər
+        serverə yazılır.
       */
 
       setTimeout(
         function(){
-
           savePlayerToServer();
-
         },
-        300
+        500
       );
 
       return;
@@ -3073,52 +2819,83 @@ async function loadPlayer(){
 
     /*
       =================================================
-      NEW PLAYER
+      YENİ OYUNÇU
+      DÜZGÜN KİÇİK SÜTUN ADLARI
       =================================================
     */
 
     const newPlayer = {
 
-      "User name":
+      username:
         telegramUser.username || "",
 
-      "First name":
+      first_name:
         telegramUser.first_name || "",
 
-      "Balance":
-        0,
-
-      "Energy":
-        MAX_ENERGY,
-
-      "Level":
-        1,
-
-      "Last bonus":
-        null,
-
-      "Referrals":
-        0,
-
-      "Telegram_id":
-        String(
-          telegramUser.id
+      balance:
+        number(
+          player.balance
         ),
 
-      "Referred_by":
+      energy:
+        MAX_ENERGY,
+
+      level:
+        Math.max(
+          1,
+          number(
+            player.level
+          )
+        ),
+
+      last_bonus:
+        player.lastBonus || null,
+
+      referrals:
+        number(
+          player.referrals
+        ),
+
+      telegram_id:
+        telegramId,
+
+      referred_by:
         null,
 
-      "Taxi_level":
-        1,
+      taxi_level:
+        Math.max(
+          1,
+          number(
+            player.taxiLevel
+          )
+        ),
 
-      "City_level":
-        1,
+      city_level:
+        Math.max(
+          1,
+          number(
+            player.cityLevel
+          )
+        ),
 
-      "Total_taps":
-        0,
+      total_taps:
+        number(
+          player.totalTaps
+        ),
 
-      "Total_rides":
-        0
+      total_rides:
+        number(
+          player.rides
+        ),
+
+      nickname:
+        player.nickname ||
+        makeNickname(
+          telegramUser
+        ),
+
+      is_public:
+        true
 
     };
 
@@ -3145,7 +2922,7 @@ async function loadPlayer(){
 
     if(
       Array.isArray(created) &&
-      created.length
+      created.length > 0
     ){
 
       applyDatabasePlayer(
@@ -3159,7 +2936,7 @@ async function loadPlayer(){
 
     setServerStatus(
       "online",
-      "🟢 Yeni oyunçu yaradıldı"
+      "🟢 Serverə qoşuldu • Yeni oyunçu"
     );
 
     render();
@@ -3167,7 +2944,7 @@ async function loadPlayer(){
   }catch(error){
 
     console.error(
-      "Supabase:",
+      "SUPABASE LOAD ERROR:",
       error
     );
 
@@ -3187,6 +2964,7 @@ async function loadPlayer(){
 
 /* =========================================================
    SAVE SERVER
+   REAL COLUMN NAMES
 ========================================================= */
 
 async function savePlayerToServer(){
@@ -3206,6 +2984,8 @@ async function savePlayerToServer(){
   saveInFlight =
     true;
 
+  regenerateEnergy();
+
   const id =
     encodeURIComponent(
       String(
@@ -3213,79 +2993,81 @@ async function savePlayerToServer(){
       )
     );
 
-  regenerateEnergy();
-
   const payload = {
 
-    "User name":
+    username:
       player.username || "",
 
-    "First name":
+    first_name:
       player.firstName || "",
 
-    "Balance":
+    balance:
       Math.floor(
         number(
           player.balance
         )
       ),
 
-    /*
-      Artıq serverə 5000 sisteminə
-      uyğun energy göndərilir.
-    */
-
-    "Energy":
+    energy:
       Math.floor(
         number(
           player.energy
         )
       ),
 
-    "Level":
+    level:
       Math.floor(
         number(
           player.level
         )
       ),
 
-    "Last bonus":
+    last_bonus:
       player.lastBonus || null,
 
-    "Referrals":
+    referrals:
       Math.floor(
         number(
           player.referrals
         )
       ),
 
-    "Taxi_level":
+    taxi_level:
       Math.floor(
         number(
           player.taxiLevel
         )
       ),
 
-    "City_level":
+    city_level:
       Math.floor(
         number(
           player.cityLevel
         )
       ),
 
-    "Total_taps":
+    total_taps:
       Math.floor(
         number(
           player.totalTaps
         )
       ),
 
-    "Total_rides":
+    total_rides:
       Math.floor(
         number(
           player.rides
         )
-      )
+      ),
+
+    nickname:
+      player.nickname ||
+      makeNickname(
+        getTelegramUser()
+      ),
+
+    is_public:
+      player.isPublic !== false
 
   };
 
@@ -3293,7 +3075,7 @@ async function savePlayerToServer(){
 
     const result =
       await supabaseRequest(
-        "players?Telegram_id=eq." +
+        "players?telegram_id=eq." +
         id,
         {
 
@@ -3318,9 +3100,52 @@ async function savePlayerToServer(){
       result.length === 0
     ){
 
-      throw new Error(
-        "Player update edilmədi"
-      );
+      /*
+        Player serverdə yoxdursa,
+        POST ilə yaradırıq.
+      */
+
+      const created =
+        await supabaseRequest(
+          "players",
+          {
+
+            method:"POST",
+
+            headers:{
+              "Prefer":
+                "return=representation"
+            },
+
+            body:
+              JSON.stringify({
+                ...payload,
+                telegram_id:
+                  String(
+                    player.telegramId
+                  ),
+                referred_by:null
+              })
+
+          },
+          5000
+        );
+
+      if(
+        !Array.isArray(created) ||
+        !created.length
+      ){
+
+        throw new Error(
+          "Player serverdə yaradıla bilmədi"
+        );
+
+      }
+
+      if(created[0].id){
+        player.id =
+          created[0].id;
+      }
 
     }
 
@@ -3359,9 +3184,7 @@ async function savePlayerToServer(){
 
       setTimeout(
         function(){
-
           savePlayerToServer();
-
         },
         300
       );
@@ -3387,9 +3210,7 @@ function saveGame(){
   saveTimer =
     setTimeout(
       function(){
-
         savePlayerToServer();
-
       },
       700
     );
@@ -3408,9 +3229,7 @@ function tapCoin(event){
   if(
     now - lastTapTime < 60
   ){
-
     return;
-
   }
 
   lastTapTime =
@@ -3527,10 +3346,7 @@ function tapCoin(event){
    FLOAT
 ========================================================= */
 
-function createFloat(
-  event,
-  text
-){
+function createFloat(event,text){
 
   const el =
     document.createElement(
@@ -3545,43 +3361,29 @@ function createFloat(
     " ELC";
 
   let x =
-    window.innerWidth /
-    2;
+    window.innerWidth / 2;
 
   let y =
-    window.innerHeight /
-    2;
+    window.innerHeight / 2;
 
   if(event){
 
     if(
       Number.isFinite(
-        Number(
-          event.clientX
-        )
+        Number(event.clientX)
       )
     ){
-
       x =
-        Number(
-          event.clientX
-        );
-
+        Number(event.clientX);
     }
 
     if(
       Number.isFinite(
-        Number(
-          event.clientY
-        )
+        Number(event.clientY)
       )
     ){
-
       y =
-        Number(
-          event.clientY
-        );
-
+        Number(event.clientY);
     }
 
   }
@@ -3599,8 +3401,9 @@ function createFloat(
   setTimeout(
     function(){
 
-      if(el.parentNode)
+      if(el.parentNode){
         el.remove();
+      }
 
     },
     800
@@ -3616,7 +3419,6 @@ setInterval(
   function(){
 
     regenerateEnergy();
-
     render();
 
   },
@@ -3637,9 +3439,7 @@ function updateBonusButton(){
   if(!button)
     return;
 
-  if(
-    !player.lastBonus
-  ){
+  if(!player.lastBonus){
 
     button.disabled =
       false;
@@ -3729,8 +3529,7 @@ function claimBonus(){
   player.balance =
     number(
       player.balance
-    ) +
-    500;
+    ) + 500;
 
   player.lastBonus =
     new Date().toISOString();
@@ -3841,16 +3640,10 @@ function upgradeCity(){
 function openPanel(id){
 
   const panel =
-    document.getElementById(
-      id
-    );
+    document.getElementById(id);
 
   if(panel){
-
-    panel.classList.add(
-      "show"
-    );
-
+    panel.classList.add("show");
   }
 
 }
@@ -3858,31 +3651,20 @@ function openPanel(id){
 function closePanel(id){
 
   const panel =
-    document.getElementById(
-      id
-    );
+    document.getElementById(id);
 
   if(panel){
-
-    panel.classList.remove(
-      "show"
-    );
-
+    panel.classList.remove("show");
   }
 
 }
 
-function closeOutside(
-  event,
-  id
-){
+function closeOutside(event,id){
 
   if(
     event.target.id === id
   ){
-
     closePanel(id);
-
   }
 
 }
@@ -3894,9 +3676,7 @@ function closeOutside(
 function setActive(button){
 
   document
-    .querySelectorAll(
-      ".nav-btn"
-    )
+    .querySelectorAll(".nav-btn")
     .forEach(
       function(btn){
 
@@ -3908,20 +3688,16 @@ function setActive(button){
     );
 
   if(button){
-
     button.classList.add(
       "active"
     );
-
   }
 
 }
 
 function goHome(button){
 
-  setActive(
-    button
-  );
+  setActive(button);
 
   [
     "taxiPanel",
@@ -3930,18 +3706,13 @@ function goHome(button){
     "rankingPanel"
   ].forEach(
     function(id){
-
       closePanel(id);
-
     }
   );
 
   window.scrollTo({
-
     top:0,
-
     behavior:"smooth"
-
   });
 
 }
@@ -3953,8 +3724,7 @@ function goHome(button){
 function getReferralLink(){
 
   const id =
-    player.telegramId ||
-    "";
+    player.telegramId || "";
 
   return (
     "https://t.me/ElCoinGame_bot" +
@@ -3972,10 +3742,8 @@ function updateReferral(){
     );
 
   if(el){
-
     el.textContent =
       getReferralLink();
-
   }
 
 }
@@ -4002,17 +3770,13 @@ async function copyReferral(){
 
     }else{
 
-      showToast(
-        link
-      );
+      showToast(link);
 
     }
 
   }catch(e){
 
-    showToast(
-      link
-    );
+    showToast(link);
 
   }
 
@@ -4020,6 +3784,7 @@ async function copyReferral(){
 
 /* =========================================================
    RANKING
+   REAL COLUMN NAMES
 ========================================================= */
 
 async function loadRanking(){
@@ -4039,7 +3804,7 @@ async function loadRanking(){
 
     const rows =
       await supabaseRequest(
-        'players?select="User%20name",Balance,Level&order=Balance.desc&limit=50',
+        "players?select=nickname,balance,level,is_public&order=balance.desc&limit=50",
         {
           method:"GET"
         },
@@ -4058,40 +3823,38 @@ async function loadRanking(){
 
     }
 
+    const publicRows =
+      rows.filter(
+        function(row){
+          return row.is_public !== false;
+        }
+      );
+
+    if(!publicRows.length){
+
+      list.innerHTML =
+        '<div style="text-align:center;color:#71839a;padding:20px">Hələ açıq profil yoxdur</div>';
+
+      return;
+
+    }
+
     list.innerHTML =
-      rows
+      publicRows
         .map(
-          function(
-            row,
-            index
-          ){
+          function(row,index){
 
-            const username =
-              row["User name"];
-
-            let name;
-
-            if(username){
-
-              name =
-                String(username)
-                  .startsWith("@")
-                    ? String(username)
-                    : "@" +
-                      String(username);
-
-            }else{
-
-              name =
+            const name =
+              row.nickname ||
+              (
                 "player_" +
                 String(
                   index + 1
                 ).padStart(
                   4,
                   "0"
-                );
-
-            }
+                )
+              );
 
             return `
 
@@ -4107,7 +3870,7 @@ async function loadRanking(){
 
                 <div class="rank-balance">
                   ${number(
-                    row.Balance
+                    row.balance
                   ).toLocaleString()}
                   ELC
                 </div>
@@ -4150,24 +3913,17 @@ if(coinButton){
     function(event){
 
       if(
-        event.pointerType ===
-        "mouse" &&
+        event.pointerType === "mouse" &&
         event.button !== 0
       ){
-
         return;
-
       }
 
       try{
-
         event.preventDefault();
-
       }catch(e){}
 
-      tapCoin(
-        event
-      );
+      tapCoin(event);
 
     },
     {
@@ -4261,11 +4017,9 @@ setTimeout(
       );
 
     if(loading){
-
       loading.classList.add(
         "hide"
       );
-
     }
 
   },
@@ -4282,9 +4036,7 @@ setInterval(
     if(
       player.telegramId
     ){
-
       savePlayerToServer();
-
     }
 
   },
@@ -4300,7 +4052,6 @@ window.addEventListener(
   function(){
 
     regenerateEnergy();
-
     saveLocal();
 
   }
@@ -4332,9 +4083,7 @@ document.addEventListener(
 
 setInterval(
   function(){
-
     updateBonusButton();
-
   },
   60000
 );
