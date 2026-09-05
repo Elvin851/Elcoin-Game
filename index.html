@@ -77,9 +77,6 @@ button{
   align-items:center;
   justify-content:center;
   color:#ffd33d;
-  font-size:31px;
-  font-weight:900;
-  font-family:Arial,sans-serif;
   border:1px solid rgba(255,207,48,.75);
   background:
     linear-gradient(180deg,rgba(255,196,31,.12),rgba(0,0,0,.7)),
@@ -119,13 +116,11 @@ button{
   position:absolute;
   z-index:2;
   color:#ffd94a;
+  font-size:31px;
+  font-weight:900;
   text-shadow:
     0 0 8px rgba(255,210,50,.7),
     0 0 18px rgba(255,180,20,.35);
-}
-
-.logo{
-  font-size:0;
 }
 
 .brand-title{
@@ -765,6 +760,7 @@ button{
     opacity:1;
     transform:translate(-50%,0) scale(1);
   }
+
   100%{
     opacity:0;
     transform:translate(-50%,-90px) scale(1.25);
@@ -903,13 +899,16 @@ button{
   #balance{
     font-size:34px;
   }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOADING -->
+<!-- ======================================================
+     LOADING
+====================================================== -->
 
 <div class="loading" id="loading">
 
@@ -1249,7 +1248,9 @@ button{
 
 </div>
 
-<!-- TAXI -->
+<!-- ======================================================
+     TAXI PANEL
+====================================================== -->
 
 <div
   class="panel"
@@ -1310,7 +1311,9 @@ button{
 
 </div>
 
-<!-- CITY -->
+<!-- ======================================================
+     CITY PANEL
+====================================================== -->
 
 <div
   class="panel"
@@ -1344,11 +1347,15 @@ button{
       </div>
 
       <div class="city-income">
+
         Daily income:
+
         <span id="cityIncome">
           +120
         </span>
+
         ELC
+
       </div>
 
       <button
@@ -1366,7 +1373,9 @@ button{
 
 </div>
 
-<!-- FRIENDS -->
+<!-- ======================================================
+     FRIENDS PANEL
+====================================================== -->
 
 <div
   class="panel"
@@ -1421,7 +1430,9 @@ button{
 
 </div>
 
-<!-- RANKING -->
+<!-- ======================================================
+     RANKING PANEL
+====================================================== -->
 
 <div
   class="panel"
@@ -1462,7 +1473,9 @@ button{
 
 </div>
 
-<!-- NAV -->
+<!-- ======================================================
+     NAVIGATION
+====================================================== -->
 
 <nav class="bottom-nav">
 
@@ -1568,11 +1581,13 @@ if(tg){
     tg.ready();
     tg.expand();
 
-    if(tg.setHeaderColor)
+    if(tg.setHeaderColor){
       tg.setHeaderColor("#07101f");
+    }
 
-    if(tg.setBackgroundColor)
+    if(tg.setBackgroundColor){
       tg.setBackgroundColor("#050914");
+    }
 
   }catch(e){}
 
@@ -1596,28 +1611,24 @@ const LOCAL_KEY =
   "ELCOIN_PLAYER_V3";
 
 /* =========================================================
-   ENERGY SETTINGS
+   ENERGY SYSTEM
 ========================================================= */
-
-/*
-  5000 ENERGY
-  1 SAATDA TAM DOLUR
-
-  5000 / 3600 =
-  1.388... Energy / saniyə
-
-  Hesablama interval ilə deyil,
-  timestamp ilə aparılır.
-
-  Ona görə oyun bağlansa belə
-  enerji vaxt əsasında bərpa olunur.
-*/
 
 const MAX_ENERGY =
   5000;
 
 const ENERGY_FULL_TIME =
   60 * 60 * 1000;
+
+/*
+  Enerji sisteminin versiyası.
+
+  Köhnə save-də 1000 energy varsa,
+  yalnız bir dəfə 5000-ə keçiriləcək.
+*/
+
+const ENERGY_SYSTEM_VERSION =
+  2;
 
 /* =========================================================
    PLAYER
@@ -1638,11 +1649,10 @@ let player = {
   energy:MAX_ENERGY,
   maxEnergy:MAX_ENERGY,
 
-  /*
-    Son enerji hesablamasının vaxtı.
-  */
-
   lastEnergyAt:Date.now(),
+
+  energySystemVersion:
+    ENERGY_SYSTEM_VERSION,
 
   level:1,
 
@@ -1670,17 +1680,26 @@ let player = {
    STATE
 ========================================================= */
 
-let serverOnline = false;
+let serverOnline =
+  false;
 
-let saveTimer = null;
+let saveTimer =
+  null;
 
-let toastTimer = null;
+let toastTimer =
+  null;
 
-let saveInFlight = false;
+let saveInFlight =
+  false;
 
-let saveQueued = false;
+let saveQueued =
+  false;
 
-let lastTapTime = 0;
+let lastTapTime =
+  0;
+
+let localPlayerLoaded =
+  false;
 
 /* =========================================================
    HELPERS
@@ -1721,7 +1740,9 @@ function showToast(message){
 
   el.classList.add("show");
 
-  clearTimeout(toastTimer);
+  clearTimeout(
+    toastTimer
+  );
 
   toastTimer =
     setTimeout(
@@ -1735,7 +1756,10 @@ function showToast(message){
 
 }
 
-function setServerStatus(type,text){
+function setServerStatus(
+  type,
+  text
+){
 
   const el =
     document.getElementById(
@@ -1746,7 +1770,8 @@ function setServerStatus(type,text){
     return;
 
   el.className =
-    "server-status " + type;
+    "server-status " +
+    type;
 
   el.textContent =
     text;
@@ -1770,8 +1795,14 @@ function getTelegramUser(){
         ? tg.initDataUnsafe.user
         : null;
 
-    if(!user || !user.id)
+    if(
+      !user ||
+      !user.id
+    ){
+
       return null;
+
+    }
 
     return user;
 
@@ -1789,19 +1820,28 @@ function getTelegramUser(){
 
 function makeNickname(user){
 
-  if(user && user.username){
+  if(
+    user &&
+    user.username
+  ){
 
     const clean =
       String(user.username)
         .replace(/[^\w]/g,"")
         .slice(0,20);
 
-    if(clean)
+    if(clean){
+
       return "@" + clean;
+
+    }
 
   }
 
-  if(user && user.id){
+  if(
+    user &&
+    user.id
+  ){
 
     const id =
       String(user.id);
@@ -1825,7 +1865,9 @@ function calculateIncome(){
     Math.max(
       1,
       Math.floor(
-        number(player.taxiLevel)
+        number(
+          player.taxiLevel
+        )
       )
     );
 
@@ -1833,7 +1875,9 @@ function calculateIncome(){
     Math.max(
       1,
       Math.floor(
-        number(player.cityLevel)
+        number(
+          player.cityLevel
+        )
       )
     );
 
@@ -1851,17 +1895,19 @@ function calculateIncome(){
 
 function regenerateEnergy(){
 
-  /*
-    Energy-in son hesablandığı vaxt.
-  */
-
   let last =
     Number(
       player.lastEnergyAt
     );
 
-  if(!Number.isFinite(last))
-    last = Date.now();
+  if(
+    !Number.isFinite(last)
+  ){
+
+    last =
+      Date.now();
+
+  }
 
   const now =
     Date.now();
@@ -1872,9 +1918,19 @@ function regenerateEnergy(){
       now - last
     );
 
-  /*
-    1 saatda maxEnergy qədər enerji.
-  */
+  if(elapsed <= 0)
+    return;
+
+  const currentEnergy =
+    Math.max(
+      0,
+      Math.min(
+        MAX_ENERGY,
+        number(
+          player.energy
+        )
+      )
+    );
 
   const energyPerMs =
     MAX_ENERGY /
@@ -1884,40 +1940,28 @@ function regenerateEnergy(){
     elapsed *
     energyPerMs;
 
-  if(gained > 0){
+  const newEnergy =
+    Math.min(
+      MAX_ENERGY,
+      currentEnergy + gained
+    );
+
+  player.energy =
+    newEnergy;
+
+  /*
+    Vaxtı həmişə son hesablamaya çəkirik.
+  */
+
+  player.lastEnergyAt =
+    now;
+
+  if(
+    player.energy >= MAX_ENERGY
+  ){
 
     player.energy =
-      Math.min(
-        MAX_ENERGY,
-        number(player.energy) + gained
-      );
-
-    /*
-      Əgər full olubsa,
-      timer indi-dən başlayır.
-    */
-
-    if(
-      player.energy >= MAX_ENERGY
-    ){
-
-      player.energy =
-        MAX_ENERGY;
-
-      player.lastEnergyAt =
-        now;
-
-    }else{
-
-      /*
-        Fractional energy qorunur.
-        Vaxt da indi-yə çəkilir.
-      */
-
-      player.lastEnergyAt =
-        now;
-
-    }
+      MAX_ENERGY;
 
   }
 
@@ -1935,13 +1979,11 @@ function render(){
     Math.max(
       0,
       Math.floor(
-        number(player.balance)
+        number(
+          player.balance
+        )
       )
     );
-
-  /*
-    MAX ENERGY HƏMİŞƏ 5000
-  */
 
   player.maxEnergy =
     MAX_ENERGY;
@@ -1951,7 +1993,9 @@ function render(){
       0,
       Math.min(
         MAX_ENERGY,
-        number(player.energy)
+        number(
+          player.energy
+        )
       )
     );
 
@@ -1959,7 +2003,9 @@ function render(){
     Math.max(
       1,
       Math.floor(
-        number(player.level)
+        number(
+          player.level
+        )
       )
     );
 
@@ -1967,7 +2013,9 @@ function render(){
     Math.max(
       1,
       Math.floor(
-        number(player.taxiLevel)
+        number(
+          player.taxiLevel
+        )
       )
     );
 
@@ -1975,7 +2023,9 @@ function render(){
     Math.max(
       1,
       Math.floor(
-        number(player.cityLevel)
+        number(
+          player.cityLevel
+        )
       )
     );
 
@@ -1983,7 +2033,9 @@ function render(){
     Math.max(
       0,
       Math.floor(
-        number(player.totalTaps)
+        number(
+          player.totalTaps
+        )
       )
     );
 
@@ -1991,7 +2043,9 @@ function render(){
     Math.max(
       0,
       Math.floor(
-        number(player.rides)
+        number(
+          player.rides
+        )
       )
     );
 
@@ -1999,7 +2053,9 @@ function render(){
     Math.max(
       0,
       Math.floor(
-        number(player.referrals)
+        number(
+          player.referrals
+        )
       )
     );
 
@@ -2010,74 +2066,126 @@ function render(){
     calculateIncome();
 
   const balance =
-    document.getElementById("balance");
+    document.getElementById(
+      "balance"
+    );
 
   const profileName =
-    document.getElementById("profileName");
+    document.getElementById(
+      "profileName"
+    );
 
   const dailyIncome =
-    document.getElementById("dailyIncome");
+    document.getElementById(
+      "dailyIncome"
+    );
 
   const tapPower =
-    document.getElementById("tapPower");
+    document.getElementById(
+      "tapPower"
+    );
 
   const rides =
-    document.getElementById("rides");
+    document.getElementById(
+      "rides"
+    );
 
   const level =
-    document.getElementById("level");
+    document.getElementById(
+      "level"
+    );
 
   const energy =
-    document.getElementById("energy");
+    document.getElementById(
+      "energy"
+    );
 
   const maxEnergy =
-    document.getElementById("maxEnergy");
+    document.getElementById(
+      "maxEnergy"
+    );
 
   const energyFill =
-    document.getElementById("energyFill");
+    document.getElementById(
+      "energyFill"
+    );
 
   const taxiLevel =
-    document.getElementById("taxiLevel");
+    document.getElementById(
+      "taxiLevel"
+    );
 
   const cityLevel =
-    document.getElementById("cityLevel");
+    document.getElementById(
+      "cityLevel"
+    );
 
   const cityIncome =
-    document.getElementById("cityIncome");
+    document.getElementById(
+      "cityIncome"
+    );
 
-  if(balance)
+  if(balance){
+
     balance.textContent =
       player.balance.toLocaleString();
 
-  if(profileName)
-    profileName.textContent =
-      player.nickname || "PLAYER";
+  }
 
-  if(dailyIncome)
+  if(profileName){
+
+    profileName.textContent =
+      player.nickname ||
+      "PLAYER";
+
+  }
+
+  if(dailyIncome){
+
     dailyIncome.textContent =
       "+" +
       player.dailyIncome.toLocaleString() +
       " ELC/day";
 
-  if(tapPower)
-    tapPower.textContent =
-      "+" + player.tapPower;
+  }
 
-  if(rides)
+  if(tapPower){
+
+    tapPower.textContent =
+      "+" +
+      player.tapPower;
+
+  }
+
+  if(rides){
+
     rides.textContent =
       player.rides;
 
-  if(level)
+  }
+
+  if(level){
+
     level.textContent =
       player.level;
 
-  if(energy)
-    energy.textContent =
-      Math.floor(player.energy).toLocaleString();
+  }
 
-  if(maxEnergy)
+  if(energy){
+
+    energy.textContent =
+      Math.floor(
+        player.energy
+      ).toLocaleString();
+
+  }
+
+  if(maxEnergy){
+
     maxEnergy.textContent =
       MAX_ENERGY.toLocaleString();
+
+  }
 
   if(energyFill){
 
@@ -2098,23 +2206,34 @@ function render(){
 
   }
 
-  if(taxiLevel)
+  if(taxiLevel){
+
     taxiLevel.textContent =
       player.taxiLevel;
 
-  if(cityLevel)
+  }
+
+  if(cityLevel){
+
     cityLevel.textContent =
       player.cityLevel;
 
-  if(cityIncome)
+  }
+
+  if(cityIncome){
+
     cityIncome.textContent =
       player.dailyIncome;
 
+  }
+
   const taxiCost =
-    400 * player.taxiLevel;
+    400 *
+    player.taxiLevel;
 
   const cityCost =
-    500 * player.cityLevel;
+    500 *
+    player.cityLevel;
 
   const taxiButton =
     document.getElementById(
@@ -2129,7 +2248,8 @@ function render(){
       " ELC";
 
     taxiButton.disabled =
-      player.balance < taxiCost;
+      player.balance <
+      taxiCost;
 
   }
 
@@ -2146,7 +2266,8 @@ function render(){
       " ELC";
 
     cityButton.disabled =
-      player.balance < cityCost;
+      player.balance <
+      cityCost;
 
   }
 
@@ -2157,7 +2278,7 @@ function render(){
 }
 
 /* =========================================================
-   LOCAL
+   SAVE LOCAL
 ========================================================= */
 
 function saveLocal(){
@@ -2173,7 +2294,14 @@ function saveLocal(){
 
 }
 
+/* =========================================================
+   LOAD LOCAL
+========================================================= */
+
 function loadLocal(){
+
+  localPlayerLoaded =
+    false;
 
   try{
 
@@ -2191,42 +2319,123 @@ function loadLocal(){
     if(!data)
       return false;
 
+    const oldVersion =
+      Number(
+        data.energySystemVersion
+      );
+
+    const oldMax =
+      Number(
+        data.maxEnergy
+      );
+
+    const oldEnergy =
+      Number(
+        data.energy
+      );
+
+    /*
+      Köhnə enerji sistemini yalnız
+      BİR DƏFƏ migrate edirik.
+
+      Əgər əvvəlki save 1000 max
+      idisə, 5000 ilə başlayır.
+      
+      Balance, level, taps və s.
+      toxunulmaz qalır.
+    */
+
+    const needsEnergyMigration =
+      oldVersion !==
+        ENERGY_SYSTEM_VERSION ||
+      !Number.isFinite(oldMax) ||
+      oldMax < MAX_ENERGY;
+
     player = {
       ...player,
       ...data
     };
 
-    /*
-      Köhnə versiyada maxEnergy 1000
-      ola bilər.
-
-      İndi həmişə 5000.
-    */
-
     player.maxEnergy =
       MAX_ENERGY;
 
-    /*
-      Əgər köhnə save-də lastEnergyAt
-      yoxdursa, indi-dən başla.
-    */
+    player.energySystemVersion =
+      ENERGY_SYSTEM_VERSION;
 
     if(
-      !Number.isFinite(
-        Number(player.lastEnergyAt)
-      )
+      needsEnergyMigration
     ){
+
+      player.energy =
+        MAX_ENERGY;
+
+      player.maxEnergy =
+        MAX_ENERGY;
 
       player.lastEnergyAt =
         Date.now();
 
+    }else{
+
+      if(
+        !Number.isFinite(
+          Number(
+            player.energy
+          )
+        )
+      ){
+
+        player.energy =
+          MAX_ENERGY;
+
+      }
+
+      if(
+        !Number.isFinite(
+          Number(
+            player.lastEnergyAt
+          )
+        )
+      ){
+
+        player.lastEnergyAt =
+          Date.now();
+
+      }
+
     }
+
+    /*
+      Əgər enerji mənfi və ya 5000-dən
+      çoxdursa düzəldirik.
+    */
+
+    player.energy =
+      Math.max(
+        0,
+        Math.min(
+          MAX_ENERGY,
+          number(
+            player.energy
+          )
+        )
+      );
 
     regenerateEnergy();
 
+    localPlayerLoaded =
+      true;
+
+    saveLocal();
+
     return true;
 
-  }catch(e){
+  }catch(error){
+
+    console.error(
+      "LOCAL LOAD ERROR:",
+      error
+    );
 
     return false;
 
@@ -2250,7 +2459,9 @@ async function supabaseRequest(
   const timer =
     setTimeout(
       function(){
+
         controller.abort();
+
       },
       timeout
     );
@@ -2292,7 +2503,8 @@ async function supabaseRequest(
     const text =
       await response.text();
 
-    let data = null;
+    let data =
+      null;
 
     try{
 
@@ -2303,7 +2515,8 @@ async function supabaseRequest(
 
     }catch(e){
 
-      data = text;
+      data =
+        text;
 
     }
 
@@ -2340,8 +2553,14 @@ async function callTelegramFunction(){
   if(!user)
     return null;
 
-  if(!tg || !tg.initData)
+  if(
+    !tg ||
+    !tg.initData
+  ){
+
     return null;
+
+  }
 
   const controller =
     new AbortController();
@@ -2349,7 +2568,9 @@ async function callTelegramFunction(){
   const timer =
     setTimeout(
       function(){
+
         controller.abort();
+
       },
       7000
     );
@@ -2423,7 +2644,9 @@ async function callTelegramFunction(){
 
     try{
 
-      return JSON.parse(text);
+      return JSON.parse(
+        text
+      );
 
     }catch(e){
 
@@ -2469,8 +2692,7 @@ function applyDatabasePlayer(row){
     player.firstName;
 
   /*
-    Real first name heç vaxt
-    profil adı kimi istifadə edilmir.
+    Real ad burada public profilə çıxarılmır.
   */
 
   player.nickname =
@@ -2498,19 +2720,93 @@ function applyDatabasePlayer(row){
     );
 
   /*
-    Serverdə köhnə 1000 ola bilər.
-    Amma artıq MAX 5000-dir.
+    =====================================================
+    ƏN VACİB DƏYİŞİKLİK
+    =====================================================
+
+    Serverdə köhnə Energy = 1000 ola bilər.
+
+    Əgər lokal save varsa və lokal enerji
+    serverdən yüksəkdirsə, serverin köhnə
+    1000 dəyəri lokal 5000-i silməyəcək.
+
+    Beləliklə köhnə server məlumatı
+    oyunun yeni 5000 sistemini pozmur.
   */
 
-  player.energy =
+  const serverEnergy =
     number(
       row.Energy ??
       row.energy ??
+      0
+    );
+
+  const localEnergy =
+    number(
       player.energy
+    );
+
+  if(
+    localPlayerLoaded
+  ){
+
+    /*
+      Lokal enerji daha yüksəkdirsə,
+      lokal saxlanılır.
+
+      Server daha yüksəkdirsə,
+      server dəyərini götürürük.
+    */
+
+    player.energy =
+      Math.max(
+        localEnergy,
+        serverEnergy
+      );
+
+  }else{
+
+    player.energy =
+      serverEnergy > 0
+        ? serverEnergy
+        : MAX_ENERGY;
+
+  }
+
+  player.energy =
+    Math.max(
+      0,
+      Math.min(
+        MAX_ENERGY,
+        number(
+          player.energy
+        )
+      )
     );
 
   player.maxEnergy =
     MAX_ENERGY;
+
+  player.energySystemVersion =
+    ENERGY_SYSTEM_VERSION;
+
+  /*
+    Local timestamp yoxdursa,
+    indi-dən başlat.
+  */
+
+  if(
+    !Number.isFinite(
+      Number(
+        player.lastEnergyAt
+      )
+    )
+  ){
+
+    player.lastEnergyAt =
+      Date.now();
+
+  }
 
   player.level =
     number(
@@ -2566,23 +2862,6 @@ function applyDatabasePlayer(row){
     row.updated_at ??
     player.updatedAt;
 
-  /*
-    Əgər local timestamp varsa,
-    serverdən gələn energy üzərinə
-    offline regen tətbiq olunur.
-  */
-
-  if(
-    !Number.isFinite(
-      Number(player.lastEnergyAt)
-    )
-  ){
-
-    player.lastEnergyAt =
-      Date.now();
-
-  }
-
   player.tapPower =
     player.taxiLevel;
 
@@ -2590,6 +2869,8 @@ function applyDatabasePlayer(row){
     calculateIncome();
 
   regenerateEnergy();
+
+  saveLocal();
 
 }
 
@@ -2600,7 +2881,7 @@ function applyDatabasePlayer(row){
 async function loadPlayer(){
 
   /*
-    ƏVVƏL LOCAL
+    LOCAL ƏVVƏL
   */
 
   loadLocal();
@@ -2626,6 +2907,10 @@ async function loadPlayer(){
 
   }
 
+  /*
+    Telegram ID-ni yadda saxla.
+  */
+
   player.telegramId =
     String(
       telegramUser.id
@@ -2650,7 +2935,9 @@ async function loadPlayer(){
   }
 
   /*
-    EDGE
+    =====================================================
+    EDGE FUNCTION
+    =====================================================
   */
 
   try{
@@ -2679,7 +2966,9 @@ async function loadPlayer(){
 
       if(row){
 
-        applyDatabasePlayer(row);
+        applyDatabasePlayer(
+          row
+        );
 
         serverOnline =
           true;
@@ -2691,9 +2980,18 @@ async function loadPlayer(){
 
         render();
 
-        document
-          .getElementById("loading")
-          .classList.add("hide");
+        /*
+          Lokal enerji serverə də yazılır.
+        */
+
+        setTimeout(
+          function(){
+
+            savePlayerToServer();
+
+          },
+          300
+        );
 
         return;
 
@@ -2711,7 +3009,9 @@ async function loadPlayer(){
   }
 
   /*
+    =====================================================
     REST FALLBACK
+    =====================================================
   */
 
   try{
@@ -2725,9 +3025,9 @@ async function loadPlayer(){
 
     const rows =
       await supabaseRequest(
-        'players?Telegram_id=eq.' +
+        "players?Telegram_id=eq." +
         id +
-        '&select=*',
+        "&select=*",
         {
           method:"GET"
         },
@@ -2753,16 +3053,28 @@ async function loadPlayer(){
 
       render();
 
-      document
-        .getElementById("loading")
-        .classList.add("hide");
+      /*
+        Serverdə köhnə 1000 varsa,
+        yeni lokal enerji geri yazılır.
+      */
+
+      setTimeout(
+        function(){
+
+          savePlayerToServer();
+
+        },
+        300
+      );
 
       return;
 
     }
 
     /*
+      =================================================
       NEW PLAYER
+      =================================================
     */
 
     const newPlayer = {
@@ -2871,10 +3183,6 @@ async function loadPlayer(){
 
   }
 
-  document
-    .getElementById("loading")
-    .classList.add("hide");
-
 }
 
 /* =========================================================
@@ -2917,17 +3225,28 @@ async function savePlayerToServer(){
 
     "Balance":
       Math.floor(
-        number(player.balance)
+        number(
+          player.balance
+        )
       ),
+
+    /*
+      Artıq serverə 5000 sisteminə
+      uyğun energy göndərilir.
+    */
 
     "Energy":
       Math.floor(
-        number(player.energy)
+        number(
+          player.energy
+        )
       ),
 
     "Level":
       Math.floor(
-        number(player.level)
+        number(
+          player.level
+        )
       ),
 
     "Last bonus":
@@ -2935,27 +3254,37 @@ async function savePlayerToServer(){
 
     "Referrals":
       Math.floor(
-        number(player.referrals)
+        number(
+          player.referrals
+        )
       ),
 
     "Taxi_level":
       Math.floor(
-        number(player.taxiLevel)
+        number(
+          player.taxiLevel
+        )
       ),
 
     "City_level":
       Math.floor(
-        number(player.cityLevel)
+        number(
+          player.cityLevel
+        )
       ),
 
     "Total_taps":
       Math.floor(
-        number(player.totalTaps)
+        number(
+          player.totalTaps
+        )
       ),
 
     "Total_rides":
       Math.floor(
-        number(player.rides)
+        number(
+          player.rides
+        )
       )
 
   };
@@ -2964,7 +3293,7 @@ async function savePlayerToServer(){
 
     const result =
       await supabaseRequest(
-        'players?Telegram_id=eq.' +
+        "players?Telegram_id=eq." +
         id,
         {
 
@@ -3107,38 +3436,43 @@ function tapCoin(event){
     Math.max(
       1,
       Math.floor(
-        number(player.tapPower)
+        number(
+          player.tapPower
+        )
       )
     );
 
   player.balance =
-    number(player.balance) +
+    number(
+      player.balance
+    ) +
     power;
 
   player.energy =
     Math.max(
       0,
-      number(player.energy) - 1
+      number(
+        player.energy
+      ) - 1
     );
-
-  /*
-    Növbəti regen hesablaması
-    indi-dən davam edir.
-  */
 
   player.lastEnergyAt =
     Date.now();
 
   player.totalTaps =
-    number(player.totalTaps) + 1;
+    number(
+      player.totalTaps
+    ) + 1;
 
   const newLevel =
     Math.floor(
-      player.totalTaps / 100
+      player.totalTaps /
+      100
     ) + 1;
 
   if(
-    newLevel > player.level
+    newLevel >
+    player.level
   ){
 
     player.level =
@@ -3156,7 +3490,9 @@ function tapCoin(event){
   ){
 
     player.rides =
-      number(player.rides) + 1;
+      number(
+        player.rides
+      ) + 1;
 
   }
 
@@ -3175,7 +3511,9 @@ function tapCoin(event){
     try{
 
       tg.HapticFeedback
-        .impactOccurred("light");
+        .impactOccurred(
+          "light"
+        );
 
     }catch(e){}
 
@@ -3189,44 +3527,60 @@ function tapCoin(event){
    FLOAT
 ========================================================= */
 
-function createFloat(event,text){
+function createFloat(
+  event,
+  text
+){
 
   const el =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   el.className =
     "float";
 
   el.textContent =
-    text + " ELC";
+    text +
+    " ELC";
 
   let x =
-    window.innerWidth / 2;
+    window.innerWidth /
+    2;
 
   let y =
-    window.innerHeight / 2;
+    window.innerHeight /
+    2;
 
   if(event){
 
     if(
       Number.isFinite(
-        Number(event.clientX)
+        Number(
+          event.clientX
+        )
       )
     ){
 
       x =
-        Number(event.clientX);
+        Number(
+          event.clientX
+        );
 
     }
 
     if(
       Number.isFinite(
-        Number(event.clientY)
+        Number(
+          event.clientY
+        )
       )
     ){
 
       y =
-        Number(event.clientY);
+        Number(
+          event.clientY
+        );
 
     }
 
@@ -3238,7 +3592,9 @@ function createFloat(event,text){
   el.style.top =
     y + "px";
 
-  document.body.appendChild(el);
+  document.body.appendChild(
+    el
+  );
 
   setTimeout(
     function(){
@@ -3255,22 +3611,6 @@ function createFloat(event,text){
 /* =========================================================
    ENERGY CLOCK
 ========================================================= */
-
-/*
-  UI hər saniyə yenilənir.
-
-  Vacib:
-  Burada setInterval ilə enerji
-  "1 vahid" artırılmır.
-
-  Real keçən vaxt hesablanır.
-
-  Buna görə:
-  oyun bağlanır
-  30 dəqiqə keçir
-  oyun açılır
-  enerji avtomatik artır.
-*/
 
 setInterval(
   function(){
@@ -3297,7 +3637,9 @@ function updateBonusButton(){
   if(!button)
     return;
 
-  if(!player.lastBonus){
+  if(
+    !player.lastBonus
+  ){
 
     button.disabled =
       false;
@@ -3330,7 +3672,8 @@ function updateBonusButton(){
 
   const hours =
     (
-      Date.now() - last
+      Date.now() -
+      last
     ) /
     (1000 * 60 * 60);
 
@@ -3369,7 +3712,10 @@ function claimBonus(){
         player.lastBonus
       ).getTime()
     ) <
-    24 * 60 * 60 * 1000
+    24 *
+    60 *
+    60 *
+    1000
   ){
 
     showToast(
@@ -3381,7 +3727,9 @@ function claimBonus(){
   }
 
   player.balance =
-    number(player.balance) +
+    number(
+      player.balance
+    ) +
     500;
 
   player.lastBonus =
@@ -3408,7 +3756,8 @@ function upgradeTaxi(){
     player.taxiLevel;
 
   if(
-    player.balance < cost
+    player.balance <
+    cost
   ){
 
     showToast(
@@ -3453,7 +3802,8 @@ function upgradeCity(){
     player.cityLevel;
 
   if(
-    player.balance < cost
+    player.balance <
+    cost
   ){
 
     showToast(
@@ -3491,24 +3841,41 @@ function upgradeCity(){
 function openPanel(id){
 
   const panel =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
 
-  if(panel)
-    panel.classList.add("show");
+  if(panel){
+
+    panel.classList.add(
+      "show"
+    );
+
+  }
 
 }
 
 function closePanel(id){
 
   const panel =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
 
-  if(panel)
-    panel.classList.remove("show");
+  if(panel){
+
+    panel.classList.remove(
+      "show"
+    );
+
+  }
 
 }
 
-function closeOutside(event,id){
+function closeOutside(
+  event,
+  id
+){
 
   if(
     event.target.id === id
@@ -3527,7 +3894,9 @@ function closeOutside(event,id){
 function setActive(button){
 
   document
-    .querySelectorAll(".nav-btn")
+    .querySelectorAll(
+      ".nav-btn"
+    )
     .forEach(
       function(btn){
 
@@ -3550,7 +3919,9 @@ function setActive(button){
 
 function goHome(button){
 
-  setActive(button);
+  setActive(
+    button
+  );
 
   [
     "taxiPanel",
@@ -3566,8 +3937,11 @@ function goHome(button){
   );
 
   window.scrollTo({
+
     top:0,
+
     behavior:"smooth"
+
   });
 
 }
@@ -3628,13 +4002,17 @@ async function copyReferral(){
 
     }else{
 
-      showToast(link);
+      showToast(
+        link
+      );
 
     }
 
   }catch(e){
 
-    showToast(link);
+    showToast(
+      link
+    );
 
   }
 
@@ -3683,7 +4061,10 @@ async function loadRanking(){
     list.innerHTML =
       rows
         .map(
-          function(row,index){
+          function(
+            row,
+            index
+          ){
 
             const username =
               row["User name"];
@@ -3695,9 +4076,9 @@ async function loadRanking(){
               name =
                 String(username)
                   .startsWith("@")
-                  ? String(username)
-                  : "@" +
-                    String(username);
+                    ? String(username)
+                    : "@" +
+                      String(username);
 
             }else{
 
@@ -3713,6 +4094,7 @@ async function loadRanking(){
             }
 
             return `
+
               <div class="rank-row">
 
                 <div class="rank-pos">
@@ -3724,11 +4106,14 @@ async function loadRanking(){
                 </div>
 
                 <div class="rank-balance">
-                  ${number(row.Balance).toLocaleString()}
+                  ${number(
+                    row.Balance
+                  ).toLocaleString()}
                   ELC
                 </div>
 
               </div>
+
             `;
 
           }
@@ -3753,17 +4138,6 @@ async function loadRanking(){
    TAP EVENT
 ========================================================= */
 
-/*
-  ƏVVƏLKİ PROBLEMLİ:
-  click + touchstart + preventDefault
-
-  YOXDUR.
-
-  İndi pointerdown istifadə edilir.
-  Android Telegram WebView-də toxunuş
-  daha stabil işləyir.
-*/
-
 const coinButton =
   document.getElementById(
     "coinButton"
@@ -3776,7 +4150,8 @@ if(coinButton){
     function(event){
 
       if(
-        event.pointerType === "mouse" &&
+        event.pointerType ===
+        "mouse" &&
         event.button !== 0
       ){
 
@@ -3790,7 +4165,9 @@ if(coinButton){
 
       }catch(e){}
 
-      tapCoin(event);
+      tapCoin(
+        event
+      );
 
     },
     {
@@ -3801,7 +4178,7 @@ if(coinButton){
 }
 
 /* =========================================================
-   START
+   START GAME
 ========================================================= */
 
 async function startGame(){
