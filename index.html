@@ -2666,20 +2666,54 @@ if(coinButton){
 
 async function startGame(){
 
-  loadLocal();
+  try{
 
-  render();
+    loadLocal();
+    render();
+    updateReferral();
 
-  updateReferral();
+    await Promise.race([
+      loadPlayer(),
+      new Promise(resolve =>
+        setTimeout(resolve, 9000)
+      )
+    ]);
 
-  await loadPlayer();
+    updateReferral();
+    render();
 
-  updateReferral();
+  }catch(error){
 
-  render();
+    console.error(
+      "START GAME ERROR:",
+      error
+    );
+
+    loadLocal();
+    render();
+    updateReferral();
+
+  }finally{
+
+    document
+      .getElementById("loading")
+      .classList.add("hide");
+
+  }
 }
 
 startGame();
+
+setTimeout(() => {
+
+  const loading =
+    document.getElementById("loading");
+
+  if(loading){
+    loading.classList.add("hide");
+  }
+
+},10000);
 
 /* =========================================================
    SAVE WHEN LEAVING
