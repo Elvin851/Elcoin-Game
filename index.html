@@ -161,7 +161,173 @@ button{
 
   animation:logoEGlow 2.5s ease-in-out infinite;
 }
+/* =========================
+   ELCOIN CITY BACKGROUND
+   ========================= */
 
+body::before{
+  content:"";
+  position:fixed;
+  left:-5%;
+  right:-5%;
+  bottom:0;
+  height:48vh;
+
+  z-index:0;
+  pointer-events:none;
+  opacity:.48;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 4%,
+      #211908 4% 12%,
+      transparent 12% 15%,
+      #302309 15% 23%,
+      transparent 23% 26%,
+      #1c1607 26% 34%,
+      transparent 34% 37%,
+      #36270a 37% 45%,
+      transparent 45% 48%,
+      #211908 48% 56%,
+      transparent 56% 59%,
+      #332509 59% 67%,
+      transparent 67% 70%,
+      #1e1707 70% 78%,
+      transparent 78% 81%,
+      #36270a 81% 90%,
+      transparent 90% 93%,
+      #211908 93% 100%
+    );
+
+  filter:blur(7px);
+
+  mask-image:
+    linear-gradient(
+      to top,
+      #000 0%,
+      #000 55%,
+      transparent 100%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to top,
+      #000 0%,
+      #000 55%,
+      transparent 100%
+    );
+}
+
+/* BİNALARIN BULANIQ İŞIQLARI */
+
+body::after{
+  content:"";
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:40vh;
+
+  z-index:0;
+  pointer-events:none;
+  opacity:.28;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 19px,
+      rgba(255,210,65,.8) 20px 23px,
+      transparent 24px 46px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 20px,
+      rgba(255,205,60,.65) 21px 23px,
+      transparent 24px 40px
+    );
+
+  background-size:
+    150px 130px,
+    150px 130px;
+
+  mask-image:
+    linear-gradient(
+      to top,
+      #000 0%,
+      rgba(0,0,0,.8) 50%,
+      transparent 100%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to top,
+      #000 0%,
+      rgba(0,0,0,.8) 50%,
+      transparent 100%
+    );
+
+  filter:blur(4px);
+}
+
+/* ARXA PLANDA BÖYÜK E */
+
+.app::before{
+  content:"E";
+
+  position:fixed;
+  left:50%;
+  top:45%;
+
+  transform:translate(-50%,-50%);
+
+  font-size:300px;
+  line-height:1;
+  font-weight:900;
+
+  color:rgba(255,205,55,.035);
+
+  text-shadow:
+    0 0 35px rgba(255,190,30,.15),
+    0 0 80px rgba(255,180,20,.08);
+
+  filter:blur(2px);
+
+  pointer-events:none;
+  z-index:1;
+}
+
+/* BULANIQ ELCOIN / TAP TO EARN */
+
+.app::after{
+  content:"ELCOIN  •  TAP TO EARN";
+
+  position:fixed;
+  left:50%;
+  bottom:30vh;
+
+  transform:translateX(-50%) rotate(-4deg);
+
+  width:100%;
+
+  text-align:center;
+  white-space:nowrap;
+
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:7px;
+
+  color:rgba(255,210,70,.09);
+
+  text-shadow:
+    0 0 12px rgba(255,200,40,.22),
+    0 0 35px rgba(255,180,20,.10);
+
+  filter:blur(2px);
+
+  pointer-events:none;
+  z-index:1;
+}
 @keyframes logoEGlow{
   0%,100%{
     opacity:.85;
