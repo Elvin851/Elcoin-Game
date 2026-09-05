@@ -3504,43 +3504,100 @@ function updateBonusButton(){
 
 function claimBonus(){
 
-  if(
-    player.lastBonus &&
-    (
-      Date.now() -
+  const now = Date.now();
+
+  /* =========================================
+     24 SAATLIK BONUS YOXLAMASI
+  ========================================= */
+
+  if(player.lastBonus){
+
+    const last =
       new Date(
         player.lastBonus
-      ).getTime()
-    ) <
-    24 *
-    60 *
-    60 *
-    1000
-  ){
+      ).getTime();
 
-    showToast(
-      "🎁 Bonus artıq götürülüb"
-    );
+    if(
+      Number.isFinite(last) &&
+      now - last <
+        24 * 60 * 60 * 1000
+    ){
 
-    return;
+      updateBonusButton();
+
+      showToast(
+        "🎁 Bonus artıq götürülüb"
+      );
+
+      return;
+
+    }
 
   }
 
+  /* =========================================
+     BONUSU MÜVƏQQƏTİ OLARAQ VER
+  ========================================= */
+
+  const oldBalance =
+    number(player.balance);
+
+  const oldLastBonus =
+    player.lastBonus;
+
   player.balance =
-    number(
-      player.balance
-    ) + 500;
+    oldBalance + 500;
 
   player.lastBonus =
-    new Date().toISOString();
+    new Date(now).toISOString();
 
   render();
 
-  saveGame();
+  /* =========================================
+     DƏRHAL LOKAL YADDAŞ
+  ========================================= */
 
-  showToast(
-    "🎁 +500 ELC qazandın!"
-  );
+  saveLocal();
+
+  /* =========================================
+     DƏRHAL SERVERƏ YAZ
+  ========================================= */
+
+  savePlayerToServer()
+    .then(function(){
+
+      showToast(
+        "🎁 +500 ELC qazandın!"
+      );
+
+    })
+    .catch(function(error){
+
+      console.error(
+        "BONUS SAVE ERROR:",
+        error
+      );
+
+      /*
+        Serverə yazılmadısa,
+        lokal dəyişiklik geri qaytarılır.
+      */
+
+      player.balance =
+        oldBalance;
+
+      player.lastBonus =
+        oldLastBonus;
+
+      saveLocal();
+
+      render();
+
+      showToast(
+        "⚠️ Bonus serverə yadda saxlanmadı"
+      );
+
+    });
 
 }
 
