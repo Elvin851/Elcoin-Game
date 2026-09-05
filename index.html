@@ -3861,7 +3861,7 @@ async function loadRanking(){
 
     const rows =
       await supabaseRequest(
-        "players?select=nickname,balance,level,is_public&order=balance.desc&limit=50",
+        "players?select=first_name,username,nickname,balance,level,is_public&order=balance.desc&limit=50",
         {
           method:"GET"
         },
@@ -3901,10 +3901,22 @@ async function loadRanking(){
         .map(
           function(row,index){
 
+            /*
+             * Ranking-də əvvəlcə Telegram
+             * profil adı göstərilir.
+             *
+             * first_name = Telegram adı
+             *
+             * username yalnız ad olmadıqda
+             * ehtiyat kimi istifadə olunur.
+             */
+
             const name =
+              row.first_name ||
+              row.username ||
               row.nickname ||
               (
-                "player_" +
+                "Player " +
                 String(
                   index + 1
                 ).padStart(
