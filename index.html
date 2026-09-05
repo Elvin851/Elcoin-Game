@@ -251,7 +251,9 @@ button{
   align-items:center;
   justify-content:center;
   user-select:none;
+  -webkit-user-select:none;
   touch-action:manipulation;
+  -webkit-touch-callout:none;
   color:#543900;
   background:
     radial-gradient(circle at 35% 27%,#fff7b1 0%,#ffe65c 17%,#ffc400 42%,#d58a00 70%,#765000 100%);
@@ -777,6 +779,7 @@ button{
 }
 
 @media(max-width:370px){
+
   .coin-button{
     width:180px;
     height:180px;
@@ -806,281 +809,595 @@ button{
 
 <div class="app">
 
-  <header class="header">
-    <div class="brand">
-      <div class="logo">E</div>
-      <div>
-        <div class="brand-title">ELCOIN</div>
-        <div class="brand-sub">PLAY · EARN · GROW</div>
-      </div>
+<header class="header">
+
+  <div class="brand">
+
+    <div class="logo">E</div>
+
+    <div>
+      <div class="brand-title">ELCOIN</div>
+      <div class="brand-sub">PLAY · EARN · GROW</div>
     </div>
 
-    <div class="profile">
-      <div class="profile-icon">👤</div>
-      <div id="profileName">PLAYER</div>
-    </div>
-  </header>
-
-  <div class="server-status" id="serverStatus">
-    🔄 Server yoxlanılır...
   </div>
 
-  <section class="balance-card">
-    <div class="balance-label">Your ELCOIN Balance</div>
+  <div class="profile">
+    <div class="profile-icon">👤</div>
+    <div id="profileName">PLAYER</div>
+  </div>
 
-    <div class="balance-row">
-      <div class="balance-coin">E</div>
-      <div id="balance">0</div>
-      <div class="balance-unit">ELC</div>
+</header>
+
+<div class="server-status" id="serverStatus">
+  🔄 Server yoxlanılır...
+</div>
+
+<section class="balance-card">
+
+  <div class="balance-label">
+    Your ELCOIN Balance
+  </div>
+
+  <div class="balance-row">
+
+    <div class="balance-coin">E</div>
+
+    <div id="balance">0</div>
+
+    <div class="balance-unit">
+      ELC
     </div>
 
-    <div class="income">
-      <span>Daily income</span>
-      <strong id="dailyIncome">+120 ELC/day</strong>
-    </div>
-  </section>
+  </div>
 
-  <section class="tap-section">
+  <div class="income">
 
-    <div class="tap-title">Tap to earn ELCOIN</div>
-    <div class="tap-sub">Hər toxunuş sənə ELCOIN qazandırır</div>
+    <span>Daily income</span>
 
-    <button class="coin-button" id="coinButton">
-      <div class="coin-inner">E</div>
-    </button>
+    <strong id="dailyIncome">
+      +120 ELC/day
+    </strong>
 
-    <div class="tap-hint">Toxun və ELCOIN qazan</div>
+  </div>
 
-  </section>
+</section>
 
-  <section class="stats">
+<section class="tap-section">
 
-    <div class="stat">
-      <div class="stat-icon">👆</div>
-      <div class="stat-value" id="tapPower">+1</div>
-      <div class="stat-label">TAP POWER</div>
-    </div>
+  <div class="tap-title">
+    Tap to earn ELCOIN
+  </div>
 
-    <div class="stat">
-      <div class="stat-icon">🚕</div>
-      <div class="stat-value" id="rides">0</div>
-      <div class="stat-label">RIDES</div>
+  <div class="tap-sub">
+    Hər toxunuş sənə ELCOIN qazandırır
+  </div>
+
+  <button class="coin-button" id="coinButton" type="button">
+
+    <div class="coin-inner">
+      E
     </div>
 
-    <div class="stat">
-      <div class="stat-icon">⭐</div>
-      <div class="stat-value" id="level">1</div>
-      <div class="stat-label">LEVEL</div>
+  </button>
+
+  <div class="tap-hint">
+    Toxun və ELCOIN qazan
+  </div>
+
+</section>
+
+<section class="stats">
+
+  <div class="stat">
+
+    <div class="stat-icon">
+      👆
     </div>
 
-  </section>
+    <div class="stat-value" id="tapPower">
+      +1
+    </div>
 
-  <section class="energy-card">
+    <div class="stat-label">
+      TAP POWER
+    </div>
 
-    <div class="energy-head">
-      <span>⚡ Energy</span>
-      <span class="energy-number">
-        <span id="energy">1000</span> /
-        <span id="maxEnergy">1000</span>
+  </div>
+
+  <div class="stat">
+
+    <div class="stat-icon">
+      🚕
+    </div>
+
+    <div class="stat-value" id="rides">
+      0
+    </div>
+
+    <div class="stat-label">
+      RIDES
+    </div>
+
+  </div>
+
+  <div class="stat">
+
+    <div class="stat-icon">
+      ⭐
+    </div>
+
+    <div class="stat-value" id="level">
+      1
+    </div>
+
+    <div class="stat-label">
+      LEVEL
+    </div>
+
+  </div>
+
+</section>
+
+<section class="energy-card">
+
+  <div class="energy-head">
+
+    <span>
+      ⚡ Energy
+    </span>
+
+    <span class="energy-number">
+
+      <span id="energy">
+        1000
       </span>
+
+      /
+
+      <span id="maxEnergy">
+        1000
+      </span>
+
+    </span>
+
+  </div>
+
+  <div class="energy-bar">
+
+    <div
+      class="energy-fill"
+      id="energyFill">
     </div>
 
-    <div class="energy-bar">
-      <div class="energy-fill" id="energyFill"></div>
+  </div>
+
+</section>
+
+<div class="section-title">
+  Quick Menu
+</div>
+
+<div class="section-sub">
+  EXPLORE ELCOIN
+</div>
+
+<section class="quick-grid">
+
+  <button
+    class="quick"
+    type="button"
+    onclick="openPanel('taxiPanel')">
+
+    <div class="quick-icon">
+      🚕
     </div>
 
-  </section>
+    <div class="quick-name">
+      Taxis
+    </div>
 
-  <div class="section-title">Quick Menu</div>
-  <div class="section-sub">EXPLORE ELCOIN</div>
+    <div class="quick-info">
+      Upgrade & earn more
+    </div>
 
-  <section class="quick-grid">
+  </button>
 
-    <button class="quick" onclick="openPanel('taxiPanel')">
-      <div class="quick-icon">🚕</div>
-      <div class="quick-name">Taxis</div>
-      <div class="quick-info">Upgrade & earn more</div>
-    </button>
+  <button
+    class="quick"
+    type="button"
+    onclick="openPanel('cityPanel')">
 
-    <button class="quick" onclick="openPanel('cityPanel')">
-      <div class="quick-icon">🏙️</div>
-      <div class="quick-name">City</div>
-      <div class="quick-info">Build your city</div>
-    </button>
+    <div class="quick-icon">
+      🏙️
+    </div>
 
-    <button class="quick" onclick="openPanel('friendsPanel')">
-      <div class="quick-icon">👥</div>
-      <div class="quick-name">Friends</div>
-      <div class="quick-info">Invite & earn</div>
-    </button>
+    <div class="quick-name">
+      City
+    </div>
 
-    <button class="quick" onclick="openPanel('rankingPanel');loadRanking()">
-      <div class="quick-icon">🏆</div>
-      <div class="quick-name">Ranking</div>
-      <div class="quick-info">Top players</div>
-    </button>
+    <div class="quick-info">
+      Build your city
+    </div>
 
-  </section>
+  </button>
 
-  <section class="bonus-card">
+  <button
+    class="quick"
+    type="button"
+    onclick="openPanel('friendsPanel')">
 
-    <div class="bonus-left">
-      <div class="bonus-icon">🎁</div>
-      <div>
-        <div class="bonus-title">Daily Bonus</div>
-        <div class="bonus-value">+500 ELCOIN</div>
+    <div class="quick-icon">
+      👥
+    </div>
+
+    <div class="quick-name">
+      Friends
+    </div>
+
+    <div class="quick-info">
+      Invite & earn
+    </div>
+
+  </button>
+
+  <button
+    class="quick"
+    type="button"
+    onclick="openPanel('rankingPanel');loadRanking()">
+
+    <div class="quick-icon">
+      🏆
+    </div>
+
+    <div class="quick-name">
+      Ranking
+    </div>
+
+    <div class="quick-info">
+      Top players
+    </div>
+
+  </button>
+
+</section>
+
+<section class="bonus-card">
+
+  <div class="bonus-left">
+
+    <div class="bonus-icon">
+      🎁
+    </div>
+
+    <div>
+
+      <div class="bonus-title">
+        Daily Bonus
       </div>
+
+      <div class="bonus-value">
+        +500 ELCOIN
+      </div>
+
     </div>
 
-    <button class="claim" id="bonusButton" onclick="claimBonus()">
-      CLAIM
-    </button>
+  </div>
 
-  </section>
+  <button
+    class="claim"
+    id="bonusButton"
+    type="button"
+    onclick="claimBonus()">
+
+    CLAIM
+
+  </button>
+
+</section>
 
 </div>
 
 <!-- TAXI -->
 
-<div class="panel" id="taxiPanel" onclick="closeOutside(event,'taxiPanel')">
+<div
+  class="panel"
+  id="taxiPanel"
+  onclick="closeOutside(event,'taxiPanel')">
+
   <div class="panel-box">
 
     <div class="panel-head">
-      <div class="panel-title">🚕 Taxis</div>
-      <button class="close" onclick="closePanel('taxiPanel')">×</button>
+
+      <div class="panel-title">
+        🚕 Taxis
+      </div>
+
+      <button
+        class="close"
+        type="button"
+        onclick="closePanel('taxiPanel')">
+        ×
+      </button>
+
     </div>
 
     <div class="upgrade">
 
       <div class="upgrade-top">
-        <div class="upgrade-name">Taxi Power</div>
-        <div class="level">LEVEL <span id="taxiLevel">1</span></div>
+
+        <div class="upgrade-name">
+          Taxi Power
+        </div>
+
+        <div class="level">
+          LEVEL
+          <span id="taxiLevel">
+            1
+          </span>
+        </div>
+
       </div>
 
       <div class="upgrade-desc">
         Hər toxunuşdan qazandığın ELCOIN miqdarını artır.
       </div>
 
-      <button class="upgrade-btn" id="taxiUpgrade" onclick="upgradeTaxi()">
+      <button
+        class="upgrade-btn"
+        id="taxiUpgrade"
+        type="button"
+        onclick="upgradeTaxi()">
+
         Upgrade
+
       </button>
 
     </div>
 
   </div>
+
 </div>
 
 <!-- CITY -->
 
-<div class="panel" id="cityPanel" onclick="closeOutside(event,'cityPanel')">
+<div
+  class="panel"
+  id="cityPanel"
+  onclick="closeOutside(event,'cityPanel')">
+
   <div class="panel-box">
 
     <div class="panel-head">
-      <div class="panel-title">🏙️ City</div>
-      <button class="close" onclick="closePanel('cityPanel')">×</button>
+
+      <div class="panel-title">
+        🏙️ City
+      </div>
+
+      <button
+        class="close"
+        type="button"
+        onclick="closePanel('cityPanel')">
+        ×
+      </button>
+
     </div>
 
     <div class="city-box">
 
       <div class="city-level">
-        LEVEL <span id="cityLevel">1</span>
+        LEVEL
+        <span id="cityLevel">
+          1
+        </span>
       </div>
 
       <div class="city-income">
-        Daily income: <span id="cityIncome">+120</span> ELC
+        Daily income:
+        <span id="cityIncome">
+          +120
+        </span>
+        ELC
       </div>
 
-      <button class="upgrade-btn" onclick="upgradeCity()">
+      <button
+        class="upgrade-btn"
+        type="button"
+        onclick="upgradeCity()">
+
         Upgrade City
+
       </button>
 
     </div>
 
   </div>
+
 </div>
 
 <!-- FRIENDS -->
 
-<div class="panel" id="friendsPanel" onclick="closeOutside(event,'friendsPanel')">
+<div
+  class="panel"
+  id="friendsPanel"
+  onclick="closeOutside(event,'friendsPanel')">
+
   <div class="panel-box">
 
     <div class="panel-head">
-      <div class="panel-title">👥 Friends</div>
-      <button class="close" onclick="closePanel('friendsPanel')">×</button>
+
+      <div class="panel-title">
+        👥 Friends
+      </div>
+
+      <button
+        class="close"
+        type="button"
+        onclick="closePanel('friendsPanel')">
+        ×
+      </button>
+
     </div>
 
     <div class="ref-box">
 
-      <div class="upgrade-name">Invite friends</div>
+      <div class="upgrade-name">
+        Invite friends
+      </div>
 
       <div class="upgrade-desc">
         Dostlarını dəvət et və bonus qazan.
       </div>
 
-      <div class="ref-code" id="refLink">
+      <div
+        class="ref-code"
+        id="refLink">
+
         Link hazırlanır...
+
       </div>
 
-      <button class="copy-btn" onclick="copyReferral()">
+      <button
+        class="copy-btn"
+        type="button"
+        onclick="copyReferral()">
+
         📋 Copy referral link
+
       </button>
 
     </div>
 
   </div>
+
 </div>
 
 <!-- RANKING -->
 
-<div class="panel" id="rankingPanel" onclick="closeOutside(event,'rankingPanel')">
+<div
+  class="panel"
+  id="rankingPanel"
+  onclick="closeOutside(event,'rankingPanel')">
+
   <div class="panel-box">
 
     <div class="panel-head">
-      <div class="panel-title">🏆 Ranking</div>
-      <button class="close" onclick="closePanel('rankingPanel')">×</button>
+
+      <div class="panel-title">
+        🏆 Ranking
+      </div>
+
+      <button
+        class="close"
+        type="button"
+        onclick="closePanel('rankingPanel')">
+        ×
+      </button>
+
     </div>
 
-    <div class="rank-list" id="rankList">
-      <div style="text-align:center;color:#71839a;padding:20px">
+    <div
+      class="rank-list"
+      id="rankList">
+
+      <div
+        style="text-align:center;color:#71839a;padding:20px">
+
         Ranking yüklənir...
+
       </div>
+
     </div>
 
   </div>
+
 </div>
 
 <!-- NAV -->
 
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" onclick="goHome(this)">
-    <div class="nav-icon">🏠</div>
-    <div class="nav-label">Home</div>
+  <button
+    class="nav-btn active"
+    type="button"
+    onclick="goHome(this)">
+
+    <div class="nav-icon">
+      🏠
+    </div>
+
+    <div class="nav-label">
+      Home
+    </div>
+
   </button>
 
-  <button class="nav-btn" onclick="openPanel('taxiPanel');setActive(this)">
-    <div class="nav-icon">🚕</div>
-    <div class="nav-label">Taxis</div>
+  <button
+    class="nav-btn"
+    type="button"
+    onclick="openPanel('taxiPanel');setActive(this)">
+
+    <div class="nav-icon">
+      🚕
+    </div>
+
+    <div class="nav-label">
+      Taxis
+    </div>
+
   </button>
 
-  <button class="nav-btn" onclick="openPanel('cityPanel');setActive(this)">
-    <div class="nav-icon">🏙️</div>
-    <div class="nav-label">City</div>
+  <button
+    class="nav-btn"
+    type="button"
+    onclick="openPanel('cityPanel');setActive(this)">
+
+    <div class="nav-icon">
+      🏙️
+    </div>
+
+    <div class="nav-label">
+      City
+    </div>
+
   </button>
 
-  <button class="nav-btn" onclick="openPanel('friendsPanel');setActive(this)">
-    <div class="nav-icon">👥</div>
-    <div class="nav-label">Friends</div>
+  <button
+    class="nav-btn"
+    type="button"
+    onclick="openPanel('friendsPanel');setActive(this)">
+
+    <div class="nav-icon">
+      👥
+    </div>
+
+    <div class="nav-label">
+      Friends
+    </div>
+
   </button>
 
-  <button class="nav-btn" onclick="openPanel('rankingPanel');loadRanking();setActive(this)">
-    <div class="nav-icon">🏆</div>
-    <div class="nav-label">Rank</div>
+  <button
+    class="nav-btn"
+    type="button"
+    onclick="openPanel('rankingPanel');loadRanking();setActive(this)">
+
+    <div class="nav-icon">
+      🏆
+    </div>
+
+    <div class="nav-label">
+      Rank
+    </div>
+
   </button>
 
 </nav>
 
-<div class="toast" id="toast"></div>
+<div
+  class="toast"
+  id="toast">
+</div>
 
 <script>
 "use strict";
@@ -1096,16 +1413,25 @@ const tg =
     : null;
 
 if(tg){
+
   try{
+
     tg.ready();
     tg.expand();
 
-    if(tg.setHeaderColor)
+    if(tg.setHeaderColor){
       tg.setHeaderColor("#07101f");
+    }
 
-    if(tg.setBackgroundColor)
+    if(tg.setBackgroundColor){
       tg.setBackgroundColor("#050914");
-  }catch(e){}
+    }
+
+  }catch(e){
+
+    console.log(e);
+
+  }
 }
 
 /* =========================================================
@@ -1130,7 +1456,9 @@ const LOCAL_KEY =
 ========================================================= */
 
 let player = {
+
   id:null,
+
   telegramId:null,
 
   username:"",
@@ -1143,12 +1471,15 @@ let player = {
   maxEnergy:1000,
 
   level:1,
+
   tapPower:1,
 
   rides:0,
+
   referrals:0,
 
   taxiLevel:1,
+
   cityLevel:1,
 
   dailyIncome:120,
@@ -1160,26 +1491,45 @@ let player = {
   updatedAt:null
 };
 
+/* =========================================================
+   STATE
+========================================================= */
+
 let serverOnline = false;
+
 let saveTimer = null;
+
 let toastTimer = null;
+
+let saveInFlight = false;
+
+let saveQueued = false;
+
+let lastTapTime = 0;
 
 /* =========================================================
    HELPERS
 ========================================================= */
 
 function escapeHtml(value){
+
   return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
 }
 
 function number(value){
+
   const n = Number(value);
-  return Number.isFinite(n) ? n : 0;
+
+  return Number.isFinite(n)
+    ? n
+    : 0;
+
 }
 
 function showToast(message){
@@ -1187,7 +1537,11 @@ function showToast(message){
   const el =
     document.getElementById("toast");
 
-  el.textContent = message;
+  if(!el)
+    return;
+
+  el.textContent =
+    message;
 
   el.classList.add("show");
 
@@ -1195,20 +1549,30 @@ function showToast(message){
 
   toastTimer =
     setTimeout(
-      () => el.classList.remove("show"),
+      function(){
+        el.classList.remove("show");
+      },
       2200
     );
+
 }
 
 function setServerStatus(type,text){
 
   const el =
-    document.getElementById("serverStatus");
+    document.getElementById(
+      "serverStatus"
+    );
+
+  if(!el)
+    return;
 
   el.className =
     "server-status " + type;
 
-  el.textContent = text;
+  el.textContent =
+    text;
+
 }
 
 /* =========================================================
@@ -1236,6 +1600,7 @@ function getTelegramUser(){
   }catch(e){
 
     return null;
+
   }
 }
 
@@ -1247,12 +1612,14 @@ function makeNickname(user){
 
   if(user && user.username){
 
-    return (
-      "@" +
+    const clean =
       String(user.username)
         .replace(/[^\w]/g,"")
-        .slice(0,20)
-    );
+        .slice(0,20);
+
+    if(clean)
+      return "@" + clean;
+
   }
 
   if(user && user.id){
@@ -1264,6 +1631,7 @@ function makeNickname(user){
       "player_" +
       id.slice(-4)
     );
+
   }
 
   return "PLAYER";
@@ -1292,6 +1660,7 @@ function calculateIncome(){
     ((taxi - 1) * 50) +
     ((city - 1) * 80)
   );
+
 }
 
 /* =========================================================
@@ -1301,90 +1670,219 @@ function calculateIncome(){
 function render(){
 
   player.balance =
-    Math.max(0,Math.floor(number(player.balance)));
-
-  player.energy =
     Math.max(
       0,
-      Math.min(
-        number(player.maxEnergy) || 1000,
-        number(player.energy)
+      Math.floor(
+        number(player.balance)
       )
     );
 
   player.maxEnergy =
     Math.max(
       1000,
-      number(player.maxEnergy)
+      Math.floor(
+        number(player.maxEnergy) || 1000
+      )
+    );
+
+  player.energy =
+    Math.max(
+      0,
+      Math.min(
+        player.maxEnergy,
+        number(player.energy)
+      )
     );
 
   player.level =
     Math.max(
       1,
-      Math.floor(number(player.level))
+      Math.floor(
+        number(player.level)
+      )
     );
 
   player.taxiLevel =
     Math.max(
       1,
-      Math.floor(number(player.taxiLevel))
+      Math.floor(
+        number(player.taxiLevel)
+      )
     );
 
   player.cityLevel =
     Math.max(
       1,
-      Math.floor(number(player.cityLevel))
+      Math.floor(
+        number(player.cityLevel)
+      )
+    );
+
+  player.totalTaps =
+    Math.max(
+      0,
+      Math.floor(
+        number(player.totalTaps)
+      )
+    );
+
+  player.rides =
+    Math.max(
+      0,
+      Math.floor(
+        number(player.rides)
+      )
+    );
+
+  player.referrals =
+    Math.max(
+      0,
+      Math.floor(
+        number(player.referrals)
+      )
     );
 
   player.tapPower =
-    Math.max(
-      1,
-      player.taxiLevel
-    );
+    player.taxiLevel;
 
   player.dailyIncome =
     calculateIncome();
 
-  document.getElementById("balance").textContent =
-    player.balance.toLocaleString();
+  const balance =
+    document.getElementById("balance");
 
-  document.getElementById("profileName").textContent =
-    player.nickname || "PLAYER";
+  const profileName =
+    document.getElementById("profileName");
 
-  document.getElementById("dailyIncome").textContent =
-    "+" +
-    player.dailyIncome.toLocaleString() +
-    " ELC/day";
+  const dailyIncome =
+    document.getElementById("dailyIncome");
 
-  document.getElementById("tapPower").textContent =
-    "+" + player.tapPower;
+  const tapPower =
+    document.getElementById("tapPower");
 
-  document.getElementById("rides").textContent =
-    player.rides;
+  const rides =
+    document.getElementById("rides");
 
-  document.getElementById("level").textContent =
-    player.level;
+  const level =
+    document.getElementById("level");
 
-  document.getElementById("energy").textContent =
-    Math.floor(player.energy);
+  const energy =
+    document.getElementById("energy");
 
-  document.getElementById("maxEnergy").textContent =
-    player.maxEnergy;
+  const maxEnergy =
+    document.getElementById("maxEnergy");
 
-  const percent =
-    (player.energy / player.maxEnergy) * 100;
+  const energyFill =
+    document.getElementById("energyFill");
 
-  document.getElementById("energyFill").style.width =
-    Math.max(0,Math.min(100,percent)) + "%";
+  const taxiLevel =
+    document.getElementById("taxiLevel");
 
-  document.getElementById("taxiLevel").textContent =
-    player.taxiLevel;
+  const cityLevel =
+    document.getElementById("cityLevel");
 
-  document.getElementById("cityLevel").textContent =
-    player.cityLevel;
+  const cityIncome =
+    document.getElementById("cityIncome");
 
-  document.getElementById("cityIncome").textContent =
-    player.dailyIncome;
+  if(balance){
+
+    balance.textContent =
+      player.balance.toLocaleString();
+
+  }
+
+  if(profileName){
+
+    profileName.textContent =
+      player.nickname ||
+      "PLAYER";
+
+  }
+
+  if(dailyIncome){
+
+    dailyIncome.textContent =
+      "+" +
+      player.dailyIncome.toLocaleString() +
+      " ELC/day";
+
+  }
+
+  if(tapPower){
+
+    tapPower.textContent =
+      "+" +
+      player.tapPower;
+
+  }
+
+  if(rides){
+
+    rides.textContent =
+      player.rides;
+
+  }
+
+  if(level){
+
+    level.textContent =
+      player.level;
+
+  }
+
+  if(energy){
+
+    energy.textContent =
+      Math.floor(player.energy);
+
+  }
+
+  if(maxEnergy){
+
+    maxEnergy.textContent =
+      player.maxEnergy;
+
+  }
+
+  if(energyFill){
+
+    const percent =
+      (
+        player.energy /
+        player.maxEnergy
+      ) * 100;
+
+    energyFill.style.width =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          percent
+        )
+      ) + "%";
+
+  }
+
+  if(taxiLevel){
+
+    taxiLevel.textContent =
+      player.taxiLevel;
+
+  }
+
+  if(cityLevel){
+
+    cityLevel.textContent =
+      player.cityLevel;
+
+  }
+
+  if(cityIncome){
+
+    cityIncome.textContent =
+      player.dailyIncome;
+
+  }
 
   const taxiCost =
     400 * player.taxiLevel;
@@ -1393,32 +1891,43 @@ function render(){
     500 * player.cityLevel;
 
   const taxiButton =
-    document.getElementById("taxiUpgrade");
+    document.getElementById(
+      "taxiUpgrade"
+    );
 
-  taxiButton.textContent =
-    "Upgrade • " +
-    taxiCost.toLocaleString() +
-    " ELC";
+  if(taxiButton){
 
-  taxiButton.disabled =
-    player.balance < taxiCost;
+    taxiButton.textContent =
+      "Upgrade • " +
+      taxiCost.toLocaleString() +
+      " ELC";
+
+    taxiButton.disabled =
+      player.balance < taxiCost;
+
+  }
 
   const cityButton =
     document.querySelector(
       "#cityPanel .upgrade-btn"
     );
 
-  cityButton.textContent =
-    "Upgrade • " +
-    cityCost.toLocaleString() +
-    " ELC";
+  if(cityButton){
 
-  cityButton.disabled =
-    player.balance < cityCost;
+    cityButton.textContent =
+      "Upgrade • " +
+      cityCost.toLocaleString() +
+      " ELC";
+
+    cityButton.disabled =
+      player.balance < cityCost;
+
+  }
 
   updateBonusButton();
 
   saveLocal();
+
 }
 
 /* =========================================================
@@ -1434,7 +1943,15 @@ function saveLocal(){
       JSON.stringify(player)
     );
 
-  }catch(e){}
+  }catch(e){
+
+    console.log(
+      "Local save error:",
+      e
+    );
+
+  }
+
 }
 
 function loadLocal(){
@@ -1442,7 +1959,9 @@ function loadLocal(){
   try{
 
     const raw =
-      localStorage.getItem(LOCAL_KEY);
+      localStorage.getItem(
+        LOCAL_KEY
+      );
 
     if(!raw)
       return false;
@@ -1462,8 +1981,15 @@ function loadLocal(){
 
   }catch(e){
 
+    console.log(
+      "Local load error:",
+      e
+    );
+
     return false;
+
   }
+
 }
 
 /* =========================================================
@@ -1481,21 +2007,31 @@ async function supabaseRequest(
 
   const timer =
     setTimeout(
-      () => controller.abort(),
+      function(){
+        controller.abort();
+      },
       timeout
     );
 
   try{
 
     const headers = {
-      "apikey":SUPABASE_KEY,
+
+      "apikey":
+        SUPABASE_KEY,
+
       "Authorization":
-        "Bearer " + SUPABASE_KEY,
+        "Bearer " +
+        SUPABASE_KEY,
+
       "Content-Type":
         "application/json",
+
       "Accept":
         "application/json",
+
       ...(options.headers || {})
+
     };
 
     const response =
@@ -1505,7 +2041,7 @@ async function supabaseRequest(
         path,
         {
           ...options,
-          headers,
+          headers:headers,
           signal:controller.signal
         }
       );
@@ -1516,9 +2052,17 @@ async function supabaseRequest(
     let data = null;
 
     try{
-      data = text ? JSON.parse(text) : null;
+
+      data =
+        text
+          ? JSON.parse(text)
+          : null;
+
     }catch(e){
-      data = text;
+
+      data =
+        text;
+
     }
 
     if(!response.ok){
@@ -1529,6 +2073,7 @@ async function supabaseRequest(
         ": " +
         text
       );
+
     }
 
     return data;
@@ -1536,7 +2081,9 @@ async function supabaseRequest(
   }finally{
 
     clearTimeout(timer);
+
   }
+
 }
 
 /* =========================================================
@@ -1559,7 +2106,9 @@ async function callTelegramFunction(){
 
   const timer =
     setTimeout(
-      () => controller.abort(),
+      function(){
+        controller.abort();
+      },
       7000
     );
 
@@ -1569,9 +2118,11 @@ async function callTelegramFunction(){
       await fetch(
         EDGE_FUNCTION,
         {
+
           method:"POST",
 
           headers:{
+
             "Content-Type":
               "application/json",
 
@@ -1581,44 +2132,73 @@ async function callTelegramFunction(){
             "Authorization":
               "Bearer " +
               SUPABASE_KEY
+
           },
 
-          body:JSON.stringify({
-            initData:tg.initData,
-            telegram_id:String(user.id),
+          body:
+            JSON.stringify({
 
-            user:{
-              id:user.id,
-              username:user.username || "",
-              first_name:user.first_name || "",
-              last_name:user.last_name || ""
-            }
-          }),
+              initData:
+                tg.initData,
 
-          signal:controller.signal
+              telegram_id:
+                String(user.id),
+
+              user:{
+
+                id:user.id,
+
+                username:
+                  user.username || "",
+
+                first_name:
+                  user.first_name || "",
+
+                last_name:
+                  user.last_name || ""
+
+              }
+
+            }),
+
+          signal:
+            controller.signal
+
         }
       );
 
     const text =
       await response.text();
 
-    if(!response.ok)
-      throw new Error(text);
+    if(!response.ok){
+
+      throw new Error(
+        text ||
+        "Edge Function error"
+      );
+
+    }
 
     try{
+
       return JSON.parse(text);
+
     }catch(e){
+
       return null;
+
     }
 
   }finally{
 
     clearTimeout(timer);
+
   }
+
 }
 
 /* =========================================================
-   MAP DATABASE PLAYER
+   DATABASE PLAYER
 ========================================================= */
 
 function applyDatabasePlayer(row){
@@ -1657,16 +2237,10 @@ function applyDatabasePlayer(row){
   ){
 
     player.nickname =
-      player.username
-        ? (
-          String(player.username)
-            .startsWith("@")
-            ? player.username
-            : "@" + player.username
-        )
-        : makeNickname(
-            getTelegramUser()
-          );
+      makeNickname(
+        getTelegramUser()
+      );
+
   }
 
   player.balance =
@@ -1749,6 +2323,7 @@ function applyDatabasePlayer(row){
 
   player.dailyIncome =
     calculateIncome();
+
 }
 
 /* =========================================================
@@ -1759,8 +2334,6 @@ async function loadPlayer(){
 
   const telegramUser =
     getTelegramUser();
-
-  /* Telegram yoxdur */
 
   if(!telegramUser){
 
@@ -1777,10 +2350,13 @@ async function loadPlayer(){
     render();
 
     return;
+
   }
 
   player.telegramId =
-    String(telegramUser.id);
+    String(
+      telegramUser.id
+    );
 
   player.username =
     telegramUser.username || "";
@@ -1788,14 +2364,19 @@ async function loadPlayer(){
   player.firstName =
     telegramUser.first_name || "";
 
-  player.nickname =
-    makeNickname(telegramUser);
+  if(
+    !player.nickname ||
+    player.nickname === "PLAYER"
+  ){
 
-  /* əvvəl local */
+    player.nickname =
+      makeNickname(
+        telegramUser
+      );
+
+  }
 
   loadLocal();
-
-  /* sonra Edge Function */
 
   try{
 
@@ -1803,12 +2384,6 @@ async function loadPlayer(){
       await callTelegramFunction();
 
     if(result){
-
-      const row =
-        result.player ||
-        result.data ||
-        result.user ||
-        result;
 
       if(
         result.success === false
@@ -1818,13 +2393,21 @@ async function loadPlayer(){
           result.error ||
           "Telegram server xətası"
         );
+
       }
+
+      const row =
+        result.player ||
+        result.data ||
+        result.user ||
+        null;
 
       if(row){
 
         applyDatabasePlayer(row);
 
-        serverOnline = true;
+        serverOnline =
+          true;
 
         setServerStatus(
           "online",
@@ -1838,7 +2421,9 @@ async function loadPlayer(){
           .classList.add("hide");
 
         return;
+
       }
+
     }
 
   }catch(edgeError){
@@ -1847,15 +2432,18 @@ async function loadPlayer(){
       "Edge function:",
       edgeError
     );
+
   }
 
-  /* Direct REST fallback */
+  /* DIRECT REST */
 
   try{
 
     const id =
       encodeURIComponent(
-        String(telegramUser.id)
+        String(
+          telegramUser.id
+        )
       );
 
     const rows =
@@ -1878,7 +2466,8 @@ async function loadPlayer(){
         rows[0]
       );
 
-      serverOnline = true;
+      serverOnline =
+        true;
 
       setServerStatus(
         "online",
@@ -1892,9 +2481,10 @@ async function loadPlayer(){
         .classList.add("hide");
 
       return;
+
     }
 
-    /* Player yoxdur -> yarat */
+    /* CREATE */
 
     const newPlayer = {
 
@@ -1904,34 +2494,48 @@ async function loadPlayer(){
       "First name":
         telegramUser.first_name || "",
 
-      "Balance":0,
+      "Balance":
+        0,
 
-      "Energy":1000,
+      "Energy":
+        1000,
 
-      "Level":1,
+      "Level":
+        1,
 
-      "Last bonus":null,
+      "Last bonus":
+        null,
 
-      "Referrals":0,
+      "Referrals":
+        0,
 
       "Telegram_id":
-        String(telegramUser.id),
+        String(
+          telegramUser.id
+        ),
 
-      "Referred_by":null,
+      "Referred_by":
+        null,
 
-      "Taxi_level":1,
+      "Taxi_level":
+        1,
 
-      "City_level":1,
+      "City_level":
+        1,
 
-      "Total_taps":0,
+      "Total_taps":
+        0,
 
-      "Total_rides":0
+      "Total_rides":
+        0
+
     };
 
     const created =
       await supabaseRequest(
         "players",
         {
+
           method:"POST",
 
           headers:{
@@ -1940,7 +2544,10 @@ async function loadPlayer(){
           },
 
           body:
-            JSON.stringify(newPlayer)
+            JSON.stringify(
+              newPlayer
+            )
+
         },
         6000
       );
@@ -1959,9 +2566,11 @@ async function loadPlayer(){
       applyDatabasePlayer(
         newPlayer
       );
+
     }
 
-    serverOnline = true;
+    serverOnline =
+      true;
 
     setServerStatus(
       "online",
@@ -1977,36 +2586,52 @@ async function loadPlayer(){
       error
     );
 
-    serverOnline = false;
+    serverOnline =
+      false;
 
     setServerStatus(
       "offline",
-      "⚠️ Serverə qoşulmaq alınmadı • Offline"
+      "⚠️ Offline rejim • Oyun işləyir"
     );
 
     render();
+
   }
 
   document
     .getElementById("loading")
     .classList.add("hide");
+
 }
 
 /* =========================================================
-   SAVE PLAYER
+   SAVE PLAYER TO SERVER
+   VACIB:
+   serverOnline FALSE olsa belə artıq SAVE dayanmır.
 ========================================================= */
 
 async function savePlayerToServer(){
 
-  if(!serverOnline)
-    return;
-
   if(!player.telegramId)
     return;
 
+  if(saveInFlight){
+
+    saveQueued =
+      true;
+
+    return;
+
+  }
+
+  saveInFlight =
+    true;
+
   const id =
     encodeURIComponent(
-      String(player.telegramId)
+      String(
+        player.telegramId
+      )
     );
 
   const payload = {
@@ -2018,71 +2643,139 @@ async function savePlayerToServer(){
       player.firstName || "",
 
     "Balance":
-      Math.floor(player.balance),
+      Math.floor(
+        number(player.balance)
+      ),
 
     "Energy":
-      Math.floor(player.energy),
+      Math.floor(
+        number(player.energy)
+      ),
 
     "Level":
-      Math.floor(player.level),
+      Math.floor(
+        number(player.level)
+      ),
 
     "Last bonus":
       player.lastBonus || null,
 
     "Referrals":
-      Math.floor(player.referrals),
+      Math.floor(
+        number(player.referrals)
+      ),
 
     "Taxi_level":
-      Math.floor(player.taxiLevel),
+      Math.floor(
+        number(player.taxiLevel)
+      ),
 
     "City_level":
-      Math.floor(player.cityLevel),
+      Math.floor(
+        number(player.cityLevel)
+      ),
 
     "Total_taps":
-      Math.floor(player.totalTaps),
+      Math.floor(
+        number(player.totalTaps)
+      ),
 
     "Total_rides":
-      Math.floor(player.rides)
+      Math.floor(
+        number(player.rides)
+      )
+
   };
 
   try{
 
-    await supabaseRequest(
-      'players?Telegram_id=eq.' +
-      id,
-      {
-        method:"PATCH",
+    const result =
+      await supabaseRequest(
+        'players?Telegram_id=eq.' +
+        id,
+        {
 
-        headers:{
-          "Prefer":
-            "return=minimal"
+          method:"PATCH",
+
+          headers:{
+            "Prefer":
+              "return=representation"
+          },
+
+          body:
+            JSON.stringify(
+              payload
+            )
+
         },
+        5000
+      );
 
-        body:
-          JSON.stringify(payload)
-      },
-      5000
-    );
+    /*
+      Əgər server heç bir sətir qaytarmırsa,
+      player tapılmayıb və ya RLS UPDATE icazəsi yoxdur.
+    */
+
+    if(
+      Array.isArray(result) &&
+      result.length === 0
+    ){
+
+      throw new Error(
+        "Player update edilmədi"
+      );
+
+    }
+
+    serverOnline =
+      true;
 
     setServerStatus(
       "online",
-      "🟢 Serverə qoşuldu • Məlumat saxlanılır"
+      "🟢 Serverə qoşuldu • Saxlanıldı"
     );
 
   }catch(error){
 
     console.error(
-      "Save:",
+      "SAVE ERROR:",
       error
     );
 
-    serverOnline = false;
+    serverOnline =
+      false;
+
+    /*
+      Çox vacib:
+      Server xətası oyunun özünü DAYANDIRMIR.
+    */
 
     setServerStatus(
       "offline",
-      "⚠️ Server bağlantısı kəsildi"
+      "⚠️ Server offline • Lokal yaddaş aktivdir"
     );
+
+  }finally{
+
+    saveInFlight =
+      false;
+
+    if(saveQueued){
+
+      saveQueued =
+        false;
+
+      setTimeout(
+        function(){
+          savePlayerToServer();
+        },
+        300
+      );
+
+    }
+
   }
+
 }
 
 /* =========================================================
@@ -2091,54 +2784,114 @@ async function savePlayerToServer(){
 
 function saveGame(){
 
+  /*
+    Əvvəlcə həmişə lokal yaddaşa yazılır.
+  */
+
   saveLocal();
 
-  clearTimeout(saveTimer);
+  clearTimeout(
+    saveTimer
+  );
 
   saveTimer =
     setTimeout(
-      () => {
+      function(){
+
         savePlayerToServer();
+
       },
       700
     );
+
 }
 
 /* =========================================================
-   TAP
+   TAP COIN
 ========================================================= */
 
 function tapCoin(event){
 
-  if(player.energy < 1){
+  /*
+    Çox sürətli ikiqat event-in qarşısını alır.
+  */
+
+  const now =
+    Date.now();
+
+  if(
+    now - lastTapTime < 60
+  ){
+
+    return;
+
+  }
+
+  lastTapTime =
+    now;
+
+  /*
+    Energy yoxdursa tap işləməsin.
+  */
+
+  if(
+    number(player.energy) < 1
+  ){
 
     showToast(
       "⚡ Energy bitdi!"
     );
 
     return;
+
   }
 
   const power =
     Math.max(
       1,
-      Math.floor(player.tapPower)
+      Math.floor(
+        number(player.tapPower)
+      )
     );
 
-  player.balance = Number(player.balance || 0) + power;
+  /*
+    ƏSAS TAP:
+    balans + power
+  */
 
-  player.energy = Math.max(0, Number(player.energy || 0) - 1);
+  player.balance =
+    number(player.balance) +
+    power;
 
-  player.totalTaps += 1;
+  /*
+    Energy -1
+  */
 
-  /* hər 100 tap -> level */
+  player.energy =
+    Math.max(
+      0,
+      number(player.energy) - 1
+    );
+
+  /*
+    Total taps +1
+  */
+
+  player.totalTaps =
+    number(player.totalTaps) + 1;
+
+  /*
+    Level sistemi
+  */
 
   const newLevel =
     Math.floor(
       player.totalTaps / 100
     ) + 1;
 
-  if(newLevel > player.level){
+  if(
+    newLevel > player.level
+  ){
 
     player.level =
       newLevel;
@@ -2147,23 +2900,40 @@ function tapCoin(event){
       "⭐ LEVEL UP! Level " +
       player.level
     );
+
   }
 
-  /* bəzi toxunuşlarda ride */
+  /*
+    Hər 25 tap -> 1 ride
+  */
 
   if(
     player.totalTaps % 25 === 0
   ){
 
-    player.rides += 1;
+    player.rides =
+      number(player.rides) + 1;
+
   }
 
+  /*
+    Ekranı dərhal yenilə.
+  */
+
   render();
+
+  /*
+    +1 ELC animasiyası
+  */
 
   createFloat(
     event,
     "+" + power
   );
+
+  /*
+    Telegram vibration
+  */
 
   if(
     tg &&
@@ -2171,13 +2941,23 @@ function tapCoin(event){
   ){
 
     try{
-      tg.HapticFeedback.impactOccurred(
-        "light"
-      );
+
+      tg.HapticFeedback
+        .impactOccurred(
+          "light"
+        );
+
     }catch(e){}
+
   }
 
+  /*
+    Dərhal lokal yaddaşa,
+    sonra serverə.
+  */
+
   saveGame();
+
 }
 
 /* =========================================================
@@ -2190,7 +2970,9 @@ function createFloat(
 ){
 
   const el =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   el.className =
     "float";
@@ -2206,11 +2988,28 @@ function createFloat(
 
   if(event){
 
-    if(event.clientX)
-      x = event.clientX;
+    if(
+      Number.isFinite(
+        Number(event.clientX)
+      )
+    ){
 
-    if(event.clientY)
-      y = event.clientY;
+      x =
+        Number(event.clientX);
+
+    }
+
+    if(
+      Number.isFinite(
+        Number(event.clientY)
+      )
+    ){
+
+      y =
+        Number(event.clientY);
+
+    }
+
   }
 
   el.style.left =
@@ -2219,12 +3018,20 @@ function createFloat(
   el.style.top =
     y + "px";
 
-  document.body.appendChild(el);
+  document.body.appendChild(
+    el
+  );
 
   setTimeout(
-    () => el.remove(),
+    function(){
+
+      if(el.parentNode)
+        el.remove();
+
+    },
     800
   );
+
 }
 
 /* =========================================================
@@ -2232,7 +3039,7 @@ function createFloat(
 ========================================================= */
 
 setInterval(
-  () => {
+  function(){
 
     if(
       player.energy <
@@ -2242,10 +3049,11 @@ setInterval(
       player.energy =
         Math.min(
           player.maxEnergy,
-          player.energy + 1
+          number(player.energy) + 1
         );
 
       render();
+
     }
 
   },
@@ -2263,12 +3071,19 @@ function updateBonusButton(){
       "bonusButton"
     );
 
+  if(!button)
+    return;
+
   if(!player.lastBonus){
 
-    button.disabled = false;
-    button.textContent = "CLAIM";
+    button.disabled =
+      false;
+
+    button.textContent =
+      "CLAIM";
 
     return;
+
   }
 
   const last =
@@ -2280,27 +3095,34 @@ function updateBonusButton(){
     !Number.isFinite(last)
   ){
 
-    button.disabled = false;
-    button.textContent = "CLAIM";
+    button.disabled =
+      false;
+
+    button.textContent =
+      "CLAIM";
 
     return;
+
   }
 
-  const now =
-    Date.now();
-
   const hours =
-    (now - last) /
+    (
+      Date.now() - last
+    ) /
     (1000 * 60 * 60);
 
   if(hours >= 24){
 
-    button.disabled = false;
-    button.textContent = "CLAIM";
+    button.disabled =
+      false;
+
+    button.textContent =
+      "CLAIM";
 
   }else{
 
-    button.disabled = true;
+    button.disabled =
+      true;
 
     const remaining =
       Math.ceil(
@@ -2309,7 +3131,9 @@ function updateBonusButton(){
 
     button.textContent =
       remaining + "h";
+
   }
+
 }
 
 function claimBonus(){
@@ -2330,9 +3154,12 @@ function claimBonus(){
     );
 
     return;
+
   }
 
-  player.balance += 500;
+  player.balance =
+    number(player.balance) +
+    500;
 
   player.lastBonus =
     new Date().toISOString();
@@ -2344,29 +3171,36 @@ function claimBonus(){
   showToast(
     "🎁 +500 ELC qazandın!"
   );
+
 }
 
 /* =========================================================
-   TAXI UPGRADE
+   TAXI
 ========================================================= */
 
 function upgradeTaxi(){
 
   const cost =
-    400 * player.taxiLevel;
+    400 *
+    player.taxiLevel;
 
-  if(player.balance < cost){
+  if(
+    player.balance < cost
+  ){
 
     showToast(
       "❌ Kifayət qədər ELC yoxdur"
     );
 
     return;
+
   }
 
-  player.balance -= cost;
+  player.balance -=
+    cost;
 
-  player.taxiLevel += 1;
+  player.taxiLevel +=
+    1;
 
   player.tapPower =
     player.taxiLevel;
@@ -2382,29 +3216,36 @@ function upgradeTaxi(){
     "🚕 Taxi Level " +
     player.taxiLevel
   );
+
 }
 
 /* =========================================================
-   CITY UPGRADE
+   CITY
 ========================================================= */
 
 function upgradeCity(){
 
   const cost =
-    500 * player.cityLevel;
+    500 *
+    player.cityLevel;
 
-  if(player.balance < cost){
+  if(
+    player.balance < cost
+  ){
 
     showToast(
       "❌ Kifayət qədər ELC yoxdur"
     );
 
     return;
+
   }
 
-  player.balance -= cost;
+  player.balance -=
+    cost;
 
-  player.cityLevel += 1;
+  player.cityLevel +=
+    1;
 
   player.dailyIncome =
     calculateIncome();
@@ -2417,6 +3258,7 @@ function upgradeCity(){
     "🏙️ City Level " +
     player.cityLevel
   );
+
 }
 
 /* =========================================================
@@ -2426,19 +3268,35 @@ function upgradeCity(){
 function openPanel(id){
 
   const panel =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
 
-  if(panel)
-    panel.classList.add("show");
+  if(panel){
+
+    panel.classList.add(
+      "show"
+    );
+
+  }
+
 }
 
 function closePanel(id){
 
   const panel =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
 
-  if(panel)
-    panel.classList.remove("show");
+  if(panel){
+
+    panel.classList.remove(
+      "show"
+    );
+
+  }
+
 }
 
 function closeOutside(
@@ -2451,11 +3309,13 @@ function closeOutside(
   ){
 
     closePanel(id);
+
   }
+
 }
 
 /* =========================================================
-   NAVIGATION
+   NAV
 ========================================================= */
 
 function setActive(button){
@@ -2465,21 +3325,30 @@ function setActive(button){
       ".nav-btn"
     )
     .forEach(
-      btn =>
+      function(btn){
+
         btn.classList.remove(
           "active"
-        )
+        );
+
+      }
     );
 
-  if(button)
+  if(button){
+
     button.classList.add(
       "active"
     );
+
+  }
+
 }
 
 function goHome(button){
 
-  setActive(button);
+  setActive(
+    button
+  );
 
   [
     "taxiPanel",
@@ -2487,13 +3356,18 @@ function goHome(button){
     "friendsPanel",
     "rankingPanel"
   ].forEach(
-    id => closePanel(id)
+    function(id){
+
+      closePanel(id);
+
+    }
   );
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
 }
 
 /* =========================================================
@@ -2511,14 +3385,23 @@ function getReferralLink(){
     "?start=ref_" +
     encodeURIComponent(id)
   );
+
 }
 
 function updateReferral(){
 
-  document.getElementById(
-    "refLink"
-  ).textContent =
-    getReferralLink();
+  const el =
+    document.getElementById(
+      "refLink"
+    );
+
+  if(el){
+
+    el.textContent =
+      getReferralLink();
+
+  }
+
 }
 
 async function copyReferral(){
@@ -2528,20 +3411,35 @@ async function copyReferral(){
 
   try{
 
-    await navigator.clipboard.writeText(
-      link
-    );
+    if(
+      navigator.clipboard &&
+      navigator.clipboard.writeText
+    ){
 
-    showToast(
-      "📋 Referral link kopyalandı"
-    );
+      await navigator.clipboard.writeText(
+        link
+      );
+
+      showToast(
+        "📋 Referral link kopyalandı"
+      );
+
+    }else{
+
+      showToast(
+        link
+      );
+
+    }
 
   }catch(e){
 
     showToast(
       link
     );
+
   }
+
 }
 
 /* =========================================================
@@ -2554,6 +3452,9 @@ async function loadRanking(){
     document.getElementById(
       "rankList"
     );
+
+  if(!list)
+    return;
 
   list.innerHTML =
     '<div style="text-align:center;color:#71839a;padding:20px">Yüklənir...</div>';
@@ -2578,47 +3479,63 @@ async function loadRanking(){
         '<div style="text-align:center;color:#71839a;padding:20px">Hələ oyunçu yoxdur</div>';
 
       return;
+
     }
 
     list.innerHTML =
-      rows.map(
-        (row,index) => {
+      rows
+        .map(
+          function(row,index){
 
-          const username =
-            row["User name"];
+            const username =
+              row["User name"];
 
-          let name =
-            username
-              ? (
+            let name;
+
+            if(username){
+
+              name =
                 String(username)
                   .startsWith("@")
-                  ? username
-                  : "@" + username
-              )
-              : "player_" +
-                String(index + 1)
-                  .padStart(4,"0");
+                  ? String(username)
+                  : "@" +
+                    String(username);
 
-          return `
-            <div class="rank-row">
+            }else{
 
-              <div class="rank-pos">
-                ${index + 1}
+              name =
+                "player_" +
+                String(
+                  index + 1
+                ).padStart(
+                  4,
+                  "0"
+                );
+
+            }
+
+            return `
+              <div class="rank-row">
+
+                <div class="rank-pos">
+                  ${index + 1}
+                </div>
+
+                <div class="rank-name">
+                  ${escapeHtml(name)}
+                </div>
+
+                <div class="rank-balance">
+                  ${number(row.Balance).toLocaleString()}
+                  ELC
+                </div>
+
               </div>
+            `;
 
-              <div class="rank-name">
-                ${escapeHtml(name)}
-              </div>
-
-              <div class="rank-balance">
-                ${number(row.Balance).toLocaleString()}
-                ELC
-              </div>
-
-            </div>
-          `;
-        }
-      ).join("");
+          }
+        )
+        .join("");
 
   }catch(error){
 
@@ -2629,57 +3546,118 @@ async function loadRanking(){
 
     list.innerHTML =
       '<div style="text-align:center;color:#ffbd61;padding:20px">⚠️ Ranking serverdən yüklənmədi</div>';
+
   }
+
 }
 
 /* =========================================================
-   COIN EVENTS
+   IMPORTANT TAP EVENT
 ========================================================= */
 
+/*
+  KÖHNƏ KODDA BU VAR İDİ:
+
+  click
+  +
+  touchstart
+  +
+  preventDefault()
+
+  Bu Telegram Android WebView-də
+  click eventini bloklaya bilərdi.
+
+  İNDİ yalnız pointerdown istifadə edirik.
+*/
+
 const coinButton =
-  document.getElementById("coinButton");
+  document.getElementById(
+    "coinButton"
+  );
 
 if(coinButton){
 
   coinButton.addEventListener(
-    "click",
-    tapCoin
-  );
+    "pointerdown",
+    function(event){
 
-  coinButton.addEventListener(
-    "touchstart",
-    function(e){
+      /*
+        Sağ kliklə TAP etməsin.
+      */
 
-      if(e.touches.length === 1){
-        e.preventDefault();
+      if(
+        event.pointerType === "mouse" &&
+        event.button !== 0
+      ){
+
+        return;
+
       }
 
+      /*
+        Browser-in əlavə gesture yaratmasının
+        qarşısını alırıq.
+      */
+
+      try{
+
+        event.preventDefault();
+
+      }catch(e){}
+
+      tapCoin(
+        event
+      );
+
     },
-    {passive:false}
+    {
+      passive:false
+    }
   );
 
 }
 
 /* =========================================================
-   START
+   START GAME
 ========================================================= */
 
 async function startGame(){
 
   try{
 
+    /*
+      Əvvəl local məlumat.
+    */
+
     loadLocal();
+
     render();
+
     updateReferral();
 
+    /*
+      Serveri maksimum 9 saniyə gözləyirik.
+    */
+
     await Promise.race([
+
       loadPlayer(),
-      new Promise(resolve =>
-        setTimeout(resolve, 9000)
+
+      new Promise(
+        function(resolve){
+
+          setTimeout(
+            resolve,
+            9000
+          );
+
+        }
       )
+
     ]);
 
     updateReferral();
+
     render();
 
   }catch(error){
@@ -2690,45 +3668,99 @@ async function startGame(){
     );
 
     loadLocal();
+
     render();
+
     updateReferral();
 
   }finally{
 
-    document
-      .getElementById("loading")
-      .classList.add("hide");
+    const loading =
+      document.getElementById(
+        "loading"
+      );
+
+    if(loading){
+
+      loading.classList.add(
+        "hide"
+      );
+
+    }
 
   }
+
 }
 
 startGame();
 
-setTimeout(() => {
+/* =========================================================
+   LOADING SAFETY
+========================================================= */
 
-  const loading =
-    document.getElementById("loading");
+setTimeout(
+  function(){
 
-  if(loading){
-    loading.classList.add("hide");
-  }
+    const loading =
+      document.getElementById(
+        "loading"
+      );
 
-},10000);
+    if(loading){
+
+      loading.classList.add(
+        "hide"
+      );
+
+    }
+
+  },
+  10000
+);
 
 /* =========================================================
-   SAVE WHEN LEAVING
+   AUTO SERVER RETRY
+========================================================= */
+
+/*
+  Server müvəqqəti kəsilərsə,
+  oyun dayanmayacaq.
+
+  Hər 10 saniyədə serverə yenidən
+  məlumat göndərməyə çalışırıq.
+*/
+
+setInterval(
+  function(){
+
+    if(
+      player.telegramId
+    ){
+
+      savePlayerToServer();
+
+    }
+
+  },
+  10000
+);
+
+/* =========================================================
+   SAVE WHEN APP HIDDEN
 ========================================================= */
 
 window.addEventListener(
   "beforeunload",
-  () => {
+  function(){
+
     saveLocal();
+
   }
 );
 
 document.addEventListener(
   "visibilitychange",
-  () => {
+  function(){
 
     if(
       document.visibilityState ===
@@ -2736,9 +3768,25 @@ document.addEventListener(
     ){
 
       saveLocal();
+
       savePlayerToServer();
+
     }
+
   }
+);
+
+/* =========================================================
+   BONUS BUTTON REFRESH
+========================================================= */
+
+setInterval(
+  function(){
+
+    updateBonusButton();
+
+  },
+  60000
 );
 
 </script>
