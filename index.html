@@ -2636,27 +2636,29 @@ async function loadRanking(){
    COIN EVENTS
 ========================================================= */
 
-document
-  .getElementById("mainCoin")
-  .addEventListener(
+const coinButton =
+  document.getElementById("coinButton");
+
+if(coinButton){
+
+  coinButton.addEventListener(
     "click",
     tapCoin
   );
 
-document
-  .getElementById("coinButton")
-  .addEventListener(
+  coinButton.addEventListener(
     "touchstart",
     function(e){
 
       if(e.touches.length === 1){
-
         e.preventDefault();
       }
 
     },
     {passive:false}
   );
+
+}
 
 /* =========================================================
    START
