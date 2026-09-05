@@ -83,18 +83,35 @@ button{
   border-radius:15px;
   position:relative;
   overflow:hidden;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   color:#ffd33d;
-  border:1px solid rgba(255,207,48,.75);
+
+  border:1px solid rgba(255,207,48,.85);
+
   background:
-    linear-gradient(180deg,rgba(255,196,31,.12),rgba(0,0,0,.7)),
-    radial-gradient(circle at 50% 35%,rgba(255,220,70,.22),transparent 35%),
+    linear-gradient(
+      180deg,
+      rgba(255,196,31,.18),
+      rgba(0,0,0,.82)
+    ),
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(255,220,70,.30),
+      transparent 38%
+    ),
     #03070e;
+
   box-shadow:
-    0 0 22px rgba(255,193,20,.20),
-    inset 0 0 20px rgba(255,195,25,.08);
+    0 0 10px rgba(255,193,20,.35),
+    0 0 25px rgba(255,193,20,.22),
+    0 0 45px rgba(255,170,10,.10),
+    inset 0 0 18px rgba(255,195,25,.12);
+
+  animation:elcoinLogoGlow 3s ease-in-out infinite;
 }
 
 .logo:before{
