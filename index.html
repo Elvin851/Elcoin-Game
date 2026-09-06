@@ -5147,12 +5147,10 @@ async function startGame(){
 
 
   /*
-    3. Never expose real Telegram name.
+    3. Anonymous nickname.
   */
 
-  if(
-    !state.nickname
-  ){
+  if(!state.nickname){
 
     state.nickname =
       createAnonymousName(
@@ -5170,44 +5168,70 @@ async function startGame(){
 
 
   /*
-    5. Render immediately.
+    5. Show game immediately.
   */
 
   render();
 
 
   /*
-    6. Read cloud data.
-  */
-
-  await loadPlayer();
-
-
-  /*
-    7. Render again.
-  */
-
-  render();
-
-
-  /*
-    8. Hide intro.
+    6. Hide intro immediately.
+    Supabase cannot block the game.
   */
 
   setTimeout(
     ()=>{
 
-      document
-        .getElementById(
-          "intro"
-        )
-        .classList.add(
-          "hide"
-        );
+      const intro =
+        document.getElementById("intro");
+
+      if(intro){
+
+        intro.classList.add("hide");
+
+      }
 
     },
-    2100
+    500
   );
+
+
+  /*
+    7. Try cloud connection
+    in the background.
+  */
+
+  try{
+
+    await Promise.race([
+
+      loadPlayer(),
+
+      new Promise(
+        resolve =>
+          setTimeout(
+            resolve,
+            5000
+          )
+      )
+
+    ]);
+
+  }catch(error){
+
+    console.log(
+      "Cloud loading skipped:",
+      error
+    );
+
+  }
+
+
+  /*
+    8. Render after cloud check.
+  */
+
+  render();
 
 }
 
