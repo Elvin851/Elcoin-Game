@@ -3297,15 +3297,56 @@ function getNickname(){
 
 async function loadPlayer(){
 
+  const connectionText =
+    document.getElementById("connectionText");
+
+  const statusBox =
+    document.getElementById("statusBox");
+
+  const accountStatus =
+    document.getElementById("accountStatus");
+
+  /*
+    Əvvəlcə bağlantının yoxlandığını göstər
+  */
+
+  connectionText.textContent = "CONNECTING";
+
+  statusBox.classList.remove(
+    "offline",
+    "online",
+    "connecting"
+  );
+
+  statusBox.classList.add("connecting");
+
+
   const telegramId =
     getTelegramId();
 
+
+  /*
+    Telegram ID yoxdursa,
+    bu internet problemi demək deyil.
+  */
+
   if(!telegramId){
 
-    document
-      .getElementById("connectionText")
-      .textContent =
+    connectionText.textContent =
       "TELEGRAM";
+
+    statusBox.classList.remove(
+      "offline",
+      "online",
+      "connecting"
+    );
+
+    if(accountStatus){
+
+      accountStatus.textContent =
+        "Telegram WebApp";
+
+    }
 
     return;
 
@@ -3347,6 +3388,14 @@ async function loadPlayer(){
       );
 
 
+    /*
+      HTTP cavabı gəlibsə,
+      Supabase ONLINE-dir.
+
+      Oyunçu tapılmasa belə
+      bu OFFLINE deyil.
+    */
+
     if(!response.ok){
 
       throw new Error(
@@ -3362,22 +3411,27 @@ async function loadPlayer(){
 
 
     /*
-      IMPORTANT:
-
-      READ ONLY.
-
-      No INSERT.
-      No UPDATE.
-      No DELETE.
-
-      This prevents this page from
-      accidentally resetting database data.
+      SUPABASE ONLINE
     */
 
+    statusBox.classList.remove(
+      "offline",
+      "connecting"
+    );
+
+    statusBox.classList.add(
+      "online"
+    );
+
+
+    /*
+      Oyunçu artıq varsa
+      məlumatlarını oxu.
+    */
 
     if(
       Array.isArray(rows) &&
-      rows.length
+      rows.length > 0
     ){
 
       const player =
@@ -3485,50 +3539,42 @@ async function loadPlayer(){
       }
 
 
-      document
-        .getElementById(
-          "connectionText"
-        )
-        .textContent =
-        "SUPABASE ✓";
+      connectionText.textContent =
+        "ONLINE ✓";
 
 
-      document
-        .getElementById(
-          "accountStatus"
-        )
-        .textContent =
-        "Cloud profile connected";
+      if(accountStatus){
 
+        accountStatus.textContent =
+          "Cloud profile connected";
 
-      document
-        .getElementById(
-          "statusBox"
-        )
-        .classList.remove(
-          "offline"
-        );
+      }
 
     }
 
     else{
 
+      /*
+        Supabase işləyir,
+        sadəcə bu Telegram ID
+        players cədvəlində yoxdur.
+      */
+
       state.synced = false;
 
-      document
-        .getElementById(
-          "connectionText"
-        )
-        .textContent =
-        "NEW PLAYER";
+      state.created = false;
 
 
-      document
-        .getElementById(
-          "accountStatus"
-        )
-        .textContent =
-        "New player profile";
+      connectionText.textContent =
+        "ONLINE ✓";
+
+
+      if(accountStatus){
+
+        accountStatus.textContent =
+          "New player profile";
+
+      }
 
     }
 
@@ -3541,34 +3587,36 @@ async function loadPlayer(){
   }catch(error){
 
     console.log(
-      "Supabase read error:",
+      "Supabase connection error:",
       error
     );
 
 
-    document
-      .getElementById(
-        "connectionText"
-      )
-      .textContent =
+    /*
+      YALNIZ həqiqi fetch/HTTP
+      problemi olduqda OFFLINE.
+    */
+
+    connectionText.textContent =
       "OFFLINE";
 
 
-    document
-      .getElementById(
-        "accountStatus"
-      )
-      .textContent =
-      "Offline mode";
+    statusBox.classList.remove(
+      "online",
+      "connecting"
+    );
+
+    statusBox.classList.add(
+      "offline"
+    );
 
 
-    document
-      .getElementById(
-        "statusBox"
-      )
-      .classList.add(
-        "offline"
-      );
+    if(accountStatus){
+
+      accountStatus.textContent =
+        "Offline mode";
+
+    }
 
   }
 
