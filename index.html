@@ -3591,25 +3591,19 @@ async function loadPlayer(){
   }catch(error){
 
   console.log(
-    "SUPABASE ERROR:",
+    "Supabase read error:",
     error
   );
 
   connectionText.textContent =
-    "ERROR";
+    "OFFLINE";
 
   if(accountStatus){
 
     accountStatus.textContent =
-      error.message ||
-      "Connection error";
+      "Offline mode";
 
   }
-
-  statusBox.classList.remove(
-    "online",
-    "connecting"
-  );
 
   statusBox.classList.add(
     "offline"
