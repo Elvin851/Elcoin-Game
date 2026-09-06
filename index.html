@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
 <meta name="theme-color" content="#050914">
 
-<title>CITY BOSS</title>
+<title>ELCITY</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
@@ -21,24 +20,21 @@ html,body{
   padding:0;
   width:100%;
   min-height:100%;
-  font-family:Arial,Helvetica,sans-serif;
   background:#050914;
   color:#fff;
-  overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  min-height:100vh;
+  overflow-x:hidden;
   background:
-    radial-gradient(circle at 50% 15%,rgba(35,92,170,.25),transparent 32%),
-    linear-gradient(180deg,#07101f 0%,#050914 48%,#02040a 100%);
+    radial-gradient(circle at 50% 0%,rgba(0,183,255,.12),transparent 35%),
+    linear-gradient(180deg,#050914 0%,#08111f 55%,#050914 100%);
 }
 
 button{
-  border:0;
-  outline:0;
   font:inherit;
-  color:inherit;
+  border:0;
   cursor:pointer;
 }
 
@@ -48,21 +44,20 @@ button{
   min-height:100vh;
   margin:auto;
   position:relative;
-  padding-bottom:88px;
+  padding-bottom:90px;
 }
 
-/* ================= HEADER ================= */
-
+/* HEADER */
 .header{
   height:72px;
-  padding:12px 15px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  padding:12px 16px;
   position:sticky;
   top:0;
-  z-index:30;
-  background:rgba(4,9,19,.88);
+  z-index:50;
+  background:rgba(5,9,20,.86);
   backdrop-filter:blur(15px);
   border-bottom:1px solid rgba(255,255,255,.06);
 }
@@ -74,62 +69,82 @@ button{
 }
 
 .logo{
-  width:44px;
-  height:44px;
+  width:45px;
+  height:45px;
   border-radius:14px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:22px;
   font-weight:900;
-  color:#08101c;
-  background:linear-gradient(135deg,#ffe27a,#f5ad28);
-  box-shadow:0 0 25px rgba(255,190,55,.25);
+  color:#06101c;
+  background:linear-gradient(135deg,#ffd84d,#ff9f1c);
+  box-shadow:0 0 25px rgba(255,193,7,.28);
 }
 
-.brandText strong{
-  display:block;
-  font-size:18px;
+.brandText{
+  line-height:1;
+}
+
+.brandName{
+  font-size:19px;
+  font-weight:900;
   letter-spacing:1px;
 }
 
-.brandText span{
-  display:block;
-  margin-top:2px;
-  color:#77839a;
+.brandSub{
+  margin-top:5px;
   font-size:9px;
-  letter-spacing:2px;
+  color:#6f829e;
+  letter-spacing:1.5px;
 }
 
 .profileMini{
-  min-width:45px;
-  height:42px;
-  padding:0 9px;
-  border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 10px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
   background:rgba(255,255,255,.035);
-  border-radius:13px;
+}
+
+.avatar{
+  width:30px;
+  height:30px;
+  border-radius:10px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:20px;
+  background:#13233b;
+  color:#ffd84d;
+  font-weight:900;
 }
 
-/* ================= SCREENS ================= */
+.miniName{
+  max-width:90px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:11px;
+  color:#dce7f5;
+}
 
+/* SCREENS */
 .screen{
   display:none;
-  padding:15px;
-  animation:screenIn .22s ease;
+  padding:16px;
+  animation:fadeIn .18s ease;
 }
 
 .screen.active{
   display:block;
 }
 
-@keyframes screenIn{
+@keyframes fadeIn{
   from{
     opacity:0;
-    transform:translateY(8px);
+    transform:translateY(5px);
   }
   to{
     opacity:1;
@@ -137,1841 +152,1225 @@ button{
   }
 }
 
-/* ================= HOME ================= */
-
+/* HOME */
 .hero{
   position:relative;
-  min-height:300px;
-  border-radius:27px;
+  min-height:265px;
+  border-radius:28px;
   overflow:hidden;
-  padding:22px 18px;
-  background:
-    linear-gradient(180deg,rgba(9,28,56,.35),rgba(3,8,17,.95)),
-    radial-gradient(circle at 50% 35%,rgba(27,105,192,.34),transparent 38%);
+  padding:22px;
   border:1px solid rgba(255,255,255,.07);
-  box-shadow:0 20px 55px rgba(0,0,0,.35);
+  background:
+    linear-gradient(180deg,rgba(13,31,55,.72),rgba(5,11,22,.92)),
+    radial-gradient(circle at 50% 25%,rgba(0,184,255,.15),transparent 45%);
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
 }
 
-.stars{
+.skyline{
   position:absolute;
-  inset:0;
-  opacity:.5;
-  background-image:
-    radial-gradient(circle,#fff 1px,transparent 1px),
-    radial-gradient(circle,#fff 1px,transparent 1px);
-  background-size:73px 73px,109px 109px;
-  background-position:10px 12px,45px 35px;
-}
-
-.cityGlow{
-  position:absolute;
+  bottom:0;
   left:0;
   right:0;
-  bottom:0;
-  height:130px;
+  height:95px;
+  opacity:.55;
   background:
-    linear-gradient(180deg,transparent,rgba(11,47,82,.3)),
-    repeating-linear-gradient(
-      90deg,
-      #08121f 0 32px,
-      #0a1828 32px 48px,
-      #07111e 48px 67px
-    );
-  clip-path:polygon(
-    0 40%,5% 40%,5% 27%,11% 27%,11% 50%,
-    18% 50%,18% 19%,24% 19%,24% 43%,
-    31% 43%,31% 9%,37% 9%,37% 38%,
-    44% 38%,44% 24%,50% 24%,50% 47%,
-    57% 47%,57% 15%,64% 15%,64% 39%,
-    71% 39%,71% 6%,77% 6%,77% 35%,
-    84% 35%,84% 20%,90% 20%,90% 44%,
-    96% 44%,96% 12%,100% 12%,100% 100%,0 100%
-  );
+    linear-gradient(90deg,
+      transparent 0 4%,
+      #0c2036 4% 10%,
+      transparent 10% 12%,
+      #0b1d31 12% 19%,
+      transparent 19% 22%,
+      #10263d 22% 30%,
+      transparent 30% 34%,
+      #0c2137 34% 42%,
+      transparent 42% 45%,
+      #102941 45% 53%,
+      transparent 53% 56%,
+      #0b2036 56% 64%,
+      transparent 64% 68%,
+      #10263b 68% 77%,
+      transparent 77% 80%,
+      #0b2034 80% 88%,
+      transparent 88% 92%,
+      #10273d 92% 100%);
 }
 
-.heroContent{
+.heroTop{
   position:relative;
   z-index:2;
-  text-align:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
 }
 
-.welcome{
-  color:#8290a8;
-  font-size:12px;
-  letter-spacing:1px;
-  margin-top:2px;
-}
-
-.bossName{
-  margin-top:4px;
-  font-size:24px;
-  font-weight:900;
+.eyebrow{
+  font-size:10px;
+  letter-spacing:2px;
+  color:#7085a2;
+  text-transform:uppercase;
 }
 
 .balanceLabel{
-  margin-top:24px;
-  color:#8290a8;
-  font-size:11px;
-  letter-spacing:2px;
+  margin-top:8px;
+  font-size:12px;
+  color:#9aabc1;
 }
 
 .balance{
-  margin-top:3px;
-  font-size:39px;
+  margin-top:4px;
+  font-size:32px;
   font-weight:900;
   letter-spacing:-1px;
-  text-shadow:0 0 25px rgba(255,199,70,.2);
 }
 
-.coinName{
-  color:#f3bd42;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:2px;
+.balance span{
+  color:#ffd34e;
 }
 
-.income{
-  margin-top:7px;
-  color:#54dc93;
-  font-size:12px;
-  font-weight:700;
+.sync{
+  padding:7px 9px;
+  border-radius:10px;
+  font-size:9px;
+  color:#6e8098;
+  background:rgba(255,255,255,.04);
 }
-
-/* ================= COIN BUTTON ================= */
 
 .coinArea{
-  position:relative;
-  z-index:5;
-  margin-top:22px;
-  display:flex;
-  justify-content:center;
+  position:absolute;
+  z-index:3;
+  left:50%;
+  top:72px;
+  transform:translateX(-50%);
+  text-align:center;
 }
 
 .coinButton{
-  width:150px;
-  height:150px;
+  width:145px;
+  height:145px;
   border-radius:50%;
   position:relative;
-  background:
-    radial-gradient(circle at 32% 25%,#fff2a4 0%,#ffd75a 17%,#f3ae24 52%,#9e5b08 100%);
-  border:7px solid rgba(255,225,126,.65);
-  box-shadow:
-    0 0 0 8px rgba(255,190,45,.08),
-    0 0 45px rgba(255,182,30,.34),
-    inset 0 5px 12px rgba(255,255,255,.5),
-    inset 0 -12px 18px rgba(103,51,0,.35);
-  transition:transform .08s ease;
-  user-select:none;
-}
-
-.coinButton:active{
-  transform:scale(.92);
-}
-
-.coinInner{
-  width:100%;
-  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:67px;
-  color:#7a4500;
+  color:#1a1100;
+  background:
+    radial-gradient(circle at 35% 30%,#fff4a1 0%,#ffd83f 25%,#ffb300 65%,#e48c00 100%);
+  border:7px solid rgba(255,231,120,.35);
+  box-shadow:
+    0 0 0 9px rgba(255,192,38,.07),
+    0 0 45px rgba(255,183,0,.35),
+    inset 0 5px 10px rgba(255,255,255,.45),
+    inset 0 -8px 15px rgba(116,63,0,.28);
+  transition:.08s;
+}
+
+.coinButton:active{
+  transform:scale(.94);
+}
+
+.coinSymbol{
+  font-size:54px;
   font-weight:900;
-  text-shadow:
-    1px 2px 0 rgba(255,241,158,.7),
-    -1px -1px 0 rgba(105,53,0,.3);
+  text-shadow:0 2px 1px rgba(255,255,255,.3);
 }
 
-.tapText{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:-31px;
-  color:#8794a9;
+.coinText{
+  margin-top:8px;
   font-size:10px;
-  letter-spacing:1.4px;
+  color:#7d8fa6;
+  letter-spacing:1.5px;
 }
 
-/* ================= QUICK CARDS ================= */
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:12px;
+}
 
+.stat{
+  min-height:73px;
+  padding:12px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.035);
+}
+
+.statIcon{
+  font-size:16px;
+}
+
+.statTitle{
+  margin-top:6px;
+  font-size:9px;
+  color:#71849c;
+}
+
+.statValue{
+  margin-top:3px;
+  font-size:13px;
+  font-weight:800;
+}
+
+/* CARDS */
+.sectionTitle{
+  margin:20px 2px 10px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.5px;
+}
+
+.card{
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.035);
+  border-radius:19px;
+  padding:15px;
+  margin-bottom:10px;
+}
+
+.cardRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.cardLeft{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.bigIcon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#10213a;
+  font-size:21px;
+}
+
+.cardTitle{
+  font-size:13px;
+  font-weight:800;
+}
+
+.cardDesc{
+  margin-top:4px;
+  font-size:10px;
+  color:#72859e;
+  line-height:1.4;
+}
+
+.action{
+  padding:10px 13px;
+  border-radius:12px;
+  color:#08101b;
+  font-size:10px;
+  font-weight:900;
+  background:linear-gradient(135deg,#ffd94f,#ffae19);
+  white-space:nowrap;
+}
+
+.action.secondary{
+  color:#dce8f7;
+  background:#10213a;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+/* ENERGY */
+.energyWrap{
+  margin-top:12px;
+}
+
+.energyHead{
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+  color:#8395ac;
+  margin-bottom:7px;
+}
+
+.energyBar{
+  height:9px;
+  border-radius:20px;
+  background:#0b1627;
+  overflow:hidden;
+}
+
+.energyFill{
+  height:100%;
+  width:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,#26d9ff,#4b8dff);
+  box-shadow:0 0 15px rgba(38,217,255,.25);
+}
+
+/* QUICK */
 .quickGrid{
-  margin-top:52px;
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
 }
 
-.quickCard{
-  min-height:105px;
-  padding:15px;
+.quick{
+  padding:17px;
+  border-radius:19px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.035);
   text-align:left;
-  border-radius:18px;
-  background:linear-gradient(145deg,rgba(18,31,52,.9),rgba(7,13,25,.95));
-  border:1px solid rgba(255,255,255,.07);
-  transition:transform .15s ease,border-color .15s ease;
-}
-
-.quickCard:active{
-  transform:scale(.97);
+  color:#fff;
 }
 
 .quickIcon{
-  font-size:25px;
+  font-size:24px;
 }
 
-.quickTitle{
-  margin-top:8px;
-  font-size:13px;
-  font-weight:800;
-}
-
-.quickSub{
-  margin-top:4px;
-  color:#758198;
-  font-size:10px;
-}
-
-.quickArrow{
-  float:right;
-  margin-top:-18px;
-  color:#637088;
-}
-
-/* ================= DAILY ================= */
-
-.daily{
-  margin-top:12px;
-  padding:16px;
-  border-radius:20px;
-  background:
-    linear-gradient(135deg,rgba(68,47,12,.5),rgba(13,19,31,.9));
-  border:1px solid rgba(255,194,65,.15);
-}
-
-.dailyTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.dailyTitle{
-  font-size:14px;
-  font-weight:900;
-}
-
-.dailyDesc{
-  color:#8a95a8;
-  font-size:10px;
-  margin-top:4px;
-}
-
-.claim{
-  padding:9px 14px;
-  border-radius:11px;
-  background:linear-gradient(135deg,#ffd964,#eaa82b);
-  color:#241703;
-  font-size:11px;
-  font-weight:900;
-}
-
-.claim:disabled{
-  opacity:.45;
-}
-
-/* ================= ENERGY ================= */
-
-.energyBox{
-  margin-top:12px;
-  padding:15px;
-  border-radius:18px;
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.energyTop{
-  display:flex;
-  justify-content:space-between;
-  font-size:11px;
-}
-
-.energyValue{
-  color:#f2c24f;
-  font-weight:800;
-}
-
-.energyBar{
-  height:8px;
+.quickName{
   margin-top:10px;
-  border-radius:20px;
-  overflow:hidden;
-  background:#111b2a;
+  font-size:12px;
+  font-weight:900;
 }
 
-.energyFill{
-  width:85%;
-  height:100%;
-  border-radius:20px;
-  background:linear-gradient(90deg,#f5a822,#ffe06a);
-  transition:width .2s ease;
+.quickDesc{
+  margin-top:4px;
+  font-size:9px;
+  color:#71849c;
 }
 
-/* ================= INNER PAGES ================= */
-
-.pageHeader{
+/* PAGE HEAD */
+.pageHead{
   display:flex;
   align-items:center;
   gap:12px;
-  margin-bottom:14px;
+  margin-bottom:15px;
 }
 
 .backBtn{
-  width:42px;
-  height:42px;
+  width:40px;
+  height:40px;
   border-radius:13px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.07);
-  font-size:20px;
+  color:#fff;
+  background:#101e32;
+  border:1px solid rgba(255,255,255,.06);
+  font-size:18px;
 }
 
 .pageTitle{
-  font-size:22px;
+  font-size:20px;
   font-weight:900;
 }
 
 .pageSub{
   margin-top:3px;
-  color:#768299;
-  font-size:10px;
+  color:#6f829c;
+  font-size:9px;
 }
 
-/* ================= CITY ================= */
-
-.cityHero{
-  min-height:230px;
+/* CITY */
+.cityMap{
+  height:310px;
   position:relative;
   overflow:hidden;
-  border-radius:23px;
-  background:
-    radial-gradient(circle at 50% 30%,rgba(31,111,193,.4),transparent 45%),
-    linear-gradient(180deg,#0a203a,#06101d);
+  border-radius:24px;
   border:1px solid rgba(255,255,255,.07);
-}
-
-.citySky{
-  position:absolute;
-  inset:0;
-  opacity:.35;
-  background-image:
-    radial-gradient(circle at 20% 20%,#fff 1px,transparent 1px),
-    radial-gradient(circle at 70% 35%,#fff 1px,transparent 1px),
-    radial-gradient(circle at 45% 12%,#fff 1px,transparent 1px);
-}
-
-.cityGround{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:85px;
   background:
-    repeating-linear-gradient(90deg,#081321 0 40px,#0c1928 40px 66px);
+    linear-gradient(30deg,transparent 47%,rgba(75,140,180,.12) 48% 51%,transparent 52%),
+    linear-gradient(120deg,transparent 47%,rgba(75,140,180,.12) 48% 51%,transparent 52%),
+    #091625;
 }
 
-.cityBuildings{
+.cityRoad{
   position:absolute;
-  left:15px;
-  right:15px;
-  bottom:40px;
-  height:100px;
-  display:flex;
-  align-items:end;
-  gap:7px;
+  background:#12263a;
+}
+
+.road1{
+  width:120%;
+  height:26px;
+  left:-10%;
+  top:47%;
+  transform:rotate(-14deg);
+}
+
+.road2{
+  width:120%;
+  height:22px;
+  left:-10%;
+  top:64%;
+  transform:rotate(18deg);
+}
+
+.road3{
+  width:22px;
+  height:120%;
+  left:45%;
+  top:-10%;
+  transform:rotate(10deg);
 }
 
 .building{
-  flex:1;
-  min-width:20px;
-  border-radius:4px 4px 0 0;
-  background:linear-gradient(180deg,#152c47,#0b1625);
-  border:1px solid rgba(90,152,213,.13);
-  position:relative;
-}
-
-.building:after{
-  content:"";
   position:absolute;
-  inset:9px 6px;
-  background:
-    repeating-linear-gradient(
-      180deg,
-      rgba(255,208,75,.65) 0 4px,
-      transparent 4px 13px
-    );
-  opacity:.55;
-}
-
-.cityInfo{
-  position:absolute;
-  left:16px;
-  top:16px;
-  z-index:2;
-}
-
-.cityLevel{
-  font-size:11px;
-  color:#91a1ba;
-  letter-spacing:1px;
-}
-
-.cityValue{
-  margin-top:3px;
-  font-size:22px;
-  font-weight:900;
-}
-
-.buildGrid{
-  margin-top:12px;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.buildCard{
-  padding:16px;
-  border-radius:18px;
-  background:linear-gradient(145deg,#101d31,#080f1d);
-  border:1px solid rgba(255,255,255,.07);
-}
-
-.buildIcon{
-  font-size:28px;
-}
-
-.buildName{
-  margin-top:8px;
-  font-weight:900;
-  font-size:13px;
-}
-
-.buildCost{
-  margin-top:5px;
-  color:#7e8ba1;
-  font-size:10px;
-}
-
-.buildBtn{
-  width:100%;
-  margin-top:11px;
-  padding:10px;
-  border-radius:11px;
-  background:linear-gradient(135deg,#f8c94f,#d9971c);
-  color:#241803;
-  font-size:11px;
-  font-weight:900;
-}
-
-/* ================= BUSINESS ================= */
-
-.statRow{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-}
-
-.stat{
-  padding:13px 8px;
-  border-radius:16px;
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.06);
-  text-align:center;
-}
-
-.statValue{
-  font-size:18px;
-  font-weight:900;
-}
-
-.statLabel{
-  margin-top:4px;
-  color:#748198;
-  font-size:9px;
-}
-
-.businessList{
-  margin-top:12px;
-}
-
-.businessCard{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:10px;
-  padding:15px;
-  border-radius:19px;
-  background:linear-gradient(145deg,#111f34,#080f1c);
-  border:1px solid rgba(255,255,255,.07);
-}
-
-.bizIcon{
-  width:49px;
-  height:49px;
-  border-radius:14px;
+  width:70px;
+  height:70px;
+  border-radius:12px;
+  background:linear-gradient(145deg,#15314a,#0b1a2b);
+  border:1px solid rgba(255,255,255,.08);
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(255,194,59,.08);
-  font-size:25px;
+  font-size:27px;
+  box-shadow:0 10px 20px rgba(0,0,0,.2);
 }
 
-.bizInfo{
-  flex:1;
+.building small{
+  position:absolute;
+  bottom:5px;
+  font-size:7px;
+  color:#7d91aa;
 }
 
-.bizName{
-  font-size:13px;
+.b1{left:10%;top:13%}
+.b2{right:11%;top:18%}
+.b3{left:17%;bottom:13%}
+.b4{right:16%;bottom:10%}
+
+.cityInfo{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+/* BUSINESS */
+.level{
+  color:#ffd64b;
+  font-size:11px;
   font-weight:900;
 }
 
-.bizLevel{
+.income{
+  margin-top:10px;
+  color:#72d8ff;
+  font-size:12px;
+  font-weight:800;
+}
+
+.upgradePrice{
   margin-top:4px;
-  color:#748198;
   font-size:9px;
+  color:#71849b;
 }
 
-.bizIncome{
-  margin-top:5px;
-  color:#4fda91;
-  font-size:10px;
-}
-
-.upgradeBtn{
-  padding:10px 11px;
-  border-radius:10px;
-  background:#16243a;
+/* TAXI */
+.taxiVisual{
+  height:170px;
+  border-radius:24px;
   border:1px solid rgba(255,255,255,.07);
-  color:#ffd45d;
-  font-size:10px;
-  font-weight:900;
-}
-
-/* ================= TAXI ================= */
-
-.taxiHero{
-  padding:18px;
-  border-radius:22px;
   background:
-    radial-gradient(circle at 70% 25%,rgba(255,193,48,.2),transparent 30%),
-    linear-gradient(145deg,#18263b,#080f1b);
-  border:1px solid rgba(255,255,255,.07);
-}
-
-.taxiCar{
-  font-size:74px;
-  text-align:center;
-  margin:8px 0 4px;
+    radial-gradient(circle at 50% 35%,rgba(255,196,45,.12),transparent 40%),
+    #0a1626;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:85px;
 }
 
 .taxiStats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
-  margin-top:12px;
-}
-
-.taxiStat{
-  padding:13px;
-  border-radius:14px;
-  background:rgba(255,255,255,.035);
-}
-
-.taxiStat small{
-  display:block;
-  color:#758198;
-  font-size:9px;
-}
-
-.taxiStat strong{
-  display:block;
-  margin-top:4px;
-  font-size:17px;
-}
-
-.driveBtn{
-  width:100%;
-  margin-top:12px;
-  padding:14px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#ffd75b,#e6a322);
-  color:#241803;
-  font-weight:900;
-  font-size:12px;
-}
-
-/* ================= FRIENDS ================= */
-
-.inviteCard{
-  padding:20px;
-  text-align:center;
-  border-radius:23px;
-  background:
-    radial-gradient(circle at 50% 0,rgba(67,112,203,.25),transparent 50%),
-    linear-gradient(145deg,#101f35,#080f1b);
-  border:1px solid rgba(255,255,255,.07);
-}
-
-.inviteIcon{
-  font-size:48px;
-}
-
-.inviteTitle{
-  margin-top:9px;
-  font-size:20px;
-  font-weight:900;
-}
-
-.inviteDesc{
-  margin-top:7px;
-  color:#7d899d;
-  line-height:1.5;
-  font-size:11px;
-}
-
-.inviteBtn{
-  width:100%;
-  margin-top:15px;
-  padding:13px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#f8ca53,#dc9b21);
-  color:#241803;
-  font-size:12px;
-  font-weight:900;
-}
-
-.friendStats{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
   margin-top:12px;
 }
 
-.friendStat{
-  padding:16px;
-  border-radius:17px;
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.06);
-  text-align:center;
-}
-
-/* ================= RANKING ================= */
-
-.rankTop{
-  padding:20px;
-  border-radius:23px;
-  text-align:center;
-  background:
-    radial-gradient(circle at 50% 0,rgba(255,195,61,.2),transparent 50%),
-    linear-gradient(145deg,#171f30,#080e18);
+/* FRIENDS */
+.refBox{
+  padding:18px;
+  border-radius:20px;
   border:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(145deg,#10233c,#091422);
 }
 
-.rankTrophy{
-  font-size:52px;
+.refCode{
+  margin-top:10px;
+  padding:12px;
+  border-radius:12px;
+  background:#07111e;
+  color:#ffd64b;
+  font-size:12px;
+  text-align:center;
+  font-weight:900;
 }
 
-.rankText{
-  margin-top:4px;
-  color:#8a96aa;
-  font-size:10px;
-  letter-spacing:1px;
-}
-
-.rankList{
-  margin-top:12px;
-}
-
+/* RANK */
 .rankItem{
   display:flex;
   align-items:center;
   gap:11px;
-  padding:13px;
+  padding:12px;
   margin-bottom:8px;
   border-radius:16px;
   background:rgba(255,255,255,.035);
   border:1px solid rgba(255,255,255,.05);
 }
 
-.rankNumber{
-  width:30px;
-  font-size:13px;
+.rankNum{
+  width:27px;
+  font-size:12px;
   font-weight:900;
+  color:#8294aa;
   text-align:center;
 }
 
 .rankAvatar{
-  width:39px;
-  height:39px;
+  width:37px;
+  height:37px;
   border-radius:12px;
+  background:#11243b;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#111e31;
-  font-size:18px;
+  color:#ffd64b;
+  font-weight:900;
 }
 
 .rankName{
   flex:1;
-  font-size:12px;
+  font-size:11px;
   font-weight:800;
 }
 
 .rankCoins{
-  color:#f4c34d;
-  font-size:10px;
+  color:#ffd64b;
+  font-size:11px;
   font-weight:900;
 }
 
-/* ================= BOTTOM NAV ================= */
+/* PROFILE */
+.profileCard{
+  padding:20px;
+  border-radius:23px;
+  border:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(145deg,#10233b,#081321);
+  text-align:center;
+}
 
+.profileAvatar{
+  width:72px;
+  height:72px;
+  margin:auto;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:29px;
+  font-weight:900;
+  color:#07111c;
+  background:linear-gradient(135deg,#ffd84d,#ff9e1b);
+}
+
+.profileName{
+  margin-top:12px;
+  font-size:18px;
+  font-weight:900;
+}
+
+.profileId{
+  margin-top:5px;
+  color:#6f829b;
+  font-size:9px;
+}
+
+/* BOTTOM NAV */
 .bottomNav{
   position:fixed;
-  left:50%;
+  z-index:100;
   bottom:0;
+  left:50%;
   transform:translateX(-50%);
-  width:min(520px,100%);
-  height:78px;
-  z-index:50;
-  padding:8px 8px 11px;
+  width:100%;
+  max-width:520px;
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom));
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:5px;
-  background:rgba(3,8,16,.94);
+  background:rgba(5,9,20,.94);
   backdrop-filter:blur(18px);
   border-top:1px solid rgba(255,255,255,.07);
 }
 
 .navBtn{
-  background:transparent;
+  min-height:55px;
   border-radius:14px;
-  color:#69768c;
+  color:#63758e;
+  background:transparent;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   gap:4px;
-  font-size:9px;
-  font-weight:700;
-}
-
-.navIcon{
-  font-size:21px;
-  line-height:1;
 }
 
 .navBtn.active{
-  color:#ffd158;
-  background:rgba(255,200,65,.07);
+  color:#ffd64b;
+  background:rgba(255,204,66,.08);
 }
 
-/* ================= TOAST ================= */
+.navIcon{
+  font-size:19px;
+}
 
+.navText{
+  font-size:8px;
+  font-weight:800;
+}
+
+/* TOAST */
 .toast{
   position:fixed;
+  z-index:300;
   left:50%;
-  bottom:92px;
-  transform:translate(-50%,15px);
-  z-index:100;
+  top:85px;
+  transform:translateX(-50%) translateY(-15px);
+  opacity:0;
+  pointer-events:none;
   padding:11px 16px;
-  border-radius:13px;
-  background:rgba(16,24,39,.96);
+  border-radius:14px;
+  background:#101d31;
   border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 10px 35px rgba(0,0,0,.35);
   color:#fff;
   font-size:11px;
   font-weight:800;
-  opacity:0;
-  pointer-events:none;
-  transition:.2s ease;
+  transition:.2s;
   white-space:nowrap;
 }
 
 .toast.show{
   opacity:1;
-  transform:translate(-50%,0);
+  transform:translateX(-50%) translateY(0);
 }
 
-/* ================= FLOAT COINS ================= */
-
-.floatCoin{
+/* LOADING */
+.loading{
   position:fixed;
-  z-index:90;
-  pointer-events:none;
-  color:#ffd454;
-  font-size:18px;
+  z-index:500;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#050914;
+}
+
+.loadingBox{
+  text-align:center;
+}
+
+.loadingLogo{
+  width:65px;
+  height:65px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  font-size:29px;
   font-weight:900;
-  animation:floatUp .75s ease-out forwards;
+  color:#07101b;
+  background:linear-gradient(135deg,#ffd84d,#ff9f1b);
+  box-shadow:0 0 35px rgba(255,194,42,.25);
 }
 
-@keyframes floatUp{
-  0%{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-  100%{
-    opacity:0;
-    transform:translateY(-90px) scale(1.25);
-  }
+.loadingText{
+  margin-top:14px;
+  color:#8798ad;
+  font-size:11px;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:360px){
-  .balance{
-    font-size:33px;
-  }
-
-  .coinButton{
-    width:135px;
-    height:135px;
-  }
-
-  .coinInner{
-    font-size:60px;
-  }
+.hidden{
+  display:none!important;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
-
-  <!-- HEADER -->
-  <header class="header">
-
-    <div class="brand">
-      <div class="logo">C</div>
-
-      <div class="brandText">
-        <strong>CITY BOSS</strong>
-        <span>BUILD · GROW · EARN</span>
-      </div>
-    </div>
-
-    <button class="profileMini" onclick="openScreen('profileScreen')">
-      👤
-    </button>
-
-  </header>
-
-
-  <!-- ================= HOME ================= -->
-
-  <main id="homeScreen" class="screen active">
-
-    <section class="hero">
-
-      <div class="stars"></div>
-      <div class="cityGlow"></div>
-
-      <div class="heroContent">
-
-        <div class="welcome">WELCOME BOSS</div>
-
-        <div class="bossName" id="bossName">
-          Player
-        </div>
-
-        <div class="balanceLabel">
-          YOUR BALANCE
-        </div>
-
-        <div class="balance" id="balance">
-          0
-        </div>
-
-        <div class="coinName">
-          ELCOIN
-        </div>
-
-        <div class="income" id="income">
-          +0 / DAY
-        </div>
-
-        <div class="coinArea">
-
-          <!-- BU DÜYMƏ HƏMİŞƏ QALIR -->
-          <button
-            id="coinButton"
-            class="coinButton"
-            onclick="tapCoin(event)"
-          >
-
-            <div class="coinInner">
-              🪙
-            </div>
-
-            <div class="tapText">
-              TAP TO EARN
-            </div>
-
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- QUICK MENU -->
-
-    <section class="quickGrid">
-
-      <button class="quickCard" onclick="openScreen('cityScreen')">
-        <div class="quickIcon">🏙️</div>
-        <div class="quickTitle">City</div>
-        <div class="quickSub">Build your empire</div>
-        <div class="quickArrow">›</div>
-      </button>
-
-      <button class="quickCard" onclick="openScreen('businessScreen')">
-        <div class="quickIcon">🏢</div>
-        <div class="quickTitle">Business</div>
-        <div class="quickSub">Grow your income</div>
-        <div class="quickArrow">›</div>
-      </button>
-
-      <button class="quickCard" onclick="openScreen('taxiScreen')">
-        <div class="quickIcon">🚕</div>
-        <div class="quickTitle">Taxi</div>
-        <div class="quickSub">Drive & earn</div>
-        <div class="quickArrow">›</div>
-      </button>
-
-      <button class="quickCard" onclick="openScreen('friendsScreen')">
-        <div class="quickIcon">👥</div>
-        <div class="quickTitle">Friends</div>
-        <div class="quickSub">Invite & earn</div>
-        <div class="quickArrow">›</div>
-      </button>
-
-    </section>
-
-
-    <!-- DAILY BONUS -->
-
-    <section class="daily">
-
-      <div class="dailyTop">
-
-        <div>
-          <div class="dailyTitle">
-            🎁 Daily Bonus
-          </div>
-
-          <div class="dailyDesc">
-            Come back every day for rewards
-          </div>
-        </div>
-
-        <button
-          id="claimButton"
-          class="claim"
-          onclick="claimDaily()"
-        >
-          +500
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- ENERGY -->
-
-    <section class="energyBox">
-
-      <div class="energyTop">
-        <span>⚡ ENERGY</span>
-
-        <span
-          id="energyText"
-          class="energyValue"
-        >
-          1000 / 1000
-        </span>
-      </div>
-
-      <div class="energyBar">
-        <div
-          id="energyFill"
-          class="energyFill"
-        ></div>
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- ================= CITY ================= -->
-
-  <section id="cityScreen" class="screen">
-
-    <div class="pageHeader">
-
-      <button
-        class="backBtn"
-        onclick="openScreen('homeScreen')"
-      >
-        ←
-      </button>
-
-      <div>
-        <div class="pageTitle">🏙️ City</div>
-        <div class="pageSub">Build your own city</div>
-      </div>
-
-    </div>
-
-
-    <div class="cityHero">
-
-      <div class="citySky"></div>
-
-      <div class="cityInfo">
-
-        <div class="cityLevel">
-          CITY LEVEL
-        </div>
-
-        <div
-          class="cityValue"
-          id="cityLevel"
-        >
-          1
-        </div>
-
-      </div>
-
-      <div class="cityBuildings">
-
-        <div
-          class="building"
-          style="height:42px"
-        ></div>
-
-        <div
-          class="building"
-          style="height:67px"
-        ></div>
-
-        <div
-          class="building"
-          style="height:92px"
-        ></div>
-
-        <div
-          class="building"
-          style="height:56px"
-        ></div>
-
-        <div
-          class="building"
-          style="height:78px"
-        ></div>
-
-        <div
-          class="building"
-          style="height:48px"
-        ></div>
-
-        <div
-          class="building"
-          style="height:84px"
-        ></div>
-
-      </div>
-
-      <div class="cityGround"></div>
-
-    </div>
-
-
-    <div class="buildGrid">
-
-      <div class="buildCard">
-
-        <div class="buildIcon">🏠</div>
-
-        <div class="buildName">
-          House
-        </div>
-
-        <div class="buildCost">
-          Cost: 1,000 ELCOIN
-        </div>
-
-        <button
-          class="buildBtn"
-          onclick="buildItem('House',1000)"
-        >
-          BUILD
-        </button>
-
-      </div>
-
-
-      <div class="buildCard">
-
-        <div class="buildIcon">🏪</div>
-
-        <div class="buildName">
-          Shop
-        </div>
-
-        <div class="buildCost">
-          Cost: 2,500 ELCOIN
-        </div>
-
-        <button
-          class="buildBtn"
-          onclick="buildItem('Shop',2500)"
-        >
-          BUILD
-        </button>
-
-      </div>
-
-
-      <div class="buildCard">
-
-        <div class="buildIcon">🏢</div>
-
-        <div class="buildName">
-          Office
-        </div>
-
-        <div class="buildCost">
-          Cost: 5,000 ELCOIN
-        </div>
-
-        <button
-          class="buildBtn"
-          onclick="buildItem('Office',5000)"
-        >
-          BUILD
-        </button>
-
-      </div>
-
-
-      <div class="buildCard">
-
-        <div class="buildIcon">🏨</div>
-
-        <div class="buildName">
-          Hotel
-        </div>
-
-        <div class="buildCost">
-          Cost: 10,000 ELCOIN
-        </div>
-
-        <button
-          class="buildBtn"
-          onclick="buildItem('Hotel',10000)"
-        >
-          BUILD
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= BUSINESS ================= -->
-
-  <section id="businessScreen" class="screen">
-
-    <div class="pageHeader">
-
-      <button
-        class="backBtn"
-        onclick="openScreen('homeScreen')"
-      >
-        ←
-      </button>
-
-      <div>
-        <div class="pageTitle">🏢 Business</div>
-        <div class="pageSub">Manage your businesses</div>
-      </div>
-
-    </div>
-
-
-    <div class="statRow">
-
-      <div class="stat">
-        <div
-          class="statValue"
-          id="businessCount"
-        >
-          1
-        </div>
-
-        <div class="statLabel">
-          BUSINESSES
-        </div>
-      </div>
-
-
-      <div class="stat">
-
-        <div
-          class="statValue"
-          id="businessLevel"
-        >
-          1
-        </div>
-
-        <div class="statLabel">
-          LEVEL
-        </div>
-
-      </div>
-
-
-      <div class="stat">
-
-        <div
-          class="statValue"
-          id="businessIncome"
-        >
-          100
-        </div>
-
-        <div class="statLabel">
-          / DAY
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="businessList">
-
-      <div class="businessCard">
-
-        <div class="bizIcon">
-          🏪
-        </div>
-
-        <div class="bizInfo">
-
-          <div class="bizName">
-            Mini Market
-          </div>
-
-          <div class="bizLevel">
-            LEVEL <span id="marketLevel">1</span>
-          </div>
-
-          <div class="bizIncome">
-            +100 ELCOIN / DAY
-          </div>
-
-        </div>
-
-        <button
-          class="upgradeBtn"
-          onclick="upgradeBusiness('market')"
-        >
-          UPGRADE
-        </button>
-
-      </div>
-
-
-      <div class="businessCard">
-
-        <div class="bizIcon">
-          ☕
-        </div>
-
-        <div class="bizInfo">
-
-          <div class="bizName">
-            Coffee Shop
-          </div>
-
-          <div class="bizLevel">
-            LEVEL <span id="coffeeLevel">1</span>
-          </div>
-
-          <div class="bizIncome">
-            +150 ELCOIN / DAY
-          </div>
-
-        </div>
-
-        <button
-          class="upgradeBtn"
-          onclick="upgradeBusiness('coffee')"
-        >
-          UPGRADE
-        </button>
-
-      </div>
-
-
-      <div class="businessCard">
-
-        <div class="bizIcon">
-          🏭
-        </div>
-
-        <div class="bizInfo">
-
-          <div class="bizName">
-            Factory
-          </div>
-
-          <div class="bizLevel">
-            LEVEL <span id="factoryLevel">1</span>
-          </div>
-
-          <div class="bizIncome">
-            +300 ELCOIN / DAY
-          </div>
-
-        </div>
-
-        <button
-          class="upgradeBtn"
-          onclick="upgradeBusiness('factory')"
-        >
-          UPGRADE
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= TAXI ================= -->
-
-  <section id="taxiScreen" class="screen">
-
-    <div class="pageHeader">
-
-      <button
-        class="backBtn"
-        onclick="openScreen('homeScreen')"
-      >
-        ←
-      </button>
-
-      <div>
-        <div class="pageTitle">🚕 Taxi</div>
-        <div class="pageSub">Build your taxi empire</div>
-      </div>
-
-    </div>
-
-
-    <div class="taxiHero">
-
-      <div class="taxiCar">
-        🚕
-      </div>
-
-      <div class="statRow">
-
-        <div class="stat">
-
-          <div
-            class="statValue"
-            id="taxiCount"
-          >
-            1
-          </div>
-
-          <div class="statLabel">
-            TAXIS
-          </div>
-
-        </div>
-
-
-        <div class="stat">
-
-          <div
-            class="statValue"
-            id="taxiLevel"
-          >
-            1
-          </div>
-
-          <div class="statLabel">
-            LEVEL
-          </div>
-
-        </div>
-
-
-        <div class="stat">
-
-          <div
-            class="statValue"
-            id="taxiIncome"
-          >
-            50
-          </div>
-
-          <div class="statLabel">
-            / RIDE
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <button
-        class="driveBtn"
-        onclick="driveTaxi()"
-      >
-        🚕 START RIDE +50 ELCOIN
-      </button>
-
-    </div>
-
-
-    <div class="taxiStats">
-
-      <div class="taxiStat">
-
-        <small>
-          TODAY'S RIDES
-        </small>
-
-        <strong id="rides">
-          0
-        </strong>
-
-      </div>
-
-
-      <div class="taxiStat">
-
-        <small>
-          TOTAL EARNED
-        </small>
-
-        <strong id="taxiEarned">
-          0
-        </strong>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= FRIENDS ================= -->
-
-  <section id="friendsScreen" class="screen">
-
-    <div class="pageHeader">
-
-      <button
-        class="backBtn"
-        onclick="openScreen('homeScreen')"
-      >
-        ←
-      </button>
-
-      <div>
-        <div class="pageTitle">👥 Friends</div>
-        <div class="pageSub">Grow together</div>
-      </div>
-
-    </div>
-
-
-    <div class="inviteCard">
-
-      <div class="inviteIcon">
-        👥
-      </div>
-
-      <div class="inviteTitle">
-        Invite Friends
-      </div>
-
-      <div class="inviteDesc">
-        Bring your friends to CITY BOSS.
-        Build your empire together and
-        receive referral rewards.
-      </div>
-
-      <button
-        class="inviteBtn"
-        onclick="inviteFriends()"
-      >
-        INVITE FRIENDS
-      </button>
-
-    </div>
-
-
-    <div class="friendStats">
-
-      <div class="friendStat">
-
-        <div
-          class="statValue"
-          id="referrals"
-        >
-          0
-        </div>
-
-        <div class="statLabel">
-          FRIENDS
-        </div>
-
-      </div>
-
-
-      <div class="friendStat">
-
-        <div
-          class="statValue"
-          id="referralEarned"
-        >
-          0
-        </div>
-
-        <div class="statLabel">
-          EARNED
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= RANKING ================= -->
-
-  <section id="rankingScreen" class="screen">
-
-    <div class="pageHeader">
-
-      <button
-        class="backBtn"
-        onclick="openScreen('homeScreen')"
-      >
-        ←
-      </button>
-
-      <div>
-        <div class="pageTitle">🏆 Ranking</div>
-        <div class="pageSub">Top city bosses</div>
-      </div>
-
-    </div>
-
-
-    <div class="rankTop">
-
-      <div class="rankTrophy">
-        🏆
-      </div>
-
-      <div class="rankText">
-        GLOBAL CITY BOSS RANKING
-      </div>
-
-    </div>
-
-
-    <div class="rankList">
-
-      <div class="rankItem">
-
-        <div class="rankNumber">
-          1
-        </div>
-
-        <div class="rankAvatar">
-          👑
-        </div>
-
-        <div class="rankName">
-          Boss_Alpha
-        </div>
-
-        <div class="rankCoins">
-          985K
-        </div>
-
-      </div>
-
-
-      <div class="rankItem">
-
-        <div class="rankNumber">
-          2
-        </div>
-
-        <div class="rankAvatar">
-          🦁
-        </div>
-
-        <div class="rankName">
-          CityKing
-        </div>
-
-        <div class="rankCoins">
-          742K
-        </div>
-
-      </div>
-
-
-      <div class="rankItem">
-
-        <div class="rankNumber">
-          3
-        </div>
-
-        <div class="rankAvatar">
-          🐺
-        </div>
-
-        <div class="rankName">
-          BigBoss
-        </div>
-
-        <div class="rankCoins">
-          615K
-        </div>
-
-      </div>
-
-
-      <div class="rankItem">
-
-        <div class="rankNumber">
-          4
-        </div>
-
-        <div class="rankAvatar">
-          🦅
-        </div>
-
-        <div class="rankName">
-          Empire_77
-        </div>
-
-        <div class="rankCoins">
-          489K
-        </div>
-
-      </div>
-
-
-      <div class="rankItem">
-
-        <div class="rankNumber">
-          5
-        </div>
-
-        <div class="rankAvatar">
-          🐯
-        </div>
-
-        <div class="rankName">
-          RichCity
-        </div>
-
-        <div class="rankCoins">
-          377K
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= PROFILE ================= -->
-
-  <section id="profileScreen" class="screen">
-
-    <div class="pageHeader">
-
-      <button
-        class="backBtn"
-        onclick="openScreen('homeScreen')"
-      >
-        ←
-      </button>
-
-      <div>
-        <div class="pageTitle">👤 Profile</div>
-        <div class="pageSub">Your city boss profile</div>
-      </div>
-
-    </div>
-
-
-    <div class="inviteCard">
-
-      <div class="inviteIcon">
-        👤
-      </div>
-
-      <div
-        class="inviteTitle"
-        id="profileName"
-      >
-        Player
-      </div>
-
-      <div class="inviteDesc">
-        CITY BOSS
-      </div>
-
-    </div>
-
-
-    <div class="friendStats">
-
-      <div class="friendStat">
-
-        <div
-          class="statValue"
-          id="profileBalance"
-        >
-          0
-        </div>
-
-        <div class="statLabel">
-          ELCOIN
-        </div>
-
-      </div>
-
-
-      <div class="friendStat">
-
-        <div
-          class="statValue"
-          id="profileLevel"
-        >
-          1
-        </div>
-
-        <div class="statLabel">
-          LEVEL
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
+<div id="loading" class="loading">
+  <div class="loadingBox">
+    <div class="loadingLogo">E</div>
+    <div class="loadingText">ELCITY yüklənir...</div>
+  </div>
 </div>
 
+<div class="app">
 
-<!-- ================= BOTTOM NAV ================= -->
+<header class="header">
+  <div class="brand">
+    <div class="logo">E</div>
+    <div class="brandText">
+      <div class="brandName">ELCITY</div>
+      <div class="brandSub">BUILD · EARN · RULE</div>
+    </div>
+  </div>
 
+  <div class="profileMini">
+    <div id="miniAvatar" class="avatar">P</div>
+    <div id="miniName" class="miniName">Player</div>
+  </div>
+</header>
+
+
+<!-- HOME -->
+<section id="homeScreen" class="screen active">
+
+  <div class="hero">
+
+    <div class="heroTop">
+      <div>
+        <div class="eyebrow">ELCITY COIN</div>
+        <div class="balanceLabel">Balans</div>
+        <div id="balance" class="balance">
+          0 <span>ELC</span>
+        </div>
+      </div>
+
+      <div id="syncStatus" class="sync">
+        Local
+      </div>
+    </div>
+
+    <div class="coinArea">
+      <button id="coinButton" class="coinButton">
+        <div class="coinSymbol">E</div>
+      </button>
+      <div class="coinText">TAP TO EARN</div>
+    </div>
+
+    <div class="skyline"></div>
+  </div>
+
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="statIcon">⚡</div>
+      <div class="statTitle">ENERGY</div>
+      <div id="energyText" class="statValue">1000 / 1000</div>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">🏆</div>
+      <div class="statTitle">LEVEL</div>
+      <div id="levelText" class="statValue">Level 1</div>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">🏙️</div>
+      <div class="statTitle">CITY</div>
+      <div id="cityLevelText" class="statValue">Level 1</div>
+    </div>
+
+  </div>
+
+
+  <div class="energyWrap">
+    <div class="energyHead">
+      <span>Energy</span>
+      <span id="energyPercent">100%</span>
+    </div>
+
+    <div class="energyBar">
+      <div id="energyFill" class="energyFill"></div>
+    </div>
+  </div>
+
+
+  <div class="sectionTitle">Günün fürsəti</div>
+
+  <div class="card">
+    <div class="cardRow">
+
+      <div class="cardLeft">
+        <div class="bigIcon">🎁</div>
+
+        <div>
+          <div class="cardTitle">Daily Bonus</div>
+          <div class="cardDesc">
+            Hər gün bonusunu götür.
+          </div>
+        </div>
+      </div>
+
+      <button id="bonusButton" class="action">
+        +500 ELC
+      </button>
+
+    </div>
+  </div>
+
+
+  <div class="sectionTitle">Sürətli giriş</div>
+
+  <div class="quickGrid">
+
+    <button class="quick" onclick="showScreen('cityScreen')">
+      <div class="quickIcon">🏙️</div>
+      <div class="quickName">City</div>
+      <div class="quickDesc">Şəhərini böyüt</div>
+    </button>
+
+    <button class="quick" onclick="showScreen('businessScreen')">
+      <div class="quickIcon">🏢</div>
+      <div class="quickName">Business</div>
+      <div class="quickDesc">Biznes qur</div>
+    </button>
+
+    <button class="quick" onclick="showScreen('taxiScreen')">
+      <div class="quickIcon">🚕</div>
+      <div class="quickName">Taxi</div>
+      <div class="quickDesc">Sərnişin daşı</div>
+    </button>
+
+    <button class="quick" onclick="showScreen('friendsScreen')">
+      <div class="quickIcon">👥</div>
+      <div class="quickName">Friends</div>
+      <div class="quickDesc">Dostlarını dəvət et</div>
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- CITY -->
+<section id="cityScreen" class="screen">
+
+  <div class="pageHead">
+    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
+    <div>
+      <div class="pageTitle">🏙️ City</div>
+      <div class="pageSub">Şəhərini inkişaf etdir</div>
+    </div>
+  </div>
+
+
+  <div class="cityMap">
+
+    <div class="cityRoad road1"></div>
+    <div class="cityRoad road2"></div>
+    <div class="cityRoad road3"></div>
+
+    <div class="building b1">
+      🏠
+      <small>HOME</small>
+    </div>
+
+    <div class="building b2">
+      🏢
+      <small>OFFICE</small>
+    </div>
+
+    <div class="building b3">
+      🏪
+      <small>SHOP</small>
+    </div>
+
+    <div class="building b4">
+      🏭
+      <small>FACTORY</small>
+    </div>
+
+  </div>
+
+
+  <div class="cityInfo">
+
+    <div class="card">
+      <div class="cardTitle">City Level</div>
+      <div id="cityLevelValue" class="income">Level 1</div>
+    </div>
+
+    <div class="card">
+      <div class="cardTitle">City Income</div>
+      <div id="cityIncomeValue" class="income">+10 ELC/saat</div>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+    <div class="cardRow">
+      <div>
+        <div class="cardTitle">🏗️ Şəhəri böyüt</div>
+        <div class="cardDesc">
+          Daha çox bina və gəlir aç.
+        </div>
+      </div>
+
+      <button id="cityUpgradeButton" class="action">
+        500 ELC
+      </button>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- BUSINESS -->
+<section id="businessScreen" class="screen">
+
+  <div class="pageHead">
+    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
+    <div>
+      <div class="pageTitle">🏢 Business</div>
+      <div class="pageSub">Biznes imperiyanı qur</div>
+    </div>
+  </div>
+
+
+  <div class="card">
+
+    <div class="cardRow">
+
+      <div class="cardLeft">
+        <div class="bigIcon">🏪</div>
+
+        <div>
+          <div class="cardTitle">Market</div>
+          <div id="businessLevel" class="level">
+            Level 1
+          </div>
+        </div>
+      </div>
+
+      <button id="businessUpgradeButton" class="action">
+        400 ELC
+      </button>
+
+    </div>
+
+    <div class="income">
+      +20 ELC / saat
+    </div>
+
+    <div class="upgradePrice">
+      Biznes səviyyəsini artır.
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="cardRow">
+
+      <div class="cardLeft">
+        <div class="bigIcon">🏭</div>
+
+        <div>
+          <div class="cardTitle">Factory</div>
+          <div class="level">
+            Locked
+          </div>
+        </div>
+
+      </div>
+
+      <button class="action secondary" onclick="showToast('Factory daha sonra açılacaq')">
+        🔒
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TAXI -->
+<section id="taxiScreen" class="screen">
+
+  <div class="pageHead">
+    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
+    <div>
+      <div class="pageTitle">🚕 Taxi</div>
+      <div class="pageSub">Şəhərdə sərnişin daşı</div>
+    </div>
+  </div>
+
+
+  <div class="taxiVisual">
+    🚕
+  </div>
+
+
+  <div class="taxiStats">
+
+    <div class="card">
+      <div class="cardTitle">Taxi Level</div>
+      <div id="taxiLevel" class="income">Level 1</div>
+    </div>
+
+    <div class="card">
+      <div class="cardTitle">Ride Reward</div>
+      <div class="income">+50 ELC</div>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="cardRow">
+
+      <div>
+        <div class="cardTitle">🚕 Ride</div>
+        <div class="cardDesc">
+          Bir sərnişin götür və ELC qazan.
+        </div>
+      </div>
+
+      <button id="rideButton" class="action">
+        RIDE +50
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FRIENDS -->
+<section id="friendsScreen" class="screen">
+
+  <div class="pageHead">
+    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
+    <div>
+      <div class="pageTitle">👥 Friends</div>
+      <div class="pageSub">Şəhərini dostlarınla böyüt</div>
+    </div>
+  </div>
+
+
+  <div class="refBox">
+
+    <div class="cardTitle">
+      Dostlarını dəvət et
+    </div>
+
+    <div class="cardDesc">
+      Dostun oyuna daxil olduqda referral sistemi işləyəcək.
+    </div>
+
+    <div id="refCode" class="refCode">
+      ELCITY-PLAYER
+    </div>
+
+    <button
+      class="action"
+      style="width:100%;margin-top:12px"
+      onclick="inviteFriends()"
+    >
+      👥 DOSTLARI DƏVƏT ET
+    </button>
+
+  </div>
+
+
+  <div class="sectionTitle">Referral statistikası</div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="statIcon">👥</div>
+      <div class="statTitle">FRIENDS</div>
+      <div id="referralsText" class="statValue">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">🪙</div>
+      <div class="statTitle">BONUS</div>
+      <div class="statValue">0 ELC</div>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">⭐</div>
+      <div class="statTitle">LEVEL</div>
+      <div class="statValue">1</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- RANKING -->
+<section id="rankingScreen" class="screen">
+
+  <div class="pageHead">
+    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
+    <div>
+      <div class="pageTitle">🏆 Ranking</div>
+      <div class="pageSub">Şəhərin liderlərini gör</div>
+    </div>
+  </div>
+
+
+  <div id="rankingList">
+
+    <div class="rankItem">
+      <div class="rankNum">1</div>
+      <div class="rankAvatar">C</div>
+      <div class="rankName">city_master</div>
+      <div class="rankCoins">25,000 ELC</div>
+    </div>
+
+    <div class="rankItem">
+      <div class="rankNum">2</div>
+      <div class="rankAvatar">B</div>
+      <div class="rankName">boss_player</div>
+      <div class="rankCoins">18,500 ELC</div>
+    </div>
+
+    <div class="rankItem">
+      <div class="rankNum">3</div>
+      <div class="rankAvatar">T</div>
+      <div class="rankName">taxi_king</div>
+      <div class="rankCoins">14,200 ELC</div>
+    </div>
+
+    <div class="rankItem">
+      <div class="rankNum">4</div>
+      <div class="rankAvatar">E</div>
+      <div class="rankName">elite_city</div>
+      <div class="rankCoins">10,700 ELC</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROFILE -->
+<section id="profileScreen" class="screen">
+
+  <div class="pageHead">
+    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
+    <div>
+      <div class="pageTitle">👤 Profile</div>
+      <div class="pageSub">Sənin şəhər profilin</div>
+    </div>
+  </div>
+
+
+  <div class="profileCard">
+
+    <div id="profileAvatar" class="profileAvatar">
+      P
+    </div>
+
+    <div id="profileName" class="profileName">
+      Player
+    </div>
+
+    <div id="profileId" class="profileId">
+      Telegram player
+    </div>
+
+  </div>
+
+
+  <div class="sectionTitle">Statistika</div>
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="statIcon">🪙</div>
+      <div class="statTitle">BALANCE</div>
+      <div id="profileBalance" class="statValue">0 ELC</div>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">👆</div>
+      <div class="statTitle">TAPS</div>
+      <div id="profileTaps" class="statValue">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">🚕</div>
+      <div class="statTitle">RIDES</div>
+      <div id="profileRides" class="statValue">0</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BOTTOM NAV -->
 <nav class="bottomNav">
 
-  <button
-    id="navHome"
-    class="navBtn active"
-    onclick="openScreen('homeScreen')"
-  >
+  <button class="navBtn active" data-screen="homeScreen" onclick="showScreen('homeScreen')">
     <div class="navIcon">🏠</div>
-    HOME
+    <div class="navText">HOME</div>
   </button>
 
-
-  <button
-    id="navCity"
-    class="navBtn"
-    onclick="openScreen('cityScreen')"
-  >
+  <button class="navBtn" data-screen="cityScreen" onclick="showScreen('cityScreen')">
     <div class="navIcon">🏙️</div>
-    CITY
+    <div class="navText">CITY</div>
   </button>
 
-
-  <button
-    id="navBusiness"
-    class="navBtn"
-    onclick="openScreen('businessScreen')"
-  >
+  <button class="navBtn" data-screen="businessScreen" onclick="showScreen('businessScreen')">
     <div class="navIcon">🏢</div>
-    BUSINESS
+    <div class="navText">BUSINESS</div>
   </button>
 
-
-  <button
-    id="navTaxi"
-    class="navBtn"
-    onclick="openScreen('taxiScreen')"
-  >
+  <button class="navBtn" data-screen="taxiScreen" onclick="showScreen('taxiScreen')">
     <div class="navIcon">🚕</div>
-    TAXI
+    <div class="navText">TAXI</div>
   </button>
 
-
-  <button
-    id="navRanking"
-    class="navBtn"
-    onclick="openScreen('rankingScreen')"
-  >
-    <div class="navIcon">🏆</div>
-    RANKING
+  <button class="navBtn" data-screen="profileScreen" onclick="showScreen('profileScreen')">
+    <div class="navIcon">👤</div>
+    <div class="navText">PROFILE</div>
   </button>
 
 </nav>
 
+</div>
 
-<div
-  id="toast"
-  class="toast"
-></div>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
 /* =========================================================
-   CITY BOSS V1
-   =========================================================
-   IMPORTANT:
-   Bu V1 yalnız frontend prototipidir.
-   Mövcud Supabase players məlumatlarını SİLMİR.
+   ELCITY CONFIG
    ========================================================= */
 
+/*
+   BURADA YALNIZ 2 MƏLUMATI DƏYİŞ:
 
-/* ================= TELEGRAM ================= */
+   1. SUPABASE_URL
+   2. SUPABASE_ANON_KEY
+
+   Heç bir SQL silmə əməliyyatı yoxdur.
+   Bu kod mövcud Balance dəyərini sıfırlamır.
+*/
+
+const SUPABASE_URL =
+  "BURAYA_SUPABASE_PROJECT_URL";
+
+const SUPABASE_ANON_KEY =
+  "BURAYA_SUPABASE_ANON_KEY";
+
+
+/* =========================================================
+   TELEGRAM
+   ========================================================= */
 
 const tg =
   window.Telegram &&
@@ -1980,199 +1379,593 @@ const tg =
     : null;
 
 if(tg){
-
   try{
     tg.ready();
     tg.expand();
+    tg.setHeaderColor("#050914");
+    tg.setBackgroundColor("#050914");
   }catch(e){}
-
 }
 
 
-/* ================= GAME STATE ================= */
+/* =========================================================
+   GAME STATE
+   ========================================================= */
 
 let game = {
 
   balance: 0,
 
   energy: 1000,
-
   maxEnergy: 1000,
 
   level: 1,
 
   cityLevel: 1,
-
   businessLevel: 1,
-
-  businessCount: 1,
-
-  marketLevel: 1,
-
-  coffeeLevel: 1,
-
-  factoryLevel: 1,
-
-  taxiCount: 1,
-
   taxiLevel: 1,
-
-  rides: 0,
-
-  taxiEarned: 0,
 
   referrals: 0,
 
-  referralEarned: 0,
+  totalTaps: 0,
+  totalRides: 0,
 
-  dailyClaimed: false,
+  lastBonus: null,
 
-  lastDaily: 0,
+  telegramId: null,
 
-  totalTaps: 0
+  nickname: "player_0000",
+
+  loadedFromSupabase: false
 
 };
 
 
-/* ================= LOCAL SAVE ================= */
+/* =========================================================
+   LOCAL STORAGE
+   ========================================================= */
 
-function saveGame(){
+const LOCAL_KEY = "elcity_safe_state_v1";
+
+
+function saveLocal(){
+
+  /*
+    LOCAL YADDAŞ SADECE EHTIYATDIR.
+    Supabase balansını burada 0-a çevirmirik.
+  */
 
   try{
 
     localStorage.setItem(
-      "cityBossV1",
+      LOCAL_KEY,
       JSON.stringify(game)
     );
 
-  }catch(e){
-
-    console.log("Save error",e);
-
-  }
-
-}
-
-
-/* ================= LOCAL LOAD ================= */
-
-function loadGame(){
-
-  try{
-
-    const saved =
-      localStorage.getItem("cityBossV1");
-
-    if(saved){
-
-      const parsed =
-        JSON.parse(saved);
-
-      game = {
-        ...game,
-        ...parsed
-      };
-
-    }
-
-  }catch(e){
-
-    console.log("Load error",e);
-
-  }
-
-}
-
-
-/* ================= PLAYER NAME ================= */
-
-function getPlayerName(){
-
-  try{
-
-    if(
-      tg &&
-      tg.initDataUnsafe &&
-      tg.initDataUnsafe.user
-    ){
-
-      const user =
-        tg.initDataUnsafe.user;
-
-      if(user.username){
-
-        return "@" + user.username;
-
-      }
-
-      if(user.first_name){
-
-        return user.first_name;
-
-      }
-
-    }
-
   }catch(e){}
 
-  return "Player";
+}
+
+
+function loadLocal(){
+
+  try{
+
+    const raw =
+      localStorage.getItem(LOCAL_KEY);
+
+    if(!raw) return;
+
+    const saved =
+      JSON.parse(raw);
+
+    if(!saved) return;
+
+    /*
+      Lokal balans yalnız müvəqqəti UI üçündür.
+      Supabase-dan gələn balans daha sonra üstün olacaq.
+    */
+
+    game = {
+      ...game,
+      ...saved
+    };
+
+  }catch(e){
+
+    console.log("Local load error",e);
+
+  }
 
 }
 
 
-/* ================= FORMAT ================= */
+/* =========================================================
+   TELEGRAM USER
+   ========================================================= */
 
-function formatNumber(number){
+function getTelegramUser(){
 
-  number = Number(number) || 0;
+  if(
+    tg &&
+    tg.initDataUnsafe &&
+    tg.initDataUnsafe.user
+  ){
 
-  return Math.floor(number)
-    .toLocaleString("en-US");
+    return tg.initDataUnsafe.user;
+
+  }
+
+  return null;
 
 }
 
 
-/* ================= RENDER ================= */
+function getTelegramId(){
+
+  const user =
+    getTelegramUser();
+
+  if(user && user.id){
+
+    return String(user.id);
+
+  }
+
+  return null;
+
+}
+
+
+function generateNickname(){
+
+  const id =
+    getTelegramId();
+
+  if(id){
+
+    /*
+      İctimai profil üçün real ad göstərilmir.
+      Telegram ID-dən anonim nickname yaradılır.
+    */
+
+    const tail =
+      id.slice(-4);
+
+    return "player_" + tail;
+
+  }
+
+  return "player_0000";
+
+}
+
+
+function setupUser(){
+
+  const user =
+    getTelegramUser();
+
+  game.telegramId =
+    getTelegramId();
+
+  if(
+    !game.nickname ||
+    game.nickname === "player_0000"
+  ){
+
+    game.nickname =
+      generateNickname();
+
+  }
+
+  /*
+    Real Telegram first_name və username
+    ictimai ranking üçün istifadə olunmur.
+  */
+
+  const publicName =
+    game.nickname || "player_0000";
+
+  document.getElementById("miniName").textContent =
+    publicName;
+
+  document.getElementById("profileName").textContent =
+    publicName;
+
+  document.getElementById("profileId").textContent =
+    game.telegramId
+      ? "ELCITY Player"
+      : "Telegram player";
+
+  const letter =
+    publicName.charAt(0).toUpperCase() || "P";
+
+  document.getElementById("miniAvatar").textContent =
+    letter;
+
+  document.getElementById("profileAvatar").textContent =
+    letter;
+
+}
+
+
+/* =========================================================
+   SUPABASE STATUS
+   ========================================================= */
+
+function supabaseConfigured(){
+
+  return (
+    SUPABASE_URL &&
+    SUPABASE_ANON_KEY &&
+    !SUPABASE_URL.includes("BURAYA") &&
+    !SUPABASE_ANON_KEY.includes("BURAYA")
+  );
+
+}
+
+
+/* =========================================================
+   SUPABASE GET PLAYER
+   ========================================================= */
+
+async function loadPlayerFromSupabase(){
+
+  const telegramId =
+    getTelegramId();
+
+  if(!telegramId){
+
+    setSync("Telegram ID yoxdur");
+
+    return false;
+
+  }
+
+  if(!supabaseConfigured()){
+
+    setSync("Supabase qurulmayıb");
+
+    return false;
+
+  }
+
+
+  try{
+
+    /*
+      VACİB:
+
+      Burada yalnız SELECT edilir.
+
+      Balance = 0 yazılmır.
+      INSERT edilmir.
+      UPDATE edilmir.
+      DELETE edilmir.
+
+      Mövcud oyunçunun Balance dəyəri olduğu kimi oxunur.
+    */
+
+    const url =
+      SUPABASE_URL.replace(/\/$/,"") +
+      "/rest/v1/players" +
+      "?Telegram_id=eq." +
+      encodeURIComponent(telegramId) +
+      "&select=*";
+
+
+    const response =
+      await fetch(
+        url,
+        {
+          method:"GET",
+
+          headers:{
+            "apikey":SUPABASE_ANON_KEY,
+            "Authorization":
+              "Bearer " + SUPABASE_ANON_KEY,
+            "Content-Type":
+              "application/json"
+          }
+        }
+      );
+
+
+    if(!response.ok){
+
+      const text =
+        await response.text();
+
+      console.log(
+        "Supabase error:",
+        response.status,
+        text
+      );
+
+      setSync("Supabase xətası");
+
+      return false;
+
+    }
+
+
+    const rows =
+      await response.json();
+
+
+    if(!Array.isArray(rows)){
+
+      setSync("Məlumat xətası");
+
+      return false;
+
+    }
+
+
+    if(rows.length === 0){
+
+      /*
+        YENİ OYUNÇU.
+
+        Burada avtomatik INSERT ETMİRİK.
+        Beləliklə RLS və server quruluşunu pozmuruq.
+
+        Yeni oyunçu müvəqqəti lokal state ilə davam edir.
+      */
+
+      setSync("Yeni oyunçu");
+
+      return false;
+
+    }
+
+
+    const player =
+      rows[0];
+
+
+    /*
+      ƏN VACİB HİSSƏ:
+
+      Balance hansı formatda gəlirsə,
+      onu təhlükəsiz şəkildə rəqəmə çeviririk.
+
+      Mövcud Balance 0-dırsa 0 qalacaq.
+      Mövcud Balance 50000-dirsə 50000 qalacaq.
+
+      Kod özbaşına 0 yazmır.
+    */
+
+    if(
+      player["Balance"] !== null &&
+      player["Balance"] !== undefined
+    ){
+
+      const dbBalance =
+        Number(player["Balance"]);
+
+      if(Number.isFinite(dbBalance)){
+
+        game.balance =
+          dbBalance;
+
+      }
+
+    }
+
+
+    if(
+      player["Energy"] !== null &&
+      player["Energy"] !== undefined
+    ){
+
+      const dbEnergy =
+        Number(player["Energy"]);
+
+      if(Number.isFinite(dbEnergy)){
+
+        game.energy =
+          dbEnergy;
+
+      }
+
+    }
+
+
+    if(
+      player["Level"] !== null &&
+      player["Level"] !== undefined
+    ){
+
+      const dbLevel =
+        Number(player["Level"]);
+
+      if(Number.isFinite(dbLevel)){
+
+        game.level =
+          dbLevel;
+
+      }
+
+    }
+
+
+    if(
+      player["Referrals"] !== null &&
+      player["Referrals"] !== undefined
+    ){
+
+      const dbReferrals =
+        Number(player["Referrals"]);
+
+      if(Number.isFinite(dbReferrals)){
+
+        game.referrals =
+          dbReferrals;
+
+      }
+
+    }
+
+
+    if(
+      player["Taxi_level"] !== null &&
+      player["Taxi_level"] !== undefined
+    ){
+
+      const taxiLevel =
+        Number(player["Taxi_level"]);
+
+      if(Number.isFinite(taxiLevel)){
+
+        game.taxiLevel =
+          taxiLevel;
+
+      }
+
+    }
+
+
+    if(
+      player["City_level"] !== null &&
+      player["City_level"] !== undefined
+    ){
+
+      const cityLevel =
+        Number(player["City_level"]);
+
+      if(Number.isFinite(cityLevel)){
+
+        game.cityLevel =
+          cityLevel;
+
+      }
+
+    }
+
+
+    if(
+      player["Total_taps"] !== null &&
+      player["Total_taps"] !== undefined
+    ){
+
+      const taps =
+        Number(player["Total_taps"]);
+
+      if(Number.isFinite(taps)){
+
+        game.totalTaps =
+          taps;
+
+      }
+
+    }
+
+
+    if(
+      player["Total_rides"] !== null &&
+      player["Total_rides"] !== undefined
+    ){
+
+      const rides =
+        Number(player["Total_rides"]);
+
+      if(Number.isFinite(rides)){
+
+        game.totalRides =
+          rides;
+
+      }
+
+    }
+
+
+    if(
+      player["Last bonus"] !== null &&
+      player["Last bonus"] !== undefined
+    ){
+
+      game.lastBonus =
+        player["Last bonus"];
+
+    }
+
+
+    game.loadedFromSupabase =
+      true;
+
+
+    setSync("Supabase ✓");
+
+    saveLocal();
+
+    render();
+
+    return true;
+
+
+  }catch(error){
+
+    console.log(
+      "Supabase connection error:",
+      error
+    );
+
+    setSync("Bağlantı xətası");
+
+    return false;
+
+  }
+
+}
+
+
+/* =========================================================
+   SYNC STATUS
+   ========================================================= */
+
+function setSync(text){
+
+  const el =
+    document.getElementById("syncStatus");
+
+  if(el){
+
+    el.textContent =
+      text;
+
+  }
+
+}
+
+
+/* =========================================================
+   FORMAT
+   ========================================================= */
+
+function formatNumber(value){
+
+  const n =
+    Number(value) || 0;
+
+  return n.toLocaleString("en-US");
+
+}
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
 
 function render(){
 
-  const name =
-    getPlayerName();
-
-  document.getElementById(
-    "bossName"
-  ).textContent = name;
-
-  document.getElementById(
-    "profileName"
-  ).textContent = name;
+  document.getElementById("balance").innerHTML =
+    formatNumber(game.balance) +
+    ' <span>ELC</span>';
 
 
-  document.getElementById(
-    "balance"
-  ).textContent =
-    formatNumber(game.balance);
-
-
-  document.getElementById(
-    "profileBalance"
-  ).textContent =
-    formatNumber(game.balance);
-
-
-  document.getElementById(
-    "income"
-  ).textContent =
-    "+" +
-    formatNumber(
-      getDailyIncome()
-    ) +
-    " / DAY";
-
-
-  document.getElementById(
-    "energyText"
-  ).textContent =
+  document.getElementById("energyText").textContent =
     formatNumber(game.energy) +
     " / " +
     formatNumber(game.maxEnergy);
@@ -2188,331 +1981,128 @@ function render(){
     );
 
 
-  document.getElementById(
-    "energyFill"
-  ).style.width =
+  document.getElementById("energyPercent").textContent =
+    Math.floor(energyPercent) + "%";
+
+
+  document.getElementById("energyFill").style.width =
     energyPercent + "%";
 
 
-  document.getElementById(
-    "cityLevel"
-  ).textContent =
-    game.cityLevel;
+  document.getElementById("levelText").textContent =
+    "Level " + game.level;
 
 
-  document.getElementById(
-    "businessCount"
-  ).textContent =
-    game.businessCount;
+  document.getElementById("cityLevelText").textContent =
+    "Level " + game.cityLevel;
 
 
-  document.getElementById(
-    "businessLevel"
-  ).textContent =
-    game.businessLevel;
+  document.getElementById("cityLevelValue").textContent =
+    "Level " + game.cityLevel;
 
 
-  document.getElementById(
-    "businessIncome"
-  ).textContent =
-    formatNumber(
-      getBusinessIncome()
-    );
+  document.getElementById("cityIncomeValue").textContent =
+    "+" +
+    (game.cityLevel * 10) +
+    " ELC/saat";
 
 
-  document.getElementById(
-    "marketLevel"
-  ).textContent =
-    game.marketLevel;
+  document.getElementById("businessLevel").textContent =
+    "Level " + game.businessLevel;
 
 
-  document.getElementById(
-    "coffeeLevel"
-  ).textContent =
-    game.coffeeLevel;
+  document.getElementById("taxiLevel").textContent =
+    "Level " + game.taxiLevel;
 
 
-  document.getElementById(
-    "factoryLevel"
-  ).textContent =
-    game.factoryLevel;
+  document.getElementById("referralsText").textContent =
+    formatNumber(game.referrals);
 
 
-  document.getElementById(
-    "taxiCount"
-  ).textContent =
-    game.taxiCount;
+  document.getElementById("profileBalance").textContent =
+    formatNumber(game.balance) +
+    " ELC";
 
 
-  document.getElementById(
-    "taxiLevel"
-  ).textContent =
-    game.taxiLevel;
+  document.getElementById("profileTaps").textContent =
+    formatNumber(game.totalTaps);
 
 
-  document.getElementById(
-    "taxiIncome"
-  ).textContent =
-    50 * game.taxiLevel;
+  document.getElementById("profileRides").textContent =
+    formatNumber(game.totalRides);
 
 
-  document.getElementById(
-    "rides"
-  ).textContent =
-    game.rides;
+  const refCode =
+    game.telegramId
+      ? "ELCITY-" + game.telegramId.slice(-6)
+      : "ELCITY-PLAYER";
 
 
-  document.getElementById(
-    "taxiEarned"
-  ).textContent =
-    formatNumber(game.taxiEarned);
+  document.getElementById("refCode").textContent =
+    refCode;
 
 
-  document.getElementById(
-    "referrals"
-  ).textContent =
-    game.referrals;
+  const businessPrice =
+    400 * game.businessLevel;
 
 
-  document.getElementById(
-    "referralEarned"
-  ).textContent =
-    formatNumber(
-      game.referralEarned
-    );
+  document.getElementById("businessUpgradeButton").textContent =
+    formatNumber(businessPrice) +
+    " ELC";
 
 
-  document.getElementById(
-    "profileLevel"
-  ).textContent =
-    game.level;
+  const cityPrice =
+    500 * game.cityLevel;
 
 
-  updateDailyButton();
+  document.getElementById("cityUpgradeButton").textContent =
+    formatNumber(cityPrice) +
+    " ELC";
 
 }
 
 
-/* ================= INCOME ================= */
-
-function getBusinessIncome(){
-
-  return (
-    game.marketLevel * 100 +
-    game.coffeeLevel * 150 +
-    game.factoryLevel * 300
-  );
-
-}
-
-
-function getDailyIncome(){
-
-  return (
-    getBusinessIncome() +
-    game.taxiCount *
-    game.taxiLevel *
-    100
-  );
-
-}
-
-
-/* ================= TAP COIN ================= */
-
-function tapCoin(event){
-
-  if(game.energy <= 0){
-
-    showToast("⚡ Energy bitdi");
-
-    return;
-
-  }
-
-
-  const reward =
-    1 + Math.floor(game.level / 10);
-
-
-  game.balance += reward;
-
-  game.energy -= 1;
-
-  game.totalTaps += 1;
-
-
-  createFloatCoin(
-    event,
-    "+" + reward
-  );
-
-
-  render();
-
-  saveGame();
-
-}
-
-
-/* ================= FLOAT COIN ================= */
-
-function createFloatCoin(event,text){
-
-  const el =
-    document.createElement("div");
-
-  el.className =
-    "floatCoin";
-
-  el.textContent =
-    "🪙 " + text;
-
-
-  let x = window.innerWidth / 2;
-
-  let y = window.innerHeight / 2;
-
-
-  if(event){
-
-    x =
-      event.clientX ||
-      x;
-
-    y =
-      event.clientY ||
-      y;
-
-  }
-
-
-  el.style.left =
-    x + "px";
-
-  el.style.top =
-    y + "px";
-
-
-  document.body.appendChild(el);
-
-
-  setTimeout(()=>{
-
-    el.remove();
-
-  },800);
-
-}
-
-
-/* ================= DAILY ================= */
-
-function claimDaily(){
-
-  const now =
-    Date.now();
-
-  const day =
-    24 * 60 * 60 * 1000;
-
-
-  if(
-    game.lastDaily &&
-    now - game.lastDaily < day
-  ){
-
-    showToast("🎁 Daily bonus artıq götürülüb");
-
-    return;
-
-  }
-
-
-  game.balance += 500;
-
-  game.lastDaily = now;
-
-  game.dailyClaimed = true;
-
-
-  showToast("🎁 +500 ELCOIN qazandın!");
-
-  render();
-
-  saveGame();
-
-}
-
-
-function updateDailyButton(){
-
-  const btn =
-    document.getElementById(
-      "claimButton"
-    );
-
-
-  const now =
-    Date.now();
-
-  const day =
-    24 * 60 * 60 * 1000;
-
-
-  if(
-    game.lastDaily &&
-    now - game.lastDaily < day
-  ){
-
-    btn.disabled = true;
-
-    btn.textContent = "CLAIMED";
-
-  }else{
-
-    btn.disabled = false;
-
-    btn.textContent = "+500";
-
-  }
-
-}
-
-
-/* ================= SCREEN NAVIGATION ================= */
-
-function openScreen(id){
+/* =========================================================
+   SCREEN NAVIGATION
+   ========================================================= */
+
+function showScreen(id){
 
   const screens =
-    document.querySelectorAll(
-      ".screen"
-    );
+    document.querySelectorAll(".screen");
 
+  screens.forEach(
+    screen => {
 
-  screens.forEach(screen=>{
+      screen.classList.remove("active");
 
-    screen.classList.remove(
-      "active"
-    );
-
-  });
+    }
+  );
 
 
   const target =
     document.getElementById(id);
 
-
   if(target){
 
-    target.classList.add(
-      "active"
-    );
+    target.classList.add("active");
 
   }
 
 
-  updateNavigation(id);
+  const navButtons =
+    document.querySelectorAll(".navBtn");
+
+  navButtons.forEach(
+    btn => {
+
+      btn.classList.toggle(
+        "active",
+        btn.dataset.screen === id
+      );
+
+    }
+  );
 
 
   window.scrollTo({
@@ -2523,275 +2113,206 @@ function openScreen(id){
 }
 
 
-/* ================= NAV ACTIVE ================= */
+/* =========================================================
+   TAP
+   ========================================================= */
 
-function updateNavigation(id){
+document.getElementById("coinButton")
+.addEventListener(
+  "click",
+  function(){
 
-  const buttons =
-    document.querySelectorAll(
-      ".navBtn"
-    );
+    if(game.energy <= 0){
 
+      showToast("⚡ Energy bitdi");
 
-  buttons.forEach(btn=>{
+      return;
 
-    btn.classList.remove(
-      "active"
-    );
-
-  });
-
-
-  if(id === "homeScreen"){
-
-    document
-      .getElementById("navHome")
-      .classList.add("active");
-
-  }
+    }
 
 
-  if(id === "cityScreen"){
+    game.balance += 1;
 
-    document
-      .getElementById("navCity")
-      .classList.add("active");
+    game.energy -= 1;
+
+    game.totalTaps += 1;
+
+
+    render();
+
+    saveLocal();
 
   }
+);
 
 
-  if(id === "businessScreen"){
+/* =========================================================
+   DAILY BONUS
+   ========================================================= */
 
-    document
-      .getElementById("navBusiness")
-      .classList.add("active");
+document.getElementById("bonusButton")
+.addEventListener(
+  "click",
+  function(){
 
-  }
-
-
-  if(id === "taxiScreen"){
-
-    document
-      .getElementById("navTaxi")
-      .classList.add("active");
-
-  }
+    const today =
+      new Date().toISOString().slice(0,10);
 
 
-  if(id === "rankingScreen"){
+    if(game.lastBonus === today){
 
-    document
-      .getElementById("navRanking")
-      .classList.add("active");
+      showToast("🎁 Bonus artıq götürülüb");
 
-  }
+      return;
 
-
-  if(id === "friendsScreen"){
-
-    document
-      .getElementById("navHome")
-      .classList.add("active");
-
-  }
+    }
 
 
-  if(id === "profileScreen"){
+    game.balance += 500;
 
-    document
-      .getElementById("navHome")
-      .classList.add("active");
+    game.lastBonus =
+      today;
+
+
+    render();
+
+    saveLocal();
+
+    showToast("+500 ELC Daily Bonus 🎁");
 
   }
+);
 
-}
+
+/* =========================================================
+   BUSINESS UPGRADE
+   ========================================================= */
+
+document.getElementById("businessUpgradeButton")
+.addEventListener(
+  "click",
+  function(){
+
+    const price =
+      400 * game.businessLevel;
 
 
-/* ================= BUILD ================= */
+    if(game.balance < price){
 
-function buildItem(name,cost){
+      showToast("🪙 Kifayət qədər ELC yoxdur");
 
-  if(game.balance < cost){
+      return;
+
+    }
+
+
+    game.balance -= price;
+
+    game.businessLevel += 1;
+
+
+    render();
+
+    saveLocal();
+
+    showToast("🏢 Business Level artırıldı");
+
+  }
+);
+
+
+/* =========================================================
+   CITY UPGRADE
+   ========================================================= */
+
+document.getElementById("cityUpgradeButton")
+.addEventListener(
+  "click",
+  function(){
+
+    const price =
+      500 * game.cityLevel;
+
+
+    if(game.balance < price){
+
+      showToast("🪙 Kifayət qədər ELC yoxdur");
+
+      return;
+
+    }
+
+
+    game.balance -= price;
+
+    game.cityLevel += 1;
+
+
+    render();
+
+    saveLocal();
+
+    showToast("🏙️ City Level artırıldı");
+
+  }
+);
+
+
+/* =========================================================
+   TAXI
+   ========================================================= */
+
+document.getElementById("rideButton")
+.addEventListener(
+  "click",
+  function(){
+
+    const reward =
+      50 * game.taxiLevel;
+
+
+    game.balance += reward;
+
+    game.totalRides += 1;
+
+
+    render();
+
+    saveLocal();
 
     showToast(
-      "❌ " +
-      formatNumber(cost) +
-      " ELCOIN lazımdır"
+      "🚕 +" +
+      formatNumber(reward) +
+      " ELC"
     );
 
-    return;
-
   }
+);
 
 
-  game.balance -= cost;
-
-  game.cityLevel += 1;
-
-  game.level =
-    Math.max(
-      game.level,
-      game.cityLevel
-    );
-
-
-  showToast(
-    "🏗️ " +
-    name +
-    " tikildi!"
-  );
-
-
-  render();
-
-  saveGame();
-
-}
-
-
-/* ================= BUSINESS UPGRADE ================= */
-
-function upgradeBusiness(type){
-
-  let cost = 0;
-
-
-  if(type === "market"){
-
-    cost =
-      game.marketLevel * 1000;
-
-    if(game.balance < cost){
-
-      showToast(
-        "❌ Kifayət qədər ELCOIN yoxdur"
-      );
-
-      return;
-
-    }
-
-    game.balance -= cost;
-
-    game.marketLevel += 1;
-
-  }
-
-
-  if(type === "coffee"){
-
-    cost =
-      game.coffeeLevel * 1500;
-
-    if(game.balance < cost){
-
-      showToast(
-        "❌ Kifayət qədər ELCOIN yoxdur"
-      );
-
-      return;
-
-    }
-
-    game.balance -= cost;
-
-    game.coffeeLevel += 1;
-
-  }
-
-
-  if(type === "factory"){
-
-    cost =
-      game.factoryLevel * 3000;
-
-    if(game.balance < cost){
-
-      showToast(
-        "❌ Kifayət qədər ELCOIN yoxdur"
-      );
-
-      return;
-
-    }
-
-    game.balance -= cost;
-
-    game.factoryLevel += 1;
-
-  }
-
-
-  game.businessLevel =
-    Math.max(
-      game.marketLevel,
-      game.coffeeLevel,
-      game.factoryLevel
-    );
-
-
-  game.level =
-    Math.max(
-      game.level,
-      game.businessLevel
-    );
-
-
-  showToast(
-    "⬆️ Business upgraded!"
-  );
-
-
-  render();
-
-  saveGame();
-
-}
-
-
-/* ================= TAXI ================= */
-
-function driveTaxi(){
-
-  const reward =
-    50 * game.taxiLevel;
-
-
-  game.balance += reward;
-
-  game.rides += 1;
-
-  game.taxiEarned += reward;
-
-
-  showToast(
-    "🚕 Ride complete +" +
-    formatNumber(reward)
-  );
-
-
-  render();
-
-  saveGame();
-
-}
-
-
-/* ================= INVITE ================= */
+/* =========================================================
+   INVITE
+   ========================================================= */
 
 function inviteFriends(){
+
+  const telegramId =
+    game.telegramId || "player";
+
 
   const botUsername =
     "ElCoinGame_bot";
 
+
   const link =
     "https://t.me/" +
     botUsername +
-    "?start=ref";
+    "?start=ref_" +
+    telegramId;
 
 
   const shareText =
-    "CITY BOSS-a qoşul! 🏙️🚕";
+    "🏙️ ELCITY-ə qoşul! Şəhərini qur, biznesini böyüt və ELC qazan!";
 
 
   const shareUrl =
@@ -2824,72 +2345,106 @@ function inviteFriends(){
 }
 
 
-/* ================= TOAST ================= */
+/* =========================================================
+   TOAST
+   ========================================================= */
 
 let toastTimer = null;
 
 
-function showToast(message){
+function showToast(text){
 
   const toast =
-    document.getElementById(
-      "toast"
-    );
+    document.getElementById("toast");
 
 
   toast.textContent =
-    message;
+    text;
 
 
-  toast.classList.add(
-    "show"
-  );
+  toast.classList.add("show");
 
 
-  clearTimeout(
-    toastTimer
-  );
+  clearTimeout(toastTimer);
 
 
   toastTimer =
-    setTimeout(()=>{
+    setTimeout(
+      function(){
 
-      toast.classList.remove(
-        "show"
-      );
+        toast.classList.remove("show");
 
-    },1800);
+      },
+      1800
+    );
 
 }
 
 
-/* ================= ENERGY REGEN ================= */
+/* =========================================================
+   ENERGY REGEN
+   ========================================================= */
 
-setInterval(()=>{
+setInterval(
+  function(){
 
-  if(
-    game.energy <
-    game.maxEnergy
-  ){
+    if(
+      game.energy <
+      game.maxEnergy
+    ){
 
-    game.energy += 1;
+      game.energy += 1;
 
-    render();
+      render();
 
-    saveGame();
+      saveLocal();
 
-  }
+    }
 
-},3000);
+  },
+  3000
+);
 
 
-/* ================= START ================= */
+/* =========================================================
+   START
+   ========================================================= */
 
-function startGame(){
+async function startGame(){
 
-  loadGame();
+  /*
+    Əvvəl lokal məlumat yüklənir.
+    Bu, ekranın boş görünməməsi üçündür.
+  */
+
+  loadLocal();
+
+  setupUser();
 
   render();
+
+
+  /*
+    Sonra Supabase-dan həqiqi oyunçu
+    məlumatı oxunur.
+
+    Əgər oyunçu varsa:
+    onun mövcud Balance dəyəri istifadə olunur.
+
+    Heç bir Balance = 0 əməliyyatı yoxdur.
+  */
+
+  await loadPlayerFromSupabase();
+
+
+  setupUser();
+
+  render();
+
+
+  document
+    .getElementById("loading")
+    .classList.add("hidden");
 
 }
 
