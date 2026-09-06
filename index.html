@@ -2,10 +2,11 @@
 <html lang="az">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#050914">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
-<title>ELCITY</title>
+<title>ELCITY — ELC</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
@@ -15,51 +16,158 @@
   -webkit-tap-highlight-color:transparent;
 }
 
+:root{
+  --bg:#030405;
+  --panel:#090b0d;
+  --panel2:#0e1114;
+  --gold:#d6a84b;
+  --gold2:#ffdf82;
+  --gold3:#8e6420;
+  --text:#f5f1e7;
+  --muted:#858585;
+  --green:#58d68d;
+  --red:#e76f61;
+  --line:rgba(214,168,75,.20);
+}
+
 html,body{
   margin:0;
   padding:0;
   width:100%;
   min-height:100%;
-  background:#050914;
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
+  background:#020304;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;
 }
 
 body{
-  overflow-x:hidden;
+  min-height:100vh;
   background:
-    radial-gradient(circle at 50% 0%,rgba(0,183,255,.12),transparent 35%),
-    linear-gradient(180deg,#050914 0%,#08111f 55%,#050914 100%);
+    radial-gradient(circle at 50% -10%,rgba(214,168,75,.15),transparent 35%),
+    linear-gradient(#030405,#020304 65%,#000);
 }
 
 button{
-  font:inherit;
   border:0;
+  color:inherit;
+  font:inherit;
   cursor:pointer;
 }
 
-.app{
-  width:100%;
-  max-width:520px;
+#app{
   min-height:100vh;
-  margin:auto;
   position:relative;
-  padding-bottom:90px;
+  overflow:hidden;
 }
 
-/* HEADER */
-.header{
-  height:72px;
+.noise{
+  pointer-events:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+/* INTRO */
+
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(circle,rgba(214,168,75,.13),transparent 25%),
+    #020304;
+  transition:opacity .8s ease,visibility .8s;
+}
+
+.intro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.introLogo{
+  text-align:center;
+  animation:introIn 1.2s ease;
+}
+
+.introMark{
+  width:86px;
+  height:86px;
+  margin:auto;
+  border:1px solid rgba(255,220,130,.55);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  font-weight:900;
+  color:#ffe29a;
+  box-shadow:
+    0 0 30px rgba(214,168,75,.2),
+    inset 0 0 30px rgba(214,168,75,.08);
+}
+
+.introTitle{
+  margin-top:22px;
+  font-size:34px;
+  letter-spacing:9px;
+  font-weight:900;
+}
+
+.introSub{
+  margin-top:9px;
+  color:#9b9b9b;
+  font-size:10px;
+  letter-spacing:4px;
+}
+
+.loader{
+  width:150px;
+  height:2px;
+  margin:28px auto 0;
+  background:#151515;
+  overflow:hidden;
+}
+
+.loader i{
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,transparent,var(--gold2),transparent);
+  animation:load 1.8s ease forwards;
+}
+
+@keyframes load{
+  to{width:100%}
+}
+
+@keyframes introIn{
+  from{opacity:0;transform:scale(.85);filter:blur(8px)}
+  to{opacity:1;transform:scale(1);filter:blur(0)}
+}
+
+/* TOP */
+
+.topbar{
+  position:fixed;
+  z-index:80;
+  top:0;
+  left:0;
+  right:0;
+  height:74px;
+  padding:12px 15px;
+  padding-top:max(12px,env(safe-area-inset-top));
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 16px;
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:rgba(5,9,20,.86);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid rgba(255,255,255,.06);
+  background:linear-gradient(180deg,rgba(2,3,4,.96),rgba(2,3,4,.72),transparent);
+  backdrop-filter:blur(8px);
 }
 
 .brand{
@@ -68,645 +176,978 @@ button{
   gap:10px;
 }
 
-.logo{
-  width:45px;
-  height:45px;
-  border-radius:14px;
+.brandMark{
+  width:39px;
+  height:39px;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:22px;
-  font-weight:900;
-  color:#06101c;
-  background:linear-gradient(135deg,#ffd84d,#ff9f1c);
-  box-shadow:0 0 25px rgba(255,193,7,.28);
+  color:#080706;
+  font-weight:1000;
+  background:linear-gradient(145deg,#fff0b5,#c18b32);
+  box-shadow:0 0 18px rgba(214,168,75,.18);
 }
 
-.brandText{
-  line-height:1;
+.brandText strong{
+  display:block;
+  font-size:17px;
+  letter-spacing:3px;
 }
 
-.brandName{
-  font-size:19px;
-  font-weight:900;
-  letter-spacing:1px;
+.brandText span{
+  display:block;
+  margin-top:2px;
+  color:#777;
+  font-size:7px;
+  letter-spacing:3px;
 }
 
-.brandSub{
-  margin-top:5px;
-  font-size:9px;
-  color:#6f829e;
-  letter-spacing:1.5px;
-}
-
-.profileMini{
+.status{
   display:flex;
   align-items:center;
-  gap:8px;
-  padding:7px 10px;
+  gap:7px;
+  padding:8px 10px;
   border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-  background:rgba(255,255,255,.035);
+  background:rgba(255,255,255,.025);
+  border-radius:20px;
+  font-size:10px;
+  color:#aaa;
 }
 
-.avatar{
-  width:30px;
-  height:30px;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#13233b;
-  color:#ffd84d;
-  font-weight:900;
-}
-
-.miniName{
-  max-width:90px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  font-size:11px;
-  color:#dce7f5;
+.statusDot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#51d48a;
+  box-shadow:0 0 8px #51d48a;
 }
 
 /* SCREENS */
+
+.content{
+  min-height:100vh;
+  padding:78px 14px 100px;
+}
+
 .screen{
   display:none;
-  padding:16px;
-  animation:fadeIn .18s ease;
+  animation:screenIn .35s ease;
 }
 
 .screen.active{
   display:block;
 }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(5px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+@keyframes screenIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-/* HOME */
-.hero{
+/* HOME CITY */
+
+.cityHero{
   position:relative;
-  min-height:265px;
+  height:420px;
   border-radius:28px;
   overflow:hidden;
-  padding:22px;
-  border:1px solid rgba(255,255,255,.07);
+  border:1px solid rgba(214,168,75,.14);
   background:
-    linear-gradient(180deg,rgba(13,31,55,.72),rgba(5,11,22,.92)),
-    radial-gradient(circle at 50% 25%,rgba(0,184,255,.15),transparent 45%);
-  box-shadow:0 18px 50px rgba(0,0,0,.25);
+    radial-gradient(circle at 50% 28%,rgba(255,208,100,.08),transparent 24%),
+    linear-gradient(180deg,#080c12 0%,#08090b 55%,#020304 100%);
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.65),
+    inset 0 1px rgba(255,255,255,.03);
 }
+
+/* moon */
+
+.moon{
+  position:absolute;
+  width:92px;
+  height:92px;
+  right:28px;
+  top:38px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 32%,#fff5c9,#d8bb72 47%,#84692e 100%);
+  box-shadow:0 0 45px rgba(255,215,120,.13);
+  opacity:.8;
+}
+
+.stars{
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle,rgba(255,240,190,.75) 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(255,255,255,.5) 1px,transparent 1.5px);
+  background-size:83px 71px,127px 109px;
+  background-position:12px 18px,41px 47px;
+  opacity:.32;
+  animation:starsMove 12s linear infinite;
+}
+
+@keyframes starsMove{
+  to{background-position:20px 35px,52px 65px}
+}
+
+.cityGlow{
+  position:absolute;
+  bottom:80px;
+  left:0;
+  right:0;
+  height:120px;
+  background:radial-gradient(ellipse at center,rgba(214,168,75,.12),transparent 65%);
+}
+
+/* skyline */
 
 .skyline{
   position:absolute;
-  bottom:0;
   left:0;
   right:0;
-  height:95px;
-  opacity:.55;
-  background:
-    linear-gradient(90deg,
-      transparent 0 4%,
-      #0c2036 4% 10%,
-      transparent 10% 12%,
-      #0b1d31 12% 19%,
-      transparent 19% 22%,
-      #10263d 22% 30%,
-      transparent 30% 34%,
-      #0c2137 34% 42%,
-      transparent 42% 45%,
-      #102941 45% 53%,
-      transparent 53% 56%,
-      #0b2036 56% 64%,
-      transparent 64% 68%,
-      #10263b 68% 77%,
-      transparent 77% 80%,
-      #0b2034 80% 88%,
-      transparent 88% 92%,
-      #10273d 92% 100%);
-}
-
-.heroTop{
-  position:relative;
-  z-index:2;
+  bottom:75px;
+  height:230px;
   display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
+  align-items:flex-end;
+  gap:3px;
+  padding:0 5px;
+  transform:perspective(500px) rotateX(1deg);
 }
 
-.eyebrow{
-  font-size:10px;
-  letter-spacing:2px;
-  color:#7085a2;
-  text-transform:uppercase;
+.building{
+  position:relative;
+  flex:1;
+  min-width:20px;
+  background:
+    linear-gradient(90deg,#07090b,#111519 48%,#07090b);
+  border-top:1px solid rgba(255,255,255,.04);
+  box-shadow:inset 3px 0 rgba(255,255,255,.015);
 }
 
-.balanceLabel{
-  margin-top:8px;
-  font-size:12px;
-  color:#9aabc1;
-}
+.building:nth-child(1){height:45%}
+.building:nth-child(2){height:67%}
+.building:nth-child(3){height:52%}
+.building:nth-child(4){height:83%}
+.building:nth-child(5){height:60%}
+.building:nth-child(6){height:95%}
+.building:nth-child(7){height:72%}
+.building:nth-child(8){height:87%}
+.building:nth-child(9){height:54%}
+.building:nth-child(10){height:74%}
+.building:nth-child(11){height:48%}
+.building:nth-child(12){height:64%}
+.building:nth-child(13){height:81%}
+.building:nth-child(14){height:58%}
 
-.balance{
-  margin-top:4px;
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:-1px;
-}
-
-.balance span{
-  color:#ffd34e;
-}
-
-.sync{
-  padding:7px 9px;
-  border-radius:10px;
-  font-size:9px;
-  color:#6e8098;
-  background:rgba(255,255,255,.04);
-}
-
-.coinArea{
+.building:before{
+  content:"";
   position:absolute;
-  z-index:3;
-  left:50%;
-  top:72px;
-  transform:translateX(-50%);
+  inset:9px 4px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 6px,
+      rgba(255,211,101,.24) 6px 8px,
+      transparent 8px 13px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,211,101,.15) 0 3px,
+      transparent 3px 12px
+    );
+  opacity:.55;
+}
+
+.building:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-2px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#c99b42,transparent);
+  box-shadow:0 0 10px rgba(214,168,75,.25);
+}
+
+.road{
+  position:absolute;
+  left:-10%;
+  right:-10%;
+  bottom:0;
+  height:85px;
+  background:
+    linear-gradient(180deg,#111416,#050607);
+  border-top:1px solid rgba(255,255,255,.05);
+  transform:perspective(500px) rotateX(45deg);
+  transform-origin:bottom;
+}
+
+.road:after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:0;
+  right:0;
+  height:2px;
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(255,220,130,.5) 0 25px,
+    transparent 25px 55px
+  );
+  animation:roadMove 1s linear infinite;
+}
+
+@keyframes roadMove{
+  to{transform:translateX(-80px)}
+}
+
+.car{
+  position:absolute;
+  bottom:42px;
+  width:43px;
+  height:12px;
+  border-radius:8px 8px 4px 4px;
+  background:linear-gradient(180deg,#d9ae51,#604317);
+  box-shadow:0 0 12px rgba(255,205,91,.4);
+  z-index:5;
+}
+
+.car:before{
+  content:"";
+  position:absolute;
+  left:9px;
+  top:-6px;
+  width:23px;
+  height:8px;
+  border-radius:8px 8px 0 0;
+  background:#171b1d;
+  border:1px solid rgba(255,220,130,.22);
+}
+
+.car:after{
+  content:"";
+  position:absolute;
+  left:5px;
+  bottom:-4px;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#050505;
+  box-shadow:26px 0 #050505;
+}
+
+.car1{animation:car1 7s linear infinite}
+.car2{bottom:29px;transform:scale(.72);animation:car2 9s linear infinite 1s}
+.car3{bottom:52px;transform:scale(.55);animation:car3 11s linear infinite 3s}
+
+@keyframes car1{
+  from{left:-60px}
+  to{left:calc(100% + 60px)}
+}
+@keyframes car2{
+  from{right:-60px}
+  to{right:calc(100% + 60px)}
+}
+@keyframes car3{
+  from{left:-60px}
+  to{left:calc(100% + 60px)}
+}
+
+/* BALANCE */
+
+.balanceBox{
+  position:absolute;
+  z-index:10;
+  left:18px;
+  right:18px;
+  top:22px;
   text-align:center;
 }
 
-.coinButton{
-  width:145px;
-  height:145px;
-  border-radius:50%;
-  position:relative;
+.balanceLabel{
+  color:#8b8b8b;
+  font-size:9px;
+  letter-spacing:3px;
+}
+
+.balance{
+  margin-top:5px;
+  font-size:35px;
+  font-weight:900;
+  letter-spacing:-1px;
+  background:linear-gradient(180deg,#fff1b8,#d49d3e);
+  -webkit-background-clip:text;
+  color:transparent;
+  text-shadow:0 0 30px rgba(214,168,75,.08);
+}
+
+.coinCode{
+  margin-top:2px;
+  color:#9a7b40;
+  font-size:9px;
+  letter-spacing:4px;
+}
+
+/* COIN BUTTON */
+
+.coinArea{
+  position:absolute;
+  z-index:20;
+  left:50%;
+  top:190px;
+  transform:translateX(-50%);
+  width:205px;
+  height:205px;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#1a1100;
+}
+
+.coinAura{
+  position:absolute;
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(214,168,75,.18),transparent 65%);
+  animation:aura 2.5s ease-in-out infinite;
+}
+
+@keyframes aura{
+  0%,100%{transform:scale(.9);opacity:.45}
+  50%{transform:scale(1.08);opacity:.9}
+}
+
+.coinButton{
+  position:relative;
+  width:154px;
+  height:154px;
+  border-radius:50%;
+  padding:0;
   background:
-    radial-gradient(circle at 35% 30%,#fff4a1 0%,#ffd83f 25%,#ffb300 65%,#e48c00 100%);
-  border:7px solid rgba(255,231,120,.35);
+    radial-gradient(circle at 34% 27%,#fff3bc 0 4%,#e5bd62 15%,#b47c29 47%,#5b3b11 78%,#241708 100%);
+  border:5px solid #191205;
   box-shadow:
-    0 0 0 9px rgba(255,192,38,.07),
-    0 0 45px rgba(255,183,0,.35),
-    inset 0 5px 10px rgba(255,255,255,.45),
-    inset 0 -8px 15px rgba(116,63,0,.28);
-  transition:.08s;
+    0 0 0 2px #c6963d,
+    0 0 0 6px rgba(214,168,75,.14),
+    0 18px 35px rgba(0,0,0,.7),
+    inset 0 3px 5px rgba(255,255,255,.55),
+    inset 0 -8px 15px rgba(0,0,0,.5);
+  transition:transform .12s ease;
+}
+
+.coinButton:before{
+  content:"";
+  position:absolute;
+  inset:13px;
+  border-radius:50%;
+  border:1px solid rgba(255,238,175,.55);
+  box-shadow:inset 0 0 18px rgba(255,242,181,.12);
+}
+
+.coinButton:after{
+  content:"ELC";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:1000;
+  color:#3b270b;
+  text-shadow:0 1px rgba(255,245,192,.45);
 }
 
 .coinButton:active{
   transform:scale(.94);
 }
 
-.coinSymbol{
-  font-size:54px;
-  font-weight:900;
-  text-shadow:0 2px 1px rgba(255,255,255,.3);
+.coinButton.hit{
+  animation:coinHit .23s ease;
 }
 
-.coinText{
-  margin-top:8px;
-  font-size:10px;
-  color:#7d8fa6;
-  letter-spacing:1.5px;
+@keyframes coinHit{
+  50%{transform:scale(1.08) rotate(-2deg)}
 }
 
-/* STATS */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin-top:12px;
-}
-
-.stat{
-  min-height:73px;
-  padding:12px;
-  border-radius:17px;
-  border:1px solid rgba(255,255,255,.06);
-  background:rgba(255,255,255,.035);
-}
-
-.statIcon{
-  font-size:16px;
-}
-
-.statTitle{
-  margin-top:6px;
+.tapText{
+  position:absolute;
+  top:174px;
+  color:#cba75a;
   font-size:9px;
-  color:#71849c;
-}
-
-.statValue{
-  margin-top:3px;
-  font-size:13px;
-  font-weight:800;
-}
-
-/* CARDS */
-.sectionTitle{
-  margin:20px 2px 10px;
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:.5px;
-}
-
-.card{
-  border:1px solid rgba(255,255,255,.07);
-  background:rgba(255,255,255,.035);
-  border-radius:19px;
-  padding:15px;
-  margin-bottom:10px;
-}
-
-.cardRow{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.cardLeft{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.bigIcon{
-  width:44px;
-  height:44px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#10213a;
-  font-size:21px;
-}
-
-.cardTitle{
-  font-size:13px;
-  font-weight:800;
-}
-
-.cardDesc{
-  margin-top:4px;
-  font-size:10px;
-  color:#72859e;
-  line-height:1.4;
-}
-
-.action{
-  padding:10px 13px;
-  border-radius:12px;
-  color:#08101b;
-  font-size:10px;
-  font-weight:900;
-  background:linear-gradient(135deg,#ffd94f,#ffae19);
-  white-space:nowrap;
-}
-
-.action.secondary{
-  color:#dce8f7;
-  background:#10213a;
-  border:1px solid rgba(255,255,255,.06);
+  letter-spacing:2px;
 }
 
 /* ENERGY */
-.energyWrap{
-  margin-top:12px;
+
+.energyBox{
+  position:absolute;
+  z-index:15;
+  left:17px;
+  right:17px;
+  bottom:17px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:15px;
+  background:rgba(2,3,4,.72);
+  backdrop-filter:blur(8px);
 }
 
 .energyHead{
   display:flex;
   justify-content:space-between;
   font-size:10px;
-  color:#8395ac;
-  margin-bottom:7px;
+  color:#aaa;
 }
 
-.energyBar{
-  height:9px;
-  border-radius:20px;
-  background:#0b1627;
+.energyHead b{
+  color:#f2dfae;
+}
+
+.energyTrack{
+  height:5px;
+  margin-top:8px;
+  background:#1a1c1d;
+  border-radius:10px;
   overflow:hidden;
 }
 
 .energyFill{
   height:100%;
-  width:100%;
-  border-radius:20px;
-  background:linear-gradient(90deg,#26d9ff,#4b8dff);
-  box-shadow:0 0 15px rgba(38,217,255,.25);
+  width:84%;
+  background:linear-gradient(90deg,#8d641e,#f0c862);
+  box-shadow:0 0 10px rgba(214,168,75,.25);
+  transition:width .3s;
 }
 
-/* QUICK */
-.quickGrid{
+/* QUICK STATS */
+
+.stats{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.quick{
-  padding:17px;
-  border-radius:19px;
-  border:1px solid rgba(255,255,255,.06);
-  background:rgba(255,255,255,.035);
-  text-align:left;
-  color:#fff;
-}
-
-.quickIcon{
-  font-size:24px;
-}
-
-.quickName{
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
   margin-top:10px;
-  font-size:12px;
-  font-weight:900;
 }
 
-.quickDesc{
-  margin-top:4px;
-  font-size:9px;
-  color:#71849c;
+.stat{
+  padding:13px 8px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:linear-gradient(145deg,#0c0f11,#070809);
+  text-align:center;
 }
 
-/* PAGE HEAD */
-.pageHead{
+.statIcon{
+  font-size:17px;
+}
+
+.stat b{
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+}
+
+.stat span{
+  display:block;
+  margin-top:2px;
+  color:#707070;
+  font-size:8px;
+  letter-spacing:1px;
+}
+
+/* PANELS */
+
+.sectionTitle{
+  margin:24px 3px 11px;
   display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:15px;
+  align-items:end;
+  justify-content:space-between;
 }
 
-.backBtn{
-  width:40px;
-  height:40px;
-  border-radius:13px;
-  color:#fff;
-  background:#101e32;
-  border:1px solid rgba(255,255,255,.06);
+.sectionTitle h2{
+  margin:0;
   font-size:18px;
 }
 
-.pageTitle{
-  font-size:20px;
-  font-weight:900;
-}
-
-.pageSub{
-  margin-top:3px;
-  color:#6f829c;
+.sectionTitle span{
+  color:#777;
   font-size:9px;
+  letter-spacing:1px;
 }
 
-/* CITY */
-.cityMap{
-  height:310px;
+.cards{
+  display:grid;
+  gap:10px;
+}
+
+.card{
   position:relative;
   overflow:hidden;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.07);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
   background:
-    linear-gradient(30deg,transparent 47%,rgba(75,140,180,.12) 48% 51%,transparent 52%),
-    linear-gradient(120deg,transparent 47%,rgba(75,140,180,.12) 48% 51%,transparent 52%),
-    #091625;
+    radial-gradient(circle at 100% 0,rgba(214,168,75,.07),transparent 35%),
+    linear-gradient(145deg,#0d1012,#07090a);
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
 }
 
-.cityRoad{
+.card:after{
+  content:"";
   position:absolute;
-  background:#12263a;
+  top:0;
+  right:0;
+  width:90px;
+  height:90px;
+  background:radial-gradient(circle,rgba(214,168,75,.08),transparent 70%);
+  pointer-events:none;
 }
 
-.road1{
-  width:120%;
-  height:26px;
-  left:-10%;
-  top:47%;
-  transform:rotate(-14deg);
+.cardHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-.road2{
-  width:120%;
-  height:22px;
-  left:-10%;
-  top:64%;
-  transform:rotate(18deg);
+.cardName{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.road3{
-  width:22px;
-  height:120%;
-  left:45%;
-  top:-10%;
-  transform:rotate(10deg);
-}
-
-.building{
-  position:absolute;
-  width:70px;
-  height:70px;
-  border-radius:12px;
-  background:linear-gradient(145deg,#15314a,#0b1a2b);
-  border:1px solid rgba(255,255,255,.08);
+.cardIcon{
+  width:42px;
+  height:42px;
+  border-radius:13px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:27px;
-  box-shadow:0 10px 20px rgba(0,0,0,.2);
+  background:rgba(214,168,75,.08);
+  border:1px solid rgba(214,168,75,.16);
+  font-size:21px;
 }
 
-.building small{
-  position:absolute;
-  bottom:5px;
-  font-size:7px;
-  color:#7d91aa;
+.cardName b{
+  display:block;
+  font-size:13px;
 }
 
-.b1{left:10%;top:13%}
-.b2{right:11%;top:18%}
-.b3{left:17%;bottom:13%}
-.b4{right:16%;bottom:10%}
+.cardName span{
+  display:block;
+  color:#737373;
+  font-size:9px;
+  margin-top:3px;
+}
 
-.cityInfo{
-  margin-top:12px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+.gold{
+  color:#e0b960;
+}
+
+.action{
+  margin-top:13px;
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#d8aa4e,#8c611b);
+  color:#130e05;
+  font-weight:900;
+  font-size:11px;
+  letter-spacing:.5px;
+  box-shadow:0 8px 18px rgba(214,168,75,.12);
+}
+
+.action:active{
+  transform:scale(.98);
 }
 
 /* BUSINESS */
-.level{
-  color:#ffd64b;
-  font-size:11px;
-  font-weight:900;
-}
 
-.income{
-  margin-top:10px;
-  color:#72d8ff;
-  font-size:12px;
-  font-weight:800;
-}
-
-.upgradePrice{
-  margin-top:4px;
-  font-size:9px;
-  color:#71849b;
-}
-
-/* TAXI */
-.taxiVisual{
-  height:170px;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.07);
-  background:
-    radial-gradient(circle at 50% 35%,rgba(255,196,45,.12),transparent 40%),
-    #0a1626;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:85px;
-}
-
-.taxiStats{
+.businessGrid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:12px;
 }
 
+.business{
+  padding:15px;
+  min-height:170px;
+}
+
+.business .emoji{
+  font-size:29px;
+}
+
+.business h3{
+  margin:10px 0 4px;
+  font-size:13px;
+}
+
+.business p{
+  margin:0;
+  color:#777;
+  font-size:9px;
+  line-height:1.5;
+}
+
+.income{
+  margin-top:11px;
+  color:#dcb65f;
+  font-size:11px;
+}
+
+.level{
+  display:inline-block;
+  margin-top:9px;
+  padding:4px 7px;
+  border-radius:7px;
+  background:rgba(214,168,75,.08);
+  color:#cba75a;
+  font-size:8px;
+}
+
+/* TAXI */
+
+.taxiHero{
+  min-height:210px;
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(circle at 70% 35%,rgba(214,168,75,.13),transparent 35%),
+    linear-gradient(145deg,#0d1114,#050607);
+}
+
+.taxiRoad{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:75px;
+  background:#080a0b;
+  transform:skewY(-3deg);
+}
+
+.taxiCar{
+  position:absolute;
+  left:25px;
+  bottom:42px;
+  width:100px;
+  height:29px;
+  border-radius:20px 23px 7px 7px;
+  background:linear-gradient(180deg,#f0ca70,#76531b);
+  box-shadow:0 8px 25px rgba(0,0,0,.5),0 0 18px rgba(214,168,75,.12);
+}
+
+.taxiCar:before{
+  content:"";
+  position:absolute;
+  width:49px;
+  height:22px;
+  left:25px;
+  top:-17px;
+  border-radius:22px 22px 3px 3px;
+  background:#15191b;
+  border:1px solid rgba(255,225,139,.28);
+}
+
+.taxiCar:after{
+  content:"";
+  position:absolute;
+  width:16px;
+  height:6px;
+  left:15px;
+  bottom:-6px;
+  border-radius:50%;
+  background:#000;
+  box-shadow:55px 0 #000;
+}
+
+.taxiText{
+  position:absolute;
+  left:17px;
+  top:17px;
+}
+
+.taxiText b{
+  font-size:20px;
+}
+
+.taxiText p{
+  margin-top:6px;
+  color:#7c7c7c;
+  font-size:9px;
+}
+
+.rideBtn{
+  position:absolute;
+  right:17px;
+  bottom:18px;
+  padding:11px 15px;
+  border-radius:11px;
+  background:#d9aa4c;
+  color:#110d05;
+  font-weight:900;
+  font-size:10px;
+}
+
+/* CITY */
+
+.cityMap{
+  height:450px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:
+    linear-gradient(90deg,transparent 47%,rgba(214,168,75,.08) 48%,rgba(214,168,75,.08) 51%,transparent 52%),
+    linear-gradient(0deg,transparent 47%,rgba(214,168,75,.08) 48%,rgba(214,168,75,.08) 51%,transparent 52%),
+    #07090a;
+  background-size:110px 110px;
+}
+
+.cityMap:before,
+.cityMap:after{
+  content:"";
+  position:absolute;
+  background:rgba(255,255,255,.025);
+}
+
+.cityMap:before{
+  width:130%;
+  height:2px;
+  top:45%;
+  left:-15%;
+  transform:rotate(-27deg);
+}
+
+.cityMap:after{
+  width:130%;
+  height:2px;
+  top:62%;
+  left:-15%;
+  transform:rotate(21deg);
+}
+
+.mapBuilding{
+  position:absolute;
+  width:72px;
+  height:52px;
+  border:1px solid rgba(214,168,75,.18);
+  border-radius:8px;
+  background:linear-gradient(145deg,#121618,#080a0b);
+  box-shadow:0 10px 18px rgba(0,0,0,.4);
+}
+
+.mapBuilding i{
+  display:block;
+  width:100%;
+  height:100%;
+  background:repeating-linear-gradient(90deg,transparent 0 11px,rgba(214,168,75,.13) 11px 13px);
+}
+
+.mapB1{left:8%;top:12%}
+.mapB2{right:8%;top:20%;height:76px}
+.mapB3{left:13%;top:45%;width:100px}
+.mapB4{right:13%;top:55%;width:90px;height:80px}
+.mapB5{left:42%;top:72%;width:70px}
+
+.mapNode{
+  position:absolute;
+  z-index:3;
+  width:39px;
+  height:39px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #d8ae56;
+  background:#090a0b;
+  box-shadow:0 0 18px rgba(214,168,75,.2);
+  font-size:17px;
+  animation:nodePulse 2s ease-in-out infinite;
+}
+
+@keyframes nodePulse{
+  50%{box-shadow:0 0 28px rgba(214,168,75,.4)}
+}
+
+.node1{left:47%;top:26%}
+.node2{left:23%;top:66%}
+.node3{right:19%;top:43%}
+.node4{left:55%;top:61%}
+
 /* FRIENDS */
+
 .refBox{
-  padding:18px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.07);
-  background:linear-gradient(145deg,#10233c,#091422);
+  text-align:center;
+  padding:25px 15px;
+}
+
+.refIcon{
+  width:70px;
+  height:70px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:22px;
+  font-size:31px;
+  background:rgba(214,168,75,.08);
+  border:1px solid var(--line);
+}
+
+.refBox h2{
+  margin:15px 0 7px;
+}
+
+.refBox p{
+  color:#777;
+  font-size:10px;
+  line-height:1.6;
 }
 
 .refCode{
-  margin-top:10px;
-  padding:12px;
-  border-radius:12px;
-  background:#07111e;
-  color:#ffd64b;
-  font-size:12px;
-  text-align:center;
-  font-weight:900;
+  margin:18px 0 9px;
+  padding:13px;
+  border-radius:11px;
+  background:#050607;
+  border:1px dashed rgba(214,168,75,.25);
+  color:#d9b460;
+  font-size:11px;
+  word-break:break-all;
 }
 
-/* RANK */
-.rankItem{
+/* RANKING */
+
+.rankRow{
   display:flex;
   align-items:center;
   gap:11px;
-  padding:12px;
-  margin-bottom:8px;
-  border-radius:16px;
-  background:rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.05);
+  padding:13px 8px;
+  border-bottom:1px solid rgba(255,255,255,.045);
 }
 
 .rankNum{
   width:27px;
-  font-size:12px;
-  font-weight:900;
-  color:#8294aa;
   text-align:center;
-}
-
-.rankAvatar{
-  width:37px;
-  height:37px;
-  border-radius:12px;
-  background:#11243b;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#ffd64b;
-  font-weight:900;
-}
-
-.rankName{
-  flex:1;
-  font-size:11px;
+  color:#777;
   font-weight:800;
 }
 
-.rankCoins{
-  color:#ffd64b;
-  font-size:11px;
-  font-weight:900;
-}
-
-/* PROFILE */
-.profileCard{
-  padding:20px;
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.07);
-  background:linear-gradient(145deg,#10233b,#081321);
-  text-align:center;
-}
-
-.profileAvatar{
-  width:72px;
-  height:72px;
-  margin:auto;
-  border-radius:22px;
+.rankAvatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:29px;
-  font-weight:900;
-  color:#07111c;
-  background:linear-gradient(135deg,#ffd84d,#ff9e1b);
+  background:linear-gradient(145deg,#25282a,#0b0c0d);
+  border:1px solid rgba(214,168,75,.15);
 }
 
-.profileName{
-  margin-top:12px;
-  font-size:18px;
-  font-weight:900;
+.rankInfo{
+  flex:1;
 }
 
-.profileId{
-  margin-top:5px;
-  color:#6f829b;
+.rankInfo b{
+  font-size:11px;
+}
+
+.rankInfo span{
+  display:block;
+  color:#696969;
+  font-size:8px;
+  margin-top:3px;
+}
+
+.rankCoins{
+  color:#dcb45d;
+  font-weight:800;
+  font-size:11px;
+}
+
+/* PROFILE */
+
+.profileCard{
+  text-align:center;
+  padding:28px 15px;
+}
+
+.avatar{
+  width:84px;
+  height:84px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  font-size:30px;
+  font-weight:900;
+  color:#241707;
+  background:linear-gradient(145deg,#ffedab,#ad7825);
+  box-shadow:0 0 30px rgba(214,168,75,.13);
+}
+
+.profileCard h2{
+  margin:14px 0 4px;
+}
+
+.profileCard p{
+  margin:0;
+  color:#777;
   font-size:9px;
 }
 
+.profileGrid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.profileStat{
+  padding:13px;
+  background:#080a0b;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:13px;
+}
+
+.profileStat b{
+  display:block;
+  color:#e0b75f;
+}
+
+.profileStat span{
+  display:block;
+  margin-top:4px;
+  color:#666;
+  font-size:8px;
+}
+
 /* BOTTOM NAV */
+
 .bottomNav{
   position:fixed;
-  z-index:100;
+  z-index:90;
   bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:520px;
-  padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+  left:0;
+  right:0;
+  height:76px;
+  padding:8px 8px max(8px,env(safe-area-inset-bottom));
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:5px;
-  background:rgba(5,9,20,.94);
-  backdrop-filter:blur(18px);
-  border-top:1px solid rgba(255,255,255,.07);
+  grid-template-columns:repeat(6,1fr);
+  gap:4px;
+  background:
+    linear-gradient(180deg,transparent,rgba(2,3,4,.94) 25%);
+  backdrop-filter:blur(12px);
 }
 
 .navBtn{
-  min-height:55px;
-  border-radius:14px;
-  color:#63758e;
+  position:relative;
   background:transparent;
+  border-radius:14px;
+  color:#626262;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -714,658 +1155,656 @@ button{
   gap:4px;
 }
 
+.navBtn .navIcon{
+  font-size:17px;
+  transition:.2s;
+}
+
+.navBtn span{
+  font-size:7px;
+  letter-spacing:.3px;
+}
+
 .navBtn.active{
-  color:#ffd64b;
-  background:rgba(255,204,66,.08);
+  color:#e1ba64;
 }
 
-.navIcon{
-  font-size:19px;
+.navBtn.active .navIcon{
+  transform:translateY(-2px);
+  filter:drop-shadow(0 0 7px rgba(214,168,75,.4));
 }
 
-.navText{
-  font-size:8px;
-  font-weight:800;
+.navBtn.active:after{
+  content:"";
+  position:absolute;
+  bottom:2px;
+  width:20px;
+  height:2px;
+  border-radius:5px;
+  background:#d4a64a;
 }
 
 /* TOAST */
+
 .toast{
   position:fixed;
-  z-index:300;
+  z-index:500;
   left:50%;
-  top:85px;
-  transform:translateX(-50%) translateY(-15px);
+  top:88px;
+  transform:translate(-50%,-20px);
   opacity:0;
   pointer-events:none;
-  padding:11px 16px;
-  border-radius:14px;
-  background:#101d31;
-  border:1px solid rgba(255,255,255,.08);
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-  transition:.2s;
-  white-space:nowrap;
+  padding:11px 15px;
+  min-width:130px;
+  text-align:center;
+  border-radius:12px;
+  background:rgba(10,11,12,.94);
+  border:1px solid rgba(214,168,75,.3);
+  color:#e9cf91;
+  font-size:10px;
+  box-shadow:0 12px 35px rgba(0,0,0,.5);
+  transition:.3s;
 }
 
 .toast.show{
   opacity:1;
-  transform:translateX(-50%) translateY(0);
+  transform:translate(-50%,0);
 }
 
-/* LOADING */
-.loading{
+.floating{
   position:fixed;
-  z-index:500;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#050914;
-}
-
-.loadingBox{
-  text-align:center;
-}
-
-.loadingLogo{
-  width:65px;
-  height:65px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:auto;
-  font-size:29px;
+  z-index:200;
+  pointer-events:none;
+  color:#f3d37c;
   font-weight:900;
-  color:#07101b;
-  background:linear-gradient(135deg,#ffd84d,#ff9f1b);
-  box-shadow:0 0 35px rgba(255,194,42,.25);
+  font-size:18px;
+  text-shadow:0 2px 10px #000;
+  animation:floatUp .8s ease forwards;
 }
 
-.loadingText{
-  margin-top:14px;
-  color:#8798ad;
-  font-size:11px;
+@keyframes floatUp{
+  from{opacity:1;transform:translate(-50%,0) scale(.8)}
+  to{opacity:0;transform:translate(-50%,-75px) scale(1.15)}
 }
 
-.hidden{
-  display:none!important;
+/* BONUS */
+
+.bonusGlow{
+  animation:bonus .5s ease;
+}
+
+@keyframes bonus{
+  50%{box-shadow:0 0 45px rgba(214,168,75,.35)}
+}
+
+/* DESKTOP */
+
+@media(min-width:700px){
+  .content{
+    width:480px;
+    margin:auto;
+  }
+
+  .topbar{
+    left:50%;
+    right:auto;
+    width:480px;
+    transform:translateX(-50%);
+  }
+
+  .bottomNav{
+    left:50%;
+    right:auto;
+    width:480px;
+    transform:translateX(-50%);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div id="loading" class="loading">
-  <div class="loadingBox">
-    <div class="loadingLogo">E</div>
-    <div class="loadingText">ELCITY yüklənir...</div>
+<div id="app">
+
+<div class="intro" id="intro">
+  <div class="introLogo">
+    <div class="introMark">E</div>
+    <div class="introTitle">ELCITY</div>
+    <div class="introSub">BUILD · OWN · GROW</div>
+    <div class="loader"><i></i></div>
   </div>
 </div>
 
-<div class="app">
+<div class="noise"></div>
 
-<header class="header">
+<header class="topbar">
   <div class="brand">
-    <div class="logo">E</div>
+    <div class="brandMark">E</div>
     <div class="brandText">
-      <div class="brandName">ELCITY</div>
-      <div class="brandSub">BUILD · EARN · RULE</div>
+      <strong>ELCITY</strong>
+      <span>BUILD · OWN · GROW</span>
     </div>
   </div>
 
-  <div class="profileMini">
-    <div id="miniAvatar" class="avatar">P</div>
-    <div id="miniName" class="miniName">Player</div>
+  <div class="status">
+    <i class="statusDot"></i>
+    <span id="connectionText">CONNECTING</span>
   </div>
 </header>
 
+<main class="content">
 
 <!-- HOME -->
-<section id="homeScreen" class="screen active">
 
-  <div class="hero">
+<section class="screen active" id="screen-home">
 
-    <div class="heroTop">
-      <div>
-        <div class="eyebrow">ELCITY COIN</div>
-        <div class="balanceLabel">Balans</div>
-        <div id="balance" class="balance">
-          0 <span>ELC</span>
-        </div>
-      </div>
+  <div class="cityHero" id="coinHero">
 
-      <div id="syncStatus" class="sync">
-        Local
-      </div>
+    <div class="stars"></div>
+    <div class="moon"></div>
+    <div class="cityGlow"></div>
+
+    <div class="balanceBox">
+      <div class="balanceLabel">YOUR ELCITY COIN</div>
+      <div class="balance" id="balance">0</div>
+      <div class="coinCode">ELC</div>
     </div>
+
+    <div class="skyline">
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+      <div class="building"></div>
+    </div>
+
+    <div class="road"></div>
+
+    <div class="car car1"></div>
+    <div class="car car2"></div>
+    <div class="car car3"></div>
 
     <div class="coinArea">
-      <button id="coinButton" class="coinButton">
-        <div class="coinSymbol">E</div>
-      </button>
-      <div class="coinText">TAP TO EARN</div>
+      <div class="coinAura"></div>
+
+      <button class="coinButton" id="coinButton" aria-label="ELC qazan"></button>
+
+      <div class="tapText">TAP TO BUILD YOUR CITY</div>
     </div>
 
-    <div class="skyline"></div>
-  </div>
+    <div class="energyBox">
+      <div class="energyHead">
+        <span>⚡ ENERGY</span>
+        <b><span id="energy">1000</span> / <span id="maxEnergy">1000</span></b>
+      </div>
 
+      <div class="energyTrack">
+        <div class="energyFill" id="energyFill"></div>
+      </div>
+    </div>
+
+  </div>
 
   <div class="stats">
-
-    <div class="stat">
-      <div class="statIcon">⚡</div>
-      <div class="statTitle">ENERGY</div>
-      <div id="energyText" class="statValue">1000 / 1000</div>
-    </div>
-
-    <div class="stat">
-      <div class="statIcon">🏆</div>
-      <div class="statTitle">LEVEL</div>
-      <div id="levelText" class="statValue">Level 1</div>
-    </div>
-
-    <div class="stat">
-      <div class="statIcon">🏙️</div>
-      <div class="statTitle">CITY</div>
-      <div id="cityLevelText" class="statValue">Level 1</div>
-    </div>
-
-  </div>
-
-
-  <div class="energyWrap">
-    <div class="energyHead">
-      <span>Energy</span>
-      <span id="energyPercent">100%</span>
-    </div>
-
-    <div class="energyBar">
-      <div id="energyFill" class="energyFill"></div>
-    </div>
-  </div>
-
-
-  <div class="sectionTitle">Günün fürsəti</div>
-
-  <div class="card">
-    <div class="cardRow">
-
-      <div class="cardLeft">
-        <div class="bigIcon">🎁</div>
-
-        <div>
-          <div class="cardTitle">Daily Bonus</div>
-          <div class="cardDesc">
-            Hər gün bonusunu götür.
-          </div>
-        </div>
-      </div>
-
-      <button id="bonusButton" class="action">
-        +500 ELC
-      </button>
-
-    </div>
-  </div>
-
-
-  <div class="sectionTitle">Sürətli giriş</div>
-
-  <div class="quickGrid">
-
-    <button class="quick" onclick="showScreen('cityScreen')">
-      <div class="quickIcon">🏙️</div>
-      <div class="quickName">City</div>
-      <div class="quickDesc">Şəhərini böyüt</div>
-    </button>
-
-    <button class="quick" onclick="showScreen('businessScreen')">
-      <div class="quickIcon">🏢</div>
-      <div class="quickName">Business</div>
-      <div class="quickDesc">Biznes qur</div>
-    </button>
-
-    <button class="quick" onclick="showScreen('taxiScreen')">
-      <div class="quickIcon">🚕</div>
-      <div class="quickName">Taxi</div>
-      <div class="quickDesc">Sərnişin daşı</div>
-    </button>
-
-    <button class="quick" onclick="showScreen('friendsScreen')">
-      <div class="quickIcon">👥</div>
-      <div class="quickName">Friends</div>
-      <div class="quickDesc">Dostlarını dəvət et</div>
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- CITY -->
-<section id="cityScreen" class="screen">
-
-  <div class="pageHead">
-    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
-    <div>
-      <div class="pageTitle">🏙️ City</div>
-      <div class="pageSub">Şəhərini inkişaf etdir</div>
-    </div>
-  </div>
-
-
-  <div class="cityMap">
-
-    <div class="cityRoad road1"></div>
-    <div class="cityRoad road2"></div>
-    <div class="cityRoad road3"></div>
-
-    <div class="building b1">
-      🏠
-      <small>HOME</small>
-    </div>
-
-    <div class="building b2">
-      🏢
-      <small>OFFICE</small>
-    </div>
-
-    <div class="building b3">
-      🏪
-      <small>SHOP</small>
-    </div>
-
-    <div class="building b4">
-      🏭
-      <small>FACTORY</small>
-    </div>
-
-  </div>
-
-
-  <div class="cityInfo">
-
-    <div class="card">
-      <div class="cardTitle">City Level</div>
-      <div id="cityLevelValue" class="income">Level 1</div>
-    </div>
-
-    <div class="card">
-      <div class="cardTitle">City Income</div>
-      <div id="cityIncomeValue" class="income">+10 ELC/saat</div>
-    </div>
-
-  </div>
-
-
-  <div class="card">
-    <div class="cardRow">
-      <div>
-        <div class="cardTitle">🏗️ Şəhəri böyüt</div>
-        <div class="cardDesc">
-          Daha çox bina və gəlir aç.
-        </div>
-      </div>
-
-      <button id="cityUpgradeButton" class="action">
-        500 ELC
-      </button>
-    </div>
-  </div>
-
-</section>
-
-
-<!-- BUSINESS -->
-<section id="businessScreen" class="screen">
-
-  <div class="pageHead">
-    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
-    <div>
-      <div class="pageTitle">🏢 Business</div>
-      <div class="pageSub">Biznes imperiyanı qur</div>
-    </div>
-  </div>
-
-
-  <div class="card">
-
-    <div class="cardRow">
-
-      <div class="cardLeft">
-        <div class="bigIcon">🏪</div>
-
-        <div>
-          <div class="cardTitle">Market</div>
-          <div id="businessLevel" class="level">
-            Level 1
-          </div>
-        </div>
-      </div>
-
-      <button id="businessUpgradeButton" class="action">
-        400 ELC
-      </button>
-
-    </div>
-
-    <div class="income">
-      +20 ELC / saat
-    </div>
-
-    <div class="upgradePrice">
-      Biznes səviyyəsini artır.
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="cardRow">
-
-      <div class="cardLeft">
-        <div class="bigIcon">🏭</div>
-
-        <div>
-          <div class="cardTitle">Factory</div>
-          <div class="level">
-            Locked
-          </div>
-        </div>
-
-      </div>
-
-      <button class="action secondary" onclick="showToast('Factory daha sonra açılacaq')">
-        🔒
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- TAXI -->
-<section id="taxiScreen" class="screen">
-
-  <div class="pageHead">
-    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
-    <div>
-      <div class="pageTitle">🚕 Taxi</div>
-      <div class="pageSub">Şəhərdə sərnişin daşı</div>
-    </div>
-  </div>
-
-
-  <div class="taxiVisual">
-    🚕
-  </div>
-
-
-  <div class="taxiStats">
-
-    <div class="card">
-      <div class="cardTitle">Taxi Level</div>
-      <div id="taxiLevel" class="income">Level 1</div>
-    </div>
-
-    <div class="card">
-      <div class="cardTitle">Ride Reward</div>
-      <div class="income">+50 ELC</div>
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="cardRow">
-
-      <div>
-        <div class="cardTitle">🚕 Ride</div>
-        <div class="cardDesc">
-          Bir sərnişin götür və ELC qazan.
-        </div>
-      </div>
-
-      <button id="rideButton" class="action">
-        RIDE +50
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- FRIENDS -->
-<section id="friendsScreen" class="screen">
-
-  <div class="pageHead">
-    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
-    <div>
-      <div class="pageTitle">👥 Friends</div>
-      <div class="pageSub">Şəhərini dostlarınla böyüt</div>
-    </div>
-  </div>
-
-
-  <div class="refBox">
-
-    <div class="cardTitle">
-      Dostlarını dəvət et
-    </div>
-
-    <div class="cardDesc">
-      Dostun oyuna daxil olduqda referral sistemi işləyəcək.
-    </div>
-
-    <div id="refCode" class="refCode">
-      ELCITY-PLAYER
-    </div>
-
-    <button
-      class="action"
-      style="width:100%;margin-top:12px"
-      onclick="inviteFriends()"
-    >
-      👥 DOSTLARI DƏVƏT ET
-    </button>
-
-  </div>
-
-
-  <div class="sectionTitle">Referral statistikası</div>
-
-  <div class="stats">
-
-    <div class="stat">
-      <div class="statIcon">👥</div>
-      <div class="statTitle">FRIENDS</div>
-      <div id="referralsText" class="statValue">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="statIcon">🪙</div>
-      <div class="statTitle">BONUS</div>
-      <div class="statValue">0 ELC</div>
-    </div>
-
     <div class="stat">
       <div class="statIcon">⭐</div>
-      <div class="statTitle">LEVEL</div>
-      <div class="statValue">1</div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- RANKING -->
-<section id="rankingScreen" class="screen">
-
-  <div class="pageHead">
-    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
-    <div>
-      <div class="pageTitle">🏆 Ranking</div>
-      <div class="pageSub">Şəhərin liderlərini gör</div>
-    </div>
-  </div>
-
-
-  <div id="rankingList">
-
-    <div class="rankItem">
-      <div class="rankNum">1</div>
-      <div class="rankAvatar">C</div>
-      <div class="rankName">city_master</div>
-      <div class="rankCoins">25,000 ELC</div>
-    </div>
-
-    <div class="rankItem">
-      <div class="rankNum">2</div>
-      <div class="rankAvatar">B</div>
-      <div class="rankName">boss_player</div>
-      <div class="rankCoins">18,500 ELC</div>
-    </div>
-
-    <div class="rankItem">
-      <div class="rankNum">3</div>
-      <div class="rankAvatar">T</div>
-      <div class="rankName">taxi_king</div>
-      <div class="rankCoins">14,200 ELC</div>
-    </div>
-
-    <div class="rankItem">
-      <div class="rankNum">4</div>
-      <div class="rankAvatar">E</div>
-      <div class="rankName">elite_city</div>
-      <div class="rankCoins">10,700 ELC</div>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PROFILE -->
-<section id="profileScreen" class="screen">
-
-  <div class="pageHead">
-    <button class="backBtn" onclick="showScreen('homeScreen')">‹</button>
-    <div>
-      <div class="pageTitle">👤 Profile</div>
-      <div class="pageSub">Sənin şəhər profilin</div>
-    </div>
-  </div>
-
-
-  <div class="profileCard">
-
-    <div id="profileAvatar" class="profileAvatar">
-      P
-    </div>
-
-    <div id="profileName" class="profileName">
-      Player
-    </div>
-
-    <div id="profileId" class="profileId">
-      Telegram player
-    </div>
-
-  </div>
-
-
-  <div class="sectionTitle">Statistika</div>
-
-  <div class="stats">
-
-    <div class="stat">
-      <div class="statIcon">🪙</div>
-      <div class="statTitle">BALANCE</div>
-      <div id="profileBalance" class="statValue">0 ELC</div>
-    </div>
-
-    <div class="stat">
-      <div class="statIcon">👆</div>
-      <div class="statTitle">TAPS</div>
-      <div id="profileTaps" class="statValue">0</div>
+      <b id="level">1</b>
+      <span>LEVEL</span>
     </div>
 
     <div class="stat">
       <div class="statIcon">🚕</div>
-      <div class="statTitle">RIDES</div>
-      <div id="profileRides" class="statValue">0</div>
+      <b id="rides">0</b>
+      <span>RIDES</span>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">👥</div>
+      <b id="referrals">0</b>
+      <span>FRIENDS</span>
+    </div>
+  </div>
+
+  <div class="sectionTitle">
+    <h2>ELCITY TODAY</h2>
+    <span id="dateText"></span>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="cardHead">
+        <div class="cardName">
+          <div class="cardIcon">🎁</div>
+          <div>
+            <b>Daily Reward</b>
+            <span>Şəhərini hər gün böyüt</span>
+          </div>
+        </div>
+
+        <div class="gold">+500 ELC</div>
+      </div>
+
+      <button class="action" id="bonusBtn">DAILY BONUS GÖTÜR</button>
+    </div>
+
+    <div class="card">
+      <div class="cardHead">
+        <div class="cardName">
+          <div class="cardIcon">🚀</div>
+          <div>
+            <b>City Upgrade</b>
+            <span>Şəhər gəlirini artır</span>
+          </div>
+        </div>
+
+        <div class="gold">LV <span id="upgradeLevel">1</span></div>
+      </div>
+
+      <button class="action" id="upgradeBtn">UPGRADE — <span id="upgradeCost">100</span> ELC</button>
     </div>
 
   </div>
 
 </section>
 
+<!-- CITY -->
 
-<!-- BOTTOM NAV -->
+<section class="screen" id="screen-city">
+
+  <div class="sectionTitle">
+    <h2>MY CITY</h2>
+    <span>ELCITY DISTRICT</span>
+  </div>
+
+  <div class="cityMap">
+
+    <div class="mapBuilding mapB1"><i></i></div>
+    <div class="mapBuilding mapB2"><i></i></div>
+    <div class="mapBuilding mapB3"><i></i></div>
+    <div class="mapBuilding mapB4"><i></i></div>
+    <div class="mapBuilding mapB5"><i></i></div>
+
+    <div class="mapNode node1">🏦</div>
+    <div class="mapNode node2">🏢</div>
+    <div class="mapNode node3">🏭</div>
+    <div class="mapNode node4">🏨</div>
+
+  </div>
+
+  <div class="sectionTitle">
+    <h2>Şəhər inkişafı</h2>
+    <span>LEVEL <span id="cityLevel">1</span></span>
+  </div>
+
+  <div class="card">
+    <div class="cardHead">
+      <div class="cardName">
+        <div class="cardIcon">🏙️</div>
+        <div>
+          <b>City Center</b>
+          <span>Şəhərinin əsas mərkəzi</span>
+        </div>
+      </div>
+      <div class="gold">+<span id="cityIncome">10</span>/s</div>
+    </div>
+
+    <button class="action" id="cityUpgradeBtn">CITY UPGRADE — 250 ELC</button>
+  </div>
+
+</section>
+
+<!-- BUSINESS -->
+
+<section class="screen" id="screen-business">
+
+  <div class="sectionTitle">
+    <h2>BUSINESS</h2>
+    <span>BUILD YOUR EMPIRE</span>
+  </div>
+
+  <div class="businessGrid">
+
+    <div class="card business">
+      <div class="emoji">🏦</div>
+      <h3>ELC Bank</h3>
+      <p>Şəhərdə maliyyə mərkəzi qur.</p>
+      <div class="income">+15 ELC/s</div>
+      <div class="level">LEVEL 1</div>
+      <button class="action businessBtn" data-cost="300">UPGRADE</button>
+    </div>
+
+    <div class="card business">
+      <div class="emoji">🏢</div>
+      <h3>ELC Tower</h3>
+      <p>Premium biznes qülləsi.</p>
+      <div class="income">+25 ELC/s</div>
+      <div class="level">LEVEL 1</div>
+      <button class="action businessBtn" data-cost="500">UPGRADE</button>
+    </div>
+
+    <div class="card business">
+      <div class="emoji">🏭</div>
+      <h3>Factory</h3>
+      <p>Şəhərin istehsal gücünü artır.</p>
+      <div class="income">+40 ELC/s</div>
+      <div class="level">LEVEL 1</div>
+      <button class="action businessBtn" data-cost="800">UPGRADE</button>
+    </div>
+
+    <div class="card business">
+      <div class="emoji">🏨</div>
+      <h3>Grand Hotel</h3>
+      <p>Şəhərə premium turistlər gətir.</p>
+      <div class="income">+60 ELC/s</div>
+      <div class="level">LEVEL 1</div>
+      <button class="action businessBtn" data-cost="1200">UPGRADE</button>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TAXI -->
+
+<section class="screen" id="screen-taxi">
+
+  <div class="sectionTitle">
+    <h2>ELCITY TAXI</h2>
+    <span>DRIVE & EARN</span>
+  </div>
+
+  <div class="taxiHero">
+
+    <div class="taxiText">
+      <b>Premium Taxi</b>
+      <p>Şəhərdə sərnişin daşı və ELC qazan.</p>
+    </div>
+
+    <div class="taxiRoad"></div>
+    <div class="taxiCar"></div>
+
+    <button class="rideBtn" id="rideBtn">START RIDE</button>
+
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="statIcon">🚕</div>
+      <b id="taxiLevel">1</b>
+      <span>TAXI LEVEL</span>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">💰</div>
+      <b>+50</b>
+      <span>PER RIDE</span>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">📈</div>
+      <b>+5%</b>
+      <span>BOOST</span>
+    </div>
+  </div>
+
+  <div class="sectionTitle">
+    <h2>Taxi Upgrade</h2>
+    <span>LEVEL <span id="taxiLevel2">1</span></span>
+  </div>
+
+  <div class="card">
+    <div class="cardHead">
+      <div class="cardName">
+        <div class="cardIcon">🚖</div>
+        <div>
+          <b>Taxi Fleet</b>
+          <span>Daha çox sərnişin, daha çox gəlir</span>
+        </div>
+      </div>
+      <div class="gold">+5%</div>
+    </div>
+
+    <button class="action" id="taxiUpgradeBtn">UPGRADE — 400 ELC</button>
+  </div>
+
+</section>
+
+<!-- FRIENDS -->
+
+<section class="screen" id="screen-friends">
+
+  <div class="sectionTitle">
+    <h2>FRIENDS</h2>
+    <span>GROW TOGETHER</span>
+  </div>
+
+  <div class="card refBox">
+
+    <div class="refIcon">👥</div>
+
+    <h2>Şəhərini birlikdə böyüt</h2>
+
+    <p>
+      Dostlarını ELCITY-yə dəvət et.
+      Referral sistemi aktiv olduqda bonuslar burada görünəcək.
+    </p>
+
+    <div class="refCode" id="refCode">player_0000</div>
+
+    <button class="action" id="copyRefBtn">REFERRAL KODUNU KOPYALA</button>
+
+  </div>
+
+  <div class="sectionTitle">
+    <h2>Referral Stats</h2>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="statIcon">👤</div>
+      <b id="friendCount">0</b>
+      <span>INVITED</span>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">🪙</div>
+      <b id="refEarned">0</b>
+      <span>REF ELC</span>
+    </div>
+
+    <div class="stat">
+      <div class="statIcon">🏆</div>
+      <b>—</b>
+      <span>RANK</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- RANKING -->
+
+<section class="screen" id="screen-ranking">
+
+  <div class="sectionTitle">
+    <h2>GLOBAL RANKING</h2>
+    <span>ELCITY PLAYERS</span>
+  </div>
+
+  <div class="card" id="rankingList">
+
+    <div class="rankRow">
+      <div class="rankNum">1</div>
+      <div class="rankAvatar">👑</div>
+      <div class="rankInfo">
+        <b>player_4821</b>
+        <span>ELCITY Founder</span>
+      </div>
+      <div class="rankCoins">128,540</div>
+    </div>
+
+    <div class="rankRow">
+      <div class="rankNum">2</div>
+      <div class="rankAvatar">🏙️</div>
+      <div class="rankInfo">
+        <b>player_7310</b>
+        <span>City Builder</span>
+      </div>
+      <div class="rankCoins">97,320</div>
+    </div>
+
+    <div class="rankRow">
+      <div class="rankNum">3</div>
+      <div class="rankAvatar">💎</div>
+      <div class="rankInfo">
+        <b>player_1904</b>
+        <span>ELC Investor</span>
+      </div>
+      <div class="rankCoins">82,610</div>
+    </div>
+
+    <div class="rankRow">
+      <div class="rankNum">4</div>
+      <div class="rankAvatar">🚕</div>
+      <div class="rankInfo">
+        <b>player_5532</b>
+        <span>Taxi Boss</span>
+      </div>
+      <div class="rankCoins">74,800</div>
+    </div>
+
+    <div class="rankRow">
+      <div class="rankNum">5</div>
+      <div class="rankAvatar">🏦</div>
+      <div class="rankInfo">
+        <b>player_9041</b>
+        <span>Business Owner</span>
+      </div>
+      <div class="rankCoins">61,420</div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PROFILE -->
+
+<section class="screen" id="screen-profile">
+
+  <div class="sectionTitle">
+    <h2>PROFILE</h2>
+    <span>YOUR ELCITY IDENTITY</span>
+  </div>
+
+  <div class="card profileCard">
+
+    <div class="avatar">E</div>
+
+    <h2 id="nickname">player_0000</h2>
+
+    <p>ELCITY PLAYER</p>
+
+    <div class="profileGrid">
+
+      <div class="profileStat">
+        <b id="profileBalance">0</b>
+        <span>ELC BALANCE</span>
+      </div>
+
+      <div class="profileStat">
+        <b id="profileLevel">1</b>
+        <span>LEVEL</span>
+      </div>
+
+      <div class="profileStat">
+        <b id="profileTaps">0</b>
+        <span>TOTAL TAPS</span>
+      </div>
+
+      <div class="profileStat">
+        <b id="profileRides">0</b>
+        <span>TOTAL RIDES</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card" style="margin-top:10px">
+    <div class="cardHead">
+      <div class="cardName">
+        <div class="cardIcon">🔐</div>
+        <div>
+          <b>Account status</b>
+          <span id="accountStatus">Local profile</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
 <nav class="bottomNav">
 
-  <button class="navBtn active" data-screen="homeScreen" onclick="showScreen('homeScreen')">
-    <div class="navIcon">🏠</div>
-    <div class="navText">HOME</div>
+  <button class="navBtn active" data-screen="home">
+    <div class="navIcon">⌂</div>
+    <span>HOME</span>
   </button>
 
-  <button class="navBtn" data-screen="cityScreen" onclick="showScreen('cityScreen')">
+  <button class="navBtn" data-screen="city">
     <div class="navIcon">🏙️</div>
-    <div class="navText">CITY</div>
+    <span>CITY</span>
   </button>
 
-  <button class="navBtn" data-screen="businessScreen" onclick="showScreen('businessScreen')">
+  <button class="navBtn" data-screen="business">
     <div class="navIcon">🏢</div>
-    <div class="navText">BUSINESS</div>
+    <span>BUSINESS</span>
   </button>
 
-  <button class="navBtn" data-screen="taxiScreen" onclick="showScreen('taxiScreen')">
+  <button class="navBtn" data-screen="taxi">
     <div class="navIcon">🚕</div>
-    <div class="navText">TAXI</div>
+    <span>TAXI</span>
   </button>
 
-  <button class="navBtn" data-screen="profileScreen" onclick="showScreen('profileScreen')">
-    <div class="navIcon">👤</div>
-    <div class="navText">PROFILE</div>
+  <button class="navBtn" data-screen="ranking">
+    <div class="navIcon">🏆</div>
+    <span>RANK</span>
+  </button>
+
+  <button class="navBtn" data-screen="profile">
+    <div class="navIcon">●</div>
+    <span>PROFILE</span>
   </button>
 
 </nav>
 
+<div class="toast" id="toast"></div>
+
 </div>
-
-<div id="toast" class="toast"></div>
-
 
 <script>
 
 /* =========================================================
-   ELCITY CONFIG
+   ELCITY
+   SAFE SUPABASE READ VERSION
    ========================================================= */
 
-/*
-   BURADA YALNIZ 2 MƏLUMATI DƏYİŞ:
-
-   1. SUPABASE_URL
-   2. SUPABASE_ANON_KEY
-
-   Heç bir SQL silmə əməliyyatı yoxdur.
-   Bu kod mövcud Balance dəyərini sıfırlamır.
-*/
-
 const SUPABASE_URL =
-  "BURAYA_SUPABASE_PROJECT_URL";
+  "https://umqlgklqpolmiqoyqkbu.supabase.co";
 
-const SUPABASE_ANON_KEY =
-  "BURAYA_SUPABASE_ANON_KEY";
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_unLN1x7hk9GpbgxuAmTj6Q_GwMAWMVp";
 
 
 /* =========================================================
@@ -1382,8 +1821,12 @@ if(tg){
   try{
     tg.ready();
     tg.expand();
-    tg.setHeaderColor("#050914");
-    tg.setBackgroundColor("#050914");
+
+    if(tg.setHeaderColor)
+      tg.setHeaderColor("#030405");
+
+    if(tg.setBackgroundColor)
+      tg.setBackgroundColor("#030405");
   }catch(e){}
 }
 
@@ -1392,88 +1835,73 @@ if(tg){
    GAME STATE
    ========================================================= */
 
-let game = {
+const STORAGE_KEY = "elcity_safe_state_v1";
 
-  balance: 0,
-
-  energy: 1000,
-  maxEnergy: 1000,
-
-  level: 1,
-
-  cityLevel: 1,
-  businessLevel: 1,
-  taxiLevel: 1,
-
-  referrals: 0,
-
-  totalTaps: 0,
-  totalRides: 0,
-
-  lastBonus: null,
-
-  telegramId: null,
-
-  nickname: "player_0000",
-
-  loadedFromSupabase: false
-
+const defaultState = {
+  balance:0,
+  energy:1000,
+  maxEnergy:1000,
+  level:1,
+  referrals:0,
+  taxiLevel:1,
+  cityLevel:1,
+  totalTaps:0,
+  totalRides:0,
+  lastBonus:null,
+  nickname:"",
+  synced:false,
+  telegramId:"",
+  created:false
 };
+
+let state = {...defaultState};
+
+let audioContext = null;
 
 
 /* =========================================================
    LOCAL STORAGE
    ========================================================= */
 
-const LOCAL_KEY = "elcity_safe_state_v1";
-
-
-function saveLocal(){
-
-  /*
-    LOCAL YADDAŞ SADECE EHTIYATDIR.
-    Supabase balansını burada 0-a çevirmirik.
-  */
-
-  try{
-
-    localStorage.setItem(
-      LOCAL_KEY,
-      JSON.stringify(game)
-    );
-
-  }catch(e){}
-
-}
-
-
 function loadLocal(){
 
   try{
 
     const raw =
-      localStorage.getItem(LOCAL_KEY);
+      localStorage.getItem(STORAGE_KEY);
 
-    if(!raw) return;
+    if(raw){
 
-    const saved =
-      JSON.parse(raw);
+      const saved =
+        JSON.parse(raw);
 
-    if(!saved) return;
+      state = {
+        ...defaultState,
+        ...saved
+      };
 
-    /*
-      Lokal balans yalnız müvəqqəti UI üçündür.
-      Supabase-dan gələn balans daha sonra üstün olacaq.
-    */
-
-    game = {
-      ...game,
-      ...saved
-    };
+    }
 
   }catch(e){
 
     console.log("Local load error",e);
+
+  }
+
+}
+
+function saveLocal(){
+
+  try{
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(state)
+    );
+
+  }catch(e){
+
+    console.log("Local save error",e);
 
   }
 
@@ -1486,454 +1914,246 @@ function loadLocal(){
 
 function getTelegramUser(){
 
-  if(
-    tg &&
-    tg.initDataUnsafe &&
-    tg.initDataUnsafe.user
-  ){
+  if(!tg || !tg.initDataUnsafe)
+    return null;
 
-    return tg.initDataUnsafe.user;
-
-  }
-
-  return null;
+  return tg.initDataUnsafe.user || null;
 
 }
-
 
 function getTelegramId(){
 
   const user =
     getTelegramUser();
 
-  if(user && user.id){
-
+  if(user && user.id)
     return String(user.id);
 
-  }
-
-  return null;
-
-}
-
-
-function generateNickname(){
-
-  const id =
-    getTelegramId();
-
-  if(id){
-
-    /*
-      İctimai profil üçün real ad göstərilmir.
-      Telegram ID-dən anonim nickname yaradılır.
-    */
-
-    const tail =
-      id.slice(-4);
-
-    return "player_" + tail;
-
-  }
-
-  return "player_0000";
-
-}
-
-
-function setupUser(){
-
-  const user =
-    getTelegramUser();
-
-  game.telegramId =
-    getTelegramId();
-
-  if(
-    !game.nickname ||
-    game.nickname === "player_0000"
-  ){
-
-    game.nickname =
-      generateNickname();
-
-  }
-
-  /*
-    Real Telegram first_name və username
-    ictimai ranking üçün istifadə olunmur.
-  */
-
-  const publicName =
-    game.nickname || "player_0000";
-
-  document.getElementById("miniName").textContent =
-    publicName;
-
-  document.getElementById("profileName").textContent =
-    publicName;
-
-  document.getElementById("profileId").textContent =
-    game.telegramId
-      ? "ELCITY Player"
-      : "Telegram player";
-
-  const letter =
-    publicName.charAt(0).toUpperCase() || "P";
-
-  document.getElementById("miniAvatar").textContent =
-    letter;
-
-  document.getElementById("profileAvatar").textContent =
-    letter;
+  return "";
 
 }
 
 
 /* =========================================================
-   SUPABASE STATUS
+   ANONYMOUS PLAYER NAME
    ========================================================= */
 
-function supabaseConfigured(){
+function createAnonymousName(id){
 
-  return (
-    SUPABASE_URL &&
-    SUPABASE_ANON_KEY &&
-    !SUPABASE_URL.includes("BURAYA") &&
-    !SUPABASE_ANON_KEY.includes("BURAYA")
+  if(!id)
+    return "player_0000";
+
+  const last =
+    String(id).slice(-4);
+
+  return "player_" + last;
+
+}
+
+function getNickname(){
+
+  if(state.nickname)
+    return state.nickname;
+
+  return createAnonymousName(
+    state.telegramId
   );
 
 }
 
 
 /* =========================================================
-   SUPABASE GET PLAYER
+   SUPABASE SAFE READ
    ========================================================= */
 
-async function loadPlayerFromSupabase(){
+async function loadPlayer(){
 
   const telegramId =
     getTelegramId();
 
   if(!telegramId){
 
-    setSync("Telegram ID yoxdur");
+    document.getElementById(
+      "connectionText"
+    ).textContent = "TELEGRAM";
 
-    return false;
-
-  }
-
-  if(!supabaseConfigured()){
-
-    setSync("Supabase qurulmayıb");
-
-    return false;
+    return;
 
   }
 
+  state.telegramId =
+    telegramId;
+
+  const endpoint =
+    SUPABASE_URL +
+    "/rest/v1/players" +
+    "?Telegram_id=eq." +
+    encodeURIComponent(telegramId) +
+    "&select=*";
 
   try{
 
-    /*
-      VACİB:
-
-      Burada yalnız SELECT edilir.
-
-      Balance = 0 yazılmır.
-      INSERT edilmir.
-      UPDATE edilmir.
-      DELETE edilmir.
-
-      Mövcud oyunçunun Balance dəyəri olduğu kimi oxunur.
-    */
-
-    const url =
-      SUPABASE_URL.replace(/\/$/,"") +
-      "/rest/v1/players" +
-      "?Telegram_id=eq." +
-      encodeURIComponent(telegramId) +
-      "&select=*";
-
-
     const response =
-      await fetch(
-        url,
-        {
-          method:"GET",
-
-          headers:{
-            "apikey":SUPABASE_ANON_KEY,
-            "Authorization":
-              "Bearer " + SUPABASE_ANON_KEY,
-            "Content-Type":
-              "application/json"
-          }
+      await fetch(endpoint,{
+        method:"GET",
+        headers:{
+          "apikey":
+            SUPABASE_PUBLISHABLE_KEY,
+          "Authorization":
+            "Bearer " +
+            SUPABASE_PUBLISHABLE_KEY,
+          "Accept":
+            "application/json"
         }
-      );
-
+      });
 
     if(!response.ok){
 
-      const text =
-        await response.text();
-
-      console.log(
-        "Supabase error:",
-        response.status,
-        text
+      throw new Error(
+        "HTTP " + response.status
       );
 
-      setSync("Supabase xətası");
-
-      return false;
-
     }
-
 
     const rows =
       await response.json();
 
-
-    if(!Array.isArray(rows)){
-
-      setSync("Məlumat xətası");
-
-      return false;
-
-    }
-
-
-    if(rows.length === 0){
-
-      /*
-        YENİ OYUNÇU.
-
-        Burada avtomatik INSERT ETMİRİK.
-        Beləliklə RLS və server quruluşunu pozmuruq.
-
-        Yeni oyunçu müvəqqəti lokal state ilə davam edir.
-      */
-
-      setSync("Yeni oyunçu");
-
-      return false;
-
-    }
-
-
-    const player =
-      rows[0];
-
-
     /*
-      ƏN VACİB HİSSƏ:
+      VERY IMPORTANT:
 
-      Balance hansı formatda gəlirsə,
-      onu təhlükəsiz şəkildə rəqəmə çeviririk.
+      We ONLY READ here.
 
-      Mövcud Balance 0-dırsa 0 qalacaq.
-      Mövcud Balance 50000-dirsə 50000 qalacaq.
-
-      Kod özbaşına 0 yazmır.
+      No INSERT.
+      No UPDATE.
+      No DELETE.
+      No balance reset.
     */
 
-    if(
-      player["Balance"] !== null &&
-      player["Balance"] !== undefined
-    ){
+    if(Array.isArray(rows) && rows.length){
 
-      const dbBalance =
-        Number(player["Balance"]);
+      const player = rows[0];
 
-      if(Number.isFinite(dbBalance)){
+      state.synced = true;
+      state.created = true;
 
-        game.balance =
-          dbBalance;
+      if(player["Balance"] !== null &&
+         player["Balance"] !== undefined){
 
-      }
-
-    }
-
-
-    if(
-      player["Energy"] !== null &&
-      player["Energy"] !== undefined
-    ){
-
-      const dbEnergy =
-        Number(player["Energy"]);
-
-      if(Number.isFinite(dbEnergy)){
-
-        game.energy =
-          dbEnergy;
+        state.balance =
+          Number(player["Balance"]) || 0;
 
       }
 
-    }
+      if(player["Energy"] !== null &&
+         player["Energy"] !== undefined){
 
-
-    if(
-      player["Level"] !== null &&
-      player["Level"] !== undefined
-    ){
-
-      const dbLevel =
-        Number(player["Level"]);
-
-      if(Number.isFinite(dbLevel)){
-
-        game.level =
-          dbLevel;
+        state.energy =
+          Number(player["Energy"]);
 
       }
 
-    }
+      if(player["Level"] !== null &&
+         player["Level"] !== undefined){
 
-
-    if(
-      player["Referrals"] !== null &&
-      player["Referrals"] !== undefined
-    ){
-
-      const dbReferrals =
-        Number(player["Referrals"]);
-
-      if(Number.isFinite(dbReferrals)){
-
-        game.referrals =
-          dbReferrals;
+        state.level =
+          Number(player["Level"]);
 
       }
 
-    }
+      if(player["Referrals"] !== null &&
+         player["Referrals"] !== undefined){
 
-
-    if(
-      player["Taxi_level"] !== null &&
-      player["Taxi_level"] !== undefined
-    ){
-
-      const taxiLevel =
-        Number(player["Taxi_level"]);
-
-      if(Number.isFinite(taxiLevel)){
-
-        game.taxiLevel =
-          taxiLevel;
+        state.referrals =
+          Number(player["Referrals"]);
 
       }
 
-    }
+      if(player["Taxi_level"] !== null &&
+         player["Taxi_level"] !== undefined){
 
-
-    if(
-      player["City_level"] !== null &&
-      player["City_level"] !== undefined
-    ){
-
-      const cityLevel =
-        Number(player["City_level"]);
-
-      if(Number.isFinite(cityLevel)){
-
-        game.cityLevel =
-          cityLevel;
+        state.taxiLevel =
+          Number(player["Taxi_level"]);
 
       }
 
-    }
+      if(player["City_level"] !== null &&
+         player["City_level"] !== undefined){
 
-
-    if(
-      player["Total_taps"] !== null &&
-      player["Total_taps"] !== undefined
-    ){
-
-      const taps =
-        Number(player["Total_taps"]);
-
-      if(Number.isFinite(taps)){
-
-        game.totalTaps =
-          taps;
+        state.cityLevel =
+          Number(player["City_level"]);
 
       }
 
-    }
+      if(player["Total_taps"] !== null &&
+         player["Total_taps"] !== undefined){
 
-
-    if(
-      player["Total_rides"] !== null &&
-      player["Total_rides"] !== undefined
-    ){
-
-      const rides =
-        Number(player["Total_rides"]);
-
-      if(Number.isFinite(rides)){
-
-        game.totalRides =
-          rides;
+        state.totalTaps =
+          Number(player["Total_taps"]);
 
       }
 
+      if(player["Total_rides"] !== null &&
+         player["Total_rides"] !== undefined){
+
+        state.totalRides =
+          Number(player["Total_rides"]);
+
+      }
+
+      if(player["Last bonus"]){
+        state.lastBonus =
+          player["Last bonus"];
+      }
+
+      document.getElementById(
+        "connectionText"
+      ).textContent = "SUPABASE ✓";
+
+      document.getElementById(
+        "accountStatus"
+      ).textContent =
+        "Cloud profile connected";
+
+    }else{
+
+      /*
+        Player doesn't exist.
+
+        DO NOT create it here.
+        DO NOT set a DB balance.
+      */
+
+      state.synced = false;
+
+      document.getElementById(
+        "connectionText"
+      ).textContent = "NEW PLAYER";
+
+      document.getElementById(
+        "accountStatus"
+      ).textContent =
+        "New player profile";
+
     }
-
-
-    if(
-      player["Last bonus"] !== null &&
-      player["Last bonus"] !== undefined
-    ){
-
-      game.lastBonus =
-        player["Last bonus"];
-
-    }
-
-
-    game.loadedFromSupabase =
-      true;
-
-
-    setSync("Supabase ✓");
 
     saveLocal();
-
     render();
-
-    return true;
-
 
   }catch(error){
 
     console.log(
-      "Supabase connection error:",
+      "Supabase read error:",
       error
     );
 
-    setSync("Bağlantı xətası");
+    document.getElementById(
+      "connectionText"
+    ).textContent = "OFFLINE";
 
-    return false;
-
-  }
-
-}
-
-
-/* =========================================================
-   SYNC STATUS
-   ========================================================= */
-
-function setSync(text){
-
-  const el =
-    document.getElementById("syncStatus");
-
-  if(el){
-
-    el.textContent =
-      text;
+    document.getElementById(
+      "accountStatus"
+    ).textContent =
+      "Offline mode";
 
   }
 
@@ -1944,12 +2164,10 @@ function setSync(text){
    FORMAT
    ========================================================= */
 
-function formatNumber(value){
+function formatNumber(number){
 
-  const n =
-    Number(value) || 0;
-
-  return n.toLocaleString("en-US");
+  return Number(number || 0)
+    .toLocaleString("en-US");
 
 }
 
@@ -1960,387 +2178,284 @@ function formatNumber(value){
 
 function render(){
 
-  document.getElementById("balance").innerHTML =
-    formatNumber(game.balance) +
-    ' <span>ELC</span>';
+  const balance =
+    Math.max(
+      0,
+      Number(state.balance) || 0
+    );
 
+  document.getElementById(
+    "balance"
+  ).textContent =
+    formatNumber(balance);
 
-  document.getElementById("energyText").textContent =
-    formatNumber(game.energy) +
-    " / " +
-    formatNumber(game.maxEnergy);
+  document.getElementById(
+    "energy"
+  ).textContent =
+    Math.floor(state.energy);
 
+  document.getElementById(
+    "maxEnergy"
+  ).textContent =
+    state.maxEnergy;
 
   const energyPercent =
     Math.max(
       0,
       Math.min(
         100,
-        (game.energy / game.maxEnergy) * 100
+        state.energy /
+        state.maxEnergy *
+        100
       )
     );
 
-
-  document.getElementById("energyPercent").textContent =
-    Math.floor(energyPercent) + "%";
-
-
-  document.getElementById("energyFill").style.width =
+  document.getElementById(
+    "energyFill"
+  ).style.width =
     energyPercent + "%";
 
-
-  document.getElementById("levelText").textContent =
-    "Level " + game.level;
-
-
-  document.getElementById("cityLevelText").textContent =
-    "Level " + game.cityLevel;
-
-
-  document.getElementById("cityLevelValue").textContent =
-    "Level " + game.cityLevel;
-
-
-  document.getElementById("cityIncomeValue").textContent =
-    "+" +
-    (game.cityLevel * 10) +
-    " ELC/saat";
-
-
-  document.getElementById("businessLevel").textContent =
-    "Level " + game.businessLevel;
-
-
-  document.getElementById("taxiLevel").textContent =
-    "Level " + game.taxiLevel;
-
-
-  document.getElementById("referralsText").textContent =
-    formatNumber(game.referrals);
-
-
-  document.getElementById("profileBalance").textContent =
-    formatNumber(game.balance) +
-    " ELC";
-
-
-  document.getElementById("profileTaps").textContent =
-    formatNumber(game.totalTaps);
-
-
-  document.getElementById("profileRides").textContent =
-    formatNumber(game.totalRides);
-
-
-  const refCode =
-    game.telegramId
-      ? "ELCITY-" + game.telegramId.slice(-6)
-      : "ELCITY-PLAYER";
-
-
-  document.getElementById("refCode").textContent =
-    refCode;
-
-
-  const businessPrice =
-    400 * game.businessLevel;
-
-
-  document.getElementById("businessUpgradeButton").textContent =
-    formatNumber(businessPrice) +
-    " ELC";
-
-
-  const cityPrice =
-    500 * game.cityLevel;
-
-
-  document.getElementById("cityUpgradeButton").textContent =
-    formatNumber(cityPrice) +
-    " ELC";
-
-}
-
-
-/* =========================================================
-   SCREEN NAVIGATION
-   ========================================================= */
-
-function showScreen(id){
-
-  const screens =
-    document.querySelectorAll(".screen");
-
-  screens.forEach(
-    screen => {
-
-      screen.classList.remove("active");
-
-    }
-  );
-
-
-  const target =
-    document.getElementById(id);
-
-  if(target){
-
-    target.classList.add("active");
-
-  }
-
-
-  const navButtons =
-    document.querySelectorAll(".navBtn");
-
-  navButtons.forEach(
-    btn => {
-
-      btn.classList.toggle(
-        "active",
-        btn.dataset.screen === id
-      );
-
-    }
-  );
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =========================================================
-   TAP
-   ========================================================= */
-
-document.getElementById("coinButton")
-.addEventListener(
-  "click",
-  function(){
-
-    if(game.energy <= 0){
-
-      showToast("⚡ Energy bitdi");
-
-      return;
-
-    }
-
-
-    game.balance += 1;
-
-    game.energy -= 1;
-
-    game.totalTaps += 1;
-
-
-    render();
-
-    saveLocal();
-
-  }
-);
-
-
-/* =========================================================
-   DAILY BONUS
-   ========================================================= */
-
-document.getElementById("bonusButton")
-.addEventListener(
-  "click",
-  function(){
-
-    const today =
-      new Date().toISOString().slice(0,10);
-
-
-    if(game.lastBonus === today){
-
-      showToast("🎁 Bonus artıq götürülüb");
-
-      return;
-
-    }
-
-
-    game.balance += 500;
-
-    game.lastBonus =
-      today;
-
-
-    render();
-
-    saveLocal();
-
-    showToast("+500 ELC Daily Bonus 🎁");
-
-  }
-);
-
-
-/* =========================================================
-   BUSINESS UPGRADE
-   ========================================================= */
-
-document.getElementById("businessUpgradeButton")
-.addEventListener(
-  "click",
-  function(){
-
-    const price =
-      400 * game.businessLevel;
-
-
-    if(game.balance < price){
-
-      showToast("🪙 Kifayət qədər ELC yoxdur");
-
-      return;
-
-    }
-
-
-    game.balance -= price;
-
-    game.businessLevel += 1;
-
-
-    render();
-
-    saveLocal();
-
-    showToast("🏢 Business Level artırıldı");
-
-  }
-);
-
-
-/* =========================================================
-   CITY UPGRADE
-   ========================================================= */
-
-document.getElementById("cityUpgradeButton")
-.addEventListener(
-  "click",
-  function(){
-
-    const price =
-      500 * game.cityLevel;
-
-
-    if(game.balance < price){
-
-      showToast("🪙 Kifayət qədər ELC yoxdur");
-
-      return;
-
-    }
-
-
-    game.balance -= price;
-
-    game.cityLevel += 1;
-
-
-    render();
-
-    saveLocal();
-
-    showToast("🏙️ City Level artırıldı");
-
-  }
-);
-
-
-/* =========================================================
-   TAXI
-   ========================================================= */
-
-document.getElementById("rideButton")
-.addEventListener(
-  "click",
-  function(){
-
-    const reward =
-      50 * game.taxiLevel;
-
-
-    game.balance += reward;
-
-    game.totalRides += 1;
-
-
-    render();
-
-    saveLocal();
-
-    showToast(
-      "🚕 +" +
-      formatNumber(reward) +
-      " ELC"
+  document.getElementById(
+    "level"
+  ).textContent =
+    state.level;
+
+  document.getElementById(
+    "upgradeLevel"
+  ).textContent =
+    state.level;
+
+  document.getElementById(
+    "rides"
+  ).textContent =
+    state.totalRides;
+
+  document.getElementById(
+    "referrals"
+  ).textContent =
+    state.referrals;
+
+  document.getElementById(
+    "friendCount"
+  ).textContent =
+    state.referrals;
+
+  document.getElementById(
+    "cityLevel"
+  ).textContent =
+    state.cityLevel;
+
+  document.getElementById(
+    "taxiLevel"
+  ).textContent =
+    state.taxiLevel;
+
+  document.getElementById(
+    "taxiLevel2"
+  ).textContent =
+    state.taxiLevel;
+
+  document.getElementById(
+    "profileBalance"
+  ).textContent =
+    formatNumber(balance);
+
+  document.getElementById(
+    "profileLevel"
+  ).textContent =
+    state.level;
+
+  document.getElementById(
+    "profileTaps"
+  ).textContent =
+    formatNumber(state.totalTaps);
+
+  document.getElementById(
+    "profileRides"
+  ).textContent =
+    state.totalRides;
+
+  const nickname =
+    getNickname();
+
+  document.getElementById(
+    "nickname"
+  ).textContent =
+    nickname;
+
+  document.getElementById(
+    "refCode"
+  ).textContent =
+    nickname;
+
+  const upgradeCost =
+    Math.floor(
+      100 *
+      Math.pow(1.55,state.level-1)
     );
 
-  }
-);
+  document.getElementById(
+    "upgradeCost"
+  ).textContent =
+    formatNumber(upgradeCost);
+
+  const cityCost =
+    Math.floor(
+      250 *
+      Math.pow(1.7,state.cityLevel-1)
+    );
+
+  document.getElementById(
+    "cityUpgradeBtn"
+  ).textContent =
+    "CITY UPGRADE — " +
+    formatNumber(cityCost) +
+    " ELC";
+
+  const taxiCost =
+    Math.floor(
+      400 *
+      Math.pow(1.6,state.taxiLevel-1)
+    );
+
+  document.getElementById(
+    "taxiUpgradeBtn"
+  ).textContent =
+    "UPGRADE — " +
+    formatNumber(taxiCost) +
+    " ELC";
+
+}
 
 
 /* =========================================================
-   INVITE
+   AUDIO
    ========================================================= */
 
-function inviteFriends(){
+function initAudio(){
 
-  const telegramId =
-    game.telegramId || "player";
+  try{
 
+    if(!audioContext){
 
-  const botUsername =
-    "ElCoinGame_bot";
+      audioContext =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
 
+    }
 
-  const link =
-    "https://t.me/" +
-    botUsername +
-    "?start=ref_" +
-    telegramId;
+    if(audioContext.state === "suspended")
+      audioContext.resume();
 
+  }catch(e){}
 
-  const shareText =
-    "🏙️ ELCITY-ə qoşul! Şəhərini qur, biznesini böyüt və ELC qazan!";
+}
 
+function sound(
+  frequency=500,
+  duration=.08,
+  type="sine",
+  volume=.035
+){
 
-  const shareUrl =
-    "https://t.me/share/url?url=" +
-    encodeURIComponent(link) +
-    "&text=" +
-    encodeURIComponent(shareText);
+  try{
 
+    initAudio();
 
-  if(tg){
-
-    try{
-
-      tg.openTelegramLink(
-        shareUrl
-      );
-
+    if(!audioContext)
       return;
 
-    }catch(e){}
+    const oscillator =
+      audioContext.createOscillator();
 
-  }
+    const gain =
+      audioContext.createGain();
+
+    oscillator.type = type;
+
+    oscillator.frequency.value =
+      frequency;
+
+    gain.gain.setValueAtTime(
+      0.0001,
+      audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      volume,
+      audioContext.currentTime + .01
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.0001,
+      audioContext.currentTime + duration
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(
+      audioContext.currentTime +
+      duration +
+      .02
+    );
+
+  }catch(e){}
+
+}
+
+function coinSound(){
+
+  sound(620,.055,"triangle",.045);
+
+  setTimeout(()=>{
+    sound(880,.075,"triangle",.035);
+  },35);
+
+}
+
+function successSound(){
+
+  sound(520,.08,"sine",.04);
+
+  setTimeout(()=>{
+    sound(760,.10,"sine",.04);
+  },80);
+
+  setTimeout(()=>{
+    sound(1040,.14,"sine",.035);
+  },170);
+
+}
+
+function errorSound(){
+
+  sound(180,.12,"sawtooth",.025);
+
+}
 
 
-  window.open(
-    shareUrl,
-    "_blank"
-  );
+/* =========================================================
+   HAPTIC
+   ========================================================= */
+
+function vibrate(pattern){
+
+  try{
+
+    if(
+      navigator.vibrate &&
+      typeof navigator.vibrate === "function"
+    ){
+
+      navigator.vibrate(pattern);
+
+    }
+
+  }catch(e){}
 
 }
 
@@ -2349,60 +2464,652 @@ function inviteFriends(){
    TOAST
    ========================================================= */
 
-let toastTimer = null;
+let toastTimer;
 
-
-function showToast(text){
+function showToast(message){
 
   const toast =
     document.getElementById("toast");
 
-
   toast.textContent =
-    text;
-
+    message;
 
   toast.classList.add("show");
 
-
   clearTimeout(toastTimer);
 
-
   toastTimer =
-    setTimeout(
-      function(){
-
-        toast.classList.remove("show");
-
-      },
-      1800
-    );
+    setTimeout(()=>{
+      toast.classList.remove("show");
+    },1700);
 
 }
 
 
 /* =========================================================
-   ENERGY REGEN
+   FLOATING COIN
    ========================================================= */
 
-setInterval(
-  function(){
+function floatingText(text,x,y){
 
-    if(
-      game.energy <
-      game.maxEnergy
-    ){
+  const el =
+    document.createElement("div");
 
-      game.energy += 1;
+  el.className =
+    "floating";
 
-      render();
+  el.textContent =
+    text;
+
+  el.style.left =
+    x + "px";
+
+  el.style.top =
+    y + "px";
+
+  document.body.appendChild(el);
+
+  setTimeout(()=>{
+    el.remove();
+  },850);
+
+}
+
+
+/* =========================================================
+   TAP
+   ========================================================= */
+
+function tapCoin(event){
+
+  initAudio();
+
+  if(state.energy <= 0){
+
+    errorSound();
+
+    showToast(
+      "⚡ Energy bitdi"
+    );
+
+    return;
+
+  }
+
+  const amount =
+    Math.max(
+      1,
+      Math.floor(
+        1 +
+        (state.level-1)*0.15
+      )
+    );
+
+  state.balance += amount;
+
+  state.energy =
+    Math.max(
+      0,
+      state.energy - 1
+    );
+
+  state.totalTaps++;
+
+  saveLocal();
+  render();
+
+  const coin =
+    document.getElementById(
+      "coinButton"
+    );
+
+  coin.classList.remove("hit");
+
+  void coin.offsetWidth;
+
+  coin.classList.add("hit");
+
+  coinSound();
+
+  vibrate(12);
+
+  let x,y;
+
+  if(event){
+
+    x =
+      event.clientX ||
+      window.innerWidth/2;
+
+    y =
+      event.clientY ||
+      300;
+
+  }else{
+
+    x =
+      window.innerWidth/2;
+
+    y = 300;
+
+  }
+
+  floatingText(
+    "+" + amount + " ELC",
+    x,
+    y
+  );
+
+}
+
+
+/* =========================================================
+   DAILY BONUS
+   ========================================================= */
+
+function claimBonus(){
+
+  const today =
+    new Date()
+      .toISOString()
+      .slice(0,10);
+
+  if(state.lastBonus === today){
+
+    showToast(
+      "🎁 Bonus artıq götürülüb"
+    );
+
+    errorSound();
+
+    return;
+
+  }
+
+  state.balance += 500;
+
+  state.lastBonus =
+    today;
+
+  saveLocal();
+  render();
+
+  successSound();
+  vibrate([20,30,20]);
+
+  document.getElementById(
+    "coinHero"
+  ).classList.add(
+    "bonusGlow"
+  );
+
+  setTimeout(()=>{
+    document.getElementById(
+      "coinHero"
+    ).classList.remove(
+      "bonusGlow"
+    );
+  },600);
+
+  showToast(
+    "🎁 +500 ELC Daily Bonus!"
+  );
+
+}
+
+
+/* =========================================================
+   MAIN LEVEL UPGRADE
+   ========================================================= */
+
+function upgrade(){
+
+  const cost =
+    Math.floor(
+      100 *
+      Math.pow(1.55,state.level-1)
+    );
+
+  if(state.balance < cost){
+
+    errorSound();
+
+    showToast(
+      "❌ Kifayət qədər ELC yoxdur"
+    );
+
+    return;
+
+  }
+
+  state.balance -= cost;
+
+  state.level++;
+
+  state.maxEnergy += 100;
+
+  state.energy =
+    Math.min(
+      state.maxEnergy,
+      state.energy + 100
+    );
+
+  saveLocal();
+  render();
+
+  successSound();
+  vibrate([25,40,25]);
+
+  showToast(
+    "🚀 Level " +
+    state.level +
+    " açıldı!"
+  );
+
+}
+
+
+/* =========================================================
+   CITY UPGRADE
+   ========================================================= */
+
+function cityUpgrade(){
+
+  const cost =
+    Math.floor(
+      250 *
+      Math.pow(1.7,state.cityLevel-1)
+    );
+
+  if(state.balance < cost){
+
+    errorSound();
+
+    showToast(
+      "❌ ELC çatmır"
+    );
+
+    return;
+
+  }
+
+  state.balance -= cost;
+
+  state.cityLevel++;
+
+  saveLocal();
+  render();
+
+  successSound();
+  vibrate([30,50,30]);
+
+  showToast(
+    "🏙️ City Level " +
+    state.cityLevel
+  );
+
+}
+
+
+/* =========================================================
+   TAXI RIDE
+   ========================================================= */
+
+function rideTaxi(){
+
+  if(state.energy < 10){
+
+    errorSound();
+
+    showToast(
+      "⚡ Taxi üçün 10 energy lazımdır"
+    );
+
+    return;
+
+  }
+
+  const reward =
+    50 +
+    (state.taxiLevel-1)*10;
+
+  state.balance += reward;
+
+  state.energy -= 10;
+
+  state.totalRides++;
+
+  saveLocal();
+  render();
+
+  successSound();
+  vibrate([15,25,15]);
+
+  showToast(
+    "🚕 Ride tamamlandı: +" +
+    reward +
+    " ELC"
+  );
+
+}
+
+
+/* =========================================================
+   TAXI UPGRADE
+   ========================================================= */
+
+function taxiUpgrade(){
+
+  const cost =
+    Math.floor(
+      400 *
+      Math.pow(1.6,state.taxiLevel-1)
+    );
+
+  if(state.balance < cost){
+
+    errorSound();
+
+    showToast(
+      "❌ ELC çatmır"
+    );
+
+    return;
+
+  }
+
+  state.balance -= cost;
+
+  state.taxiLevel++;
+
+  saveLocal();
+  render();
+
+  successSound();
+  vibrate([25,40,25]);
+
+  showToast(
+    "🚕 Taxi Level " +
+    state.taxiLevel
+  );
+
+}
+
+
+/* =========================================================
+   BUSINESS UPGRADE
+   ========================================================= */
+
+document
+.querySelectorAll(".businessBtn")
+.forEach(btn=>{
+
+  btn.addEventListener(
+    "click",
+    ()=>{
+
+      const cost =
+        Number(
+          btn.dataset.cost
+        );
+
+      if(state.balance < cost){
+
+        errorSound();
+
+        showToast(
+          "❌ ELC çatmır"
+        );
+
+        return;
+
+      }
+
+      state.balance -= cost;
 
       saveLocal();
+      render();
+
+      successSound();
+      vibrate([20,30,20]);
+
+      showToast(
+        "🏢 Business upgraded!"
+      );
+
+      btn.textContent =
+        "UPGRADED ✓";
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   COPY REFERRAL
+   ========================================================= */
+
+async function copyReferral(){
+
+  const code =
+    getNickname();
+
+  try{
+
+    await navigator.clipboard.writeText(
+      code
+    );
+
+    successSound();
+
+    showToast(
+      "📋 Referral kodu kopyalandı"
+    );
+
+  }catch(e){
+
+    showToast(
+      code
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function openScreen(name){
+
+  document
+  .querySelectorAll(".screen")
+  .forEach(screen=>{
+
+    screen.classList.remove(
+      "active"
+    );
+
+  });
+
+  const target =
+    document.getElementById(
+      "screen-" + name
+    );
+
+  if(target)
+    target.classList.add(
+      "active"
+    );
+
+  document
+  .querySelectorAll(".navBtn")
+  .forEach(btn=>{
+
+    btn.classList.toggle(
+      "active",
+      btn.dataset.screen === name
+    );
+
+  });
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  sound(300,.035,"sine",.015);
+
+}
+
+
+/* =========================================================
+   ENERGY REGENERATION
+   ========================================================= */
+
+setInterval(()=>{
+
+  if(
+    state.energy <
+    state.maxEnergy
+  ){
+
+    state.energy =
+      Math.min(
+        state.maxEnergy,
+        state.energy + 1
+      );
+
+    saveLocal();
+    render();
+
+  }
+
+},3000);
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+function updateDate(){
+
+  const now =
+    new Date();
+
+  document.getElementById(
+    "dateText"
+  ).textContent =
+    now.toLocaleDateString(
+      "en-GB",
+      {
+        day:"2-digit",
+        month:"short"
+      }
+    ).toUpperCase();
+
+}
+
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+
+document
+.getElementById("coinButton")
+.addEventListener(
+  "pointerdown",
+  tapCoin
+);
+
+document
+.getElementById("bonusBtn")
+.addEventListener(
+  "click",
+  claimBonus
+);
+
+document
+.getElementById("upgradeBtn")
+.addEventListener(
+  "click",
+  upgrade
+);
+
+document
+.getElementById("cityUpgradeBtn")
+.addEventListener(
+  "click",
+  cityUpgrade
+);
+
+document
+.getElementById("rideBtn")
+.addEventListener(
+  "click",
+  rideTaxi
+);
+
+document
+.getElementById("taxiUpgradeBtn")
+.addEventListener(
+  "click",
+  taxiUpgrade
+);
+
+document
+.getElementById("copyRefBtn")
+.addEventListener(
+  "click",
+  copyReferral
+);
+
+document
+.querySelectorAll(".navBtn")
+.forEach(btn=>{
+
+  btn.addEventListener(
+    "click",
+    ()=>{
+      openScreen(
+        btn.dataset.screen
+      );
+    }
+  );
+
+});
+
+
+/* =========================================================
+   PREVENT LONG PRESS / DOUBLE ZOOM
+   ========================================================= */
+
+document.addEventListener(
+  "contextmenu",
+  e=>e.preventDefault()
+);
+
+let lastTouchEnd = 0;
+
+document.addEventListener(
+  "touchend",
+  function(event){
+
+    const now =
+      Date.now();
+
+    if(now-lastTouchEnd <= 300){
+
+      event.preventDefault();
 
     }
 
+    lastTouchEnd = now;
+
   },
-  3000
+  {passive:false}
 );
 
 
@@ -2412,42 +3119,47 @@ setInterval(
 
 async function startGame(){
 
-  /*
-    Əvvəl lokal məlumat yüklənir.
-    Bu, ekranın boş görünməməsi üçündür.
-  */
-
   loadLocal();
 
-  setupUser();
+  state.telegramId =
+    getTelegramId();
 
+  if(!state.nickname){
+
+    state.nickname =
+      createAnonymousName(
+        state.telegramId
+      );
+
+  }
+
+  updateDate();
   render();
-
 
   /*
-    Sonra Supabase-dan həqiqi oyunçu
-    məlumatı oxunur.
+    First render is local.
+    Then Supabase is read.
 
-    Əgər oyunçu varsa:
-    onun mövcud Balance dəyəri istifadə olunur.
-
-    Heç bir Balance = 0 əməliyyatı yoxdur.
+    Existing Balance is never
+    overwritten with zero.
   */
 
-  await loadPlayerFromSupabase();
-
-
-  setupUser();
+  await loadPlayer();
 
   render();
 
+  setTimeout(()=>{
 
-  document
-    .getElementById("loading")
-    .classList.add("hidden");
+    document
+      .getElementById("intro")
+      .classList.add("hide");
+
+  },2100);
 
 }
 
+
+/* START */
 
 startGame();
 
