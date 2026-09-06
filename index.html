@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
 <meta name="theme-color" content="#050914">
 
-<title>ELCOIN</title>
+<title>CITY BOSS</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
@@ -20,720 +21,355 @@ html,body{
   padding:0;
   width:100%;
   min-height:100%;
-  background:#030303;
-  color:#fff;
   font-family:Arial,Helvetica,sans-serif;
+  background:#050914;
+  color:#fff;
+  overflow-x:hidden;
 }
 
 body{
   min-height:100vh;
-  overflow-x:hidden;
-  position:relative;
-
   background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(255,190,30,.12),
-      transparent 30%
-    ),
-    linear-gradient(
-      180deg,
-      #020202 0%,
-      #090704 50%,
-      #020202 100%
-    );
+    radial-gradient(circle at 50% 15%,rgba(35,92,170,.25),transparent 32%),
+    linear-gradient(180deg,#07101f 0%,#050914 48%,#02040a 100%);
 }
 
 button{
-  font:inherit;
   border:0;
   outline:0;
+  font:inherit;
+  color:inherit;
   cursor:pointer;
 }
 
 .app{
   width:100%;
-  max-width:560px;
-  margin:auto;
+  max-width:520px;
   min-height:100vh;
-  padding:14px 13px 105px;
+  margin:auto;
   position:relative;
-  z-index:2;
+  padding-bottom:88px;
 }
 
-/* =========================
-   CITY BACKGROUND
-========================= */
-
-body::before{
-  content:"";
-  position:fixed;
-  left:-5%;
-  right:-5%;
-  bottom:0;
-  height:48vh;
-  z-index:0;
-  pointer-events:none;
-  opacity:.48;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0 4%,
-      #211908 4% 12%,
-      transparent 12% 15%,
-      #302309 15% 23%,
-      transparent 23% 26%,
-      #1c1607 26% 34%,
-      transparent 34% 37%,
-      #36270a 37% 45%,
-      transparent 45% 48%,
-      #211908 48% 56%,
-      transparent 56% 59%,
-      #332509 59% 67%,
-      transparent 67% 70%,
-      #1e1707 70% 78%,
-      transparent 78% 81%,
-      #36270a 81% 90%,
-      transparent 90% 93%,
-      #211908 93% 100%
-    );
-
-  filter:blur(7px);
-
-  mask-image:linear-gradient(
-    to top,
-    #000 0%,
-    #000 55%,
-    transparent 100%
-  );
-
-  -webkit-mask-image:linear-gradient(
-    to top,
-    #000 0%,
-    #000 55%,
-    transparent 100%
-  );
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  height:40vh;
-  z-index:0;
-  pointer-events:none;
-  opacity:.28;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 19px,
-      rgba(255,210,65,.8) 20px 23px,
-      transparent 24px 46px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent 0 20px,
-      rgba(255,205,60,.65) 21px 23px,
-      transparent 24px 40px
-    );
-
-  background-size:150px 130px,150px 130px;
-
-  mask-image:linear-gradient(
-    to top,
-    #000 0%,
-    rgba(0,0,0,.8) 50%,
-    transparent 100%
-  );
-
-  -webkit-mask-image:linear-gradient(
-    to top,
-    #000 0%,
-    rgba(0,0,0,.8) 50%,
-    transparent 100%
-  );
-
-  filter:blur(4px);
-}
-
-.app::before{
-  content:"E";
-  position:fixed;
-  left:50%;
-  top:45%;
-  transform:translate(-50%,-50%);
-  font-size:300px;
-  line-height:1;
-  font-weight:900;
-  color:rgba(255,205,55,.035);
-  text-shadow:
-    0 0 35px rgba(255,190,30,.15),
-    0 0 80px rgba(255,180,20,.08);
-  filter:blur(2px);
-  pointer-events:none;
-  z-index:1;
-}
-
-.app::after{
-  content:"ELCOIN  •  TAP TO EARN";
-  position:fixed;
-  left:50%;
-  bottom:30vh;
-  transform:translateX(-50%) rotate(-4deg);
-  width:100%;
-  text-align:center;
-  white-space:nowrap;
-  font-size:18px;
-  font-weight:900;
-  letter-spacing:7px;
-  color:rgba(255,210,70,.09);
-  text-shadow:
-    0 0 12px rgba(255,200,40,.22),
-    0 0 35px rgba(255,180,20,.10);
-  filter:blur(2px);
-  pointer-events:none;
-  z-index:1;
-}
-
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
 .header{
+  height:72px;
+  padding:12px 15px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:16px;
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(4,9,19,.88);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:11px;
-}
-
-.logo{
-  width:58px;
-  height:58px;
-  flex:none;
-  border-radius:15px;
-  position:relative;
-  overflow:hidden;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:#ffd33d;
-  border:1px solid rgba(255,207,48,.85);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,196,31,.18),
-      rgba(0,0,0,.82)
-    ),
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(255,220,70,.30),
-      transparent 38%
-    ),
-    #03070e;
-
-  box-shadow:
-    0 0 10px rgba(255,193,20,.35),
-    0 0 25px rgba(255,193,20,.22),
-    0 0 45px rgba(255,170,10,.10),
-    inset 0 0 18px rgba(255,195,25,.12);
-}
-
-.logo:before{
-  content:"";
-  position:absolute;
-  inset:3px;
-  border-radius:12px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,230,120,.22),
-      transparent 35%,
-      rgba(255,180,20,.10)
-    );
-  box-shadow:inset 0 0 12px rgba(255,215,70,.18);
-  pointer-events:none;
-  z-index:1;
-}
-
-.logo:after{
-  content:"E";
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-53%);
-  color:#ffd94a;
-  font-size:31px;
-  font-weight:900;
-  line-height:1;
-  text-shadow:
-    0 0 5px rgba(255,255,180,1),
-    0 0 10px rgba(255,220,70,.95),
-    0 0 20px rgba(255,185,20,.75),
-    0 0 35px rgba(255,160,10,.45);
-  z-index:3;
-}
-
-.brand-title{
-  font-size:23px;
-  font-weight:900;
-  letter-spacing:1.5px;
-}
-
-.brand-sub{
-  color:#75869e;
-  font-size:9px;
-  letter-spacing:2px;
-  margin-top:2px;
-}
-
-.profile{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  background:rgba(16,28,47,.75);
-  border:1px solid rgba(93,126,163,.35);
-  padding:7px 10px;
-  border-radius:18px;
-  max-width:155px;
-}
-
-.profile-icon{
-  font-size:16px;
-}
-
-#profileName{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  font-size:12px;
-  color:#dce8f7;
-}
-
-/* =========================
-   SERVER
-========================= */
-
-.server-status{
-  width:100%;
-  padding:8px 12px;
-  border-radius:12px;
-  margin-bottom:12px;
-  font-size:11px;
-  text-align:center;
-  background:rgba(35,48,68,.65);
-  border:1px solid rgba(112,140,172,.25);
-  color:#b7c6d9;
-}
-
-.server-status.online{
-  color:#79ffb0;
-  border-color:rgba(50,255,143,.25);
-  background:rgba(0,80,45,.16);
-}
-
-.server-status.offline{
-  color:#ffbf63;
-  border-color:rgba(255,171,52,.25);
-  background:rgba(100,60,0,.15);
-}
-
-/* =========================
-   BALANCE
-========================= */
-
-.balance-card{
-  position:relative;
-  overflow:hidden;
-  border-radius:25px;
-  padding:22px 18px 20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(16,32,55,.96),
-      rgba(7,15,27,.98)
-    );
-
-  border:1px solid rgba(91,130,171,.35);
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,.35),
-    inset 0 1px rgba(255,255,255,.04);
-}
-
-.balance-card:before{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  right:-80px;
-  top:-100px;
-  background:rgba(255,205,50,.08);
-}
-
-.balance-label{
-  color:#8fa3bd;
-  font-size:12px;
-  margin-bottom:7px;
-}
-
-.balance-row{
-  display:flex;
-  align-items:center;
   gap:10px;
 }
 
-.balance-coin{
-  width:38px;
-  height:38px;
-  border-radius:50%;
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:14px;
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:22px;
   font-weight:900;
-  color:#503700;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fff09a,
-      #ffd027,
-      #9a6900
-    );
-
-  box-shadow:0 0 15px rgba(255,211,48,.3);
+  color:#08101c;
+  background:linear-gradient(135deg,#ffe27a,#f5ad28);
+  box-shadow:0 0 25px rgba(255,190,55,.25);
 }
 
-#balance{
-  font-size:38px;
-  line-height:1;
+.brandText strong{
+  display:block;
+  font-size:18px;
+  letter-spacing:1px;
+}
+
+.brandText span{
+  display:block;
+  margin-top:2px;
+  color:#77839a;
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+.profileMini{
+  min-width:45px;
+  height:42px;
+  padding:0 9px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.035);
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+/* ================= SCREENS ================= */
+
+.screen{
+  display:none;
+  padding:15px;
+  animation:screenIn .22s ease;
+}
+
+.screen.active{
+  display:block;
+}
+
+@keyframes screenIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ================= HOME ================= */
+
+.hero{
+  position:relative;
+  min-height:300px;
+  border-radius:27px;
+  overflow:hidden;
+  padding:22px 18px;
+  background:
+    linear-gradient(180deg,rgba(9,28,56,.35),rgba(3,8,17,.95)),
+    radial-gradient(circle at 50% 35%,rgba(27,105,192,.34),transparent 38%);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:0 20px 55px rgba(0,0,0,.35);
+}
+
+.stars{
+  position:absolute;
+  inset:0;
+  opacity:.5;
+  background-image:
+    radial-gradient(circle,#fff 1px,transparent 1px),
+    radial-gradient(circle,#fff 1px,transparent 1px);
+  background-size:73px 73px,109px 109px;
+  background-position:10px 12px,45px 35px;
+}
+
+.cityGlow{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:130px;
+  background:
+    linear-gradient(180deg,transparent,rgba(11,47,82,.3)),
+    repeating-linear-gradient(
+      90deg,
+      #08121f 0 32px,
+      #0a1828 32px 48px,
+      #07111e 48px 67px
+    );
+  clip-path:polygon(
+    0 40%,5% 40%,5% 27%,11% 27%,11% 50%,
+    18% 50%,18% 19%,24% 19%,24% 43%,
+    31% 43%,31% 9%,37% 9%,37% 38%,
+    44% 38%,44% 24%,50% 24%,50% 47%,
+    57% 47%,57% 15%,64% 15%,64% 39%,
+    71% 39%,71% 6%,77% 6%,77% 35%,
+    84% 35%,84% 20%,90% 20%,90% 44%,
+    96% 44%,96% 12%,100% 12%,100% 100%,0 100%
+  );
+}
+
+.heroContent{
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+.welcome{
+  color:#8290a8;
+  font-size:12px;
+  letter-spacing:1px;
+  margin-top:2px;
+}
+
+.bossName{
+  margin-top:4px;
+  font-size:24px;
+  font-weight:900;
+}
+
+.balanceLabel{
+  margin-top:24px;
+  color:#8290a8;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.balance{
+  margin-top:3px;
+  font-size:39px;
   font-weight:900;
   letter-spacing:-1px;
+  text-shadow:0 0 25px rgba(255,199,70,.2);
 }
 
-.balance-unit{
-  color:#ffd63d;
-  font-weight:800;
-  font-size:15px;
+.coinName{
+  color:#f3bd42;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
 }
 
 .income{
-  margin-top:13px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color:#8fa3bd;
+  margin-top:7px;
+  color:#54dc93;
   font-size:12px;
-}
-
-.income strong{
-  color:#62ff9d;
-}
-
-/* =========================
-   TAP
-========================= */
-
-.tap-section{
-  text-align:center;
-  padding:23px 0 18px;
-}
-
-.tap-title{
-  color:#c9d5e5;
   font-weight:700;
-  font-size:14px;
 }
 
-.tap-sub{
-  color:#71839b;
-  font-size:11px;
-  margin-top:5px;
-}
+/* ================= COIN BUTTON ================= */
 
-.coin-button{
-  width:210px;
-  height:210px;
-  border-radius:50%;
-  margin:25px auto 18px;
+.coinArea{
   position:relative;
-
+  z-index:5;
+  margin-top:22px;
   display:flex;
-  align-items:center;
   justify-content:center;
-
-  user-select:none;
-  -webkit-user-select:none;
-  touch-action:none;
-  -webkit-touch-callout:none;
-
-  color:#543900;
-
-  background:
-    radial-gradient(
-      circle at 35% 27%,
-      #fff7b1 0%,
-      #ffe65c 17%,
-      #ffc400 42%,
-      #d58a00 70%,
-      #765000 100%
-    );
-
-  border:7px solid #f6c51d;
-
-  box-shadow:
-    0 0 0 5px rgba(255,208,36,.12),
-    0 0 35px rgba(255,194,20,.35),
-    inset 0 7px 15px rgba(255,255,255,.55),
-    inset 0 -15px 20px rgba(101,57,0,.28);
-
-  transition:transform .08s ease;
 }
 
-.coin-button:active{
-  transform:scale(.94);
-}
-
-.coin-inner{
+.coinButton{
   width:150px;
   height:150px;
   border-radius:50%;
+  position:relative;
+  background:
+    radial-gradient(circle at 32% 25%,#fff2a4 0%,#ffd75a 17%,#f3ae24 52%,#9e5b08 100%);
+  border:7px solid rgba(255,225,126,.65);
+  box-shadow:
+    0 0 0 8px rgba(255,190,45,.08),
+    0 0 45px rgba(255,182,30,.34),
+    inset 0 5px 12px rgba(255,255,255,.5),
+    inset 0 -12px 18px rgba(103,51,0,.35);
+  transition:transform .08s ease;
+  user-select:none;
+}
 
+.coinButton:active{
+  transform:scale(.92);
+}
+
+.coinInner{
+  width:100%;
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  font-size:76px;
+  font-size:67px;
+  color:#7a4500;
   font-weight:900;
-
-  border:2px solid rgba(115,74,0,.35);
-  box-shadow:inset 0 0 15px rgba(255,255,255,.18);
+  text-shadow:
+    1px 2px 0 rgba(255,241,158,.7),
+    -1px -1px 0 rgba(105,53,0,.3);
 }
 
-.tap-hint{
-  color:#687b94;
-  font-size:11px;
+.tapText{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-31px;
+  color:#8794a9;
+  font-size:10px;
+  letter-spacing:1.4px;
 }
 
-/* =========================
-   STATS
-========================= */
+/* ================= QUICK CARDS ================= */
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin-bottom:14px;
-}
-
-.stat{
-  background:rgba(13,25,42,.82);
-  border:1px solid rgba(87,120,157,.25);
-  border-radius:15px;
-  padding:12px 6px;
-  text-align:center;
-}
-
-.stat-icon{
-  font-size:18px;
-  margin-bottom:5px;
-}
-
-.stat-value{
-  font-size:18px;
-  font-weight:900;
-}
-
-.stat-label{
-  color:#71839a;
-  font-size:8px;
-  letter-spacing:1px;
-  margin-top:4px;
-}
-
-/* =========================
-   ENERGY
-========================= */
-
-.energy-card{
-  padding:14px;
-  border-radius:17px;
-  background:rgba(13,25,42,.82);
-  border:1px solid rgba(87,120,157,.25);
-  margin-bottom:16px;
-}
-
-.energy-head{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:9px;
-  font-size:12px;
-}
-
-.energy-head span:first-child{
-  color:#8da1ba;
-}
-
-.energy-number{
-  font-weight:800;
-  color:#cbd9e9;
-}
-
-.energy-bar{
-  height:10px;
-  border-radius:20px;
-  overflow:hidden;
-  background:#07101c;
-}
-
-.energy-fill{
-  height:100%;
-  width:100%;
-  border-radius:20px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #54f6a0,
-      #b7ff55
-    );
-
-  box-shadow:0 0 12px rgba(100,255,150,.25);
-  transition:width .2s;
-}
-
-/* =========================
-   QUICK
-========================= */
-
-.section-title{
-  margin:7px 3px 10px;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:1px;
-  color:#d5e0ef;
-}
-
-.section-sub{
-  margin:-5px 3px 11px;
-  color:#667990;
-  font-size:9px;
-}
-
-.quick-grid{
+.quickGrid{
+  margin-top:52px;
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
 }
 
-.quick{
-  min-height:90px;
-  padding:14px;
-  border-radius:18px;
+.quickCard{
+  min-height:105px;
+  padding:15px;
   text-align:left;
-  color:#fff;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17,34,57,.95),
-      rgba(8,17,30,.95)
-    );
-
-  border:1px solid rgba(87,120,157,.3);
-  transition:.15s;
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(18,31,52,.9),rgba(7,13,25,.95));
+  border:1px solid rgba(255,255,255,.07);
+  transition:transform .15s ease,border-color .15s ease;
 }
 
-.quick:active{
+.quickCard:active{
   transform:scale(.97);
 }
 
-.quick-icon{
-  font-size:23px;
-  margin-bottom:8px;
-}
-
-.quick-name{
-  font-weight:900;
-  font-size:13px;
-}
-
-.quick-info{
-  color:#73869f;
-  font-size:9px;
-  margin-top:4px;
-}
-
-/* =========================
-   BONUS
-========================= */
-
-.bonus-card{
-  margin-top:11px;
-  padding:15px;
-  border-radius:18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(63,48,9,.48),
-      rgba(23,22,10,.5)
-    );
-
-  border:1px solid rgba(255,204,54,.25);
-}
-
-.bonus-left{
-  display:flex;
-  gap:11px;
-  align-items:center;
-}
-
-.bonus-icon{
+.quickIcon{
   font-size:25px;
 }
 
-.bonus-title{
-  font-weight:900;
+.quickTitle{
+  margin-top:8px;
   font-size:13px;
+  font-weight:800;
 }
 
-.bonus-value{
-  color:#ffd33b;
+.quickSub{
+  margin-top:4px;
+  color:#758198;
   font-size:10px;
-  margin-top:3px;
+}
+
+.quickArrow{
+  float:right;
+  margin-top:-18px;
+  color:#637088;
+}
+
+/* ================= DAILY ================= */
+
+.daily{
+  margin-top:12px;
+  padding:16px;
+  border-radius:20px;
+  background:
+    linear-gradient(135deg,rgba(68,47,12,.5),rgba(13,19,31,.9));
+  border:1px solid rgba(255,194,65,.15);
+}
+
+.dailyTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.dailyTitle{
+  font-size:14px;
+  font-weight:900;
+}
+
+.dailyDesc{
+  color:#8a95a8;
+  font-size:10px;
+  margin-top:4px;
 }
 
 .claim{
-  padding:10px 13px;
+  padding:9px 14px;
   border-radius:11px;
-  color:#382600;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ffe979,
-      #ffbf00
-    );
-
+  background:linear-gradient(135deg,#ffd964,#eaa82b);
+  color:#241703;
   font-size:11px;
   font-weight:900;
 }
@@ -742,464 +378,564 @@ body::after{
   opacity:.45;
 }
 
-/* =========================
-   PANELS
-========================= */
+/* ================= ENERGY ================= */
 
-.panel{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:50;
-
-  background:rgba(1,5,12,.82);
-  backdrop-filter:blur(8px);
-
-  align-items:flex-end;
-  justify-content:center;
+.energyBox{
+  margin-top:12px;
+  padding:15px;
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.06);
 }
 
-.panel.show{
+.energyTop{
   display:flex;
+  justify-content:space-between;
+  font-size:11px;
 }
 
-.panel-box{
-  width:100%;
-  max-width:560px;
-  max-height:85vh;
-  overflow:auto;
-
-  border-radius:25px 25px 0 0;
-  padding:18px 15px 30px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #0b1728,
-      #050a13
-    );
-
-  border:1px solid rgba(94,130,169,.35);
-
-  box-shadow:
-    0 -20px 50px rgba(0,0,0,.5);
+.energyValue{
+  color:#f2c24f;
+  font-weight:800;
 }
 
-.panel-head{
+.energyBar{
+  height:8px;
+  margin-top:10px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#111b2a;
+}
+
+.energyFill{
+  width:85%;
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,#f5a822,#ffe06a);
+  transition:width .2s ease;
+}
+
+/* ================= INNER PAGES ================= */
+
+.pageHeader{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  margin-bottom:17px;
+  gap:12px;
+  margin-bottom:14px;
 }
 
-.panel-title{
+.backBtn{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.07);
+  font-size:20px;
+}
+
+.pageTitle{
+  font-size:22px;
+  font-weight:900;
+}
+
+.pageSub{
+  margin-top:3px;
+  color:#768299;
+  font-size:10px;
+}
+
+/* ================= CITY ================= */
+
+.cityHero{
+  min-height:230px;
+  position:relative;
+  overflow:hidden;
+  border-radius:23px;
+  background:
+    radial-gradient(circle at 50% 30%,rgba(31,111,193,.4),transparent 45%),
+    linear-gradient(180deg,#0a203a,#06101d);
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.citySky{
+  position:absolute;
+  inset:0;
+  opacity:.35;
+  background-image:
+    radial-gradient(circle at 20% 20%,#fff 1px,transparent 1px),
+    radial-gradient(circle at 70% 35%,#fff 1px,transparent 1px),
+    radial-gradient(circle at 45% 12%,#fff 1px,transparent 1px);
+}
+
+.cityGround{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:85px;
+  background:
+    repeating-linear-gradient(90deg,#081321 0 40px,#0c1928 40px 66px);
+}
+
+.cityBuildings{
+  position:absolute;
+  left:15px;
+  right:15px;
+  bottom:40px;
+  height:100px;
+  display:flex;
+  align-items:end;
+  gap:7px;
+}
+
+.building{
+  flex:1;
+  min-width:20px;
+  border-radius:4px 4px 0 0;
+  background:linear-gradient(180deg,#152c47,#0b1625);
+  border:1px solid rgba(90,152,213,.13);
+  position:relative;
+}
+
+.building:after{
+  content:"";
+  position:absolute;
+  inset:9px 6px;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,208,75,.65) 0 4px,
+      transparent 4px 13px
+    );
+  opacity:.55;
+}
+
+.cityInfo{
+  position:absolute;
+  left:16px;
+  top:16px;
+  z-index:2;
+}
+
+.cityLevel{
+  font-size:11px;
+  color:#91a1ba;
+  letter-spacing:1px;
+}
+
+.cityValue{
+  margin-top:3px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.buildGrid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.buildCard{
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#101d31,#080f1d);
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.buildIcon{
+  font-size:28px;
+}
+
+.buildName{
+  margin-top:8px;
+  font-weight:900;
+  font-size:13px;
+}
+
+.buildCost{
+  margin-top:5px;
+  color:#7e8ba1;
+  font-size:10px;
+}
+
+.buildBtn{
+  width:100%;
+  margin-top:11px;
+  padding:10px;
+  border-radius:11px;
+  background:linear-gradient(135deg,#f8c94f,#d9971c);
+  color:#241803;
+  font-size:11px;
+  font-weight:900;
+}
+
+/* ================= BUSINESS ================= */
+
+.statRow{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.stat{
+  padding:13px 8px;
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.06);
+  text-align:center;
+}
+
+.statValue{
+  font-size:18px;
+  font-weight:900;
+}
+
+.statLabel{
+  margin-top:4px;
+  color:#748198;
+  font-size:9px;
+}
+
+.businessList{
+  margin-top:12px;
+}
+
+.businessCard{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+  padding:15px;
+  border-radius:19px;
+  background:linear-gradient(145deg,#111f34,#080f1c);
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.bizIcon{
+  width:49px;
+  height:49px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,194,59,.08);
+  font-size:25px;
+}
+
+.bizInfo{
+  flex:1;
+}
+
+.bizName{
+  font-size:13px;
+  font-weight:900;
+}
+
+.bizLevel{
+  margin-top:4px;
+  color:#748198;
+  font-size:9px;
+}
+
+.bizIncome{
+  margin-top:5px;
+  color:#4fda91;
+  font-size:10px;
+}
+
+.upgradeBtn{
+  padding:10px 11px;
+  border-radius:10px;
+  background:#16243a;
+  border:1px solid rgba(255,255,255,.07);
+  color:#ffd45d;
+  font-size:10px;
+  font-weight:900;
+}
+
+/* ================= TAXI ================= */
+
+.taxiHero{
+  padding:18px;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 70% 25%,rgba(255,193,48,.2),transparent 30%),
+    linear-gradient(145deg,#18263b,#080f1b);
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.taxiCar{
+  font-size:74px;
+  text-align:center;
+  margin:8px 0 4px;
+}
+
+.taxiStats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:12px;
+}
+
+.taxiStat{
+  padding:13px;
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+}
+
+.taxiStat small{
+  display:block;
+  color:#758198;
+  font-size:9px;
+}
+
+.taxiStat strong{
+  display:block;
+  margin-top:4px;
+  font-size:17px;
+}
+
+.driveBtn{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#ffd75b,#e6a322);
+  color:#241803;
+  font-weight:900;
+  font-size:12px;
+}
+
+/* ================= FRIENDS ================= */
+
+.inviteCard{
+  padding:20px;
+  text-align:center;
+  border-radius:23px;
+  background:
+    radial-gradient(circle at 50% 0,rgba(67,112,203,.25),transparent 50%),
+    linear-gradient(145deg,#101f35,#080f1b);
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.inviteIcon{
+  font-size:48px;
+}
+
+.inviteTitle{
+  margin-top:9px;
   font-size:20px;
   font-weight:900;
 }
 
-.close{
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  background:#142338;
-  color:#b8c8da;
-  font-size:18px;
+.inviteDesc{
+  margin-top:7px;
+  color:#7d899d;
+  line-height:1.5;
+  font-size:11px;
 }
 
-/* =========================
-   TAXI
-========================= */
-
-.upgrade{
-  padding:16px;
-  margin-bottom:10px;
-  border-radius:17px;
-  background:rgba(14,29,48,.9);
-  border:1px solid rgba(85,121,160,.3);
-}
-
-.upgrade-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.upgrade-name{
-  font-size:15px;
-  font-weight:900;
-}
-
-.level{
-  color:#ffd43d;
+.inviteBtn{
+  width:100%;
+  margin-top:15px;
+  padding:13px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#f8ca53,#dc9b21);
+  color:#241803;
   font-size:12px;
   font-weight:900;
 }
 
-.upgrade-desc{
-  color:#7588a1;
-  font-size:10px;
-  margin:7px 0 12px;
-}
-
-.upgrade-btn{
-  width:100%;
-  padding:11px;
-  border-radius:11px;
-
-  color:#392800;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ffe978,
-      #ffbf00
-    );
-
-  font-weight:900;
-  font-size:11px;
-}
-
-.upgrade-btn:disabled{
-  opacity:.4;
-}
-
-/* =========================
-   CITY
-========================= */
-
-.city-box{
-  padding:18px;
-  border-radius:18px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(15,37,60,.95),
-      rgba(7,15,27,.98)
-    );
-
-  border:1px solid rgba(80,143,198,.25);
-}
-
-.city-level{
-  font-size:30px;
-  font-weight:900;
-  color:#65dfff;
-}
-
-.city-income{
-  color:#70ffad;
-  margin:7px 0 18px;
-}
-
-/* =========================
-   FRIENDS
-========================= */
-
-.ref-box{
-  padding:15px;
-  border-radius:16px;
-  background:rgba(14,29,48,.85);
-  border:1px solid rgba(82,116,151,.25);
-}
-
-.ref-code{
-  margin:12px 0;
-  padding:12px;
-  border-radius:10px;
-  background:#07101c;
-  color:#7ee7ff;
-  word-break:break-all;
-  font-size:11px;
-}
-
-.copy-btn{
-  width:100%;
-  padding:12px;
-  border-radius:11px;
-  background:#172b43;
-  color:#dce8f7;
-  font-weight:800;
-}
-
-/* =========================
-   RANKING
-========================= */
-
-.rank-list{
-  display:flex;
-  flex-direction:column;
-  gap:7px;
-}
-
-.rank-row{
+.friendStats{
   display:grid;
-  grid-template-columns:35px 1fr auto;
-  gap:8px;
-  align-items:center;
-
-  padding:11px;
-  border-radius:13px;
-
-  background:rgba(14,29,48,.8);
-  border:1px solid rgba(82,116,151,.22);
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
 }
 
-.rank-pos{
-  font-weight:900;
-  color:#ffd53b;
+.friendStat{
+  padding:16px;
+  border-radius:17px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.06);
   text-align:center;
 }
 
-.rank-name{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  font-weight:800;
-  font-size:12px;
+/* ================= RANKING ================= */
+
+.rankTop{
+  padding:20px;
+  border-radius:23px;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 0,rgba(255,195,61,.2),transparent 50%),
+    linear-gradient(145deg,#171f30,#080e18);
+  border:1px solid rgba(255,255,255,.07);
 }
 
-.rank-balance{
-  color:#ffd53b;
-  font-size:11px;
+.rankTrophy{
+  font-size:52px;
+}
+
+.rankText{
+  margin-top:4px;
+  color:#8a96aa;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.rankList{
+  margin-top:12px;
+}
+
+.rankItem{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:13px;
+  margin-bottom:8px;
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.rankNumber{
+  width:30px;
+  font-size:13px;
   font-weight:900;
+  text-align:center;
 }
 
-/* =========================
-   NAV
-========================= */
-
-.bottom-nav{
-  position:fixed;
-  z-index:40;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-
-  width:min(560px,100%);
-
-  padding:
-    8px
-    8px
-    calc(8px + env(safe-area-inset-bottom));
-
-  background:rgba(4,10,18,.94);
-  backdrop-filter:blur(14px);
-  border-top:1px solid rgba(91,123,160,.25);
-
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-}
-
-.nav-btn{
-  background:transparent;
-  color:#60738c;
-  padding:7px 2px;
+.rankAvatar{
+  width:39px;
+  height:39px;
   border-radius:12px;
-}
-
-.nav-btn.active{
-  color:#ffd53b;
-  background:rgba(255,205,47,.08);
-}
-
-.nav-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#111e31;
   font-size:18px;
 }
 
-.nav-label{
-  font-size:8px;
-  margin-top:3px;
+.rankName{
+  flex:1;
+  font-size:12px;
+  font-weight:800;
 }
 
-/* =========================
-   FLOAT
-========================= */
-
-.float{
-  position:fixed;
-  pointer-events:none;
-  z-index:100;
-
-  color:#ffe04e;
-  font-size:21px;
+.rankCoins{
+  color:#f4c34d;
+  font-size:10px;
   font-weight:900;
+}
 
-  text-shadow:0 0 10px rgba(255,208,45,.5);
+/* ================= BOTTOM NAV ================= */
 
+.bottomNav{
+  position:fixed;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:min(520px,100%);
+  height:78px;
+  z-index:50;
+  padding:8px 8px 11px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:5px;
+  background:rgba(3,8,16,.94);
+  backdrop-filter:blur(18px);
+  border-top:1px solid rgba(255,255,255,.07);
+}
+
+.navBtn{
+  background:transparent;
+  border-radius:14px;
+  color:#69768c;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:9px;
+  font-weight:700;
+}
+
+.navIcon{
+  font-size:21px;
+  line-height:1;
+}
+
+.navBtn.active{
+  color:#ffd158;
+  background:rgba(255,200,65,.07);
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:92px;
+  transform:translate(-50%,15px);
+  z-index:100;
+  padding:11px 16px;
+  border-radius:13px;
+  background:rgba(16,24,39,.96);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 35px rgba(0,0,0,.35);
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s ease;
+  white-space:nowrap;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* ================= FLOAT COINS ================= */
+
+.floatCoin{
+  position:fixed;
+  z-index:90;
+  pointer-events:none;
+  color:#ffd454;
+  font-size:18px;
+  font-weight:900;
   animation:floatUp .75s ease-out forwards;
 }
 
 @keyframes floatUp{
   0%{
     opacity:1;
-    transform:translate(-50%,0) scale(1);
+    transform:translateY(0) scale(1);
   }
-
   100%{
     opacity:0;
-    transform:translate(-50%,-90px) scale(1.25);
+    transform:translateY(-90px) scale(1.25);
   }
 }
 
-/* =========================
-   TOAST
-========================= */
+/* ================= RESPONSIVE ================= */
 
-.toast{
-  position:fixed;
-  z-index:200;
-  left:50%;
-  bottom:85px;
-
-  transform:
-    translateX(-50%)
-    translateY(15px);
-
-  max-width:90%;
-
-  padding:11px 15px;
-  border-radius:12px;
-
-  background:#14243a;
-  border:1px solid rgba(120,151,185,.35);
-
-  color:#e6eef8;
-  font-size:11px;
-
-  opacity:0;
-  pointer-events:none;
-  transition:.2s;
-}
-
-.toast.show{
-  opacity:1;
-  transform:
-    translateX(-50%)
-    translateY(0);
-}
-
-/* =========================
-   LOADING
-========================= */
-
-.loading{
-  position:fixed;
-  inset:0;
-  z-index:300;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:#050914;
-  transition:.3s;
-}
-
-.loading.hide{
-  opacity:0;
-  pointer-events:none;
-}
-
-.loading-box{
-  text-align:center;
-}
-
-.loading-logo{
-  width:100px;
-  height:100px;
-  margin:auto;
-  border-radius:20px;
-  position:relative;
-  overflow:hidden;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,196,31,.10),
-      rgba(0,0,0,.75)
-    ),
-    #03070e;
-
-  border:1px solid rgba(255,207,48,.75);
-
-  box-shadow:
-    0 0 35px rgba(255,193,20,.28),
-    inset 0 0 25px rgba(255,195,25,.08);
-}
-
-.loading-logo:before{
-  content:"";
-  position:absolute;
-  left:5px;
-  right:5px;
-  bottom:0;
-  height:45px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0 5%,
-      #101d2e 5% 16%,
-      transparent 16% 20%,
-      #16273c 20% 34%,
-      transparent 34% 39%,
-      #102238 39% 52%,
-      transparent 52% 57%,
-      #172a40 57% 72%,
-      transparent 72% 77%,
-      #102035 77% 95%,
-      transparent 95%
-    );
-}
-
-.loading-logo:after{
-  content:"E";
-  position:absolute;
-  z-index:2;
-
-  color:#ffd94a;
-  font-size:56px;
-  font-weight:900;
-
-  text-shadow:
-    0 0 10px rgba(255,210,50,.8),
-    0 0 25px rgba(255,180,20,.4);
-}
-
-.loading-text{
-  margin-top:15px;
-  color:#8092a9;
-  font-size:12px;
-}
-
-.loading-brand{
-  color:#ffd33d;
-  font-size:16px;
-  font-weight:900;
-  letter-spacing:3px;
-  margin-top:8px;
-}
-
-@media(max-width:370px){
-
-  .coin-button{
-    width:180px;
-    height:180px;
+@media(max-width:360px){
+  .balance{
+    font-size:33px;
   }
 
-  .coin-inner{
-    width:130px;
-    height:130px;
-    font-size:62px;
+  .coinButton{
+    width:135px;
+    height:135px;
   }
 
-  #balance{
-    font-size:34px;
+  .coinInner{
+    font-size:60px;
   }
 }
 </style>
@@ -1207,745 +943,1035 @@ body::after{
 
 <body>
 
-<!-- LOADING -->
-
-<div class="loading" id="loading">
-
-  <div class="loading-box">
-
-    <div class="loading-logo"></div>
-
-    <div class="loading-brand">
-      ELCOIN
-    </div>
-
-    <div class="loading-text">
-      TAP TO EARN · PLAY · EARN · GROW
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- MAIN APP -->
-
 <div class="app">
 
-<header class="header">
+  <!-- HEADER -->
+  <header class="header">
 
-  <div class="brand">
+    <div class="brand">
+      <div class="logo">C</div>
 
-    <div class="logo"></div>
-
-    <div>
-
-      <div class="brand-title">
-        ELCOIN
+      <div class="brandText">
+        <strong>CITY BOSS</strong>
+        <span>BUILD · GROW · EARN</span>
       </div>
-
-      <div class="brand-sub">
-        PLAY · EARN · GROW
-      </div>
-
     </div>
 
-  </div>
-
-  <div class="profile">
-
-    <div class="profile-icon">
+    <button class="profileMini" onclick="openScreen('profileScreen')">
       👤
-    </div>
+    </button>
 
-    <div id="profileName">
-      PLAYER
-    </div>
+  </header>
 
-  </div>
 
-</header>
+  <!-- ================= HOME ================= -->
 
+  <main id="homeScreen" class="screen active">
 
-<!-- SERVER -->
+    <section class="hero">
 
-<div
-  class="server-status"
-  id="serverStatus"
->
-  🔄 Server yoxlanılır...
-</div>
+      <div class="stars"></div>
+      <div class="cityGlow"></div>
 
+      <div class="heroContent">
 
-<!-- BALANCE -->
+        <div class="welcome">WELCOME BOSS</div>
 
-<section class="balance-card">
-
-  <div class="balance-label">
-    Your ELCOIN Balance
-  </div>
-
-  <div class="balance-row">
-
-    <div class="balance-coin">
-      E
-    </div>
-
-    <div id="balance">
-      0
-    </div>
-
-    <div class="balance-unit">
-      ELC
-    </div>
-
-  </div>
-
-  <div class="income">
-
-    <span>
-      Daily income
-    </span>
-
-    <strong id="dailyIncome">
-      +120 ELC/day
-    </strong>
-
-  </div>
-
-</section>
-
-
-<!-- TAP -->
-
-<section class="tap-section">
-
-  <div class="tap-title">
-    Tap to earn ELCOIN
-  </div>
-
-  <div class="tap-sub">
-    Hər toxunuş sənə ELCOIN qazandırır
-  </div>
-
-  <button
-    class="coin-button"
-    id="coinButton"
-    type="button"
-  >
-
-    <div class="coin-inner">
-      E
-    </div>
-
-  </button>
-
-  <div class="tap-hint">
-    Toxun və ELCOIN qazan
-  </div>
-
-</section>
-
-
-<!-- STATS -->
-
-<section class="stats">
-
-  <div class="stat">
-
-    <div class="stat-icon">
-      👆
-    </div>
-
-    <div
-      class="stat-value"
-      id="tapPower"
-    >
-      +1
-    </div>
-
-    <div class="stat-label">
-      TAP POWER
-    </div>
-
-  </div>
-
-
-  <div class="stat">
-
-    <div class="stat-icon">
-      🚕
-    </div>
-
-    <div
-      class="stat-value"
-      id="rides"
-    >
-      0
-    </div>
-
-    <div class="stat-label">
-      RIDES
-    </div>
-
-  </div>
-
-
-  <div class="stat">
-
-    <div class="stat-icon">
-      ⭐
-    </div>
-
-    <div
-      class="stat-value"
-      id="level"
-    >
-      1
-    </div>
-
-    <div class="stat-label">
-      LEVEL
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ENERGY -->
-
-<section class="energy-card">
-
-  <div class="energy-head">
-
-    <span>
-      ⚡ Energy
-    </span>
-
-    <span class="energy-number">
-
-      <span id="energy">
-        5000
-      </span>
-
-      /
-
-      <span id="maxEnergy">
-        5000
-      </span>
-
-    </span>
-
-  </div>
-
-  <div class="energy-bar">
-
-    <div
-      class="energy-fill"
-      id="energyFill"
-    ></div>
-
-  </div>
-
-</section>
-
-
-<!-- QUICK MENU -->
-
-<div class="section-title">
-  Quick Menu
-</div>
-
-<div class="section-sub">
-  EXPLORE ELCOIN
-</div>
-
-
-<section class="quick-grid">
-
-  <button
-    class="quick"
-    type="button"
-    onclick="openPanel('taxiPanel')"
-  >
-
-    <div class="quick-icon">
-      🚕
-    </div>
-
-    <div class="quick-name">
-      Taxis
-    </div>
-
-    <div class="quick-info">
-      Upgrade & earn more
-    </div>
-
-  </button>
-
-
-  <button
-    class="quick"
-    type="button"
-    onclick="openPanel('cityPanel')"
-  >
-
-    <div class="quick-icon">
-      🏙️
-    </div>
-
-    <div class="quick-name">
-      City
-    </div>
-
-    <div class="quick-info">
-      Build your city
-    </div>
-
-  </button>
-
-
-  <button
-    class="quick"
-    type="button"
-    onclick="openPanel('friendsPanel')"
-  >
-
-    <div class="quick-icon">
-      👥
-    </div>
-
-    <div class="quick-name">
-      Friends
-    </div>
-
-    <div class="quick-info">
-      Invite & earn
-    </div>
-
-  </button>
-
-
-  <button
-    class="quick"
-    type="button"
-    onclick="openPanel('rankingPanel');loadRanking()"
-  >
-
-    <div class="quick-icon">
-      🏆
-    </div>
-
-    <div class="quick-name">
-      Ranking
-    </div>
-
-    <div class="quick-info">
-      Top players
-    </div>
-
-  </button>
-
-</section>
-
-
-<!-- DAILY BONUS -->
-
-<section class="bonus-card">
-
-  <div class="bonus-left">
-
-    <div class="bonus-icon">
-      🎁
-    </div>
-
-    <div>
-
-      <div class="bonus-title">
-        Daily Bonus
-      </div>
-
-      <div class="bonus-value">
-        +500 ELCOIN
-      </div>
-
-    </div>
-
-  </div>
-
-  <button
-    class="claim"
-    id="bonusButton"
-    type="button"
-    onclick="claimBonus()"
-  >
-    CLAIM
-  </button>
-
-</section>
-
-</div>
-
-
-<!-- =========================
-     TAXI PANEL
-========================= -->
-
-<div
-  class="panel"
-  id="taxiPanel"
-  onclick="closeOutside(event,'taxiPanel')"
->
-
-  <div class="panel-box">
-
-    <div class="panel-head">
-
-      <div class="panel-title">
-        🚕 Taxis
-      </div>
-
-      <button
-        class="close"
-        type="button"
-        onclick="closePanel('taxiPanel')"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="upgrade">
-
-      <div class="upgrade-top">
-
-        <div class="upgrade-name">
-          Taxi Power
+        <div class="bossName" id="bossName">
+          Player
         </div>
 
-        <div class="level">
-          LEVEL
-          <span id="taxiLevel">
-            1
-          </span>
+        <div class="balanceLabel">
+          YOUR BALANCE
+        </div>
+
+        <div class="balance" id="balance">
+          0
+        </div>
+
+        <div class="coinName">
+          ELCOIN
+        </div>
+
+        <div class="income" id="income">
+          +0 / DAY
+        </div>
+
+        <div class="coinArea">
+
+          <!-- BU DÜYMƏ HƏMİŞƏ QALIR -->
+          <button
+            id="coinButton"
+            class="coinButton"
+            onclick="tapCoin(event)"
+          >
+
+            <div class="coinInner">
+              🪙
+            </div>
+
+            <div class="tapText">
+              TAP TO EARN
+            </div>
+
+          </button>
+
         </div>
 
       </div>
 
-      <div class="upgrade-desc">
-        Taxi səviyyəsini artır və hər toxunuşdan daha çox ELCOIN qazan.
-      </div>
+    </section>
 
-      <button
-        class="upgrade-btn"
-        id="taxiUpgrade"
-        type="button"
-        onclick="upgradeTaxi()"
-      >
-        Upgrade
+
+    <!-- QUICK MENU -->
+
+    <section class="quickGrid">
+
+      <button class="quickCard" onclick="openScreen('cityScreen')">
+        <div class="quickIcon">🏙️</div>
+        <div class="quickTitle">City</div>
+        <div class="quickSub">Build your empire</div>
+        <div class="quickArrow">›</div>
       </button>
 
-    </div>
-
-
-    <div class="upgrade">
-
-      <div class="upgrade-name">
-        🚕 Taxi sistem
-      </div>
-
-      <div class="upgrade-desc">
-        Gələcəkdə aldığın virtual taksiləri burada görə və idarə edə biləcəksən.
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     CITY PANEL
-========================= -->
-
-<div
-  class="panel"
-  id="cityPanel"
-  onclick="closeOutside(event,'cityPanel')"
->
-
-  <div class="panel-box">
-
-    <div class="panel-head">
-
-      <div class="panel-title">
-        🏙️ City
-      </div>
-
-      <button
-        class="close"
-        type="button"
-        onclick="closePanel('cityPanel')"
-      >
-        ×
+      <button class="quickCard" onclick="openScreen('businessScreen')">
+        <div class="quickIcon">🏢</div>
+        <div class="quickTitle">Business</div>
+        <div class="quickSub">Grow your income</div>
+        <div class="quickArrow">›</div>
       </button>
 
+      <button class="quickCard" onclick="openScreen('taxiScreen')">
+        <div class="quickIcon">🚕</div>
+        <div class="quickTitle">Taxi</div>
+        <div class="quickSub">Drive & earn</div>
+        <div class="quickArrow">›</div>
+      </button>
+
+      <button class="quickCard" onclick="openScreen('friendsScreen')">
+        <div class="quickIcon">👥</div>
+        <div class="quickTitle">Friends</div>
+        <div class="quickSub">Invite & earn</div>
+        <div class="quickArrow">›</div>
+      </button>
+
+    </section>
+
+
+    <!-- DAILY BONUS -->
+
+    <section class="daily">
+
+      <div class="dailyTop">
+
+        <div>
+          <div class="dailyTitle">
+            🎁 Daily Bonus
+          </div>
+
+          <div class="dailyDesc">
+            Come back every day for rewards
+          </div>
+        </div>
+
+        <button
+          id="claimButton"
+          class="claim"
+          onclick="claimDaily()"
+        >
+          +500
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ENERGY -->
+
+    <section class="energyBox">
+
+      <div class="energyTop">
+        <span>⚡ ENERGY</span>
+
+        <span
+          id="energyText"
+          class="energyValue"
+        >
+          1000 / 1000
+        </span>
+      </div>
+
+      <div class="energyBar">
+        <div
+          id="energyFill"
+          class="energyFill"
+        ></div>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= CITY ================= -->
+
+  <section id="cityScreen" class="screen">
+
+    <div class="pageHeader">
+
+      <button
+        class="backBtn"
+        onclick="openScreen('homeScreen')"
+      >
+        ←
+      </button>
+
+      <div>
+        <div class="pageTitle">🏙️ City</div>
+        <div class="pageSub">Build your own city</div>
+      </div>
+
     </div>
 
-    <div class="city-box">
 
-      <div class="city-level">
-        LEVEL
-        <span id="cityLevel">
+    <div class="cityHero">
+
+      <div class="citySky"></div>
+
+      <div class="cityInfo">
+
+        <div class="cityLevel">
+          CITY LEVEL
+        </div>
+
+        <div
+          class="cityValue"
+          id="cityLevel"
+        >
           1
-        </span>
-      </div>
-
-      <div class="city-income">
-
-        Daily income:
-
-        <span id="cityIncome">
-          +120
-        </span>
-
-        ELC
+        </div>
 
       </div>
+
+      <div class="cityBuildings">
+
+        <div
+          class="building"
+          style="height:42px"
+        ></div>
+
+        <div
+          class="building"
+          style="height:67px"
+        ></div>
+
+        <div
+          class="building"
+          style="height:92px"
+        ></div>
+
+        <div
+          class="building"
+          style="height:56px"
+        ></div>
+
+        <div
+          class="building"
+          style="height:78px"
+        ></div>
+
+        <div
+          class="building"
+          style="height:48px"
+        ></div>
+
+        <div
+          class="building"
+          style="height:84px"
+        ></div>
+
+      </div>
+
+      <div class="cityGround"></div>
+
+    </div>
+
+
+    <div class="buildGrid">
+
+      <div class="buildCard">
+
+        <div class="buildIcon">🏠</div>
+
+        <div class="buildName">
+          House
+        </div>
+
+        <div class="buildCost">
+          Cost: 1,000 ELCOIN
+        </div>
+
+        <button
+          class="buildBtn"
+          onclick="buildItem('House',1000)"
+        >
+          BUILD
+        </button>
+
+      </div>
+
+
+      <div class="buildCard">
+
+        <div class="buildIcon">🏪</div>
+
+        <div class="buildName">
+          Shop
+        </div>
+
+        <div class="buildCost">
+          Cost: 2,500 ELCOIN
+        </div>
+
+        <button
+          class="buildBtn"
+          onclick="buildItem('Shop',2500)"
+        >
+          BUILD
+        </button>
+
+      </div>
+
+
+      <div class="buildCard">
+
+        <div class="buildIcon">🏢</div>
+
+        <div class="buildName">
+          Office
+        </div>
+
+        <div class="buildCost">
+          Cost: 5,000 ELCOIN
+        </div>
+
+        <button
+          class="buildBtn"
+          onclick="buildItem('Office',5000)"
+        >
+          BUILD
+        </button>
+
+      </div>
+
+
+      <div class="buildCard">
+
+        <div class="buildIcon">🏨</div>
+
+        <div class="buildName">
+          Hotel
+        </div>
+
+        <div class="buildCost">
+          Cost: 10,000 ELCOIN
+        </div>
+
+        <button
+          class="buildBtn"
+          onclick="buildItem('Hotel',10000)"
+        >
+          BUILD
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= BUSINESS ================= -->
+
+  <section id="businessScreen" class="screen">
+
+    <div class="pageHeader">
 
       <button
-        class="upgrade-btn"
-        type="button"
-        onclick="upgradeCity()"
+        class="backBtn"
+        onclick="openScreen('homeScreen')"
       >
-        Upgrade City
+        ←
+      </button>
+
+      <div>
+        <div class="pageTitle">🏢 Business</div>
+        <div class="pageSub">Manage your businesses</div>
+      </div>
+
+    </div>
+
+
+    <div class="statRow">
+
+      <div class="stat">
+        <div
+          class="statValue"
+          id="businessCount"
+        >
+          1
+        </div>
+
+        <div class="statLabel">
+          BUSINESSES
+        </div>
+      </div>
+
+
+      <div class="stat">
+
+        <div
+          class="statValue"
+          id="businessLevel"
+        >
+          1
+        </div>
+
+        <div class="statLabel">
+          LEVEL
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div
+          class="statValue"
+          id="businessIncome"
+        >
+          100
+        </div>
+
+        <div class="statLabel">
+          / DAY
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="businessList">
+
+      <div class="businessCard">
+
+        <div class="bizIcon">
+          🏪
+        </div>
+
+        <div class="bizInfo">
+
+          <div class="bizName">
+            Mini Market
+          </div>
+
+          <div class="bizLevel">
+            LEVEL <span id="marketLevel">1</span>
+          </div>
+
+          <div class="bizIncome">
+            +100 ELCOIN / DAY
+          </div>
+
+        </div>
+
+        <button
+          class="upgradeBtn"
+          onclick="upgradeBusiness('market')"
+        >
+          UPGRADE
+        </button>
+
+      </div>
+
+
+      <div class="businessCard">
+
+        <div class="bizIcon">
+          ☕
+        </div>
+
+        <div class="bizInfo">
+
+          <div class="bizName">
+            Coffee Shop
+          </div>
+
+          <div class="bizLevel">
+            LEVEL <span id="coffeeLevel">1</span>
+          </div>
+
+          <div class="bizIncome">
+            +150 ELCOIN / DAY
+          </div>
+
+        </div>
+
+        <button
+          class="upgradeBtn"
+          onclick="upgradeBusiness('coffee')"
+        >
+          UPGRADE
+        </button>
+
+      </div>
+
+
+      <div class="businessCard">
+
+        <div class="bizIcon">
+          🏭
+        </div>
+
+        <div class="bizInfo">
+
+          <div class="bizName">
+            Factory
+          </div>
+
+          <div class="bizLevel">
+            LEVEL <span id="factoryLevel">1</span>
+          </div>
+
+          <div class="bizIncome">
+            +300 ELCOIN / DAY
+          </div>
+
+        </div>
+
+        <button
+          class="upgradeBtn"
+          onclick="upgradeBusiness('factory')"
+        >
+          UPGRADE
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= TAXI ================= -->
+
+  <section id="taxiScreen" class="screen">
+
+    <div class="pageHeader">
+
+      <button
+        class="backBtn"
+        onclick="openScreen('homeScreen')"
+      >
+        ←
+      </button>
+
+      <div>
+        <div class="pageTitle">🚕 Taxi</div>
+        <div class="pageSub">Build your taxi empire</div>
+      </div>
+
+    </div>
+
+
+    <div class="taxiHero">
+
+      <div class="taxiCar">
+        🚕
+      </div>
+
+      <div class="statRow">
+
+        <div class="stat">
+
+          <div
+            class="statValue"
+            id="taxiCount"
+          >
+            1
+          </div>
+
+          <div class="statLabel">
+            TAXIS
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div
+            class="statValue"
+            id="taxiLevel"
+          >
+            1
+          </div>
+
+          <div class="statLabel">
+            LEVEL
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div
+            class="statValue"
+            id="taxiIncome"
+          >
+            50
+          </div>
+
+          <div class="statLabel">
+            / RIDE
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="driveBtn"
+        onclick="driveTaxi()"
+      >
+        🚕 START RIDE +50 ELCOIN
       </button>
 
     </div>
 
-  </div>
 
-</div>
+    <div class="taxiStats">
+
+      <div class="taxiStat">
+
+        <small>
+          TODAY'S RIDES
+        </small>
+
+        <strong id="rides">
+          0
+        </strong>
+
+      </div>
 
 
-<!-- =========================
-     FRIENDS PANEL
-========================= -->
+      <div class="taxiStat">
 
-<div
-  class="panel"
-  id="friendsPanel"
-  onclick="closeOutside(event,'friendsPanel')"
->
+        <small>
+          TOTAL EARNED
+        </small>
 
-  <div class="panel-box">
+        <strong id="taxiEarned">
+          0
+        </strong>
 
-    <div class="panel-head">
+      </div>
 
-      <div class="panel-title">
-        👥 Friends
+    </div>
+
+  </section>
+
+
+  <!-- ================= FRIENDS ================= -->
+
+  <section id="friendsScreen" class="screen">
+
+    <div class="pageHeader">
+
+      <button
+        class="backBtn"
+        onclick="openScreen('homeScreen')"
+      >
+        ←
+      </button>
+
+      <div>
+        <div class="pageTitle">👥 Friends</div>
+        <div class="pageSub">Grow together</div>
+      </div>
+
+    </div>
+
+
+    <div class="inviteCard">
+
+      <div class="inviteIcon">
+        👥
+      </div>
+
+      <div class="inviteTitle">
+        Invite Friends
+      </div>
+
+      <div class="inviteDesc">
+        Bring your friends to CITY BOSS.
+        Build your empire together and
+        receive referral rewards.
       </div>
 
       <button
-        class="close"
-        type="button"
-        onclick="closePanel('friendsPanel')"
+        class="inviteBtn"
+        onclick="inviteFriends()"
       >
-        ×
+        INVITE FRIENDS
       </button>
 
     </div>
 
-    <div class="ref-box">
 
-      <div class="upgrade-name">
-        Invite friends
+    <div class="friendStats">
+
+      <div class="friendStat">
+
+        <div
+          class="statValue"
+          id="referrals"
+        >
+          0
+        </div>
+
+        <div class="statLabel">
+          FRIENDS
+        </div>
+
       </div>
 
-      <div class="upgrade-desc">
-        Dostlarını dəvət et və bonus qazan.
+
+      <div class="friendStat">
+
+        <div
+          class="statValue"
+          id="referralEarned"
+        >
+          0
+        </div>
+
+        <div class="statLabel">
+          EARNED
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= RANKING ================= -->
+
+  <section id="rankingScreen" class="screen">
+
+    <div class="pageHeader">
+
+      <button
+        class="backBtn"
+        onclick="openScreen('homeScreen')"
+      >
+        ←
+      </button>
+
+      <div>
+        <div class="pageTitle">🏆 Ranking</div>
+        <div class="pageSub">Top city bosses</div>
+      </div>
+
+    </div>
+
+
+    <div class="rankTop">
+
+      <div class="rankTrophy">
+        🏆
+      </div>
+
+      <div class="rankText">
+        GLOBAL CITY BOSS RANKING
+      </div>
+
+    </div>
+
+
+    <div class="rankList">
+
+      <div class="rankItem">
+
+        <div class="rankNumber">
+          1
+        </div>
+
+        <div class="rankAvatar">
+          👑
+        </div>
+
+        <div class="rankName">
+          Boss_Alpha
+        </div>
+
+        <div class="rankCoins">
+          985K
+        </div>
+
+      </div>
+
+
+      <div class="rankItem">
+
+        <div class="rankNumber">
+          2
+        </div>
+
+        <div class="rankAvatar">
+          🦁
+        </div>
+
+        <div class="rankName">
+          CityKing
+        </div>
+
+        <div class="rankCoins">
+          742K
+        </div>
+
+      </div>
+
+
+      <div class="rankItem">
+
+        <div class="rankNumber">
+          3
+        </div>
+
+        <div class="rankAvatar">
+          🐺
+        </div>
+
+        <div class="rankName">
+          BigBoss
+        </div>
+
+        <div class="rankCoins">
+          615K
+        </div>
+
+      </div>
+
+
+      <div class="rankItem">
+
+        <div class="rankNumber">
+          4
+        </div>
+
+        <div class="rankAvatar">
+          🦅
+        </div>
+
+        <div class="rankName">
+          Empire_77
+        </div>
+
+        <div class="rankCoins">
+          489K
+        </div>
+
+      </div>
+
+
+      <div class="rankItem">
+
+        <div class="rankNumber">
+          5
+        </div>
+
+        <div class="rankAvatar">
+          🐯
+        </div>
+
+        <div class="rankName">
+          RichCity
+        </div>
+
+        <div class="rankCoins">
+          377K
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= PROFILE ================= -->
+
+  <section id="profileScreen" class="screen">
+
+    <div class="pageHeader">
+
+      <button
+        class="backBtn"
+        onclick="openScreen('homeScreen')"
+      >
+        ←
+      </button>
+
+      <div>
+        <div class="pageTitle">👤 Profile</div>
+        <div class="pageSub">Your city boss profile</div>
+      </div>
+
+    </div>
+
+
+    <div class="inviteCard">
+
+      <div class="inviteIcon">
+        👤
       </div>
 
       <div
-        class="ref-code"
-        id="refLink"
+        class="inviteTitle"
+        id="profileName"
       >
-        Link hazırlanır...
+        Player
       </div>
 
-      <button
-        class="copy-btn"
-        type="button"
-        onclick="copyReferral()"
-      >
-        📋 Copy referral link
-      </button>
+      <div class="inviteDesc">
+        CITY BOSS
+      </div>
 
     </div>
 
-  </div>
+
+    <div class="friendStats">
+
+      <div class="friendStat">
+
+        <div
+          class="statValue"
+          id="profileBalance"
+        >
+          0
+        </div>
+
+        <div class="statLabel">
+          ELCOIN
+        </div>
+
+      </div>
+
+
+      <div class="friendStat">
+
+        <div
+          class="statValue"
+          id="profileLevel"
+        >
+          1
+        </div>
+
+        <div class="statLabel">
+          LEVEL
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
 
 </div>
 
 
-<!-- =========================
-     RANKING PANEL
-========================= -->
+<!-- ================= BOTTOM NAV ================= -->
 
-<div
-  class="panel"
-  id="rankingPanel"
-  onclick="closeOutside(event,'rankingPanel')"
->
-
-  <div class="panel-box">
-
-    <div class="panel-head">
-
-      <div class="panel-title">
-        🏆 Ranking
-      </div>
-
-      <button
-        class="close"
-        type="button"
-        onclick="closePanel('rankingPanel')"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <div
-      class="rank-list"
-      id="rankList"
-    >
-
-      <div
-        style="
-          text-align:center;
-          color:#71839a;
-          padding:20px
-        "
-      >
-        Ranking yüklənir...
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     BOTTOM NAV
-========================= -->
-
-<nav class="bottom-nav">
+<nav class="bottomNav">
 
   <button
-    class="nav-btn active"
-    type="button"
-    onclick="goHome(this)"
+    id="navHome"
+    class="navBtn active"
+    onclick="openScreen('homeScreen')"
   >
-
-    <div class="nav-icon">
-      🏠
-    </div>
-
-    <div class="nav-label">
-      Home
-    </div>
-
+    <div class="navIcon">🏠</div>
+    HOME
   </button>
 
 
   <button
-    class="nav-btn"
-    type="button"
-    onclick="openPanel('taxiPanel');setActive(this)"
+    id="navCity"
+    class="navBtn"
+    onclick="openScreen('cityScreen')"
   >
-
-    <div class="nav-icon">
-      🚕
-    </div>
-
-    <div class="nav-label">
-      Taxis
-    </div>
-
+    <div class="navIcon">🏙️</div>
+    CITY
   </button>
 
 
   <button
-    class="nav-btn"
-    type="button"
-    onclick="openPanel('cityPanel');setActive(this)"
+    id="navBusiness"
+    class="navBtn"
+    onclick="openScreen('businessScreen')"
   >
-
-    <div class="nav-icon">
-      🏙️
-    </div>
-
-    <div class="nav-label">
-      City
-    </div>
-
+    <div class="navIcon">🏢</div>
+    BUSINESS
   </button>
 
 
   <button
-    class="nav-btn"
-    type="button"
-    onclick="openPanel('friendsPanel');setActive(this)"
+    id="navTaxi"
+    class="navBtn"
+    onclick="openScreen('taxiScreen')"
   >
-
-    <div class="nav-icon">
-      👥
-    </div>
-
-    <div class="nav-label">
-      Friends
-    </div>
-
+    <div class="navIcon">🚕</div>
+    TAXI
   </button>
 
 
   <button
-    class="nav-btn"
-    type="button"
-    onclick="openPanel('rankingPanel');loadRanking();setActive(this)"
+    id="navRanking"
+    class="navBtn"
+    onclick="openScreen('rankingScreen')"
   >
-
-    <div class="nav-icon">
-      🏆
-    </div>
-
-    <div class="nav-label">
-      Rank
-    </div>
-
+    <div class="navIcon">🏆</div>
+    RANKING
   </button>
 
 </nav>
 
 
 <div
-  class="toast"
   id="toast"
+  class="toast"
 ></div>
 
 
 <script>
-"use strict";
 
 /* =========================================================
-   TELEGRAM
-========================================================= */
+   CITY BOSS V1
+   =========================================================
+   IMPORTANT:
+   Bu V1 yalnız frontend prototipidir.
+   Mövcud Supabase players məlumatlarını SİLMİR.
+   ========================================================= */
+
+
+/* ================= TELEGRAM ================= */
 
 const tg =
   window.Telegram &&
@@ -1956,2110 +1982,407 @@ const tg =
 if(tg){
 
   try{
-
     tg.ready();
     tg.expand();
-
-    if(tg.setHeaderColor){
-      tg.setHeaderColor("#07101f");
-    }
-
-    if(tg.setBackgroundColor){
-      tg.setBackgroundColor("#050914");
-    }
-
   }catch(e){}
 
 }
 
 
-/* =========================================================
-   SUPABASE
-========================================================= */
+/* ================= GAME STATE ================= */
 
-const SUPABASE_URL =
-  "https://umqlgklqpolmiqoyqkbu.supabase.co";
+let game = {
 
-const SUPABASE_KEY =
-  "sb_publishable_unLN1x7hk9GpbgxuAmTj6Q_GwMAWMVp";
+  balance: 0,
 
-const EDGE_FUNCTION =
-  SUPABASE_URL +
-  "/functions/v1/telegram-user";
+  energy: 1000,
 
-const LOCAL_KEY =
-  "ELCOIN_PLAYER_V4";
+  maxEnergy: 1000,
 
+  level: 1,
 
-/* =========================================================
-   GAME SETTINGS
-========================================================= */
+  cityLevel: 1,
 
-const MAX_ENERGY =
-  5000;
+  businessLevel: 1,
 
-const ENERGY_FULL_TIME =
-  60 * 60 * 1000;
+  businessCount: 1,
 
-const ENERGY_SYSTEM_VERSION =
-  2;
+  marketLevel: 1,
 
-const DAILY_BONUS =
-  500;
+  coffeeLevel: 1,
 
+  factoryLevel: 1,
 
-/* =========================================================
-   PLAYER
-========================================================= */
+  taxiCount: 1,
 
-let player = {
+  taxiLevel: 1,
 
-  id:null,
+  rides: 0,
 
-  telegramId:null,
+  taxiEarned: 0,
 
-  username:"",
+  referrals: 0,
 
-  firstName:"",
+  referralEarned: 0,
 
-  nickname:"PLAYER",
+  dailyClaimed: false,
 
-  balance:0,
+  lastDaily: 0,
 
-  energy:MAX_ENERGY,
-
-  maxEnergy:MAX_ENERGY,
-
-  lastEnergyAt:Date.now(),
-
-  energySystemVersion:
-    ENERGY_SYSTEM_VERSION,
-
-  level:1,
-
-  tapPower:1,
-
-  rides:0,
-
-  referrals:0,
-
-  taxiLevel:1,
-
-  cityLevel:1,
-
-  dailyIncome:120,
-
-  lastBonus:null,
-
-  totalTaps:0,
-
-  updatedAt:null,
-
-  isPublic:true
+  totalTaps: 0
 
 };
 
 
-/* =========================================================
-   STATE
-========================================================= */
+/* ================= LOCAL SAVE ================= */
 
-let serverOnline =
-  false;
-
-let saveTimer =
-  null;
-
-let toastTimer =
-  null;
-
-let saveInFlight =
-  false;
-
-let saveQueued =
-  false;
-
-let lastTapTime =
-  0;
-
-let localPlayerLoaded =
-  false;
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function number(value){
-
-  const n =
-    Number(value);
-
-  return Number.isFinite(n)
-    ? n
-    : 0;
-
-}
-
-
-function escapeHtml(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function showToast(message){
-
-  const el =
-    document.getElementById("toast");
-
-  if(!el)
-    return;
-
-  el.textContent =
-    message;
-
-  el.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer =
-    setTimeout(
-      function(){
-        el.classList.remove("show");
-      },
-      2200
-    );
-
-}
-
-
-function setServerStatus(type,text){
-
-  const el =
-    document.getElementById("serverStatus");
-
-  if(!el)
-    return;
-
-  el.className =
-    "server-status " + type;
-
-  el.textContent =
-    text;
-
-}
-
-
-/* =========================================================
-   TELEGRAM USER
-========================================================= */
-
-function getTelegramUser(){
-
-  if(!tg)
-    return null;
-
-  try{
-
-    const user =
-      tg.initDataUnsafe &&
-      tg.initDataUnsafe.user
-        ? tg.initDataUnsafe.user
-        : null;
-
-    if(
-      !user ||
-      !user.id
-    ){
-      return null;
-    }
-
-    return user;
-
-  }catch(e){
-
-    return null;
-
-  }
-
-}
-
-
-/* =========================================================
-   NICKNAME
-========================================================= */
-
-function makeNickname(user){
-
-  if(
-    user &&
-    user.username
-  ){
-
-    const clean =
-      String(user.username)
-        .replace(/[^\w]/g,"")
-        .slice(0,20);
-
-    if(clean){
-      return "@" + clean;
-    }
-
-  }
-
-  if(
-    user &&
-    user.id
-  ){
-
-    return "player_" +
-      String(user.id).slice(-4);
-
-  }
-
-  return "PLAYER";
-
-}
-
-
-/* =========================================================
-   INCOME
-========================================================= */
-
-function calculateIncome(){
-
-  const taxi =
-    Math.max(
-      1,
-      Math.floor(
-        number(
-          player.taxiLevel
-        )
-      )
-    );
-
-  const city =
-    Math.max(
-      1,
-      Math.floor(
-        number(
-          player.cityLevel
-        )
-      )
-    );
-
-  return (
-    120 +
-    ((taxi - 1) * 50) +
-    ((city - 1) * 80)
-  );
-
-}
-
-
-/* =========================================================
-   ENERGY
-========================================================= */
-
-function regenerateEnergy(){
-
-  let last =
-    Number(
-      player.lastEnergyAt
-    );
-
-  if(
-    !Number.isFinite(last)
-  ){
-    last = Date.now();
-  }
-
-  const now =
-    Date.now();
-
-  const elapsed =
-    Math.max(
-      0,
-      now - last
-    );
-
-  if(elapsed <= 0)
-    return;
-
-  const current =
-    Math.max(
-      0,
-      Math.min(
-        MAX_ENERGY,
-        number(player.energy)
-      )
-    );
-
-  const energyPerMs =
-    MAX_ENERGY /
-    ENERGY_FULL_TIME;
-
-  const gained =
-    elapsed *
-    energyPerMs;
-
-  player.energy =
-    Math.min(
-      MAX_ENERGY,
-      current + gained
-    );
-
-  player.lastEnergyAt =
-    now;
-
-}
-
-
-/* =========================================================
-   RENDER
-========================================================= */
-
-function render(){
-
-  regenerateEnergy();
-
-  player.balance =
-    Math.max(
-      0,
-      number(player.balance)
-    );
-
-  player.maxEnergy =
-    MAX_ENERGY;
-
-  player.energy =
-    Math.max(
-      0,
-      Math.min(
-        MAX_ENERGY,
-        number(player.energy)
-      )
-    );
-
-  player.level =
-    Math.max(
-      1,
-      Math.floor(
-        number(player.level)
-      )
-    );
-
-  player.taxiLevel =
-    Math.max(
-      1,
-      Math.floor(
-        number(player.taxiLevel)
-      )
-    );
-
-  player.cityLevel =
-    Math.max(
-      1,
-      Math.floor(
-        number(player.cityLevel)
-      )
-    );
-
-  player.totalTaps =
-    Math.max(
-      0,
-      Math.floor(
-        number(player.totalTaps)
-      )
-    );
-
-  player.rides =
-    Math.max(
-      0,
-      Math.floor(
-        number(player.rides)
-      )
-    );
-
-  player.referrals =
-    Math.max(
-      0,
-      Math.floor(
-        number(player.referrals)
-      )
-    );
-
-  player.tapPower =
-    Math.max(
-      1,
-      player.taxiLevel
-    );
-
-  player.dailyIncome =
-    calculateIncome();
-
-
-  const balance =
-    document.getElementById("balance");
-
-  const profileName =
-    document.getElementById("profileName");
-
-  const dailyIncome =
-    document.getElementById("dailyIncome");
-
-  const tapPower =
-    document.getElementById("tapPower");
-
-  const rides =
-    document.getElementById("rides");
-
-  const level =
-    document.getElementById("level");
-
-  const energy =
-    document.getElementById("energy");
-
-  const maxEnergy =
-    document.getElementById("maxEnergy");
-
-  const energyFill =
-    document.getElementById("energyFill");
-
-  const taxiLevel =
-    document.getElementById("taxiLevel");
-
-  const cityLevel =
-    document.getElementById("cityLevel");
-
-  const cityIncome =
-    document.getElementById("cityIncome");
-
-
-  if(balance){
-
-    balance.textContent =
-      Number(
-        player.balance
-      ).toLocaleString(
-        undefined,
-        {
-          maximumFractionDigits:2
-        }
-      );
-
-  }
-
-
-  if(profileName){
-
-    profileName.textContent =
-      player.nickname ||
-      "PLAYER";
-
-  }
-
-
-  if(dailyIncome){
-
-    dailyIncome.textContent =
-      "+" +
-      player.dailyIncome.toLocaleString() +
-      " ELC/day";
-
-  }
-
-
-  if(tapPower){
-
-    tapPower.textContent =
-      "+" +
-      player.tapPower;
-
-  }
-
-
-  if(rides){
-
-    rides.textContent =
-      player.rides;
-
-  }
-
-
-  if(level){
-
-    level.textContent =
-      player.level;
-
-  }
-
-
-  if(energy){
-
-    energy.textContent =
-      Math.floor(
-        player.energy
-      ).toLocaleString();
-
-  }
-
-
-  if(maxEnergy){
-
-    maxEnergy.textContent =
-      MAX_ENERGY.toLocaleString();
-
-  }
-
-
-  if(energyFill){
-
-    const percent =
-      (
-        player.energy /
-        MAX_ENERGY
-      ) * 100;
-
-    energyFill.style.width =
-      Math.max(
-        0,
-        Math.min(
-          100,
-          percent
-        )
-      ) + "%";
-
-  }
-
-
-  if(taxiLevel){
-
-    taxiLevel.textContent =
-      player.taxiLevel;
-
-  }
-
-
-  if(cityLevel){
-
-    cityLevel.textContent =
-      player.cityLevel;
-
-  }
-
-
-  if(cityIncome){
-
-    cityIncome.textContent =
-      player.dailyIncome;
-
-  }
-
-
-  const taxiCost =
-    400 *
-    player.taxiLevel;
-
-  const cityCost =
-    500 *
-    player.cityLevel;
-
-
-  const taxiButton =
-    document.getElementById(
-      "taxiUpgrade"
-    );
-
-  if(taxiButton){
-
-    taxiButton.textContent =
-      "Upgrade • " +
-      taxiCost.toLocaleString() +
-      " ELC";
-
-    taxiButton.disabled =
-      player.balance < taxiCost;
-
-  }
-
-
-  const cityButton =
-    document.querySelector(
-      "#cityPanel .upgrade-btn"
-    );
-
-  if(cityButton){
-
-    cityButton.textContent =
-      "Upgrade • " +
-      cityCost.toLocaleString() +
-      " ELC";
-
-    cityButton.disabled =
-      player.balance < cityCost;
-
-  }
-
-
-  updateBonusButton();
-
-  saveLocal();
-
-}
-
-
-/* =========================================================
-   LOCAL SAVE
-========================================================= */
-
-function saveLocal(){
+function saveGame(){
 
   try{
 
     localStorage.setItem(
-      LOCAL_KEY,
-      JSON.stringify(player)
+      "cityBossV1",
+      JSON.stringify(game)
     );
+
+  }catch(e){
+
+    console.log("Save error",e);
+
+  }
+
+}
+
+
+/* ================= LOCAL LOAD ================= */
+
+function loadGame(){
+
+  try{
+
+    const saved =
+      localStorage.getItem("cityBossV1");
+
+    if(saved){
+
+      const parsed =
+        JSON.parse(saved);
+
+      game = {
+        ...game,
+        ...parsed
+      };
+
+    }
+
+  }catch(e){
+
+    console.log("Load error",e);
+
+  }
+
+}
+
+
+/* ================= PLAYER NAME ================= */
+
+function getPlayerName(){
+
+  try{
+
+    if(
+      tg &&
+      tg.initDataUnsafe &&
+      tg.initDataUnsafe.user
+    ){
+
+      const user =
+        tg.initDataUnsafe.user;
+
+      if(user.username){
+
+        return "@" + user.username;
+
+      }
+
+      if(user.first_name){
+
+        return user.first_name;
+
+      }
+
+    }
 
   }catch(e){}
 
-}
-
-
-/* =========================================================
-   LOCAL LOAD
-========================================================= */
-
-function loadLocal(){
-
-  localPlayerLoaded =
-    false;
-
-  try{
-
-    const raw =
-      localStorage.getItem(
-        LOCAL_KEY
-      );
-
-    if(!raw)
-      return false;
-
-    const data =
-      JSON.parse(raw);
-
-    if(!data)
-      return false;
-
-
-    player = {
-      ...player,
-      ...data
-    };
-
-
-    player.maxEnergy =
-      MAX_ENERGY;
-
-    player.energySystemVersion =
-      ENERGY_SYSTEM_VERSION;
-
-
-    if(
-      !Number.isFinite(
-        Number(player.energy)
-      )
-    ){
-
-      player.energy =
-        MAX_ENERGY;
-
-    }
-
-
-    if(
-      !Number.isFinite(
-        Number(player.lastEnergyAt)
-      )
-    ){
-
-      player.lastEnergyAt =
-        Date.now();
-
-    }
-
-
-    player.energy =
-      Math.max(
-        0,
-        Math.min(
-          MAX_ENERGY,
-          number(player.energy)
-        )
-      );
-
-
-    regenerateEnergy();
-
-    localPlayerLoaded =
-      true;
-
-    saveLocal();
-
-    return true;
-
-  }catch(error){
-
-    console.error(
-      "LOCAL LOAD ERROR:",
-      error
-    );
-
-    return false;
-
-  }
+  return "Player";
 
 }
 
 
-/* =========================================================
-   SUPABASE REQUEST
-========================================================= */
+/* ================= FORMAT ================= */
 
-async function supabaseRequest(
-  path,
-  options={},
-  timeout=6000
-){
+function formatNumber(number){
 
-  const controller =
-    new AbortController();
+  number = Number(number) || 0;
 
-  const timer =
-    setTimeout(
-      function(){
-        controller.abort();
-      },
-      timeout
-    );
-
-
-  try{
-
-    const headers = {
-
-      "apikey":
-        SUPABASE_KEY,
-
-      "Authorization":
-        "Bearer " +
-        SUPABASE_KEY,
-
-      "Content-Type":
-        "application/json",
-
-      "Accept":
-        "application/json",
-
-      ...(options.headers || {})
-
-    };
-
-
-    const response =
-      await fetch(
-        SUPABASE_URL +
-        "/rest/v1/" +
-        path,
-        {
-          ...options,
-          headers,
-          signal:
-            controller.signal
-        }
-      );
-
-
-    const text =
-      await response.text();
-
-
-    let data = null;
-
-
-    try{
-
-      data =
-        text
-          ? JSON.parse(text)
-          : null;
-
-    }catch(e){
-
-      data =
-        text;
-
-    }
-
-
-    if(!response.ok){
-
-      throw new Error(
-        "HTTP " +
-        response.status +
-        ": " +
-        text
-      );
-
-    }
-
-
-    return data;
-
-  }finally{
-
-    clearTimeout(timer);
-
-  }
+  return Math.floor(number)
+    .toLocaleString("en-US");
 
 }
 
 
-/* =========================================================
-   EDGE FUNCTION
-========================================================= */
+/* ================= RENDER ================= */
 
-async function callTelegramFunction(){
+function render(){
 
-  const user =
-    getTelegramUser();
+  const name =
+    getPlayerName();
 
-  if(!user)
-    return null;
+  document.getElementById(
+    "bossName"
+  ).textContent = name;
 
-  if(
-    !tg ||
-    !tg.initData
-  ){
-    return null;
-  }
+  document.getElementById(
+    "profileName"
+  ).textContent = name;
 
 
-  const controller =
-    new AbortController();
+  document.getElementById(
+    "balance"
+  ).textContent =
+    formatNumber(game.balance);
 
-  const timer =
-    setTimeout(
-      function(){
-        controller.abort();
-      },
-      7000
-    );
 
+  document.getElementById(
+    "profileBalance"
+  ).textContent =
+    formatNumber(game.balance);
 
-  try{
 
-    const response =
-      await fetch(
-        EDGE_FUNCTION,
-        {
+  document.getElementById(
+    "income"
+  ).textContent =
+    "+" +
+    formatNumber(
+      getDailyIncome()
+    ) +
+    " / DAY";
 
-          method:"POST",
 
-          headers:{
-            "Content-Type":
-              "application/json",
+  document.getElementById(
+    "energyText"
+  ).textContent =
+    formatNumber(game.energy) +
+    " / " +
+    formatNumber(game.maxEnergy);
 
-            "apikey":
-              SUPABASE_KEY,
 
-            "Authorization":
-              "Bearer " +
-              SUPABASE_KEY
-          },
-
-          body:
-            JSON.stringify({
-
-              initData:
-                tg.initData,
-
-              telegram_id:
-                String(user.id),
-
-              user:{
-
-                id:user.id,
-
-                username:
-                  user.username || "",
-
-                first_name:
-                  user.first_name || "",
-
-                last_name:
-                  user.last_name || ""
-
-              }
-
-            }),
-
-          signal:
-            controller.signal
-
-        }
-      );
-
-
-    const text =
-      await response.text();
-
-
-    if(!response.ok){
-
-      throw new Error(
-        text ||
-        "Edge Function error"
-      );
-
-    }
-
-
-    try{
-
-      return JSON.parse(text);
-
-    }catch(e){
-
-      return null;
-
-    }
-
-  }finally{
-
-    clearTimeout(timer);
-
-  }
-
-}
-
-
-/* =========================================================
-   APPLY DATABASE PLAYER
-========================================================= */
-
-function applyDatabasePlayer(row){
-
-  if(!row)
-    return;
-
-
-  player.id =
-    row.id ??
-    player.id;
-
-
-  player.telegramId =
-    row.telegram_id ??
-    player.telegramId;
-
-
-  player.username =
-    row.username ??
-    player.username;
-
-
-  player.firstName =
-    row.first_name ??
-    player.firstName;
-
-
-  player.nickname =
-    row.nickname ??
-    player.nickname;
-
-
-  if(
-    !player.nickname ||
-    player.nickname === "PLAYER"
-  ){
-
-    player.nickname =
-      makeNickname(
-        getTelegramUser()
-      );
-
-  }
-
-
-  player.balance =
-    number(
-      row.balance ??
-      player.balance
-    );
-
-
-  const serverEnergy =
-    number(row.energy);
-
-  if(
-    !localPlayerLoaded
-  ){
-
-    player.energy =
-      serverEnergy > 0
-        ? serverEnergy
-        : MAX_ENERGY;
-
-  }else{
-
-    player.energy =
-      Math.max(
-        number(player.energy),
-        serverEnergy
-      );
-
-  }
-
-
-  player.energy =
+  const energyPercent =
     Math.max(
       0,
       Math.min(
-        MAX_ENERGY,
-        player.energy
+        100,
+        (game.energy / game.maxEnergy) * 100
       )
     );
 
 
-  player.maxEnergy =
-    MAX_ENERGY;
+  document.getElementById(
+    "energyFill"
+  ).style.width =
+    energyPercent + "%";
 
 
-  player.energySystemVersion =
-    ENERGY_SYSTEM_VERSION;
+  document.getElementById(
+    "cityLevel"
+  ).textContent =
+    game.cityLevel;
 
 
-  player.level =
-    Math.max(
-      1,
-      Math.floor(
-        number(
-          row.level ??
-          player.level
-        )
-      )
+  document.getElementById(
+    "businessCount"
+  ).textContent =
+    game.businessCount;
+
+
+  document.getElementById(
+    "businessLevel"
+  ).textContent =
+    game.businessLevel;
+
+
+  document.getElementById(
+    "businessIncome"
+  ).textContent =
+    formatNumber(
+      getBusinessIncome()
     );
 
 
-  player.lastBonus =
-    row.last_bonus ??
-    player.lastBonus;
+  document.getElementById(
+    "marketLevel"
+  ).textContent =
+    game.marketLevel;
 
 
-  player.referrals =
-    Math.max(
-      0,
-      Math.floor(
-        number(
-          row.referrals ??
-          player.referrals
-        )
-      )
+  document.getElementById(
+    "coffeeLevel"
+  ).textContent =
+    game.coffeeLevel;
+
+
+  document.getElementById(
+    "factoryLevel"
+  ).textContent =
+    game.factoryLevel;
+
+
+  document.getElementById(
+    "taxiCount"
+  ).textContent =
+    game.taxiCount;
+
+
+  document.getElementById(
+    "taxiLevel"
+  ).textContent =
+    game.taxiLevel;
+
+
+  document.getElementById(
+    "taxiIncome"
+  ).textContent =
+    50 * game.taxiLevel;
+
+
+  document.getElementById(
+    "rides"
+  ).textContent =
+    game.rides;
+
+
+  document.getElementById(
+    "taxiEarned"
+  ).textContent =
+    formatNumber(game.taxiEarned);
+
+
+  document.getElementById(
+    "referrals"
+  ).textContent =
+    game.referrals;
+
+
+  document.getElementById(
+    "referralEarned"
+  ).textContent =
+    formatNumber(
+      game.referralEarned
     );
 
 
-  player.taxiLevel =
-    Math.max(
-      1,
-      Math.floor(
-        number(
-          row.taxi_level ??
-          player.taxiLevel
-        )
-      )
-    );
+  document.getElementById(
+    "profileLevel"
+  ).textContent =
+    game.level;
 
 
-  player.cityLevel =
-    Math.max(
-      1,
-      Math.floor(
-        number(
-          row.city_level ??
-          player.cityLevel
-        )
-      )
-    );
-
-
-  player.totalTaps =
-    Math.max(
-      0,
-      Math.floor(
-        number(
-          row.total_taps ??
-          player.totalTaps
-        )
-      )
-    );
-
-
-  player.rides =
-    Math.max(
-      0,
-      Math.floor(
-        number(
-          row.total_rides ??
-          player.rides
-        )
-      )
-    );
-
-
-  if(
-    row.is_public !== undefined &&
-    row.is_public !== null
-  ){
-
-    player.isPublic =
-      Boolean(
-        row.is_public
-      );
-
-  }
-
-
-  player.updatedAt =
-    row.updated_at ??
-    player.updatedAt;
-
-
-  player.tapPower =
-    player.taxiLevel;
-
-
-  player.dailyIncome =
-    calculateIncome();
-
-
-  if(
-    !Number.isFinite(
-      Number(player.lastEnergyAt)
-    )
-  ){
-
-    player.lastEnergyAt =
-      Date.now();
-
-  }
-
-
-  regenerateEnergy();
-
-  saveLocal();
+  updateDailyButton();
 
 }
 
 
-/* =========================================================
-   LOAD PLAYER
-========================================================= */
+/* ================= INCOME ================= */
 
-async function loadPlayer(){
+function getBusinessIncome(){
 
-  loadLocal();
-
-  render();
-
-
-  const telegramUser =
-    getTelegramUser();
-
-
-  if(!telegramUser){
-
-    player.nickname =
-      makeNickname(null);
-
-    setServerStatus(
-      "offline",
-      "⚠️ Telegram Web App xaricində açılıb"
-    );
-
-    render();
-
-    return;
-
-  }
-
-
-  const telegramId =
-    String(
-      telegramUser.id
-    );
-
-
-  if(
-    player.telegramId &&
-    String(player.telegramId) !== telegramId
-  ){
-
-    player = {
-
-      ...player,
-
-      id:null,
-
-      telegramId:
-        telegramId,
-
-      username:
-        telegramUser.username || "",
-
-      firstName:
-        telegramUser.first_name || "",
-
-      nickname:
-        makeNickname(
-          telegramUser
-        ),
-
-      balance:0,
-
-      energy:
-        MAX_ENERGY,
-
-      maxEnergy:
-        MAX_ENERGY,
-
-      lastEnergyAt:
-        Date.now(),
-
-      energySystemVersion:
-        ENERGY_SYSTEM_VERSION,
-
-      level:1,
-
-      tapPower:1,
-
-      rides:0,
-
-      referrals:0,
-
-      taxiLevel:1,
-
-      cityLevel:1,
-
-      dailyIncome:120,
-
-      lastBonus:null,
-
-      totalTaps:0,
-
-      updatedAt:null,
-
-      isPublic:true
-
-    };
-
-
-    localPlayerLoaded =
-      false;
-
-    saveLocal();
-
-  }
-
-
-  player.telegramId =
-    telegramId;
-
-  player.username =
-    telegramUser.username || "";
-
-  player.firstName =
-    telegramUser.first_name || "";
-
-
-  if(
-    !player.nickname ||
-    player.nickname === "PLAYER"
-  ){
-
-    player.nickname =
-      makeNickname(
-        telegramUser
-      );
-
-  }
-
-
-  /* =========================
-     EDGE FUNCTION
-  ========================= */
-
-  try{
-
-    const result =
-      await callTelegramFunction();
-
-
-    if(result){
-
-      if(
-        result.success === false
-      ){
-
-        throw new Error(
-          result.error ||
-          "Telegram server xətası"
-        );
-
-      }
-
-
-      const row =
-        result.player ||
-        result.data ||
-        result.user ||
-        null;
-
-
-      if(row){
-
-        applyDatabasePlayer(
-          row
-        );
-
-
-        serverOnline =
-          true;
-
-
-        setServerStatus(
-          "online",
-          "🟢 Serverə qoşuldu"
-        );
-
-
-        render();
-
-
-        setTimeout(
-          function(){
-            savePlayerToServer();
-          },
-          500
-        );
-
-
-        return;
-
-      }
-
-    }
-
-  }catch(error){
-
-    console.log(
-      "Edge Function:",
-      error
-    );
-
-  }
-
-
-  /* =========================
-     REST FALLBACK
-  ========================= */
-
-  try{
-
-    const id =
-      encodeURIComponent(
-        telegramId
-      );
-
-
-    const rows =
-      await supabaseRequest(
-        "players?telegram_id=eq." +
-        id +
-        "&select=*",
-        {
-          method:"GET"
-        },
-        5000
-      );
-
-
-    if(
-      Array.isArray(rows) &&
-      rows.length > 0
-    ){
-
-      applyDatabasePlayer(
-        rows[0]
-      );
-
-
-      serverOnline =
-        true;
-
-
-      setServerStatus(
-        "online",
-        "🟢 Serverə qoşuldu • Sinxron"
-      );
-
-
-      render();
-
-
-      setTimeout(
-        function(){
-          savePlayerToServer();
-        },
-        500
-      );
-
-
-      return;
-
-    }
-
-
-    /* =========================
-       NEW PLAYER
-    ========================= */
-
-    const newPlayer = {
-
-      username:
-        telegramUser.username || "",
-
-      first_name:
-        telegramUser.first_name || "",
-
-      balance:
-        number(
-          player.balance
-        ),
-
-      energy:
-        MAX_ENERGY,
-
-      level:
-        Math.max(
-          1,
-          number(
-            player.level
-          )
-        ),
-
-      last_bonus:
-        player.lastBonus || null,
-
-      referrals:
-        number(
-          player.referrals
-        ),
-
-      telegram_id:
-        telegramId,
-
-      referred_by:
-        null,
-
-      taxi_level:
-        Math.max(
-          1,
-          number(
-            player.taxiLevel
-          )
-        ),
-
-      city_level:
-        Math.max(
-          1,
-          number(
-            player.cityLevel
-          )
-        ),
-
-      total_taps:
-        number(
-          player.totalTaps
-        ),
-
-      total_rides:
-        number(
-          player.rides
-        ),
-
-      nickname:
-        player.nickname ||
-        makeNickname(
-          telegramUser
-        ),
-
-      is_public:
-        true
-
-    };
-
-
-    const created =
-      await supabaseRequest(
-        "players",
-        {
-
-          method:"POST",
-
-          headers:{
-            "Prefer":
-              "return=representation"
-          },
-
-          body:
-            JSON.stringify(
-              newPlayer
-            )
-
-        },
-        6000
-      );
-
-
-    if(
-      Array.isArray(created) &&
-      created.length > 0
-    ){
-
-      applyDatabasePlayer(
-        created[0]
-      );
-
-    }
-
-
-    serverOnline =
-      true;
-
-
-    setServerStatus(
-      "online",
-      "🟢 Serverə qoşuldu • Yeni oyunçu"
-    );
-
-
-    render();
-
-  }catch(error){
-
-    console.error(
-      "SUPABASE LOAD ERROR:",
-      error
-    );
-
-
-    serverOnline =
-      false;
-
-
-    setServerStatus(
-      "offline",
-      "⚠️ Server offline • Lokal yaddaş aktivdir"
-    );
-
-
-    render();
-
-  }
-
-}
-
-
-/* =========================================================
-   SAVE PLAYER
-========================================================= */
-
-async function savePlayerToServer(){
-
-  if(!player.telegramId)
-    return false;
-
-
-  if(saveInFlight){
-
-    saveQueued =
-      true;
-
-    return false;
-
-  }
-
-
-  saveInFlight =
-    true;
-
-
-  regenerateEnergy();
-
-
-  const id =
-    encodeURIComponent(
-      String(
-        player.telegramId
-      )
-    );
-
-
-  const payload = {
-
-    username:
-      player.username || "",
-
-    first_name:
-      player.firstName || "",
-
-    balance:
-      number(
-        player.balance
-      ),
-
-    energy:
-      Math.floor(
-        number(
-          player.energy
-        )
-      ),
-
-    level:
-      Math.floor(
-        number(
-          player.level
-        )
-      ),
-
-    last_bonus:
-      player.lastBonus || null,
-
-    referrals:
-      Math.floor(
-        number(
-          player.referrals
-        )
-      ),
-
-    taxi_level:
-      Math.floor(
-        number(
-          player.taxiLevel
-        )
-      ),
-
-    city_level:
-      Math.floor(
-        number(
-          player.cityLevel
-        )
-      ),
-
-    total_taps:
-      Math.floor(
-        number(
-          player.totalTaps
-        )
-      ),
-
-    total_rides:
-      Math.floor(
-        number(
-          player.rides
-        )
-      ),
-
-    nickname:
-      player.nickname ||
-      makeNickname(
-        getTelegramUser()
-      ),
-
-    is_public:
-      player.isPublic !== false
-
-  };
-
-
-  try{
-
-    const result =
-      await supabaseRequest(
-        "players?telegram_id=eq." +
-        id,
-        {
-
-          method:"PATCH",
-
-          headers:{
-            "Prefer":
-              "return=representation"
-          },
-
-          body:
-            JSON.stringify(
-              payload
-            )
-
-        },
-        5000
-      );
-
-
-    if(
-      Array.isArray(result) &&
-      result.length === 0
-    ){
-
-      const created =
-        await supabaseRequest(
-          "players",
-          {
-
-            method:"POST",
-
-            headers:{
-              "Prefer":
-                "return=representation"
-            },
-
-            body:
-              JSON.stringify({
-
-                ...payload,
-
-                telegram_id:
-                  String(
-                    player.telegramId
-                  ),
-
-                referred_by:null
-
-              })
-
-          },
-          5000
-        );
-
-
-      if(
-        !Array.isArray(created) ||
-        !created.length
-      ){
-
-        throw new Error(
-          "Player serverdə yaradıla bilmədi"
-        );
-
-      }
-
-
-      if(created[0].id){
-
-        player.id =
-          created[0].id;
-
-      }
-
-    }
-
-
-    serverOnline =
-      true;
-
-
-    setServerStatus(
-      "online",
-      "🟢 Serverə qoşuldu • Saxlanıldı"
-    );
-
-
-    return true;
-
-  }catch(error){
-
-    console.error(
-      "SAVE ERROR:",
-      error
-    );
-
-
-    serverOnline =
-      false;
-
-
-    setServerStatus(
-      "offline",
-      "⚠️ Server offline • Lokal yaddaş aktivdir"
-    );
-
-
-    return false;
-
-  }finally{
-
-    saveInFlight =
-      false;
-
-
-    if(saveQueued){
-
-      saveQueued =
-        false;
-
-      setTimeout(
-        function(){
-          savePlayerToServer();
-        },
-        300
-      );
-
-    }
-
-  }
-
-}
-
-
-/* =========================================================
-   SAVE GAME
-========================================================= */
-
-function saveGame(){
-
-  saveLocal();
-
-  clearTimeout(
-    saveTimer
+  return (
+    game.marketLevel * 100 +
+    game.coffeeLevel * 150 +
+    game.factoryLevel * 300
   );
 
+}
 
-  saveTimer =
-    setTimeout(
-      function(){
-        savePlayerToServer();
-      },
-      700
-    );
+
+function getDailyIncome(){
+
+  return (
+    getBusinessIncome() +
+    game.taxiCount *
+    game.taxiLevel *
+    100
+  );
 
 }
 
 
-/* =========================================================
-   TAP
-========================================================= */
+/* ================= TAP COIN ================= */
 
 function tapCoin(event){
 
-  const now =
-    Date.now();
+  if(game.energy <= 0){
 
-
-  if(
-    now - lastTapTime < 60
-  ){
-    return;
-  }
-
-
-  lastTapTime =
-    now;
-
-
-  regenerateEnergy();
-
-
-  if(
-    player.energy < 1
-  ){
-
-    render();
-
-    showToast(
-      "⚡ Energy bitdi!"
-    );
+    showToast("⚡ Energy bitdi");
 
     return;
 
   }
 
 
-  const power =
-    Math.max(
-      1,
-      Math.floor(
-        number(
-          player.tapPower
-        )
-      )
-    );
+  const reward =
+    1 + Math.floor(game.level / 10);
 
 
-  player.balance =
-    number(
-      player.balance
-    ) +
-    power;
+  game.balance += reward;
+
+  game.energy -= 1;
+
+  game.totalTaps += 1;
 
 
-  player.energy =
-    Math.max(
-      0,
-      number(
-        player.energy
-      ) - 1
-    );
-
-
-  player.lastEnergyAt =
-    Date.now();
-
-
-  player.totalTaps =
-    number(
-      player.totalTaps
-    ) + 1;
-
-
-  const newLevel =
-    Math.floor(
-      player.totalTaps /
-      100
-    ) + 1;
-
-
-  if(
-    newLevel >
-    player.level
-  ){
-
-    player.level =
-      newLevel;
-
-
-    showToast(
-      "⭐ LEVEL UP! Level " +
-      player.level
-    );
-
-  }
-
-
-  if(
-    player.totalTaps % 25 === 0
-  ){
-
-    player.rides =
-      number(
-        player.rides
-      ) + 1;
-
-  }
-
-
-  render();
-
-
-  createFloat(
+  createFloatCoin(
     event,
-    "+" + power
+    "+" + reward
   );
 
 
-  if(
-    tg &&
-    tg.HapticFeedback
-  ){
-
-    try{
-
-      tg.HapticFeedback
-        .impactOccurred(
-          "light"
-        );
-
-    }catch(e){}
-
-  }
-
+  render();
 
   saveGame();
 
 }
 
 
-/* =========================================================
-   FLOAT
-========================================================= */
+/* ================= FLOAT COIN ================= */
 
-function createFloat(event,text){
+function createFloatCoin(event,text){
 
   const el =
-    document.createElement(
-      "div"
-    );
-
+    document.createElement("div");
 
   el.className =
-    "float";
-
+    "floatCoin";
 
   el.textContent =
-    text +
-    " ELC";
+    "🪙 " + text;
 
 
-  let x =
-    window.innerWidth / 2;
+  let x = window.innerWidth / 2;
 
-  let y =
-    window.innerHeight / 2;
+  let y = window.innerHeight / 2;
 
 
   if(event){
 
-    if(
-      Number.isFinite(
-        Number(event.clientX)
-      )
-    ){
+    x =
+      event.clientX ||
+      x;
 
-      x =
-        Number(event.clientX);
-
-    }
-
-
-    if(
-      Number.isFinite(
-        Number(event.clientY)
-      )
-    ){
-
-      y =
-        Number(event.clientY);
-
-    }
+    y =
+      event.clientY ||
+      y;
 
   }
 
@@ -4071,404 +2394,125 @@ function createFloat(event,text){
     y + "px";
 
 
-  document.body.appendChild(
-    el
-  );
+  document.body.appendChild(el);
 
 
-  setTimeout(
-    function(){
+  setTimeout(()=>{
 
-      if(el.parentNode){
-        el.remove();
-      }
+    el.remove();
 
-    },
-    800
-  );
+  },800);
 
 }
 
 
-/* =========================================================
-   BONUS
-========================================================= */
+/* ================= DAILY ================= */
 
-function updateBonusButton(){
-
-  const button =
-    document.getElementById(
-      "bonusButton"
-    );
-
-
-  if(!button)
-    return;
-
-
-  if(!player.lastBonus){
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "CLAIM";
-
-    return;
-
-  }
-
-
-  const last =
-    new Date(
-      player.lastBonus
-    ).getTime();
-
-
-  if(
-    !Number.isFinite(last)
-  ){
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "CLAIM";
-
-    return;
-
-  }
-
-
-  const remaining =
-    (
-      24 * 60 * 60 * 1000
-    ) -
-    (
-      Date.now() - last
-    );
-
-
-  if(remaining <= 0){
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "CLAIM";
-
-  }else{
-
-    button.disabled =
-      true;
-
-    const hours =
-      Math.ceil(
-        remaining /
-        (60 * 60 * 1000)
-      );
-
-    button.textContent =
-      hours + "h";
-
-  }
-
-}
-
-
-/* =========================================================
-   CLAIM BONUS
-========================================================= */
-
-async function claimBonus(){
+function claimDaily(){
 
   const now =
     Date.now();
 
-
-  if(player.lastBonus){
-
-    const last =
-      new Date(
-        player.lastBonus
-      ).getTime();
+  const day =
+    24 * 60 * 60 * 1000;
 
 
-    if(
-      Number.isFinite(last) &&
-      now - last <
-        24 * 60 * 60 * 1000
-    ){
+  if(
+    game.lastDaily &&
+    now - game.lastDaily < day
+  ){
 
-      updateBonusButton();
+    showToast("🎁 Daily bonus artıq götürülüb");
 
-      showToast(
-        "🎁 Bonus artıq götürülüb"
-      );
-
-      return;
-
-    }
+    return;
 
   }
 
 
-  const oldBalance =
-    number(
-      player.balance
-    );
+  game.balance += 500;
 
-  const oldLastBonus =
-    player.lastBonus;
+  game.lastDaily = now;
+
+  game.dailyClaimed = true;
 
 
-  player.balance =
-    oldBalance +
-    DAILY_BONUS;
-
-
-  player.lastBonus =
-    new Date(
-      now
-    ).toISOString();
-
+  showToast("🎁 +500 ELCOIN qazandın!");
 
   render();
 
-  saveLocal();
+  saveGame();
+
+}
 
 
-  const success =
-    await savePlayerToServer();
+function updateDailyButton(){
 
-
-  if(success){
-
-    showToast(
-      "🎁 +500 ELC qazandın!"
+  const btn =
+    document.getElementById(
+      "claimButton"
     );
+
+
+  const now =
+    Date.now();
+
+  const day =
+    24 * 60 * 60 * 1000;
+
+
+  if(
+    game.lastDaily &&
+    now - game.lastDaily < day
+  ){
+
+    btn.disabled = true;
+
+    btn.textContent = "CLAIMED";
 
   }else{
 
-    player.balance =
-      oldBalance;
+    btn.disabled = false;
 
-    player.lastBonus =
-      oldLastBonus;
-
-    saveLocal();
-
-    render();
-
-    showToast(
-      "⚠️ Bonus serverə yadda saxlanmadı"
-    );
+    btn.textContent = "+500";
 
   }
 
 }
 
 
-/* =========================================================
-   TAXI UPGRADE
-========================================================= */
+/* ================= SCREEN NAVIGATION ================= */
 
-function upgradeTaxi(){
+function openScreen(id){
 
-  const cost =
-    400 *
-    player.taxiLevel;
-
-
-  if(
-    player.balance <
-    cost
-  ){
-
-    showToast(
-      "❌ Kifayət qədər ELC yoxdur"
+  const screens =
+    document.querySelectorAll(
+      ".screen"
     );
 
-    return;
 
-  }
+  screens.forEach(screen=>{
 
-
-  player.balance -=
-    cost;
-
-
-  player.taxiLevel +=
-    1;
-
-
-  player.tapPower =
-    player.taxiLevel;
-
-
-  player.dailyIncome =
-    calculateIncome();
-
-
-  render();
-
-  saveGame();
-
-
-  showToast(
-    "🚕 Taxi Level " +
-    player.taxiLevel
-  );
-
-}
-
-
-/* =========================================================
-   CITY
-========================================================= */
-
-function upgradeCity(){
-
-  const cost =
-    500 *
-    player.cityLevel;
-
-
-  if(
-    player.balance <
-    cost
-  ){
-
-    showToast(
-      "❌ Kifayət qədər ELC yoxdur"
+    screen.classList.remove(
+      "active"
     );
 
-    return;
-
-  }
+  });
 
 
-  player.balance -=
-    cost;
-
-
-  player.cityLevel +=
-    1;
-
-
-  player.dailyIncome =
-    calculateIncome();
-
-
-  render();
-
-  saveGame();
-
-
-  showToast(
-    "🏙️ City Level " +
-    player.cityLevel
-  );
-
-}
-
-
-/* =========================================================
-   PANELS
-========================================================= */
-
-function openPanel(id){
-
-  const panel =
+  const target =
     document.getElementById(id);
 
-  if(panel){
 
-    panel.classList.add(
-      "show"
-    );
+  if(target){
 
-  }
-
-}
-
-
-function closePanel(id){
-
-  const panel =
-    document.getElementById(id);
-
-  if(panel){
-
-    panel.classList.remove(
-      "show"
-    );
-
-  }
-
-}
-
-
-function closeOutside(event,id){
-
-  if(
-    event.target.id === id
-  ){
-
-    closePanel(id);
-
-  }
-
-}
-
-
-/* =========================================================
-   NAV
-========================================================= */
-
-function setActive(button){
-
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(
-      function(btn){
-
-        btn.classList.remove(
-          "active"
-        );
-
-      }
-    );
-
-
-  if(button){
-
-    button.classList.add(
+    target.classList.add(
       "active"
     );
 
   }
 
-}
 
-
-function goHome(button){
-
-  setActive(button);
-
-
-  [
-    "taxiPanel",
-    "cityPanel",
-    "friendsPanel",
-    "rankingPanel"
-  ].forEach(
-    function(id){
-
-      closePanel(id);
-
-    }
-  );
+  updateNavigation(id);
 
 
   window.scrollTo({
@@ -4479,443 +2523,380 @@ function goHome(button){
 }
 
 
-/* =========================================================
-   REFERRAL
-========================================================= */
+/* ================= NAV ACTIVE ================= */
 
-function getReferralLink(){
+function updateNavigation(id){
 
-  const id =
-    player.telegramId || "";
-
-
-  return (
-    "https://t.me/ElCoinGame_bot" +
-    "?start=ref_" +
-    encodeURIComponent(id)
-  );
-
-}
-
-
-function updateReferral(){
-
-  const el =
-    document.getElementById(
-      "refLink"
+  const buttons =
+    document.querySelectorAll(
+      ".navBtn"
     );
 
 
-  if(el){
+  buttons.forEach(btn=>{
 
-    el.textContent =
-      getReferralLink();
+    btn.classList.remove(
+      "active"
+    );
+
+  });
+
+
+  if(id === "homeScreen"){
+
+    document
+      .getElementById("navHome")
+      .classList.add("active");
+
+  }
+
+
+  if(id === "cityScreen"){
+
+    document
+      .getElementById("navCity")
+      .classList.add("active");
+
+  }
+
+
+  if(id === "businessScreen"){
+
+    document
+      .getElementById("navBusiness")
+      .classList.add("active");
+
+  }
+
+
+  if(id === "taxiScreen"){
+
+    document
+      .getElementById("navTaxi")
+      .classList.add("active");
+
+  }
+
+
+  if(id === "rankingScreen"){
+
+    document
+      .getElementById("navRanking")
+      .classList.add("active");
+
+  }
+
+
+  if(id === "friendsScreen"){
+
+    document
+      .getElementById("navHome")
+      .classList.add("active");
+
+  }
+
+
+  if(id === "profileScreen"){
+
+    document
+      .getElementById("navHome")
+      .classList.add("active");
 
   }
 
 }
 
 
-async function copyReferral(){
+/* ================= BUILD ================= */
 
-  const link =
-    getReferralLink();
+function buildItem(name,cost){
 
+  if(game.balance < cost){
 
-  try{
-
-    if(
-      navigator.clipboard &&
-      navigator.clipboard.writeText
-    ){
-
-      await navigator.clipboard.writeText(
-        link
-      );
-
-
-      showToast(
-        "📋 Referral link kopyalandı"
-      );
-
-    }else{
-
-      showToast(link);
-
-    }
-
-  }catch(e){
-
-    showToast(link);
-
-  }
-
-}
-
-
-/* =========================================================
-   RANKING
-========================================================= */
-
-async function loadRanking(){
-
-  const list =
-    document.getElementById(
-      "rankList"
+    showToast(
+      "❌ " +
+      formatNumber(cost) +
+      " ELCOIN lazımdır"
     );
 
-
-  if(!list)
     return;
 
-
-  list.innerHTML =
-    '<div style="text-align:center;color:#71839a;padding:20px">Yüklənir...</div>';
+  }
 
 
-  try{
+  game.balance -= cost;
 
-    const rows =
-      await supabaseRequest(
-        "players?select=first_name,username,nickname,balance,level,is_public&order=balance.desc&limit=50",
-        {
-          method:"GET"
-        },
-        6000
+  game.cityLevel += 1;
+
+  game.level =
+    Math.max(
+      game.level,
+      game.cityLevel
+    );
+
+
+  showToast(
+    "🏗️ " +
+    name +
+    " tikildi!"
+  );
+
+
+  render();
+
+  saveGame();
+
+}
+
+
+/* ================= BUSINESS UPGRADE ================= */
+
+function upgradeBusiness(type){
+
+  let cost = 0;
+
+
+  if(type === "market"){
+
+    cost =
+      game.marketLevel * 1000;
+
+    if(game.balance < cost){
+
+      showToast(
+        "❌ Kifayət qədər ELCOIN yoxdur"
       );
-
-
-    if(
-      !Array.isArray(rows) ||
-      rows.length === 0
-    ){
-
-      list.innerHTML =
-        '<div style="text-align:center;color:#71839a;padding:20px">Hələ oyunçu yoxdur</div>';
 
       return;
 
     }
 
+    game.balance -= cost;
 
-    const publicRows =
-      rows.filter(
-        function(row){
+    game.marketLevel += 1;
 
-          return row.is_public !== false;
+  }
 
-        }
+
+  if(type === "coffee"){
+
+    cost =
+      game.coffeeLevel * 1500;
+
+    if(game.balance < cost){
+
+      showToast(
+        "❌ Kifayət qədər ELCOIN yoxdur"
       );
-
-
-    if(!publicRows.length){
-
-      list.innerHTML =
-        '<div style="text-align:center;color:#71839a;padding:20px">Hələ açıq profil yoxdur</div>';
 
       return;
 
     }
 
+    game.balance -= cost;
 
-    list.innerHTML =
-      publicRows
-        .map(
-          function(row,index){
+    game.coffeeLevel += 1;
 
-            const name =
-              row.nickname ||
-              row.first_name ||
-              row.username ||
-              (
-                "Player " +
-                String(
-                  index + 1
-                ).padStart(
-                  4,
-                  "0"
-                )
-              );
+  }
 
 
-            return `
+  if(type === "factory"){
 
-              <div class="rank-row">
+    cost =
+      game.factoryLevel * 3000;
 
-                <div class="rank-pos">
-                  ${index + 1}
-                </div>
+    if(game.balance < cost){
 
-                <div class="rank-name">
-                  ${escapeHtml(name)}
-                </div>
+      showToast(
+        "❌ Kifayət qədər ELCOIN yoxdur"
+      );
 
-                <div class="rank-balance">
-                  ${number(
-                    row.balance
-                  ).toLocaleString(
-                    undefined,
-                    {
-                      maximumFractionDigits:2
-                    }
-                  )}
-                  ELC
-                </div>
+      return;
 
-              </div>
+    }
 
-            `;
+    game.balance -= cost;
 
-          }
-        )
-        .join("");
+    game.factoryLevel += 1;
 
-  }catch(error){
+  }
 
-    console.error(
-      "Ranking:",
-      error
+
+  game.businessLevel =
+    Math.max(
+      game.marketLevel,
+      game.coffeeLevel,
+      game.factoryLevel
     );
 
 
-    list.innerHTML =
-      '<div style="text-align:center;color:#ffbd61;padding:20px">⚠️ Ranking serverdən yüklənmədi</div>';
+  game.level =
+    Math.max(
+      game.level,
+      game.businessLevel
+    );
 
-  }
+
+  showToast(
+    "⬆️ Business upgraded!"
+  );
+
+
+  render();
+
+  saveGame();
 
 }
 
 
-/* =========================================================
-   TAP EVENT
-========================================================= */
+/* ================= TAXI ================= */
 
-const coinButton =
-  document.getElementById(
-    "coinButton"
+function driveTaxi(){
+
+  const reward =
+    50 * game.taxiLevel;
+
+
+  game.balance += reward;
+
+  game.rides += 1;
+
+  game.taxiEarned += reward;
+
+
+  showToast(
+    "🚕 Ride complete +" +
+    formatNumber(reward)
   );
 
 
-if(coinButton){
+  render();
 
-  coinButton.addEventListener(
-    "pointerdown",
-    function(event){
+  saveGame();
 
-      if(
-        event.pointerType === "mouse" &&
-        event.button !== 0
-      ){
-        return;
-      }
+}
 
 
-      try{
-        event.preventDefault();
-      }catch(e){}
+/* ================= INVITE ================= */
+
+function inviteFriends(){
+
+  const botUsername =
+    "ElCoinGame_bot";
+
+  const link =
+    "https://t.me/" +
+    botUsername +
+    "?start=ref";
 
 
-      tapCoin(event);
+  const shareText =
+    "CITY BOSS-a qoşul! 🏙️🚕";
 
-    },
-    {
-      passive:false
-    }
+
+  const shareUrl =
+    "https://t.me/share/url?url=" +
+    encodeURIComponent(link) +
+    "&text=" +
+    encodeURIComponent(shareText);
+
+
+  if(tg){
+
+    try{
+
+      tg.openTelegramLink(
+        shareUrl
+      );
+
+      return;
+
+    }catch(e){}
+
+  }
+
+
+  window.open(
+    shareUrl,
+    "_blank"
   );
 
 }
 
 
-/* =========================================================
-   ENERGY CLOCK
-========================================================= */
+/* ================= TOAST ================= */
 
-setInterval(
-  function(){
-
-    regenerateEnergy();
-
-    render();
-
-  },
-  1000
-);
+let toastTimer = null;
 
 
-/* =========================================================
-   START GAME
-========================================================= */
+function showToast(message){
 
-async function startGame(){
-
-  try{
-
-    loadLocal();
-
-    render();
-
-    updateReferral();
-
-
-    await Promise.race([
-
-      loadPlayer(),
-
-      new Promise(
-        function(resolve){
-
-          setTimeout(
-            resolve,
-            9000
-          );
-
-        }
-      )
-
-    ]);
-
-
-    updateReferral();
-
-    render();
-
-  }catch(error){
-
-    console.error(
-      "START GAME ERROR:",
-      error
+  const toast =
+    document.getElementById(
+      "toast"
     );
 
 
-    loadLocal();
+  toast.textContent =
+    message;
 
-    regenerateEnergy();
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(()=>{
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },1800);
+
+}
+
+
+/* ================= ENERGY REGEN ================= */
+
+setInterval(()=>{
+
+  if(
+    game.energy <
+    game.maxEnergy
+  ){
+
+    game.energy += 1;
 
     render();
 
-    updateReferral();
-
-  }finally{
-
-    const loading =
-      document.getElementById(
-        "loading"
-      );
-
-
-    if(loading){
-
-      loading.classList.add(
-        "hide"
-      );
-
-    }
+    saveGame();
 
   }
+
+},3000);
+
+
+/* ================= START ================= */
+
+function startGame(){
+
+  loadGame();
+
+  render();
 
 }
 
 
 startGame();
 
-
-/* =========================================================
-   LOADING SAFETY
-========================================================= */
-
-setTimeout(
-  function(){
-
-    const loading =
-      document.getElementById(
-        "loading"
-      );
-
-
-    if(loading){
-
-      loading.classList.add(
-        "hide"
-      );
-
-    }
-
-  },
-  10000
-);
-
-
-/* =========================================================
-   SERVER RETRY
-========================================================= */
-
-setInterval(
-  function(){
-
-    if(
-      player.telegramId
-    ){
-
-      savePlayerToServer();
-
-    }
-
-  },
-  10000
-);
-
-
-/* =========================================================
-   APP HIDDEN
-========================================================= */
-
-window.addEventListener(
-  "beforeunload",
-  function(){
-
-    regenerateEnergy();
-
-    saveLocal();
-
-  }
-);
-
-
-document.addEventListener(
-  "visibilitychange",
-  function(){
-
-    if(
-      document.visibilityState ===
-      "hidden"
-    ){
-
-      regenerateEnergy();
-
-      saveLocal();
-
-      savePlayerToServer();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   BONUS REFRESH
-========================================================= */
-
-setInterval(
-  function(){
-
-    updateBonusButton();
-
-  },
-  60000
-);
-
 </script>
 
 </body>
-  </html>
+</html>
