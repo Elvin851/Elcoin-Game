@@ -3588,26 +3588,28 @@ async function loadPlayer(){
     render();
 
 
-  }catch(error){
+    }catch(error){
 
-  console.log(
-    "Supabase read error:",
-    error
-  );
+    console.log(
+      "Supabase read error:",
+      error
+    );
 
-  connectionText.textContent =
-    "OFFLINE";
+    connectionText.textContent =
+      "OFFLINE";
 
-  if(accountStatus){
+    if(accountStatus){
 
-    accountStatus.textContent =
-      "Offline mode";
+      accountStatus.textContent =
+        "Offline mode";
+
+    }
+
+    statusBox.classList.add(
+      "offline"
+    );
 
   }
-
-  statusBox.classList.add(
-    "offline"
-  );
 
 }
 
