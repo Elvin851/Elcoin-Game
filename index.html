@@ -5131,24 +5131,10 @@ document.addEventListener(
 
 async function startGame(){
 
-  /*
-    1. Load previous local state.
-  */
-
   loadLocal();
-
-
-  /*
-    2. Detect Telegram user.
-  */
 
   state.telegramId =
     getTelegramId();
-
-
-  /*
-    3. Anonymous nickname.
-  */
 
   if(!state.nickname){
 
@@ -5159,79 +5145,24 @@ async function startGame(){
 
   }
 
-
-  /*
-    4. Date.
-  */
-
   updateDate();
-
-
-  /*
-    5. Show game immediately.
-  */
 
   render();
 
+  await loadPlayer();
 
-  /*
-    6. Hide intro immediately.
-    Supabase cannot block the game.
-  */
+  render();
 
   setTimeout(
     ()=>{
 
-      const intro =
-        document.getElementById("intro");
-
-      if(intro){
-
-        intro.classList.add("hide");
-
-      }
+      document
+        .getElementById("intro")
+        .classList.add("hide");
 
     },
-    500
+    2100
   );
-
-
-  /*
-    7. Try cloud connection
-    in the background.
-  */
-
-  try{
-
-    await Promise.race([
-
-      loadPlayer(),
-
-      new Promise(
-        resolve =>
-          setTimeout(
-            resolve,
-            5000
-          )
-      )
-
-    ]);
-
-  }catch(error){
-
-    console.log(
-      "Cloud loading skipped:",
-      error
-    );
-
-  }
-
-
-  /*
-    8. Render after cloud check.
-  */
-
-  render();
 
 }
 
