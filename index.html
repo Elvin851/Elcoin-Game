@@ -1,3468 +1,835 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="az">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
-<meta name="theme-color" content="#05070c">
-<title>ELCOIN</title>
-
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-<style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-  background:
-    radial-gradient(circle at 50% -10%,#202d4c 0,#0a101d 38%,#03050a 100%);
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-  padding-bottom:92px;
-}
-
-button,
-input,
-textarea,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.app{
-  width:100%;
-  max-width:540px;
-  margin:auto;
-  padding:12px;
-}
-
-/* HEADER */
-
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.logo{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-
-  background:
-    radial-gradient(circle at 30% 25%,
-    #fff7bd 0,
-    #ffd94f 25%,
-    #d99a15 55%,
-    #6a3e00 100%);
-
-  color:#111;
-  font-size:23px;
-  font-weight:1000;
-
-  box-shadow:
-    0 0 20px #f5c54244,
-    inset 0 2px 5px #fff8;
-}
-
-.brand-title{
-  font-size:21px;
-  font-weight:1000;
-  letter-spacing:2px;
-}
-
-.brand-sub{
-  color:#7e899d;
-  font-size:9px;
-  letter-spacing:2px;
-  margin-top:2px;
-}
-
-.header-btn{
-  border:1px solid #ffffff12;
-  background:#ffffff08;
-  color:#fff;
-  border-radius:14px;
-  padding:10px 12px;
-}
-
-/* SECTIONS */
-
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
-
-.title{
-  font-size:23px;
-  font-weight:900;
-  margin:10px 3px 14px;
-}
-
-.card{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17,25,40,.96),
-      rgba(7,11,18,.98)
-    );
-
-  border:1px solid #ffffff0d;
-  border-radius:22px;
-  padding:16px;
-  margin:10px 0;
-
-  box-shadow:
-    0 16px 45px #0008;
-}
-
-/* HOME */
-
-.balance-card{
-  text-align:center;
-  padding-top:20px;
-}
-
-.balance-label{
-  color:#8993a6;
-  font-size:11px;
-  letter-spacing:1px;
-}
-
-.balance{
-  color:#fff0a4;
-  font-size:39px;
-  font-weight:1000;
-  margin:5px 0;
-
-  text-shadow:
-    0 0 25px #f5c54235;
-}
-
-.coin{
-  width:190px;
-  height:190px;
-
-  margin:18px auto;
-
-  border-radius:50%;
-
-  display:grid;
-  place-items:center;
-
-  background:
-    radial-gradient(
-      circle at 30% 23%,
-      #fffbd4 0,
-      #ffe36e 18%,
-      #f4bf28 42%,
-      #b46d00 72%,
-      #442500 100%
-    );
-
-  border:5px solid #ffe178;
-
-  box-shadow:
-    0 0 0 7px #f5c54210,
-    0 18px 45px #000,
-    0 0 55px #f5c54232,
-    inset 0 3px 10px #fff8;
-
-  user-select:none;
-  touch-action:manipulation;
-
-  transition:
-    transform .055s ease,
-    filter .1s ease;
-}
-
-.coin:active{
-  transform:scale(.955);
-  filter:brightness(1.18);
-}
-
-.coin-inner{
-  color:#171209;
-  font-size:34px;
-  font-weight:1000;
-}
-
-.tap-caption{
-  color:#8b95a6;
-  font-size:11px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.stat{
-  background:#ffffff06;
-  border:1px solid #ffffff07;
-  border-radius:16px;
-  padding:13px;
-}
-
-.stat small{
-  color:#808b9e;
-  font-size:10px;
-}
-
-.stat b{
-  display:block;
-  margin-top:5px;
-  font-size:15px;
-}
-
-.progress{
-  height:8px;
-  background:#ffffff0a;
-  border-radius:20px;
-  margin-top:8px;
-  overflow:hidden;
-}
-
-.progress span{
-  display:block;
-  height:100%;
-  border-radius:20px;
-  background:
-    linear-gradient(90deg,#bd7900,#fff09a);
-}
-
-/* BUTTONS */
-
-.btn{
-  border:0;
-  border-radius:13px;
-  padding:11px 14px;
-
-  color:#171107;
-  font-weight:900;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff0a0,
-      #e5ac26
-    );
-
-  box-shadow:0 4px 15px #0004;
-}
-
-.btn-dark{
-  background:#ffffff0a;
-  border:1px solid #ffffff12;
-  color:#fff;
-}
-
-.btn-red{
-  background:#42151b;
-  color:#ff9ba5;
-}
-
-.btn-green{
-  background:#123b27;
-  color:#7effb5;
-}
-
-/* ROW */
-
-.row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-
-  padding:13px 0;
-  border-bottom:1px solid #ffffff09;
-}
-
-.row:last-child{
-  border-bottom:0;
-}
-
-.muted{
-  color:#7f899b;
-  font-size:11px;
-}
-
-/* TAXI */
-
-.car{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-
-.car-image{
-  width:105px;
-  height:72px;
-
-  flex:none;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:16px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #202b3d,
-      #070a10
-    );
-
-  border:1px solid #ffffff0d;
-
-  font-size:43px;
-}
-
-.car-info{
-  flex:1;
-}
-
-.car-name{
-  font-size:14px;
-  font-weight:900;
-}
-
-.price{
-  color:#ffe993;
-  font-weight:900;
-  font-size:13px;
-  margin-top:5px;
-}
-
-.income{
-  color:#54e995;
-  font-size:11px;
-  margin-top:4px;
-}
-
-/* TASK */
-
-.task{
-  padding:13px 0;
-  border-bottom:1px solid #ffffff09;
-}
-
-.task:last-child{
-  border:0;
-}
-
-.task-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-/* INPUT */
-
-input,
-textarea,
-select{
-  width:100%;
-
-  background:#060a11;
-  color:#fff;
-
-  border:1px solid #ffffff12;
-
-  border-radius:13px;
-
-  padding:12px;
-
-  outline:none;
-
-  margin:5px 0 10px;
-}
-
-textarea{
-  min-height:120px;
-  resize:vertical;
-}
-
-/* PROFILE */
-
-.profile-head{
-  display:flex;
-  align-items:center;
-  gap:13px;
-}
-
-.avatar{
-  width:60px;
-  height:60px;
-
-  border-radius:50%;
-
-  display:grid;
-  place-items:center;
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffe680,
-      #8b5600
-    );
-
-  color:#111;
-  font-weight:1000;
-  font-size:24px;
-}
-
-/* FRIENDS */
-
-.friend{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:12px 0;
-
-  border-bottom:1px solid #ffffff09;
-}
-
-.friend:last-child{
-  border:0;
-}
-
-.online{
-  color:#45ed91;
-  font-size:10px;
-}
-
-.offline{
-  color:#778295;
-  font-size:10px;
-}
-
-/* RANKING */
-
-.rank{
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  padding:13px 0;
-
-  border-bottom:1px solid #ffffff09;
-}
-
-.rank-number{
-  width:30px;
-  color:#ffe98a;
-  font-weight:1000;
-}
-
-.rank-name{
-  flex:1;
-}
-
-.rank-balance{
-  color:#ffe98a;
-  font-weight:900;
-  font-size:12px;
-}
-
-/* VIP */
-
-.vip{
-  text-align:center;
-}
-
-.vip-logo{
-  font-size:55px;
-  margin:12px;
-}
-
-/* ADMIN CONTACT */
-
-.notice{
-  background:#f5c54209;
-  border:1px solid #f5c54218;
-  border-radius:14px;
-  padding:12px;
-
-  color:#dce0e8;
-  font-size:11px;
-  line-height:1.5;
-}
-
-/* BOTTOM NAV */
-
-.bottom-nav{
-  position:fixed;
-  left:50%;
-  bottom:9px;
-
-  transform:translateX(-50%);
-
-  width:min(520px,calc(100% - 18px));
-
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-
-  gap:4px;
-
-  padding:7px;
-
-  background:#080d16ed;
-
-  border:1px solid #ffffff12;
-
-  border-radius:21px;
-
-  backdrop-filter:blur(18px);
-
-  z-index:50;
-}
-
-.bottom-nav button{
-  border:0;
-  background:transparent;
-
-  color:#778295;
-
-  border-radius:14px;
-
-  padding:7px 2px;
-
-  font-size:9px;
-}
-
-.bottom-nav button.active{
-  color:#fff0a2;
-  background:#f5c5420c;
-}
-
-.bottom-nav strong{
-  display:block;
-  font-size:18px;
-  margin-bottom:2px;
-}
-
-/* TOAST */
-
-.toast{
-  position:fixed;
-
-  left:50%;
-  bottom:92px;
-
-  transform:
-    translate(-50%,15px);
-
-  opacity:0;
-
-  pointer-events:none;
-
-  background:#151d2a;
-
-  border:1px solid #ffffff14;
-
-  border-radius:14px;
-
-  padding:12px 17px;
-
-  color:#fff;
-
-  font-size:12px;
-
-  z-index:100;
-
-  transition:.2s;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-
-/* TAP FLOAT */
-
-.float{
-  position:fixed;
-
-  pointer-events:none;
-
-  color:#ffe77d;
-
-  font-weight:1000;
-
-  font-size:19px;
-
-  z-index:90;
-
-  animation:floatUp .55s ease-out forwards;
-}
-
-@keyframes floatUp{
-  from{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-  to{
-    opacity:0;
-    transform:translateY(-65px) scale(1.15);
-  }
-}
-
-/* ADMIN */
-
-.admin-stat-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.admin-stat{
-  background:#ffffff06;
-  border-radius:15px;
-  padding:13px;
-}
-
-.admin-stat small{
-  color:#7f899b;
-  font-size:9px;
-}
-
-.admin-stat b{
-  display:block;
-  font-size:20px;
-  margin-top:5px;
-}
-
-/* MOBILE */
-
-@media(max-width:380px){
-  .coin{
-    width:165px;
-    height:165px;
-  }
-
-  .balance{
-    font-size:32px;
-  }
-
-  .car-image{
-    width:85px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="app">
-
-<!-- HEADER -->
-
-<header class="header">
-
-  <div class="brand">
-
-    <div class="logo">E</div>
-
-    <div>
-      <div class="brand-title">ELCOIN</div>
-      <div class="brand-sub">
-        PLAY · EARN · GROW
-      </div>
-    </div>
-
-  </div>
-
-  <button
-    class="header-btn"
-    onclick="openSection('profile')">
-    👤
-  </button>
-
-</header>
-
-
-<!-- HOME -->
-
-<section id="home" class="section active">
-
-  <div class="card balance-card">
-
-    <div class="balance-label">
-      ELCOIN BALANCE
-    </div>
-
-    <div
-      id="balance"
-      class="balance">
-      0
-    </div>
-
-    <div
-      id="coin"
-      class="coin">
-
-      <div class="coin-inner">
-        ELCOIN
-      </div>
-
-    </div>
-
-    <div class="tap-caption">
-      TAP TO EARN · NO SOUND
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="stats">
-
-      <div class="stat">
-
-        <small>
-          ENERGY
-        </small>
-
-        <b id="energy">
-          3000 / 3000
-        </b>
-
-        <div class="progress">
-          <span
-            id="energyBar"
-            style="width:100%">
-          </span>
-        </div>
-
-      </div>
-
-
-      <div class="stat">
-
-        <small>
-          TAP POWER
-        </small>
-
-        <b id="tapPower">
-          +1
-        </b>
-
-        <div class="muted">
-          Level
-          <span id="level">
-            1
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="row">
-
-      <div>
-
-        🎁 <b>Daily Bonus</b>
-
-        <div class="muted">
-          24 saatda bir
-        </div>
-
-      </div>
-
-      <button
-        id="bonusBtn"
-        class="btn"
-        onclick="claimBonus()">
-
-        +500
-
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="row">
-
-      <div>
-
-        🚕 <b>Taksi gəliri</b>
-
-        <div class="muted">
-          Sahib olduğun taksilərdən gəlir
-        </div>
-
-      </div>
-
-      <b
-        id="taxiIncome"
-        style="color:#5bea9a">
-        0/gün
-      </b>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- TAXI -->
-
-<section id="taxi" class="section">
-
-  <div class="title">
-    🚕 Taksi al
-  </div>
-
-  <div class="card">
-
-    <div class="notice">
-
-      Daha bahalı avtomobillər daha yüksək
-      saatlıq və gündəlik ELCOIN gəliri verir.
-      Gəlir gələcək server sistemində offline
-      vaxt üçün də hesablanacaq.
-
-    </div>
-
-  </div>
-
-  <div id="cars"></div>
-
-</section>
-
-
-<!-- TASKS -->
-
-<section id="tasks" class="section">
-
-  <div class="title">
-    🎯 Tasks
-  </div>
-
-  <div class="card">
-
-    <div id="tasksList"></div>
-
-  </div>
-
-</section>
-
-
-<!-- FRIENDS -->
-
-<section id="friends" class="section">
-
-  <div class="title">
-    👥 Dostlar
-  </div>
-
-  <div class="card">
-
-    <input
-      id="friendSearch"
-      placeholder="Oyunçu adı axtar...">
-
-    <button
-      class="btn"
-      onclick="searchFriend()">
-
-      🔎 Axtar
-
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="row">
-
-      <span>
-        Dost sayı
-      </span>
-
-      <b id="friendCount">
-        0
-      </b>
-
-    </div>
-
-    <div id="friendsList"></div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="row">
-
-      <div>
-        📩 Dostluq sorğuları
-      </div>
-
-      <button
-        class="btn-dark btn"
-        onclick="toast('Dostluq sorğuları serverdən yüklənəcək')">
-
-        Bax
-
-      </button>
-
-    </div>
-
-    <div class="row">
-
-      <div>
-        🚫 Bloklananlar
-      </div>
-
-      <button
-        class="btn-dark btn"
-        onclick="toast('Blok siyahısı serverdən yüklənəcək')">
-
-        Bax
-
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- RANKING -->
-
-<section id="ranking" class="section">
-
-  <div class="title">
-    🏆 Ranking
-  </div>
-
-  <div class="card">
-
-    <div id="rankingList"></div>
-
-  </div>
-
-</section>
-
-
-<!-- PROFILE -->
-
-<section id="profile" class="section">
-
-  <div class="title">
-    👤 Profil
-  </div>
-
-
-  <div class="card">
-
-    <div class="profile-head">
-
-      <div
-        id="avatar"
-        class="avatar">
-        P
-      </div>
-
-      <div>
-
-        <b id="displayName">
-          Player
-        </b>
-
-        <div class="muted">
-          ELCOIN oyunçusu
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        Ad
-      </span>
-
-      <b id="profileFirst">
-        —
-      </b>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        Soyad
-      </span>
-
-      <b id="profileLast">
-        —
-      </b>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        Yaş
-      </span>
-
-      <b id="profileAge">
-        —
-      </b>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        Bölgə
-      </span>
-
-      <b id="profileRegion">
-        —
-      </b>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        Giriş tarixi
-      </span>
-
-      <b id="profileJoined">
-        —
-      </b>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <b>
-      Profil məlumatları
-    </b>
-
-    <input
-      id="firstName"
-      placeholder="Ad">
-
-    <input
-      id="lastName"
-      placeholder="Soyad">
-
-    <input
-      id="age"
-      type="number"
-      min="13"
-      max="100"
-      placeholder="Yaş">
-
-    <input
-      id="region"
-      placeholder="Şəhər / bölgə">
-
-
-    <button
-      class="btn"
-      onclick="saveProfile()">
-
-      Yadda saxla
-
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="row">
-
-      <span>
-        🔔 Telegram bildirişləri
-      </span>
-
-      <button
-        id="notificationBtn"
-        class="btn-dark btn"
-        onclick="enableNotifications()">
-
-        Aktiv et
-
-      </button>
-
-    </div>
-
-
-    <div class="row">
-
-      <span>
-        📩 Adminlə əlaqə
-      </span>
-
-      <button
-        class="btn"
-        onclick="openSection('contact')">
-
-        Yaz
-
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- VIP -->
-
-<section id="vip" class="section">
-
-  <div class="title">
-    💎 VIP
-  </div>
-
-  <div class="card vip">
-
-    <div class="vip-logo">
-      💎
-    </div>
-
-    <h2>
-      ELCOIN VIP
-    </h2>
-
-    <p class="muted">
-
-      Daha yüksək mining gücü,
-      əlavə enerji,
-      xüsusi profil statusu
-      və premium üstünlüklər.
-
-    </p>
-
-    <button
-      class="btn"
-      onclick="toast('VIP sistemi serverə qoşulduqda aktiv olacaq')">
-
-      VIP haqqında
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ADMIN CONTACT -->
-
-<section id="contact" class="section">
-
-  <div class="title">
-    📩 Adminlə əlaqə
-  </div>
-
-  <div class="card">
-
-    <div class="notice">
-
-      Təklif, fikir, xəta, problem,
-      şikayət və ya başqa müraciətini
-      adminə göndərə bilərsən.
-
-    </div>
-
-
-    <select id="messageType">
-
-      <option>
-        Təklif
-      </option>
-
-      <option>
-        Fikir
-      </option>
-
-      <option>
-        Xəta / problem
-      </option>
-
-      <option>
-        Şikayət
-      </option>
-
-      <option>
-        Digər
-      </option>
-
-    </select>
-
-
-    <textarea
-      id="messageText"
-      placeholder="Mesajını yaz...">
-    </textarea>
-
-
-    <button
-      class="btn"
-      onclick="sendAdminMessage()">
-
-      📩 Mesajı göndər
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ADMIN PANEL -->
-
-<section id="admin" class="section">
-
-  <div class="title">
-    👑 Admin Panel
-  </div>
-
-
-  <div class="card">
-
-    <div class="admin-stat-grid">
-
-      <div class="admin-stat">
-
-        <small>
-          ÜMUMİ OYUNÇU
-        </small>
-
-        <b id="adminTotal">
-          0
-        </b>
-
-      </div>
-
-
-      <div class="admin-stat">
-
-        <small>
-          ONLINE
-        </small>
-
-        <b id="adminOnline">
-          0
-        </b>
-
-      </div>
-
-
-      <div class="admin-stat">
-
-        <small>
-          BU GÜN GİRİŞ
-        </small>
-
-        <b id="adminToday">
-          0
-        </b>
-
-      </div>
-
-
-      <div class="admin-stat">
-
-        <small>
-          24 SAAT AKTİV
-        </small>
-
-        <b id="adminActive">
-          0
-        </b>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>
-      📢 Bildiriş göndər
-    </h3>
-
-    <input
-      id="announcementTitle"
-      placeholder="Başlıq">
-
-    <textarea
-      id="announcementText"
-      placeholder="Bildiriş mətni">
-    </textarea>
-
-    <button
-      class="btn"
-      onclick="sendAnnouncement()">
-
-      Telegram bildirişi yarat
-
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>
-      👥 Oyunçular
-    </h3>
-
-    <input
-      id="adminPlayerSearch"
-      placeholder="Oyunçu axtar...">
-
-    <button
-      class="btn"
-      onclick="adminSearchPlayer()">
-
-      Axtar
-
-    </button>
-
-    <div id="adminPlayerResult"></div>
-
-  </div>
-
-</section>
-
-</div>
-
-
-<!-- NAV -->
-
-<nav class="bottom-nav">
-
-  <button
-    class="active"
-    onclick="openSection('home',this)">
-
-    <strong>⌂</strong>
-    Home
-
-  </button>
-
-
-  <button
-    onclick="openSection('taxi',this)">
-
-    <strong>🚕</strong>
-    Taxi
-
-  </button>
-
-
-  <button
-    onclick="openSection('tasks',this)">
-
-    <strong>🎯</strong>
-    Tasks
-
-  </button>
-
-
-  <button
-    onclick="openSection('friends',this)">
-
-    <strong>👥</strong>
-    Friends
-
-  </button>
-
-
-  <button
-    onclick="openSection('ranking',this)">
-
-    <strong>🏆</strong>
-    Ranking
-
-  </button>
-
-</nav>
-
-
-<div
-  id="toast"
-  class="toast">
-</div>
-
-
-<script>
-
-/* =========================================================
-   ELCOIN CORE
-   ========================================================= */
-
-const STORAGE_KEY =
-  "elcoin_player_v2";
-
-
-/* =========================================================
-   TAXILƏR
-   ========================================================= */
-
-const CARS = [
-
-  {
-    name:"Toyota Prius",
-    price:5000,
-    hour:200
-  },
-
-  {
-    name:"Hyundai Elantra",
-    price:10000,
-    hour:450
-  },
-
-  {
-    name:"Toyota Camry",
-    price:20000,
-    hour:900
-  },
-
-  {
-    name:"Kia K5",
-    price:35000,
-    hour:1600
-  },
-
-  {
-    name:"Hyundai Sonata",
-    price:60000,
-    hour:2800
-  },
-
-  {
-    name:"Toyota Crown",
-    price:100000,
-    hour:4800
-  },
-
-  {
-    name:"BMW 5 Series",
-    price:175000,
-    hour:8500
-  },
-
-  {
-    name:"Mercedes-Benz E-Class",
-    price:300000,
-    hour:14000
-  },
-
-  {
-    name:"BMW 7 Series",
-    price:500000,
-    hour:24000
-  },
-
-  {
-    name:"Mercedes-Benz S-Class",
-    price:1000000,
-    hour:50000
-  }
-
-];
-
-
-/* =========================================================
-   TASKS
-   ========================================================= */
-
-const TASKS = [
-
-  {
-    id:"login",
-    name:"Gündəlik giriş",
-    reward:500
-  },
-
-  {
-    id:"tap500",
-    name:"500 dəfə ELCOIN tap",
-    reward:1000
-  },
-
-  {
-    id:"tap1000",
-    name:"1000 dəfə ELCOIN tap",
-    reward:2500
-  },
-
-  {
-    id:"friend",
-    name:"Bir dost əlavə et",
-    reward:1500
-  },
-
-  {
-    id:"taxi",
-    name:"İlk taksini al",
-    reward:3000
-  }
-
-];
-
-
-/* =========================================================
-   PLAYER STATE
-   ========================================================= */
-
-let state = {
-
-  balance:0,
-
-  energy:3000,
-
-  maxEnergy:3000,
-
-  level:1,
-
-  tapPower:1,
-
-  totalTaps:0,
-
-  lastEnergyAt:Date.now(),
-
-  lastBonusAt:0,
-
-  joinedAt:new Date().toISOString(),
-
-  lastActiveAt:new Date().toISOString(),
-
-  displayName:"Player",
-
-  firstName:"",
-
-  lastName:"",
-
-  age:"",
-
-  region:"",
-
-  friends:[],
-
-  friendRequests:[],
-
-  blocked:[],
-
-  ownedTaxis:[],
-
-  completedTasks:[],
-
-  notifications:true
-
-};
-
-
-/* =========================================================
-   LOAD
-   ========================================================= */
-
-function loadState(){
-
-  try{
-
-    const old =
-      localStorage.getItem(STORAGE_KEY);
-
-    if(old){
-
-      const parsed =
-        JSON.parse(old);
-
-      /*
-       * IMPORTANT:
-       * mövcud balans oxunur,
-       * heç vaxt avtomatik 0 edilmir.
-       */
-
-      state =
-        Object.assign(
-          {},
-          state,
-          parsed
-        );
-
-    }
-
-  }catch(error){
-
-    console.log(
-      "State load error:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   SAVE
-   ========================================================= */
-
-function saveState(){
-
-  state.lastActiveAt =
-    new Date().toISOString();
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(state)
-  );
-
-}
-
-
-/* =========================================================
-   ENERGY
-   3000 → 1 saat
-   50 energy / dəqiqə
-   ========================================================= */
-
-function regenerateEnergy(){
-
-  const now =
-    Date.now();
-
-  const previous =
-    Number(state.lastEnergyAt || now);
-
-  const elapsed =
-    Math.max(
-      0,
-      now - previous
-    );
-
-  const gained =
-    Math.floor(
-      elapsed / 1200
-    );
-
-  if(gained > 0){
-
-    state.energy =
-      Math.min(
-        state.maxEnergy,
-        state.energy + gained
-      );
-
-    state.lastEnergyAt =
-      now;
-
-    saveState();
-
-  }
-
-}
-
-
-/* =========================================================
-   FORMAT
-   ========================================================= */
-
-function fmt(number){
-
-  return Number(
-    number || 0
-  ).toLocaleString(
-    "en-US"
-  );
-
-}
-
-
-/* =========================================================
-   TOAST
-   ========================================================= */
-
-let toastTimer;
-
-function toast(message){
-
-  const element =
-    document.getElementById(
-      "toast"
-    );
-
-  element.textContent =
-    message;
-
-  element.classList.add(
-    "show"
-  );
-
-  clearTimeout(
-    toastTimer
-  );
-
-  toastTimer =
-    setTimeout(
-      ()=>{
-        element.classList.remove(
-          "show"
-        );
-      },
-      1800
-    );
-
-}
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-function openSection(
-  id,
-  clickedButton
-){
-
-  document
-    .querySelectorAll(
-      ".section"
-    )
-    .forEach(
-      section =>
-        section.classList.remove(
-          "active"
-        )
-    );
-
-  const target =
-    document.getElementById(
-      id
-    );
-
-  if(target){
-
-    target.classList.add(
-      "active"
-    );
-
-  }
-
-
-  document
-    .querySelectorAll(
-      ".bottom-nav button"
-    )
-    .forEach(
-      button =>
-        button.classList.remove(
-          "active"
-        )
-    );
-
-
-  if(clickedButton){
-
-    clickedButton.classList.add(
-      "active"
-    );
-
-  }
-
-
-  window.scrollTo(
-    0,
-    0
-  );
-
-}
-
-
-/* =========================================================
-   TAP
-   ========================================================= */
-
-const coin =
-  document.getElementById(
-    "coin"
-  );
-
-
-coin.addEventListener(
-  "pointerdown",
-  tapCoin,
-  {
-    passive:true
-  }
-);
-
-
-function tapCoin(event){
-
-  if(state.energy <= 0){
-
-    toast(
-      "⚡ Energy bitib"
-    );
-
-    return;
-
-  }
-
-
-  state.energy -= 1;
-
-  state.balance +=
-    state.tapPower;
-
-  state.totalTaps += 1;
-
-
-  createFloat(
-    "+" +
-    fmt(state.tapPower),
-    event
-  );
-
-
-  saveState();
-
-  renderHome();
-
-
-  /*
-   * SERVER:
-   *
-   * Real oyunda burada
-   * Edge Function-a tap göndərilir.
-   *
-   * Server:
-   * - Telegram initData yoxlayır
-   * - energy yoxlayır
-   * - tap rate yoxlayır
-   * - balance dəyişdirir
-   *
-   * Client yalnız UI olur.
-   */
-
-}
-
-
-/* =========================================================
-   FLOAT NUMBER
-   ========================================================= */
-
-function createFloat(
-  text,
-  event
-){
-
-  const element =
-    document.createElement(
-      "div"
-    );
-
-  element.className =
-    "float";
-
-  element.textContent =
-    text;
-
-  let x =
-    window.innerWidth / 2;
-
-  let y =
-    250;
-
-
-  if(event){
-
-    x =
-      event.clientX;
-
-    y =
-      event.clientY;
-
-  }
-
-
-  element.style.left =
-    x + "px";
-
-  element.style.top =
-    y + "px";
-
-
-  document.body.appendChild(
-    element
-  );
-
-
-  setTimeout(
-    ()=>{
-      element.remove();
-    },
-    600
-  );
-
-}
-
-
-/* =========================================================
-   DAILY BONUS
-   ========================================================= */
-
-function claimBonus(){
-
-  const day =
-    24 * 60 * 60 * 1000;
-
-  if(
-    Date.now() -
-    Number(state.lastBonusAt || 0)
-    <
-    day
-  ){
-
-    toast(
-      "🎁 Bonus artıq götürülüb"
-    );
-
-    return;
-
-  }
-
-
-  state.lastBonusAt =
-    Date.now();
-
-  state.balance +=
-    500;
-
-  saveState();
-
-  render();
-
-  toast(
-    "+500 ELCOIN 🎁"
-  );
-
-}
-
-
-/* =========================================================
-   TAXI RENDER
-   ========================================================= */
-
-function renderCars(){
-
-  const container =
-    document.getElementById(
-      "cars"
-    );
-
-  container.innerHTML = "";
-
-
-  CARS.forEach(
-    (car,index)=>{
-
-      const owned =
-        state.ownedTaxis
-          .includes(index);
-
-
-      const daily =
-        car.hour * 24;
-
-
-      const element =
-        document.createElement(
-          "div"
-        );
-
-
-      element.className =
-        "card";
-
-
-      element.innerHTML = `
-
-        <div class="car">
-
-          <div class="car-image">
-            🚕
-          </div>
-
-          <div class="car-info">
-
-            <div class="car-name">
-              ${car.name}
-            </div>
-
-            <div class="price">
-              ${fmt(car.price)}
-              ELCOIN
-            </div>
-
-            <div class="income">
-              +${fmt(car.hour)}
-              /saat
-            </div>
-
-            <div class="income">
-              +${fmt(daily)}
-              /gün
-            </div>
-
-          </div>
-
-          <button
-            class="btn"
-            onclick="buyTaxi(${index})"
-            ${owned ? "disabled" : ""}>
-
-            ${
-              owned
-              ?
-              "Alınıb"
-              :
-              "Al"
-            }
-
-          </button>
-
-        </div>
-
-      `;
-
-
-      container.appendChild(
-        element
-      );
-
-    }
-  );
-
-
-  renderTaxiIncome();
-
-}
-
-
-/* =========================================================
-   TAXI BUY
-   ========================================================= */
-
-function buyTaxi(index){
-
-  const car =
-    CARS[index];
-
-
-  if(
-    state.ownedTaxis
-      .includes(index)
-  ){
-
-    return;
-
-  }
-
-
-  if(
-    state.balance <
-    car.price
-  ){
-
-    toast(
-      "🪙 Kifayət qədər ELCOIN yoxdur"
-    );
-
-    return;
-
-  }
-
-
-  state.balance -=
-    car.price;
-
-
-  state.ownedTaxis.push(
-    index
-  );
-
-
-  saveState();
-
-  render();
-
-  toast(
-    car.name +
-    " alındı 🚕"
-  );
-
-
-  /*
-   * SERVER:
-   *
-   * Real sistemdə alış
-   * atomic transaction olmalıdır:
-   *
-   * balance >= price
-   * ↓
-   * balance - price
-   * ↓
-   * player_taxis insert
-   *
-   * Hamısı serverdə.
-   */
-
-}
-
-
-/* =========================================================
-   TAXI INCOME
-   ========================================================= */
-
-function getTaxiHourlyIncome(){
-
-  return state.ownedTaxis
-    .reduce(
-      (sum,index)=>{
-
-        return sum +
-          CARS[index].hour;
-
-      },
-      0
-    );
-
-}
-
-
-function renderTaxiIncome(){
-
-  const hourly =
-    getTaxiHourlyIncome();
-
-
-  const daily =
-    hourly * 24;
-
-
-  document.getElementById(
-    "taxiIncome"
-  ).textContent =
-    "+" +
-    fmt(daily) +
-    "/gün";
-
-}
-
-
-/* =========================================================
-   TASKS
-   ========================================================= */
-
-function taskReady(id){
-
-  if(id === "login")
-    return true;
-
-
-  if(id === "tap500")
-    return state.totalTaps >= 500;
-
-
-  if(id === "tap1000")
-    return state.totalTaps >= 1000;
-
-
-  if(id === "friend")
-    return state.friends.length >= 1;
-
-
-  if(id === "taxi")
-    return state.ownedTaxis.length >= 1;
-
-
-  return false;
-
-}
-
-
-function renderTasks(){
-
-  const container =
-    document.getElementById(
-      "tasksList"
-    );
-
-  container.innerHTML = "";
-
-
-  TASKS.forEach(
-    task=>{
-
-      const done =
-        state.completedTasks
-          .includes(task.id);
-
-
-      let progress =
-        "Gözləyir";
-
-
-      if(task.id === "tap500"){
-
-        progress =
-          Math.min(
-            state.totalTaps,
-            500
-          )
-          +
-          " / 500";
-
-      }
-
-
-      if(task.id === "tap1000"){
-
-        progress =
-          Math.min(
-            state.totalTaps,
-            1000
-          )
-          +
-          " / 1000";
-
-      }
-
-
-      if(done){
-
-        progress =
-          "Tamamlandı";
-
-      }
-
-
-      const element =
-        document.createElement(
-          "div"
-        );
-
-
-      element.className =
-        "task";
-
-
-      element.innerHTML = `
-
-        <div class="task-top">
-
-          <div>
-
-            <b>
-              ${task.name}
-            </b>
-
-            <div class="muted">
-              ${progress}
-            </div>
-
-          </div>
-
-          <button
-            class="btn"
-            onclick="claimTask('${task.id}')"
-            ${done ? "disabled" : ""}>
-
-            +${fmt(task.reward)}
-
-          </button>
-
-        </div>
-
-      `;
-
-
-      container.appendChild(
-        element
-      );
-
-    }
-  );
-
-}
-
-
-function claimTask(id){
-
-  const task =
-    TASKS.find(
-      x=>x.id === id
-    );
-
-
-  if(!task)
-    return;
-
-
-  if(
-    state.completedTasks
-      .includes(id)
-  ){
-
-    return;
-
-  }
-
-
-  if(
-    !taskReady(id)
-  ){
-
-    toast(
-      "🎯 Tapşırıq tamamlanmayıb"
-    );
-
-    return;
-
-  }
-
-
-  state.completedTasks.push(
-    id
-  );
-
-
-  state.balance +=
-    task.reward;
-
-
-  saveState();
-
-  render();
-
-  toast(
-    "+" +
-    fmt(task.reward) +
-    " ELCOIN 🎯"
-  );
-
-}
-
-
-/* =========================================================
-   FRIENDS
-   ========================================================= */
-
-function renderFriends(){
-
-  const count =
-    document.getElementById(
-      "friendCount"
-    );
-
-
-  count.textContent =
-    state.friends.length;
-
-
-  const container =
-    document.getElementById(
-      "friendsList"
-    );
-
-
-  container.innerHTML = "";
-
-
-  if(
-    state.friends.length === 0
-  ){
-
-    container.innerHTML = `
-
-      <div
-        class="muted"
-        style="text-align:center;padding:25px">
-
-        Hələ dost yoxdur.
-
-        <br><br>
-
-        Oyunçu axtarıb
-        dostluq sorğusu göndər.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  state.friends.forEach(
-    (friend,index)=>{
-
-      const element =
-        document.createElement(
-          "div"
-        );
-
-
-      element.className =
-        "friend";
-
-
-      element.innerHTML = `
-
-        <div>
-
-          👤
-          <b>
-            ${escapeHTML(friend.name)}
-          </b>
-
-          <div
-            class="${
-              friend.online
-              ?
-              "online"
-              :
-              "offline"
-            }">
-
-            ${
-              friend.online
-              ?
-              "🟢 Online"
-              :
-              "⚪ Offline"
-            }
-
-          </div>
-
-        </div>
-
-        <div>
-
-          <button
-            class="btn-dark btn"
-            onclick="messageFriend(${index})">
-
-            💬
-
-          </button>
-
-          <button
-            class="btn-red btn"
-            onclick="blockFriend(${index})">
-
-            🚫
-
-          </button>
-
-        </div>
-
-      `;
-
-
-      container.appendChild(
-        element
-      );
-
-    }
-  );
-
-}
-
-
-function searchFriend(){
-
-  const value =
-    document
-      .getElementById(
-        "friendSearch"
-      )
-      .value
-      .trim();
-
-
-  if(!value){
-
-    toast(
-      "Oyunçu adı yaz"
-    );
-
-    return;
-
-  }
-
-
-  /*
-   * Real sistem:
-   *
-   * Supabase:
-   * players.display_name
-   *
-   * Telegram ID göstərilmir.
-   */
-
-  toast(
-    "🔎 Oyunçu serverdə axtarılır..."
-  );
-
-}
-
-
-function messageFriend(index){
-
-  const friend =
-    state.friends[index];
-
-
-  if(!friend)
-    return;
-
-
-  const message =
-    prompt(
-      friend.name +
-      " üçün mesaj:"
-    );
-
-
-  if(
-    !message ||
-    !message.trim()
-  ){
-
-    return;
-
-  }
-
-
-  toast(
-    "💬 Mesaj göndərildi"
-  );
-
-
-  /*
-   * SERVER:
-   * messages cədvəlinə insert.
-   */
-
-}
-
-
-function blockFriend(index){
-
-  const friend =
-    state.friends[index];
-
-
-  if(!friend)
-    return;
-
-
-  state.blocked.push(
-    friend.name
-  );
-
-
-  state.friends.splice(
-    index,
-    1
-  );
-
-
-  saveState();
-
-  renderFriends();
-
-  toast(
-    "🚫 İstifadəçi bloklandı"
-  );
-
-}
-
-
-/* =========================================================
-   RANKING
-   ========================================================= */
-
-function renderRanking(){
-
-  const container =
-    document.getElementById(
-      "rankingList"
-    );
-
-
-  /*
-   * Demo.
-   *
-   * Real sistemdə serverdən
-   * sıralanmış players gələcək.
-   */
-
-  const players = [
-
-    {
-      name:
-        state.displayName || "Player",
-      balance:
-        state.balance
-    },
-
-    {
-      name:"Player One",
-      balance:950000
-    },
-
-    {
-      name:"Player Two",
-      balance:720000
-    },
-
-    {
-      name:"Player Three",
-      balance:500000
-    },
-
-    {
-      name:"Player Four",
-      balance:250000
-    }
-
-  ];
-
-
-  players.sort(
-    (a,b)=>
-      b.balance -
-      a.balance
-  );
-
-
-  container.innerHTML = "";
-
-
-  players.forEach(
-    (player,index)=>{
-
-      const element =
-        document.createElement(
-          "div"
-        );
-
-
-      element.className =
-        "rank";
-
-
-      element.innerHTML = `
-
-        <div class="rank-number">
-          #${index + 1}
-        </div>
-
-        <div class="rank-name">
-
-          <b>
-            ${escapeHTML(player.name)}
-          </b>
-
-        </div>
-
-        <div class="rank-balance">
-
-          ${fmt(player.balance)}
-          ELCOIN
-
-        </div>
-
-      `;
-
-
-      container.appendChild(
-        element
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   PROFILE
-   ========================================================= */
-
-function renderProfile(){
-
-  const name =
-    state.displayName ||
-    "Player";
-
-
-  document.getElementById(
-    "displayName"
-  ).textContent =
-    name;
-
-
-  document.getElementById(
-    "avatar"
-  ).textContent =
-    name
-      .charAt(0)
-      .toUpperCase();
-
-
-  document.getElementById(
-    "profileFirst"
-  ).textContent =
-    state.firstName || "—";
-
-
-  document.getElementById(
-    "profileLast"
-  ).textContent =
-    state.lastName || "—";
-
-
-  document.getElementById(
-    "profileAge"
-  ).textContent =
-    state.age || "—";
-
-
-  document.getElementById(
-    "profileRegion"
-  ).textContent =
-    state.region || "—";
-
-
-  document.getElementById(
-    "profileJoined"
-  ).textContent =
-    new Date(
-      state.joinedAt
-    ).toLocaleString(
-      "az-AZ"
-    );
-
-
-  document.getElementById(
-    "firstName"
-  ).value =
-    state.firstName || "";
-
-
-  document.getElementById(
-    "lastName"
-  ).value =
-    state.lastName || "";
-
-
-  document.getElementById(
-    "age"
-  ).value =
-    state.age || "";
-
-
-  document.getElementById(
-    "region"
-  ).value =
-    state.region || "";
-
-}
-
-
-function saveProfile(){
-
-  state.firstName =
-    document
-      .getElementById(
-        "firstName"
-      )
-      .value
-      .trim();
-
-
-  state.lastName =
-    document
-      .getElementById(
-        "lastName"
-      )
-      .value
-      .trim();
-
-
-  state.age =
-    document
-      .getElementById(
-        "age"
-      )
-      .value;
-
-
-  state.region =
-    document
-      .getElementById(
-        "region"
-      )
-      .value
-      .trim();
-
-
-  if(state.firstName){
-
-    state.displayName =
-      state.firstName +
-      (
-        state.lastName
-        ?
-        " " +
-        state.lastName
-        :
-        ""
-      );
-
-  }
-
-
-  saveState();
-
-  render();
-
-  toast(
-    "✅ Profil yadda saxlanıldı"
-  );
-
-
-  /*
-   * SERVER:
-   * profile məlumatları
-   * Supabase-də qorunacaq.
-   */
-
-}
-
-
-/* =========================================================
-   ADMIN CONTACT
-   ========================================================= */
-
-function sendAdminMessage(){
-
-  const type =
-    document
-      .getElementById(
-        "messageType"
-      )
-      .value;
-
-
-  const message =
-    document
-      .getElementById(
-        "messageText"
-      )
-      .value
-      .trim();
-
-
-  if(!message){
-
-    toast(
-      "Mesaj yaz"
-    );
-
-    return;
-
-  }
-
-
-  /*
-   * Local demo.
-   *
-   * Real sistemdə:
-   *
-   * admin_messages
-   *
-   * cədvəlinə server vasitəsilə
-   * əlavə olunacaq.
-   */
-
-
-  document.getElementById(
-    "messageText"
-  ).value = "";
-
-
-  toast(
-    "✅ Mesaj göndərildi"
-  );
-
-
-  console.log(
-    "ADMIN MESSAGE",
-    {
-      type,
-      message
-    }
-  );
-
-}
-
-
-/* =========================================================
-   NOTIFICATIONS
-   ========================================================= */
-
-function enableNotifications(){
-
-  if(
-    !("Notification" in window)
-  ){
-
-    toast(
-      "Bildiriş dəstəyi yoxdur"
-    );
-
-    return;
-
-  }
-
-
-  Notification
-    .requestPermission()
-    .then(
-      permission=>{
-
-        if(
-          permission ===
-          "granted"
-        ){
-
-          state.notifications =
-            true;
-
-          saveState();
-
-          document.getElementById(
-            "notificationBtn"
-          ).textContent =
-            "Aktivdir";
-
-
-          toast(
-            "🔔 Bildirişlər aktivdir"
-          );
-
-        }else{
-
-          toast(
-            "Bildiriş icazəsi verilmədi"
-          );
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELCOIN - Mini App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            user-select: none;
         }
 
-      }
-    );
-
-}
-
-
-/* =========================================================
-   TELEGRAM
-   ========================================================= */
-
-function initTelegram(){
-
-  try{
-
-    const tg =
-      window.Telegram &&
-      window.Telegram.WebApp;
-
-
-    if(!tg)
-      return;
-
-
-    tg.ready();
-
-    tg.expand();
-
-
-    const user =
-      tg.initDataUnsafe &&
-      tg.initDataUnsafe.user;
-
-
-    if(!user)
-      return;
-
-
-    /*
-     * Telegram display name.
-     *
-     * Telegram ID istifadəçiyə
-     * açıq şəkildə göstərilmir.
-     */
-
-    const name =
-      [
-        user.first_name,
-        user.last_name
-      ]
-      .filter(Boolean)
-      .join(" ");
-
-
-    if(
-      name &&
-      (
-        !state.displayName ||
-        state.displayName === "Player"
-      )
-    ){
-
-      state.displayName =
-        name;
-
-    }
-
-
-    if(
-      user.first_name &&
-      !state.firstName
-    ){
-
-      state.firstName =
-        user.first_name;
-
-    }
-
-
-    if(
-      user.last_name &&
-      !state.lastName
-    ){
-
-      state.lastName =
-        user.last_name;
-
-    }
-
-
-    saveState();
-
-  }catch(error){
-
-    console.log(
-      "Telegram error:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   ADMIN STATISTICS
-   ========================================================= */
-
-function loadAdminStats(){
-
-  /*
-   * Demo rəqəmlər.
-   *
-   * Real Admin Panel:
-   *
-   * SELECT COUNT(*) FROM players
-   *
-   * active users
-   * new users
-   * online players
-   *
-   * server tərəfindən hesablanmalıdır.
-   */
-
-  document.getElementById(
-    "adminTotal"
-  ).textContent =
-    "—";
-
-
-  document.getElementById(
-    "adminOnline"
-  ).textContent =
-    "—";
-
-
-  document.getElementById(
-    "adminToday"
-  ).textContent =
-    "—";
-
-
-  document.getElementById(
-    "adminActive"
-  ).textContent =
-    "—";
-
-}
-
-
-/* =========================================================
-   ADMIN PLAYER SEARCH
-   ========================================================= */
-
-function adminSearchPlayer(){
-
-  const value =
-    document
-      .getElementById(
-        "adminPlayerSearch"
-      )
-      .value
-      .trim();
-
-
-  if(!value){
-
-    toast(
-      "Oyunçu adı yaz"
-    );
-
-    return;
-
-  }
-
-
-  document.getElementById(
-    "adminPlayerResult"
-  ).innerHTML = `
-
-    <div class="notice">
-
-      🔎 Server-side oyunçu axtarışı:
-      <b>
-        ${escapeHTML(value)}
-      </b>
-
-      <br><br>
-
-      Bu hissə yalnız admin
-      autentifikasiyasından sonra
-      real Supabase məlumatlarını
-      göstərəcək.
-
+        body {
+            background-color: #070913;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            max-height: 932px;
+            background: #090c1b;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+
+        /* Top Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            z-index: 10;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .logo-icon::before {
+            content: '👑';
+            position: absolute;
+            top: -12px;
+            font-size: 14px;
+        }
+
+        .logo-icon span {
+            font-size: 22px;
+            font-weight: 900;
+            color: #0c0f1d;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .logo-text p {
+            font-size: 10px;
+            color: #a0aec0;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 6px 12px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-pill .avatar {
+            width: 24px;
+            height: 24px;
+            background: #cbd5e0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #1a202c;
+            font-size: 12px;
+        }
+
+        .profile-info .name {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .profile-info .id {
+            font-size: 9px;
+            color: #a0aec0;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification-dot::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 7px;
+            height: 7px;
+            background: #ff3b30;
+            border-radius: 50%;
+        }
+
+        /* Scrollable Content */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 16px 90px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .content::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hero Card with City Background */
+        .hero-card {
+            background: linear-gradient(180deg, rgba(16, 24, 48, 0.85) 0%, rgba(10, 14, 30, 0.95) 100%), url('https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .coin-counter .label {
+            font-size: 11px;
+            color: #f5c518;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-transform: uppercase;
+        }
+
+        .coin-counter .amount {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-top: 2px;
+        }
+
+        .coin-counter .rate {
+            font-size: 12px;
+            color: #34c759;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 2px;
+        }
+
+        .slogan-badge {
+            text-align: right;
+        }
+
+        .slogan-badge span {
+            font-size: 13px;
+            font-style: italic;
+            font-weight: 800;
+            color: #f5c518;
+            line-height: 1.1;
+            display: inline-block;
+            transform: rotate(3deg);
+        }
+
+        /* Center Big Coin */
+        .main-coin-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0 10px 0;
+            position: relative;
+        }
+
+        .main-coin {
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, #ffe600 0%, #f59e0b 70%, #d97706 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 35px rgba(245, 197, 24, 0.5), inset 0 0 15px rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .main-coin:active {
+            transform: scale(0.93);
+        }
+
+        .main-coin::before {
+            content: '👑';
+            position: absolute;
+            top: -14px;
+            font-size: 24px;
+        }
+
+        .main-coin-inner {
+            width: 116px;
+            height: 116px;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-coin-symbol {
+            font-size: 64px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Energy Bar */
+        .energy-section {
+            margin-top: 15px;
+        }
+
+        .energy-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #cbd5e0;
+        }
+
+        .energy-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .energy-bar-fill {
+            width: 48%;
+            height: 100%;
+            background: linear-gradient(90deg, #f59e0b, #ffd700);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Right Side Side-Cards inside Hero Area or stacked */
+        .action-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .small-action-card {
+            background: rgba(18, 24, 43, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+        }
+
+        .action-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #f59e0b, #ffd700);
+            border: none;
+            padding: 8px;
+            border-radius: 10px;
+            color: #0c0f1d;
+            font-weight: 800;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            transition: opacity 0.2s;
+        }
+
+        .action-btn:active {
+            opacity: 0.8;
+        }
+
+        /* Navigation Menu Grid */
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .menu-item {
+            background: rgba(18, 24, 43, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .menu-item-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .menu-icon-box {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .menu-item-text .title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .menu-item-text .desc {
+            font-size: 10px;
+            color: #a0aec0;
+            margin-top: 2px;
+        }
+
+        .arrow-icon {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .menu-item-full {
+            grid-column: span 2;
+        }
+
+        /* Weekly Top 10 Section */
+        .top10-section {
+            background: rgba(18, 24, 43, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 14px;
+        }
+
+        .top10-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .top10-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .all-ranking {
+            font-size: 12px;
+            color: #a0aec0;
+            cursor: pointer;
+        }
+
+        .top10-list {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .top10-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .top10-card {
+            min-width: 140px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rank-badge {
+            width: 24px;
+            height: 24px;
+            background: #d97706;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .rank-badge.r1 { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; }
+        .rank-badge.r2 { background: linear-gradient(135deg, #cbd5e0, #64748b); color: #000; }
+        .rank-badge.r3 { background: linear-gradient(135deg, #b45309, #78350f); color: #fff; }
+
+        .top10-user-info .u-name {
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .top10-user-info .u-score {
+            font-size: 11px;
+            color: #f5c518;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* Bottom Nav Bar */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #090c1b;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 20px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            color: #718096;
+            transition: color 0.2s;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .nav-item.active {
+            color: #ffd700;
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* Floating Click Effect */
+        .floating-number {
+            position: absolute;
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffd700;
+            animation: floatUp 0.8s ease-out forwards;
+            pointer-events: none;
+            z-index: 50;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-70px) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-area">
+            <div class="logo-icon"><span>E</span></div>
+            <div class="logo-text">
+                <h1>ELCOIN</h1>
+                <p>PLAY • EARN • GROW</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="profile-pill">
+                <div class="avatar">👤</div>
+                <div class="profile-info">
+                    <div class="name">Elvin</div>
+                    <div class="id">ID: #4827</div>
+                </div>
+            </div>
+            <div class="icon-btn notification-dot" onclick="alert('Yeni bildiriş yoxdur.')">
+                🔔
+            </div>
+            <div class="icon-btn" onclick="alert('Menyu açıldı')">
+                ☰
+            </div>
+        </div>
     </div>
 
-  `;
-
-}
-
-
-/* =========================================================
-   ANNOUNCEMENT
-   ========================================================= */
-
-function sendAnnouncement(){
-
-  const title =
-    document
-      .getElementById(
-        "announcementTitle"
-      )
-      .value
-      .trim();
-
-
-  const message =
-    document
-      .getElementById(
-        "announcementText"
-      )
-      .value
-      .trim();
-
-
-  if(
-    !title ||
-    !message
-  ){
-
-    toast(
-      "Başlıq və mətn yaz"
-    );
-
-    return;
-
-  }
-
-
-  toast(
-    "📢 Bildiriş server növbəsinə əlavə ediləcək"
-  );
-
-
-  /*
-   * Telegram Bot API tokenini
-   * heç vaxt frontend JS-ə qoymaq olmaz.
-   *
-   * Admin announcement:
-   * Admin Panel
-   * ↓
-   * Supabase Edge Function
-   * ↓
-   * Telegram Bot API
-   */
-
-}
-
-
-/* =========================================================
-   ESCAPE
-   ========================================================= */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-/* =========================================================
-   HOME RENDER
-   ========================================================= */
-
-function renderHome(){
-
-  regenerateEnergy();
-
-
-  document.getElementById(
-    "balance"
-  ).textContent =
-    fmt(state.balance);
-
-
-  document.getElementById(
-    "energy"
-  ).textContent =
-    fmt(state.energy) +
-    " / " +
-    fmt(state.maxEnergy);
-
-
-  document.getElementById(
-    "energyBar"
-  ).style.width =
-    (
-      state.energy /
-      state.maxEnergy *
-      100
-    ) +
-    "%";
-
-
-  document.getElementById(
-    "tapPower"
-  ).textContent =
-    "+" +
-    fmt(state.tapPower);
-
-
-  document.getElementById(
-    "level"
-  ).textContent =
-    state.level;
-
-}
-
-
-/* =========================================================
-   MASTER RENDER
-   ========================================================= */
-
-function render(){
-
-  regenerateEnergy();
-
-  renderHome();
-
-  renderCars();
-
-  renderTasks();
-
-  renderFriends();
-
-  renderRanking();
-
-  renderProfile();
-
-}
-
-
-/* =========================================================
-   START
-   ========================================================= */
-
-function startGame(){
-
-  loadState();
-
-  initTelegram();
-
-  /*
-   * Burada balans sıfırlanmır.
-   *
-   * localStorage-də köhnə balans varsa
-   * həmin balans oxunur.
-   */
-
-  render();
-
-  loadAdminStats();
-
-}
-
-
-startGame();
-
-
-/* =========================================================
-   OFFLINE ENERGY TIMER
-   ========================================================= */
-
-setInterval(
-  ()=>{
-    regenerateEnergy();
-    renderHome();
-  },
-  15000
-);
-
-
-/* =========================================================
-   TAB / APP RETURN
-   ========================================================= */
-
-document.addEventListener(
-  "visibilitychange",
-  ()=>{
-    if(!document.hidden){
-
-      regenerateEnergy();
-
-      render();
-
+    <!-- Scrollable Body Content -->
+    <div class="content">
+        <!-- Hero Card -->
+        <div class="hero-card">
+            <div class="hero-top-row">
+                <div class="coin-counter">
+                    <div class="label">🪙 ELCOIN</div>
+                    <div class="amount" id="balanceDisplay">1,263</div>
+                    <div class="rate">⬆️ +24 / dəq</div>
+                </div>
+                <div class="slogan-badge">
+                    <span>Bigger<br>Stronger<br>Together</span>
+                </div>
+            </div>
+
+            <!-- Big Clickable Coin -->
+            <div class="main-coin-container" id="coinContainer">
+                <div class="main-coin" id="tapCoin">
+                    <div class="main-coin-inner">
+                        <div class="main-coin-symbol">E</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Energy Bar -->
+            <div class="energy-section">
+                <div class="energy-info">
+                    <span>⚡ Energy</span>
+                    <span id="energyText">478/1000</span>
+                </div>
+                <div class="energy-bar-bg">
+                    <div class="energy-bar-fill" id="energyBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Cards Grid (Daily Bonus & Upgrade) -->
+        <div class="action-cards-grid">
+            <div class="small-action-card">
+                <div class="card-header-top">
+                    🎁 Daily Bonus
+                </div>
+                <button class="action-btn" onclick="claimBonus()">+500 Claim</button>
+            </div>
+            <div class="small-action-card">
+                <div class="card-header-top">
+                    📈 Upgrade <span style="font-size:10px; color:#a0aec0; margin-left:auto;">Level 11</span>
+                </div>
+                <button class="action-btn" onclick="upgradeLevel()">⬆️ Upgrade 1100</button>
+            </div>
+        </div>
+
+        <!-- Menu Navigation Grid -->
+        <div class="menu-grid">
+            <div class="menu-row">
+                <div class="menu-item" onclick="alert('Taksilər bölməsi açılır')">
+                    <div class="menu-item-left">
+                        <div class="menu-icon-box">🚗</div>
+                        <div class="menu-item-text">
+                            <div class="title">Taksilər</div>
+                            <div class="desc">Maşınlar al və qazan</div>
+                        </div>
+                    </div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+                <div class="menu-item" onclick="alert('Şəhər bölməsi açılır')">
+                    <div class="menu-item-left">
+                        <div class="menu-icon-box">🏙️</div>
+                        <div class="menu-item-text">
+                            <div class="title">Şəhər</div>
+                            <div class="desc">Yeni şəhərlərə get</div>
+                        </div>
+                    </div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+            </div>
+
+            <div class="menu-row">
+                <div class="menu-item" onclick="alert('Dostlar bölməsi açılır')">
+                    <div class="menu-item-left">
+                        <div class="menu-icon-box">👥</div>
+                        <div class="menu-item-text">
+                            <div class="title">Dostlar</div>
+                            <div class="desc">Referal linkini paylaş</div>
+                        </div>
+                    </div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+                <div class="menu-item" onclick="alert('Reytinq bölməsi açılır')">
+                    <div class="menu-item-left">
+                        <div class="menu-icon-box">🏆</div>
+                        <div class="menu-item-text">
+                            <div class="title">Reytinq</div>
+                            <div class="desc">TOP oyunçular</div>
+                        </div>
+                    </div>
+                    <div class="arrow-icon">➔</div>
+                </div>
+            </div>
+
+            <div class="menu-item menu-item-full" onclick="alert('Tapşırıqlar bölməsi açılır')">
+                <div class="menu-item-left">
+                    <div class="menu-icon-box">📋</div>
+                    <div class="menu-item-text">
+                        <div class="title">Tapşırıqlar</div>
+                        <div class="desc">Mükafatlar qazan</div>
+                    </div>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </div>
+        </div>
+
+        <!-- Weekly Top 10 Section -->
+        <div class="top10-section">
+            <div class="top10-header">
+                <div class="top10-title">
+                    👑 Həftəlik TOP 10
+                </div>
+                <div class="all-ranking" onclick="alert('Bütün reytinq siyahısı')">Bütün reytinq →</div>
+            </div>
+            <div class="top10-list">
+                <div class="top10-card">
+                    <div class="rank-badge r1">1</div>
+                    <div class="top10-user-info">
+                        <div class="u-name">Elvin 👑</div>
+                        <div class="u-score">12,450,800</div>
+                    </div>
+                </div>
+                <div class="top10-card">
+                    <div class="rank-badge r2">2</div>
+                    <div class="top10-user-info">
+                        <div class="u-name">Ali</div>
+                        <div class="u-score">9,820,400</div>
+                    </div>
+                </div>
+                <div class="top10-card">
+                    <div class="rank-badge r3">3</div>
+                    <div class="top10-user-info">
+                        <div class="u-name">Murad</div>
+                        <div class="u-score">7,650,200</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>Əsas</span>
+        </div>
+        <div class="nav-item" onclick="alert('Taksilər səhifəsinə keçid')">
+            <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.76l.12.34V17z"/></svg>
+            <span>Taksilər</span>
+        </div>
+        <div class="nav-item" onclick="alert('Şəhər səhifəsinə keçid')">
+            <svg viewBox="0 0 24 24"><path d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
+            <span>Şəhər</span>
+        </div>
+        <div class="nav-item" onclick="alert('Dostlar səhifəsinə keçid')">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            <span>Dostlar</span>
+        </div>
+        <div class="nav-item" onclick="alert('Reytinq səhifəsinə keçid')">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1c.88 0 1.66.58 1.92 1.41.97.23 1.91.68 2.75 1.33V14c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2v-2.26c.84-.65 1.78-1.1 2.75-1.33.26-.83 1.04-1.41 1.92-1.41h1c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 7V5h14v2H5zm14 7h-2.11c-.55-.65-1.2-1.21-1.93-1.67V10h4v4zM7 10v2.33c-.73.46-1.38 1.02-1.93 1.67H3v-4h4z"/></svg>
+            <span>Reytinq</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    let balance = 1263;
+    let energy = 478;
+    const maxEnergy = 1000;
+    const clickPower = 1;
+
+    const balanceDisplay = document.getElementById('balanceDisplay');
+    const energyText = document.getElementById('energyText');
+    const energyBar = document.getElementById('energyBar');
+    const coinContainer = document.getElementById('coinContainer');
+    const tapCoin = document.getElementById('tapCoin');
+
+    // Tap Click Event
+    tapCoin.addEventListener('click', (e) => {
+        if (energy >= clickPower) {
+            balance += clickPower;
+            energy -= clickPower;
+            
+            updateUI();
+            showFloatingNumber(e);
+        } else {
+            alert('Enerjiniz bitdi! Bərpa olunmasını gözləyin.');
+        }
+    });
+
+    function updateUI() {
+        balanceDisplay.innerText = balance.toLocaleString();
+        energyText.innerText = `${energy}/${maxEnergy}`;
+        const percent = (energy / maxEnergy) * 100;
+        energyBar.style.width = percent + '%';
     }
-  }
-);
 
+    function showFloatingNumber(e) {
+        const rect = coinContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-/* =========================================================
-   PERIODIC LOCAL SAVE
-   ========================================================= */
+        const floatEl = document.createElement('div');
+        floatEl.className = 'floating-number';
+        floatEl.innerText = `+${clickPower}`;
+        floatEl.style.left = `${x}px`;
+        floatEl.style.top = `${y}px`;
 
-setInterval(
-  saveState,
-  30000
-);
+        coinContainer.appendChild(floatEl);
 
+        setTimeout(() => {
+            floatEl.remove();
+        }, 800);
+    }
+
+    // Claim bonus button
+    function claimBonus() {
+        balance += 500;
+        updateUI();
+        alert('Gündəlik +500 ELCOIN bonusu əldə etdiniz!');
+    }
+
+    // Upgrade button
+    function upgradeLevel() {
+        if (balance >= 1100) {
+            balance -= 1100;
+            updateUI();
+            alert('Səviyyə uğurla yüksəldildi!');
+        } else {
+            alert('Balansınızda kifayət qədər ELCOIN yoxdur (1100 lazımdır).');
+        }
+    }
+
+    // Energy regeneration over time
+    setInterval(() => {
+        if (energy < maxEnergy) {
+            energy = Math.min(maxEnergy, energy + 3);
+            updateUI();
+        }
+    }, 1000);
 </script>
 
 </body>
